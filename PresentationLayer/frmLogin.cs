@@ -73,11 +73,6 @@ namespace PresentationLayer
 
         }
 
-        private void bunifuLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnShowPassword_Click(object sender, EventArgs e)
         {
             isShowPassword = !isShowPassword;
@@ -92,16 +87,6 @@ namespace PresentationLayer
                 btnShowPassword.Image = Properties.Resources.eye;
                 tbPassword.PasswordChar = '*';
             }
-        }
-
-        private void bunifuButton3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuLabel4_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnSignUpp_Click(object sender, EventArgs e)
