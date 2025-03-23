@@ -12,29 +12,20 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Permission
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
+        public Permission()
         {
-            this.Employees1 = new HashSet<Employee>();
+            this.RolePermissions = new HashSet<RolePermission>();
         }
     
-        public int EmployeeID { get; set; }
-        public int UserID { get; set; }
-        public string Position { get; set; }
-        public Nullable<System.DateTime> HireDate { get; set; }
-        public Nullable<int> DepartmentID { get; set; }
-        public Nullable<int> ReportsTo { get; set; }
-        public Nullable<decimal> Salary { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int PermissionID { get; set; }
+        public string PermissionName { get; set; }
+        public string Description { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
     
-        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees1 { get; set; }
-        public virtual Employee Employee1 { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<RolePermission> RolePermissions { get; set; }
     }
 }

@@ -12,24 +12,20 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Department
+    public partial class ProjectMember
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Department()
-        {
-            this.Employees = new HashSet<Employee>();
-        }
-    
-        public int DepartmentID { get; set; }
-        public string DepartmentName { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> ManagerID { get; set; }
+        public int ProjectMemberID { get; set; }
+        public int ProjectID { get; set; }
+        public int UserID { get; set; }
+        public Nullable<System.DateTime> JoinDate { get; set; }
+        public string RoleInProject { get; set; }
+        public Nullable<bool> IsConfirmed { get; set; }
+        public Nullable<System.DateTime> ConfirmationDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
     
+        public virtual Project Project { get; set; }
         public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
     }
 }
