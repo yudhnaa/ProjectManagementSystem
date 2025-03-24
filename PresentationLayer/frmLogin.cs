@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataTransferObject;
+using BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,17 +33,18 @@ namespace PresentationLayer
 
         }
 
-        private bool loginUser(string userName, string password)
+        private UserDTO loginUser(string userName, string password)
         {
-            if (userName.Equals("Admin") && password.Equals("1"))
+            UserDTO user = new UserDTO
             {
-                return true;
-            }
-            else if (1 == 2)
-            { 
-                return true;
-            }
-            return false;
+                Username = userName,
+                PasswordHash = password
+            };
+
+            UserServices userServices = new UserServices();
+            UserDTO checkedUser =  userServices.checkLoginUser(user);
+
+            return checkedUser;
             
         }
 
@@ -50,12 +53,12 @@ namespace PresentationLayer
             string userName = tbUsername.Text.Trim();
             string password = tbPassword.Text;
 
-            bool isLoginSuccess = loginUser(userName, password);
+            UserDTO checkedUser = loginUser(userName, password);
             
-            if (isLoginSuccess)
+            if (checkedUser != null)
             {
                 MessageBox.Show("Login Successfully");
-                Form frmHome = new frmHome();
+                Form frmHome = new frmHome(checkedUser);
                 this.Hide();
                 frmHome.Show();
 

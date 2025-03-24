@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataTransferObject;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,18 @@ namespace PresentationLayer
 {
     public partial class frmHome: Form
     {
-        public frmHome()
+        private UserDTO user;
+        public frmHome(UserDTO user)
         {
             InitializeComponent();
-            
+            this.WindowState = FormWindowState.Maximized;
+            this.user = user;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            lbUsername.Text = this.user.Username;
+            lbUserRole.Text = this.user.RoleID == 1 ? "Admin" : "User";
         }
 
         private void bunifuFormDock1_FormDragging(object sender, Bunifu.UI.WinForms.BunifuFormDock.FormDraggingEventArgs e)
@@ -101,6 +105,11 @@ namespace PresentationLayer
         private void bunifuLabel3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
