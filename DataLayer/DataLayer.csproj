@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BA8D7B0-09E4-427D-91F7-6A728FD47E67}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataLayer</RootNamespace>
+    <AssemblyName>DataLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\AuditLog.cs" />
+    <Compile Include="Domain\Departments.cs" />
+    <Compile Include="Domain\EmailNotifications.cs" />
+    <Compile Include="Domain\Employees.cs" />
+    <Compile Include="Domain\Files.cs" />
+    <Compile Include="Domain\NotificaitonTypes.cs" />
+    <Compile Include="Domain\Notifications.cs" />
+    <Compile Include="Domain\Permissions.cs" />
+    <Compile Include="Domain\ProjectManagementSystemContext.cs" />
+    <Compile Include="Domain\ProjectMembers.cs" />
+    <Compile Include="Domain\ProjectPhases.cs" />
+    <Compile Include="Domain\ProjectPirority.cs" />
+    <Compile Include="Domain\Projects.cs" />
+    <Compile Include="Domain\ProjectStatus.cs" />
+    <Compile Include="Domain\Reports.cs" />
+    <Compile Include="Domain\ReportTypes.cs" />
+    <Compile Include="Domain\RolePermissions.cs" />
+    <Compile Include="Domain\Roles.cs" />
+    <Compile Include="Domain\TaskComments.cs" />
+    <Compile Include="Domain\TaskDependencies.cs" />
+    <Compile Include="Domain\TaskHelpRequests.cs" />
+    <Compile Include="Domain\TaskHistory.cs" />
+    <Compile Include="Domain\TaskPriority.cs" />
+    <Compile Include="Domain\Tasks.cs" />
+    <Compile Include="Domain\TaskStatus.cs" />
+    <Compile Include="Domain\TimeEntries.cs" />
+    <Compile Include="Domain\Users.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
