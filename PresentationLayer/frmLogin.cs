@@ -1,5 +1,5 @@
-﻿using DataTransferObject;
-using BusinessLayer;
+﻿using BusinessLayer;
+using DTOLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,7 +38,7 @@ namespace PresentationLayer
             UserDTO user = new UserDTO
             {
                 Username = userName,
-                PasswordHash = password
+                Password = password
             };
 
             UserServices userServices = new UserServices();

@@ -6,12 +6,11 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class TaskHelpRequests
+    public partial class TaskHelpRequest
     {
-        [Key]
-        public int RequestID { get; set; }
+        public int Id { get; set; }
 
-        public int TaskID { get; set; }
+        public int TaskId { get; set; }
 
         public int RequestedBy { get; set; }
 
@@ -28,10 +27,10 @@ namespace DataLayer.Domain
 
         public DateTime? UpdatedDate { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
 
-        public virtual Users Users1 { get; set; }
+        public virtual User User1 { get; set; }
 
-        public virtual Tasks Tasks { get; set; }
+        public virtual Task Task { get; set; }
     }
 }

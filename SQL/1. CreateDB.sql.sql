@@ -11,7 +11,7 @@ USE ProjectManagementSystemDB;
 GO
 
 -- Initial Tables with Modifications
-CREATE TABLE [Roles]
+CREATE TABLE [UserRoles]
 (
     RoleID INT PRIMARY KEY IDENTITY(1,1),
     RoleName NVARCHAR(50) NOT NULL,
@@ -19,6 +19,7 @@ CREATE TABLE [Roles]
     CreatedDate DATETIME DEFAULT GETDATE(),
     UpdatedDate DATETIME DEFAULT GETDATE()
 );
+GO
 
 CREATE TABLE [Users]
 (
@@ -32,7 +33,7 @@ CREATE TABLE [Users]
     PhoneNumber NVARCHAR(20) NOT NULL,
     Address NVARCHAR(200),
     Avatar VARCHAR(255),
-    RoleID INT NOT NULL,
+    --RoleID INT NOT NULL,
     LastLogin DATETIME,
     IsActive BIT DEFAULT 1,
     IsDeleted BIT DEFAULT 0,
@@ -89,6 +90,16 @@ CREATE TABLE ProjectPirority
     Description NVARCHAR(200),
     -- ColorCode NVARCHAR(7) DEFAULT '#808080',
     -- DisplayOrder INT DEFAULT 0,
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    UpdatedDate DATETIME DEFAULT GETDATE()
+);
+GO
+
+CREATE TABLE [Roles]
+(
+    RoleID INT PRIMARY KEY IDENTITY(1,1),
+    RoleName NVARCHAR(50) NOT NULL,
+    Description NVARCHAR(200),
     CreatedDate DATETIME DEFAULT GETDATE(),
     UpdatedDate DATETIME DEFAULT GETDATE()
 );

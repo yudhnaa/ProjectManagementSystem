@@ -6,20 +6,20 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class NotificaitonTypes
+    public partial class UserRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NotificaitonTypes()
+        public UserRole()
         {
-            Notifications = new HashSet<Notifications>();
+            UserRolePermissions = new HashSet<UserRolePermission>();
+            Users = new HashSet<User>();
         }
 
-        [Key]
-        public int TypeID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string TypeName { get; set; }
+        public string Name { get; set; }
 
         [StringLength(200)]
         public string Description { get; set; }
@@ -29,6 +29,9 @@ namespace DataLayer.Domain
         public DateTime? UpdatedDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Notifications> Notifications { get; set; }
+        public virtual ICollection<UserRolePermission> UserRolePermissions { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DataTransferObject;
+﻿using DTOLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +24,7 @@ namespace PresentationLayer
         private void Form1_Load(object sender, EventArgs e)
         {
             lbUsername.Text = this.user.Username;
-            lbUserRole.Text = this.user.RoleID == 1 ? "Admin" : "User";
+            lbUserRole.Text = this.user.UserRoles.Name;
         }
 
         private void bunifuFormDock1_FormDragging(object sender, Bunifu.UI.WinForms.BunifuFormDock.FormDraggingEventArgs e)

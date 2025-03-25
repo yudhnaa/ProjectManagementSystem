@@ -6,41 +6,40 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Tasks
+    public partial class Task
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tasks()
+        public Task()
         {
-            Files = new HashSet<Files>();
-            TaskComments = new HashSet<TaskComments>();
-            TaskDependencies = new HashSet<TaskDependencies>();
-            TaskDependencies1 = new HashSet<TaskDependencies>();
-            TaskHelpRequests = new HashSet<TaskHelpRequests>();
-            TaskHistory = new HashSet<TaskHistory>();
-            Tasks1 = new HashSet<Tasks>();
-            TimeEntries = new HashSet<TimeEntries>();
+            Files = new HashSet<File>();
+            TaskComments = new HashSet<TaskComment>();
+            TaskDependencies = new HashSet<TaskDependency>();
+            TaskDependencies1 = new HashSet<TaskDependency>();
+            TaskHelpRequests = new HashSet<TaskHelpRequest>();
+            TaskHistories = new HashSet<TaskHistory>();
+            Tasks1 = new HashSet<Task>();
+            TimeEntries = new HashSet<TimeEntry>();
         }
 
-        [Key]
-        public int TaskID { get; set; }
+        public int Id { get; set; }
 
         [StringLength(20)]
-        public string TaskCode { get; set; }
+        public string Code { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string TaskName { get; set; }
+        public string Name { get; set; }
 
         [StringLength(500)]
         public string Description { get; set; }
 
-        public int ProjectID { get; set; }
+        public int ProjectId { get; set; }
 
-        public int MainUserID { get; set; }
+        public int AssignedUserId { get; set; }
 
-        public int StatusID { get; set; }
+        public int StatusId { get; set; }
 
-        public int PriorityID { get; set; }
+        public int PriorityId { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? StartDate { get; set; }
@@ -54,7 +53,7 @@ namespace DataLayer.Domain
 
         public decimal? PercentComplete { get; set; }
 
-        public int? ParentTaskID { get; set; }
+        public int? ParentTaskId { get; set; }
 
         public DateTime? LastStatusChangeDate { get; set; }
 
@@ -70,39 +69,39 @@ namespace DataLayer.Domain
         public DateTime? UpdatedDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Files> Files { get; set; }
+        public virtual ICollection<File> Files { get; set; }
 
-        public virtual Projects Projects { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TaskComments> TaskComments { get; set; }
+        public virtual Project Project { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TaskDependencies> TaskDependencies { get; set; }
+        public virtual ICollection<TaskComment> TaskComments { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TaskDependencies> TaskDependencies1 { get; set; }
+        public virtual ICollection<TaskDependency> TaskDependencies { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TaskHelpRequests> TaskHelpRequests { get; set; }
+        public virtual ICollection<TaskDependency> TaskDependencies1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TaskHistory> TaskHistory { get; set; }
+        public virtual ICollection<TaskHelpRequest> TaskHelpRequests { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskHistory> TaskHistories { get; set; }
 
         public virtual TaskPriority TaskPriority { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
 
-        public virtual Users Users1 { get; set; }
+        public virtual User User1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks1 { get; set; }
+        public virtual ICollection<Task> Tasks1 { get; set; }
 
-        public virtual Tasks Tasks2 { get; set; }
+        public virtual Task Task1 { get; set; }
 
         public virtual TaskStatus TaskStatus { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TimeEntries> TimeEntries { get; set; }
+        public virtual ICollection<TimeEntry> TimeEntries { get; set; }
     }
 }

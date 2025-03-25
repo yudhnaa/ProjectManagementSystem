@@ -6,12 +6,11 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class EmailNotifications
+    public partial class EmailNotification
     {
-        [Key]
-        public int EmailID { get; set; }
+        public int Id { get; set; }
 
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         [StringLength(200)]
@@ -26,6 +25,6 @@ namespace DataLayer.Domain
         [StringLength(500)]
         public string ErrorMessage { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

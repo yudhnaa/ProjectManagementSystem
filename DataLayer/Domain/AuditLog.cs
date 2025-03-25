@@ -6,13 +6,11 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("AuditLog")]
     public partial class AuditLog
     {
-        [Key]
-        public int LogID { get; set; }
+        public int Id { get; set; }
 
-        public int? UserID { get; set; }
+        public int? UserId { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -26,10 +24,10 @@ namespace DataLayer.Domain
         public string Description { get; set; }
 
         [StringLength(50)]
-        public string IPAddress { get; set; }
+        public string IpAddress { get; set; }
 
         public DateTime? LogDate { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

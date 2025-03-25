@@ -6,14 +6,13 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class TimeEntries
+    public partial class TimeEntry
     {
-        [Key]
-        public int EntryID { get; set; }
+        public int Id { get; set; }
 
-        public int TaskID { get; set; }
+        public int TaskId { get; set; }
 
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         public DateTime StartTime { get; set; }
 
@@ -24,8 +23,8 @@ namespace DataLayer.Domain
 
         public DateTime? CreatedDate { get; set; }
 
-        public virtual Tasks Tasks { get; set; }
+        public virtual Task Task { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -9,10 +9,9 @@ namespace DataLayer.Domain
     [Table("TaskHistory")]
     public partial class TaskHistory
     {
-        [Key]
-        public int HistoryID { get; set; }
+        public int Id { get; set; }
 
-        public int TaskID { get; set; }
+        public int TaskId { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -26,8 +25,8 @@ namespace DataLayer.Domain
 
         public DateTime? ChangedDate { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
 
-        public virtual Tasks Tasks { get; set; }
+        public virtual Task Task { get; set; }
     }
 }

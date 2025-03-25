@@ -51,32 +51,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\AuditLog.cs" />
-    <Compile Include="Domain\Departments.cs" />
-    <Compile Include="Domain\EmailNotifications.cs" />
-    <Compile Include="Domain\Employees.cs" />
-    <Compile Include="Domain\Files.cs" />
-    <Compile Include="Domain\NotificaitonTypes.cs" />
-    <Compile Include="Domain\Notifications.cs" />
-    <Compile Include="Domain\Permissions.cs" />
-    <Compile Include="Domain\ProjectManagementSystemContext.cs" />
-    <Compile Include="Domain\ProjectMembers.cs" />
-    <Compile Include="Domain\ProjectPhases.cs" />
-    <Compile Include="Domain\ProjectPirority.cs" />
-    <Compile Include="Domain\Projects.cs" />
+    <Compile Include="Domain\Department.cs" />
+    <Compile Include="Domain\EmailNotification.cs" />
+    <Compile Include="Domain\Employee.cs" />
+    <Compile Include="Domain\File.cs" />
+    <Compile Include="Domain\Notification.cs" />
+    <Compile Include="Domain\NotificationType.cs" />
+    <Compile Include="Domain\Permission.cs" />
+    <Compile Include="Domain\PermissionType.cs" />
+    <Compile Include="Domain\Position.cs" />
+    <Compile Include="Domain\Project.cs" />
+    <Compile Include="Domain\ProjectManagementSystemDBContext.cs" />
+    <Compile Include="Domain\ProjectMember.cs" />
+    <Compile Include="Domain\ProjectMemberRole.cs" />
+    <Compile Include="Domain\ProjectMemberRolePermission.cs" />
+    <Compile Include="Domain\ProjectPriority.cs" />
     <Compile Include="Domain\ProjectStatus.cs" />
-    <Compile Include="Domain\Reports.cs" />
-    <Compile Include="Domain\ReportTypes.cs" />
-    <Compile Include="Domain\RolePermissions.cs" />
-    <Compile Include="Domain\Roles.cs" />
-    <Compile Include="Domain\TaskComments.cs" />
-    <Compile Include="Domain\TaskDependencies.cs" />
-    <Compile Include="Domain\TaskHelpRequests.cs" />
+    <Compile Include="Domain\Report.cs" />
+    <Compile Include="Domain\ReportType.cs" />
+    <Compile Include="Domain\Task.cs" />
+    <Compile Include="Domain\TaskComment.cs" />
+    <Compile Include="Domain\TaskDependency.cs" />
+    <Compile Include="Domain\TaskHelpRequest.cs" />
     <Compile Include="Domain\TaskHistory.cs" />
     <Compile Include="Domain\TaskPriority.cs" />
-    <Compile Include="Domain\Tasks.cs" />
     <Compile Include="Domain\TaskStatus.cs" />
-    <Compile Include="Domain\TimeEntries.cs" />
-    <Compile Include="Domain\Users.cs" />
+    <Compile Include="Domain\TimeEntry.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\UserRole.cs" />
+    <Compile Include="Domain\UserRolePermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

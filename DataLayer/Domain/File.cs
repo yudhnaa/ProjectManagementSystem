@@ -6,14 +6,13 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Files
+    public partial class File
     {
-        [Key]
-        public int FileID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string FileName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [StringLength(500)]
@@ -24,18 +23,18 @@ namespace DataLayer.Domain
         [StringLength(100)]
         public string FileType { get; set; }
 
-        public int? ProjectID { get; set; }
+        public int? ProjectId { get; set; }
 
-        public int? TaskID { get; set; }
+        public int? TaskId { get; set; }
 
         public int UploadedBy { get; set; }
 
         public DateTime? UploadDate { get; set; }
 
-        public virtual Projects Projects { get; set; }
+        public virtual Project Project { get; set; }
 
-        public virtual Tasks Tasks { get; set; }
+        public virtual Task Task { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

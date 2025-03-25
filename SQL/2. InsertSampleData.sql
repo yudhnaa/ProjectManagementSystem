@@ -1,4 +1,4 @@
-USE ProjectManagementSystem;
+USE ProjectManagementSystemDB;
 GO
 
 -- Chèn dữ liệu mẫu vào bảng [Roles]
@@ -6,7 +6,7 @@ INSERT INTO [Roles]
     (RoleName, Description)
 VALUES
     ('Admin', N'Quản trị viên hệ thống'),
-    ('ProjectManager', N'Quản lý dự án'),
+    --('ProjectManager', N'Quản lý dự án'),
     ('Employee', N'Nhân viên');
 
 -- Chèn dữ liệu mẫu vào bảng [ProjectStatus]
@@ -68,16 +68,16 @@ INSERT INTO [RolePermissions]
 SELECT 1, PermissionID
 FROM [Permissions];
 
--- Project Manager
-INSERT INTO [RolePermissions]
-    (RoleID, PermissionID)
-SELECT 2, PermissionID
-FROM [Permissions]
-WHERE PermissionName IN (
-    'VIEW_PROJECTS', 'CREATE_PROJECT', 'EDIT_PROJECT',
-    'VIEW_TASKS', 'CREATE_TASK', 'EDIT_TASK', 'DELETE_TASK',
-    'VIEW_USERS', 'GENERATE_REPORTS', 'APPROVE_TASKS', 'VIEW_REPORTS'
-);
+---- Project Manager
+--INSERT INTO [RolePermissions]
+--    (RoleID, PermissionID)
+--SELECT 2, PermissionID
+--FROM [Permissions]
+--WHERE PermissionName IN (
+--    'VIEW_PROJECTS', 'CREATE_PROJECT', 'EDIT_PROJECT',
+--    'VIEW_TASKS', 'CREATE_TASK', 'EDIT_TASK', 'DELETE_TASK',
+--    'VIEW_USERS', 'GENERATE_REPORTS', 'APPROVE_TASKS', 'VIEW_REPORTS'
+--);
 
 -- Employee
 INSERT INTO [RolePermissions]

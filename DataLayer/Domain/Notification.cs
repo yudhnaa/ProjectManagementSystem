@@ -6,12 +6,11 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Notifications
+    public partial class Notification
     {
-        [Key]
-        public int NotificationID { get; set; }
+        public int Id { get; set; }
 
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -20,16 +19,16 @@ namespace DataLayer.Domain
         [StringLength(500)]
         public string Message { get; set; }
 
-        public int NotificationType { get; set; }
+        public int NotificationTypeId { get; set; }
 
-        public int? RelatedID { get; set; }
+        public int? RelatedId { get; set; }
 
         public bool? IsRead { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 
-        public virtual NotificaitonTypes NotificaitonTypes { get; set; }
+        public virtual NotificationType NotificationType { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

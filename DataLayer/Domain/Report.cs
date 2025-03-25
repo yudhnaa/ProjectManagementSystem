@@ -6,16 +6,15 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Reports
+    public partial class Report
     {
-        [Key]
-        public int ReportID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]
         public string ReportName { get; set; }
 
-        public int ReportType { get; set; }
+        public int ReportTypeId { get; set; }
 
         [StringLength(200)]
         public string Description { get; set; }
@@ -26,8 +25,8 @@ namespace DataLayer.Domain
 
         public DateTime? CreatedDate { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
 
-        public virtual ReportTypes ReportTypes { get; set; }
+        public virtual ReportType ReportType { get; set; }
     }
 }

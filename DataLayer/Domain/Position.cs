@@ -6,22 +6,21 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TaskStatuses")]
-    public partial class TaskStatus
+    public partial class Position
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TaskStatus()
+        public Position()
         {
-            Tasks = new HashSet<Task>();
+            Employees = new HashSet<Employee>();
         }
 
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Name { get; set; }
 
-        [StringLength(200)]
+        [StringLength(255)]
         public string Description { get; set; }
 
         public bool? IsActive { get; set; }
@@ -33,6 +32,6 @@ namespace DataLayer.Domain
         public DateTime? UpdatedDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

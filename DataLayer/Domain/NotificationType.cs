@@ -6,13 +6,12 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TaskStatuses")]
-    public partial class TaskStatus
+    public partial class NotificationType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TaskStatus()
+        public NotificationType()
         {
-            Tasks = new HashSet<Task>();
+            Notifications = new HashSet<Notification>();
         }
 
         public int Id { get; set; }
@@ -24,15 +23,11 @@ namespace DataLayer.Domain
         [StringLength(200)]
         public string Description { get; set; }
 
-        public bool? IsActive { get; set; }
-
-        public bool? IsDeleted { get; set; }
-
         public DateTime? CreatedDate { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

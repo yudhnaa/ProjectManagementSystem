@@ -6,21 +6,20 @@ namespace DataLayer.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class TaskDependencies
+    public partial class TaskDependency
     {
-        [Key]
-        public int DependencyID { get; set; }
+        public int Id { get; set; }
 
-        public int TaskID { get; set; }
+        public int TaskId { get; set; }
 
-        public int DependsOnTaskID { get; set; }
+        public int DependsOnTaskId { get; set; }
 
         public int DependencyType { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 
-        public virtual Tasks Tasks { get; set; }
+        public virtual Task Task { get; set; }
 
-        public virtual Tasks Tasks1 { get; set; }
+        public virtual Task Task1 { get; set; }
     }
 }
