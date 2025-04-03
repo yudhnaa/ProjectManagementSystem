@@ -11,9 +11,9 @@ namespace BusinessLayer
 {
     public class UserServices
     {
-        User user { get; set; }
+        private User user { get; set; }
 
-        public UserDTO checkLoginUser(UserDTO userDTO)
+        public UserDTO CheckLoginUser(UserDTO userDTO)
         {
 
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
@@ -54,6 +54,27 @@ namespace BusinessLayer
                         };
                 }
             }
+        }
+
+        public List<UserDTO> GetAllUsers()
+        {
+            return null;
+        }
+
+        public UserDTO GetUserById(int Id)
+        {
+            return null;
+        }
+
+        public UserDTO AddOrUpdateUser()
+        {
+
+            return null;
+        }
+
+        public void DeleteUserById()
+        {
+            return;
         }
     }
 }

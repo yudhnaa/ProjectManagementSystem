@@ -111,5 +111,10 @@ namespace PresentationLayer
         {
             Application.Exit();
         }
+
+        private void ctrlLoginForm1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
