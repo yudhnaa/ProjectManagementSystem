@@ -105,6 +105,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\ctrlCreateProject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ctrlCreateProject.Designer.cs">
+      <DependentUpon>ctrlCreateProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ctrlLoginForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ctrlLoginForm.Designer.cs">
+      <DependentUpon>ctrlLoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ctrlSignUpForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ctrlSignUpForm.Designer.cs">
+      <DependentUpon>ctrlSignUpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +137,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomControls\ctrlCreateProject.resx">
+      <DependentUpon>ctrlCreateProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ctrlLoginForm.resx">
+      <DependentUpon>ctrlLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ctrlSignUpForm.resx">
+      <DependentUpon>ctrlSignUpForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
     </EmbeddedResource>
