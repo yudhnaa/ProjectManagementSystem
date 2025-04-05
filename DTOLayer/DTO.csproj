@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{911535C8-DFF7-46EF-A02B-3AF4A222FDA4}</ProjectGuid>
+    <ProjectGuid>{71EBE15E-891F-41FD-B40C-06FA5FA49CF5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLayer</RootNamespace>
-    <AssemblyName>BusinessLayer</AssemblyName>
+    <RootNamespace>DTOLayer</RootNamespace>
+    <AssemblyName>DTOLayer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,6 +41,9 @@
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,22 +54,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\PermissionDTOMapper.cs" />
+    <Compile Include="Mappers\PermissionTypeDTOMapper.cs" />
+    <Compile Include="Mappers\ProjectDTOMapper.cs" />
+    <Compile Include="Mappers\ProjectMemberDTOMapper.cs" />
+    <Compile Include="Mappers\ProjectMemberRoleDTOMapper.cs" />
+    <Compile Include="Mappers\ProjectMemberRolePermissionDTOMapper.cs" />
+    <Compile Include="Mappers\ProjectPriorityDTOMapper.cs" />
+    <Compile Include="Mappers\ProjectStatusDTOMapper.cs" />
+    <Compile Include="Mappers\TaskDTOMapper.cs" />
+    <Compile Include="Mappers\UserDTOMapper.cs" />
+    <Compile Include="Mappers\UserRoleDTOMapper.cs" />
+    <Compile Include="Mappers\UserRolePermissionDTOMapper.cs" />
+    <Compile Include="Models\PermissionDTO.cs" />
+    <Compile Include="Models\PermissionTypeDTO.cs" />
+    <Compile Include="Models\ProjectDTO.cs" />
+    <Compile Include="Models\ProjectMemberDTO.cs" />
+    <Compile Include="Models\ProjectMemberRoleDTO.cs" />
+    <Compile Include="Models\ProjectMemberRolePermissionDTO.cs" />
+    <Compile Include="Models\ProjectPriorityDTO.cs" />
+    <Compile Include="Models\ProjectStatusDTO.cs" />
+    <Compile Include="Models\TaskDTO.cs" />
+    <Compile Include="Models\UserDTO.cs" />
+    <Compile Include="Models\UserRoleDTO.cs" />
+    <Compile Include="Models\UserRolePermissionDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserServices.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
       <Project>{7ba8d7b0-09e4-427d-91f7-6a728fd47e67}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTOLayer\DTO.csproj">
-      <Project>{71ebe15e-891f-41fd-b40c-06fa5fa49cf5}</Project>
-      <Name>DTO</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

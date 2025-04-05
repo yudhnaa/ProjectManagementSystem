@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -137,6 +137,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UC_SideBar\UC_Gant.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SideBar\UC_Gant.Designer.cs">
+      <DependentUpon>UC_Gant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SideBar\UC_Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SideBar\UC_Home.Designer.cs">
+      <DependentUpon>UC_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SideBar\UC_Overview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SideBar\UC_Overview.Designer.cs">
+      <DependentUpon>UC_Overview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SideBar\UC_Task.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SideBar\UC_Task.Designer.cs">
+      <DependentUpon>UC_Task.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CustomControls\ctrlCreateProject.resx">
       <DependentUpon>ctrlCreateProject.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +186,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UC_SideBar\UC_Gant.resx">
+      <DependentUpon>UC_Gant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_SideBar\UC_Home.resx">
+      <DependentUpon>UC_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_SideBar\UC_Overview.resx">
+      <DependentUpon>UC_Overview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_SideBar\UC_Task.resx">
+      <DependentUpon>UC_Task.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -202,9 +238,9 @@
       <Project>{911535c8-dff7-46ef-a02b-3af4a222fda4}</Project>
       <Name>BusinessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTOLayer\DTOLayer.csproj">
+    <ProjectReference Include="..\DTOLayer\DTO.csproj">
       <Project>{71ebe15e-891f-41fd-b40c-06fa5fa49cf5}</Project>
-      <Name>DTOLayer</Name>
+      <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

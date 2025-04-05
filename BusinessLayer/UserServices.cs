@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
 using DataLayer.Domain;
-using DTOLayer;
+using DTOLayer.Mappers;
+using DTOLayer.Models;
 
 namespace BusinessLayer
 {
@@ -18,17 +19,19 @@ namespace BusinessLayer
 
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
             {
-                var user = dbContext.Users.Where(u => u.Username == userDTO.Username).Select(u => new
-                {
-                    u.Id,
-                    u.Username,
-                    u.Email,
-                    u.FirstName,
-                    u.LastName,
-                    u.UserRole,
-                    u.Avatar,
-                    u.Password
-                }).FirstOrDefault();
+                var user = dbContext.Users.Where(u => u.Username == userDTO.Username).FirstOrDefault();
+
+                //var user = dbContext.Users.Where(u => u.Username == userDTO.Username).Select(u => new
+                //{
+                //    u.Id,
+                //    u.Username,
+                //    u.Email,
+                //    u.FirstName,
+                //    u.LastName,
+                //    u.UserRole,
+                //    u.Avatar,
+                //    u.Password
+                //}).FirstOrDefault();
 
                 if (user == null)
                     return null;
@@ -37,21 +40,18 @@ namespace BusinessLayer
                     if (user.Password != userDTO.Password)
                         return null;
                     else
-                        return new UserDTO
-                        {
-                            Id = user.Id,
-                            Username = user.Username,
-                            Email = user.Email,
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            UserRoles = new UserRoleDTO
-                            {
-                                Id = user.UserRole.Id,
-                                Name = user.UserRole.Name,
-                                Description = user.UserRole.Description,
-                            },
-                            Avatar = user.Avatar,
-                        };
+                        return UserDTOMapper.ToDto(user);
+
+                        //    new UserDTO
+                        //{
+                        //    Id = user.Id,
+                        //    Username = user.Username,
+                        //    Email = user.Email,
+                        //    FirstName = user.FirstName,
+                        //    LastName = user.LastName,
+                        //    UserRole = user.UserRole.Id,
+                        //    Avatar = user.Avatar,
+                        //};
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTOLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,10 @@ namespace PresentationLayer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
+            //Application.Run(new frmHome(new UserDTO {
+            //    Username = "admin",
+            //    UserRole = new DTOLayer.UserRoleDTO { Name = "Admin" }
+            //}));
         }
     }
 }
