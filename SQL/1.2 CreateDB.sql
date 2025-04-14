@@ -1,4 +1,6 @@
-USE [ProjectManagementSystemDB]
+Create DATABASE [ProjectManagementSystemDB]
+GO
+Use [ProjectManagementSystemDB]
 GO
 /****** Object:  Table [dbo].[AuditLogs]    Script Date: 26/03/2025 4:02:12 CH ******/
 SET ANSI_NULLS ON
@@ -57,33 +59,6 @@ PRIMARY KEY CLUSTERED
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Employees]    Script Date: 26/03/2025 4:02:12 CH ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Employees](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[UserId] [int] NOT NULL,
-	[PositionId] [int] NOT NULL,
-	[HireDate] [date] NULL,
-	[DepartmentId] [int] NULL,
-	[ReportTo] [int] NULL,
-	[Salary] [decimal](18, 2) NULL,
-	[IsActive] [bit] NULL,
-	[IsDeleted] [bit] NULL,
-	[CreatedDate] [datetime] NULL,
-	[UpdatedDate] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
-(
-	[UserId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
 GO
 /****** Object:  Table [dbo].[Files]    Script Date: 26/03/2025 4:02:12 CH ******/
 SET ANSI_NULLS ON
@@ -630,6 +605,11 @@ CREATE TABLE [dbo].[Users](
 	[Address] [nvarchar](200) NULL,
 	[Avatar] [nvarchar](255) NULL,
 	[UserRoleId] [int] NOT NULL,
+	[PositionId] [int] NULL,
+	[HireDate] [date] NULL,
+	[DepartmentId] [int] NULL,
+	[ReportTo] [int] NULL,
+	[Salary] [decimal](18, 2) NULL,
 	[LastLogin] [datetime] NULL,
 	[IsActive] [bit] NULL,
 	[IsDeleted] [bit] NULL,
@@ -662,14 +642,6 @@ GO
 ALTER TABLE [dbo].[EmailNotifications] ADD  DEFAULT (getdate()) FOR [SentDate]
 GO
 ALTER TABLE [dbo].[EmailNotifications] ADD  DEFAULT ((1)) FOR [IsSuccessful]
-GO
-ALTER TABLE [dbo].[Employees] ADD  DEFAULT ((1)) FOR [IsActive]
-GO
-ALTER TABLE [dbo].[Employees] ADD  DEFAULT ((0)) FOR [IsDeleted]
-GO
-ALTER TABLE [dbo].[Employees] ADD  DEFAULT (getdate()) FOR [CreatedDate]
-GO
-ALTER TABLE [dbo].[Employees] ADD  DEFAULT (getdate()) FOR [UpdatedDate]
 GO
 ALTER TABLE [dbo].[Files] ADD  DEFAULT (getdate()) FOR [UploadDate]
 GO
@@ -806,18 +778,6 @@ GO
 ALTER TABLE [dbo].[EmailNotifications]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[Users] ([Id])
 GO
-ALTER TABLE [dbo].[Employees]  WITH CHECK ADD FOREIGN KEY([DepartmentId])
-REFERENCES [dbo].[Departments] ([Id])
-GO
-ALTER TABLE [dbo].[Employees]  WITH CHECK ADD FOREIGN KEY([PositionId])
-REFERENCES [dbo].[Positions] ([Id])
-GO
-ALTER TABLE [dbo].[Employees]  WITH CHECK ADD FOREIGN KEY([ReportTo])
-REFERENCES [dbo].[Employees] ([Id])
-GO
-ALTER TABLE [dbo].[Employees]  WITH CHECK ADD FOREIGN KEY([UserId])
-REFERENCES [dbo].[Users] ([Id])
-GO
 ALTER TABLE [dbo].[Files]  WITH CHECK ADD FOREIGN KEY([ProjectId])
 REFERENCES [dbo].[Projects] ([Id])
 GO
@@ -928,6 +888,15 @@ REFERENCES [dbo].[UserRoles] ([Id])
 GO
 ALTER TABLE [dbo].[Users]  WITH CHECK ADD FOREIGN KEY([UserRoleId])
 REFERENCES [dbo].[UserRoles] ([Id])
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD FOREIGN KEY([PositionId])
+REFERENCES [dbo].[Positions] ([Id])
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD FOREIGN KEY([DepartmentId])
+REFERENCES [dbo].[Departments] ([Id])
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD FOREIGN KEY([ReportTo])
+REFERENCES [dbo].[Users] ([Id])
 GO
 ALTER TABLE [dbo].[TaskDependencies]  WITH CHECK ADD  CONSTRAINT [CHK_TaskDependency] CHECK  (([TaskId]<>[DependsOnTaskId]))
 GO

@@ -1,5 +1,4 @@
 using DTOLayer.Models;
-using System.Linq;
 
 namespace DTOLayer.Mappers
 {
@@ -29,8 +28,6 @@ namespace DTOLayer.Mappers
                 CreatedBy = task.CreatedBy,
                 CreatedDate = task.CreatedDate,
                 UpdatedDate = task.UpdatedDate,
-                Tasks1 = task.Tasks1?.Select(t => t.ToDto()).ToList(),
-                Task1 = task.Task1?.ToDto(),
             };
         }
 
@@ -58,10 +55,9 @@ namespace DTOLayer.Mappers
                 CreatedBy = model.CreatedBy,
                 CreatedDate = model.CreatedDate,
                 UpdatedDate = model.UpdatedDate,
-                Tasks1 = model.Tasks1?.Select(t => t.ToTaskEntity()).ToList(),
-                Task1 = model.Task1?.ToTaskEntity(),
             };
         }
+
     }
 }
 

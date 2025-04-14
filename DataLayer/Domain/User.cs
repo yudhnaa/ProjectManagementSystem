@@ -14,7 +14,6 @@ namespace DataLayer.Domain
             AuditLogs = new HashSet<AuditLog>();
             Departments = new HashSet<Department>();
             EmailNotifications = new HashSet<EmailNotification>();
-            Employees = new HashSet<Employee>();
             Files = new HashSet<File>();
             Notifications = new HashSet<Notification>();
             ProjectMembers = new HashSet<ProjectMember>();
@@ -64,6 +63,10 @@ namespace DataLayer.Domain
 
         public int UserRoleId { get; set; }
 
+        public int? PositionId { get; set; }
+
+        public int? DepartmentId { get; set; }
+
         public DateTime? LastLogin { get; set; }
 
         public bool? IsActive { get; set; }
@@ -80,17 +83,18 @@ namespace DataLayer.Domain
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Department> Departments { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmailNotification> EmailNotifications { get; set; }
+        public virtual Department Department { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<EmailNotification> EmailNotifications { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<File> Files { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notification> Notifications { get; set; }
+
+        public virtual Position Position { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectMember> ProjectMembers { get; set; }

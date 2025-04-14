@@ -28,7 +28,5 @@ namespace DTOLayer.Models
         public int CreatedBy {get; set;}
         public DateTime? CreatedDate {get; set;}
         public DateTime? UpdatedDate {get; set;}
-        public ICollection<TaskDTO> Tasks1 {get; set;}
-        public TaskDTO Task1 {get; set;}
     }
 }

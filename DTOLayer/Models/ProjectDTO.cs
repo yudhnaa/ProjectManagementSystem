@@ -1,11 +1,10 @@
-using DTOLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
 
-namespace DTOLayer
+namespace DTOLayer.Models
 {
     public class ProjectDTO
     {
@@ -24,6 +23,5 @@ namespace DTOLayer
         public int CreatedBy {get; set;}
         public DateTime? CreatedDate {get; set;}
         public DateTime? UpdatedDate {get; set;}
-        public ICollection<TaskDTO> Tasks {get; set;}
     }
 }

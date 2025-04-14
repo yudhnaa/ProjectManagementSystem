@@ -50,10 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\DepartmentDAL.cs" />
+    <Compile Include="DataAccess\ProjectMemberRoleDAL.cs" />
+    <Compile Include="DataAccess\ProjectMemberDAL.cs" />
+    <Compile Include="DataAccess\ProjectPriorityDAL.cs" />
+    <Compile Include="DataAccess\ProjectDAL.cs" />
+    <Compile Include="DataAccess\ProjectStatusDAL.cs" />
+    <Compile Include="DataAccess\TaskDAL.cs" />
+    <Compile Include="DataAccess\TaskHistoryDAL.cs" />
+    <Compile Include="DataAccess\TaskPriorityDAL.cs" />
+    <Compile Include="DataAccess\TaskStatusDAL.cs" />
+    <Compile Include="DataAccess\UserRoleDAL.cs" />
+    <Compile Include="DataAccess\UserDAL.cs" />
     <Compile Include="Domain\AuditLog.cs" />
     <Compile Include="Domain\Department.cs" />
     <Compile Include="Domain\EmailNotification.cs" />
-    <Compile Include="Domain\Employee.cs" />
     <Compile Include="Domain\File.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\NotificationType.cs" />

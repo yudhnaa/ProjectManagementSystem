@@ -58,7 +58,7 @@ namespace PresentationLayer.CustomControls
             if (checkedUser != null)
             {
                 MessageBox.Show("Login Successfully");
-                Form frmHome = new frmHome(checkedUser);
+                Form frmHome = new frmUserHome(checkedUser);
                 frmLogin.Hide();
                 frmHome.Show();
 

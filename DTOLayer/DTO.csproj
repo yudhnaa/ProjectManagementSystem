@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\DepartmentDTOMapper.cs" />
     <Compile Include="Mappers\PermissionDTOMapper.cs" />
     <Compile Include="Mappers\PermissionTypeDTOMapper.cs" />
     <Compile Include="Mappers\ProjectDTOMapper.cs" />
@@ -63,9 +64,14 @@
     <Compile Include="Mappers\ProjectPriorityDTOMapper.cs" />
     <Compile Include="Mappers\ProjectStatusDTOMapper.cs" />
     <Compile Include="Mappers\TaskDTOMapper.cs" />
+    <Compile Include="Mappers\TaskHistoryDTOMapper.cs" />
+    <Compile Include="Mappers\TaskPriorityDTOMapper.cs" />
+    <Compile Include="Mappers\TaskStatusDTOMapper.cs" />
     <Compile Include="Mappers\UserDTOMapper.cs" />
+    <Compile Include="Mappers\UserExtraInfoDTOMapper.cs" />
     <Compile Include="Mappers\UserRoleDTOMapper.cs" />
     <Compile Include="Mappers\UserRolePermissionDTOMapper.cs" />
+    <Compile Include="Models\DepartmentDTO.cs" />
     <Compile Include="Models\PermissionDTO.cs" />
     <Compile Include="Models\PermissionTypeDTO.cs" />
     <Compile Include="Models\ProjectDTO.cs" />
@@ -75,7 +81,11 @@
     <Compile Include="Models\ProjectPriorityDTO.cs" />
     <Compile Include="Models\ProjectStatusDTO.cs" />
     <Compile Include="Models\TaskDTO.cs" />
+    <Compile Include="Models\TaskHistoryDTO.cs" />
+    <Compile Include="Models\TaskPriorityDTO.cs" />
+    <Compile Include="Models\TaskStatusDTO.cs" />
     <Compile Include="Models\UserDTO.cs" />
+    <Compile Include="Models\UserExtraInfoDTO.cs" />
     <Compile Include="Models\UserRoleDTO.cs" />
     <Compile Include="Models\UserRolePermissionDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

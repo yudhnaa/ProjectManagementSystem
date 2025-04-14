@@ -28,41 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Task));
-            this.bunifuLabel1 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // bunifuLabel1
+            // listBox1
             // 
-            this.bunifuLabel1.AllowParentOverrides = false;
-            this.bunifuLabel1.AutoEllipsis = false;
-            this.bunifuLabel1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bunifuLabel1.CursorType = System.Windows.Forms.Cursors.Default;
-            this.bunifuLabel1.Font = new System.Drawing.Font("Segoe UI", 27.75F);
-            this.bunifuLabel1.Location = new System.Drawing.Point(269, 86);
-            this.bunifuLabel1.Name = "bunifuLabel1";
-            this.bunifuLabel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel1.Size = new System.Drawing.Size(195, 133);
-            this.bunifuLabel1.TabIndex = 0;
-            this.bunifuLabel1.Text = "Task";
-            this.bunifuLabel1.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.bunifuLabel1.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
-            this.bunifuLabel1.Click += new System.EventHandler(this.bunifuLabel1_Click);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(193, 104);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(302, 251);
+            this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // UC_Task
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.bunifuLabel1);
+            this.Controls.Add(this.listBox1);
             this.Name = "UC_Task";
             this.Size = new System.Drawing.Size(879, 592);
+            this.Load += new System.EventHandler(this.UC_Task_Load_1);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Bunifu.UI.WinForms.BunifuLabel bunifuLabel1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

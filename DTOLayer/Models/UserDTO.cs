@@ -17,10 +17,8 @@ namespace DTOLayer.Models
         public string PhoneNumber {get; set;}
         public string Address {get; set;}
         public string Avatar {get; set;}
-        public UserRoleDTO UserRole {get; set;}
+        public int UserRoleId {get; set;}
         public DateTime? LastLogin {get; set;}
         public DateTime? CreatedDate {get; set;}
-        public ICollection<TaskDTO> Tasks {get; set;}
-        public ICollection<TaskDTO> Tasks1 {get; set;}
     }
 }

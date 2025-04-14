@@ -1,5 +1,4 @@
 using DTOLayer.Models;
-using System.Linq;
 
 namespace DTOLayer.Mappers
 {
@@ -18,11 +17,9 @@ namespace DTOLayer.Mappers
                 PhoneNumber = user.PhoneNumber,
                 Address = user.Address,
                 Avatar = user.Avatar,
-                UserRole = user.UserRole.ToDto(),
+                UserRoleId = user.UserRoleId,
                 LastLogin = user.LastLogin,
                 CreatedDate = user.CreatedDate,
-                Tasks = user.Tasks.Select(t => t.ToDto()).ToList(),
-                Tasks1 = user.Tasks1.Select(t => t.ToDto()).ToList(),
             };
         }
 
@@ -39,13 +36,12 @@ namespace DTOLayer.Mappers
                 PhoneNumber = model.PhoneNumber,
                 Address = model.Address,
                 Avatar = model.Avatar,
-                UserRole = model.UserRole.ToUserRoleEntity(),
+                UserRoleId = model.UserRoleId,
                 LastLogin = model.LastLogin,
                 CreatedDate = model.CreatedDate,
-                Tasks = model.Tasks.Select(t => t.ToTaskEntity()).ToList(),
-                Tasks1 = model.Tasks1.Select(t => t.ToTaskEntity()).ToList(),
             };
         }
+
     }
 }
 

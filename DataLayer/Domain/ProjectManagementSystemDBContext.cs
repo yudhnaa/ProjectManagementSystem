@@ -15,7 +15,6 @@ namespace DataLayer.Domain
         public virtual DbSet<AuditLog> AuditLogs { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<EmailNotification> EmailNotifications { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<NotificationType> NotificationTypes { get; set; }
@@ -44,10 +43,10 @@ namespace DataLayer.Domain
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>()
-                .HasMany(e => e.Employees1)
-                .WithOptional(e => e.Employee1)
-                .HasForeignKey(e => e.ReportTo);
+            modelBuilder.Entity<Department>()
+                .HasMany(e => e.Users)
+                .WithOptional(e => e.Department)
+                .HasForeignKey(e => e.DepartmentId);
 
             modelBuilder.Entity<NotificationType>()
                 .HasMany(e => e.Notifications)
@@ -62,11 +61,6 @@ namespace DataLayer.Domain
             modelBuilder.Entity<Permission>()
                 .HasMany(e => e.UserRolePermissions)
                 .WithRequired(e => e.Permission)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Position>()
-                .HasMany(e => e.Employees)
-                .WithRequired(e => e.Position)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ProjectMemberRole>()
@@ -189,11 +183,6 @@ namespace DataLayer.Domain
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.EmailNotifications)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Employees)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
