@@ -35,6 +35,7 @@ namespace PresentationLayer
         private void ctrlLoginForm1_Load(object sender, EventArgs e)
         {
             this.ctrlLoginForm1.ctrlSignUp = ctrlSignUpForm1;
+            this.ctrlLoginForm1.frmLogin = this;
         }
     }
 }

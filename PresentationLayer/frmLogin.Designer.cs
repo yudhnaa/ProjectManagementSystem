@@ -33,9 +33,9 @@
             this.bunifuLabel1 = new Bunifu.UI.WinForms.BunifuLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bunifuPanel2 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
             this.ctrlSignUpForm1 = new PresentationLayer.CustomControls.ctrlSignUpForm();
             this.ctrlLoginForm1 = new PresentationLayer.CustomControls.ctrlLoginForm();
+            this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.bunifuPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -94,30 +94,15 @@
             this.bunifuPanel2.BorderColor = System.Drawing.Color.Transparent;
             this.bunifuPanel2.BorderRadius = 3;
             this.bunifuPanel2.BorderThickness = 1;
-            this.bunifuPanel2.Controls.Add(this.ctrlSignUpForm1);
             this.bunifuPanel2.Controls.Add(this.ctrlLoginForm1);
             this.bunifuPanel2.Controls.Add(this.pictureBox1);
+            this.bunifuPanel2.Controls.Add(this.ctrlSignUpForm1);
             this.bunifuPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuPanel2.Location = new System.Drawing.Point(907, 0);
             this.bunifuPanel2.Name = "bunifuPanel2";
             this.bunifuPanel2.ShowBorders = true;
             this.bunifuPanel2.Size = new System.Drawing.Size(430, 647);
             this.bunifuPanel2.TabIndex = 1;
-            // 
-            // bunifuPanel1
-            // 
-            this.bunifuPanel1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.bunifuPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel1.BackgroundImage")));
-            this.bunifuPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
-            this.bunifuPanel1.BorderRadius = 3;
-            this.bunifuPanel1.BorderThickness = 1;
-            this.bunifuPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bunifuPanel1.Location = new System.Drawing.Point(0, 0);
-            this.bunifuPanel1.Name = "bunifuPanel1";
-            this.bunifuPanel1.ShowBorders = true;
-            this.bunifuPanel1.Size = new System.Drawing.Size(907, 647);
-            this.bunifuPanel1.TabIndex = 0;
             // 
             // ctrlSignUpForm1
             // 
@@ -139,6 +124,21 @@
             this.ctrlLoginForm1.Size = new System.Drawing.Size(430, 390);
             this.ctrlLoginForm1.TabIndex = 5;
             this.ctrlLoginForm1.Load += new System.EventHandler(this.ctrlLoginForm1_Load);
+            // 
+            // bunifuPanel1
+            // 
+            this.bunifuPanel1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.bunifuPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel1.BackgroundImage")));
+            this.bunifuPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
+            this.bunifuPanel1.BorderRadius = 3;
+            this.bunifuPanel1.BorderThickness = 1;
+            this.bunifuPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.bunifuPanel1.Location = new System.Drawing.Point(0, 0);
+            this.bunifuPanel1.Name = "bunifuPanel1";
+            this.bunifuPanel1.ShowBorders = true;
+            this.bunifuPanel1.Size = new System.Drawing.Size(907, 647);
+            this.bunifuPanel1.TabIndex = 0;
             // 
             // frmLogin
             // 

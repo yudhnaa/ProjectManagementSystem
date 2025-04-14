@@ -11,7 +11,7 @@ namespace DataLayer.Domain
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Department()
         {
-            Employees = new HashSet<Employee>();
+            Users = new HashSet<User>();
         }
 
         public int Id { get; set; }
@@ -36,6 +36,6 @@ namespace DataLayer.Domain
         public virtual User User { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

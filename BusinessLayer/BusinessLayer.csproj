@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -51,8 +51,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\DepartmentServices.cs" />
+    <Compile Include="Services\ProjectMemberRoleServices.cs" />
+    <Compile Include="Services\ProjectMemberServices.cs" />
+    <Compile Include="Services\ProjectPriorityServices.cs" />
+    <Compile Include="Services\ProjectServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserServices.cs" />
+    <Compile Include="Services\ProjectStatusServices.cs" />
+    <Compile Include="Services\TaskHistoryServices.cs" />
+    <Compile Include="Services\TaskPriorityServices.cs" />
+    <Compile Include="Services\TaskServices.cs" />
+    <Compile Include="Services\TaskStatusServices.cs" />
+    <Compile Include="Services\UserExtraInfoServices.cs" />
+    <Compile Include="Services\UserRoleServices.cs" />
+    <Compile Include="Services\UserServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -63,9 +75,9 @@
       <Project>{7ba8d7b0-09e4-427d-91f7-6a728fd47e67}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTOLayer\DTOLayer.csproj">
+    <ProjectReference Include="..\DTOLayer\DTO.csproj">
       <Project>{71ebe15e-891f-41fd-b40c-06fa5fa49cf5}</Project>
-      <Name>DTOLayer</Name>
+      <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

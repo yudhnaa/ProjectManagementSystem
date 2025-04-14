@@ -1,5 +1,5 @@
 ﻿using BusinessLayer;
-using DTOLayer;
+using DTOLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +15,7 @@ namespace PresentationLayer.CustomControls
     public partial class ctrlLoginForm : UserControl
     {
         public UserControl ctrlSignUp {get; set; }
+        public Form frmLogin { get; set; }
         private bool isShowPassword;
 
         public ctrlLoginForm()
@@ -57,8 +58,8 @@ namespace PresentationLayer.CustomControls
             if (checkedUser != null)
             {
                 MessageBox.Show("Login Successfully");
-                Form frmHome = new frmHome(checkedUser);
-                this.Hide();
+                Form frmHome = new frmUserHome(checkedUser);
+                frmLogin.Hide();
                 frmHome.Show();
 
             }
