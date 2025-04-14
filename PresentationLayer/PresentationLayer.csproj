@@ -146,11 +146,11 @@
     <Compile Include="CustomControls\ctrl_OverViewTask.Designer.cs">
       <DependentUpon>ctrl_OverViewTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\ctrl_Task.cs">
+    <Compile Include="CustomControls\ctrlTask.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\ctrl_Task.Designer.cs">
-      <DependentUpon>ctrl_Task.cs</DependentUpon>
+    <Compile Include="CustomControls\ctrlTask.Designer.cs">
+      <DependentUpon>ctrlTask.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\ctrl_TaskPopUp.cs">
       <SubType>UserControl</SubType>
@@ -232,8 +232,8 @@
     <EmbeddedResource Include="CustomControls\ctrl_OverViewTask.resx">
       <DependentUpon>ctrl_OverViewTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\ctrl_Task.resx">
-      <DependentUpon>ctrl_Task.cs</DependentUpon>
+    <EmbeddedResource Include="CustomControls\ctrlTask.resx">
+      <DependentUpon>ctrlTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\ctrl_TaskPopUp.resx">
       <DependentUpon>ctrl_TaskPopUp.cs</DependentUpon>

@@ -88,5 +88,17 @@ namespace PresentationLayer
             ctrl_CreateTask.BringToFront();
             panelCenterContent.Controls.Add(ctrl_CreateTask);
         }
+
+        private void btnListTask_Click(object sender, EventArgs e)
+        {
+            panelCenterContent.Controls.Clear();
+            TaskServices taskServices = new TaskServices();
+            List<TaskDTO> taskDTO = taskServices.GetTaskByProjectIdAndUserId(1,2);
+
+            ctrlTask ctrl_Task = new ctrlTask(taskDTO.First());
+            ctrl_Task.BringToFront();
+            panelCenterContent.Controls.Add(ctrl_Task);
+
+        }
     }
 }
