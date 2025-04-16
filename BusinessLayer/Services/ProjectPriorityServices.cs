@@ -34,43 +34,34 @@ namespace BusinessLayer.Services
             }
             
         }
-        //public bool AddProjectPriority(ProjectPriorityDTO projectPriorityDTO)
-        //{
-        //    using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
-        //    {
-        //        try
-        //        {
-        //            ProjectPriority projectPriority = projectPriorityDTO.ToProjectPriorityEntity();
-        //            dbContext.ProjectPriorities.Add(projectPriority);
-        //            dbContext.SaveChanges();
-        //            return true;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //}
-        //public bool RemoveProjectPriority(int id)
-        //{
-        //    using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
-        //    {
-        //        try
-        //        {
-        //            ProjectPriority projectPriority = dbContext.ProjectPriorities.FirstOrDefault(pp => pp.Id == id);
-        //            if (projectPriority != null)
-        //            {
-        //                dbContext.ProjectPriorities.Remove(projectPriority);
-        //                dbContext.SaveChanges();
-        //                return true;
-        //            }
-        //            return false;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //}
+
+        public ProjectPriorityDTO GetById(int priorityId)
+        {
+            try
+            {
+                ProjectPriorityDAL projectPriorityDAL = new ProjectPriorityDAL();
+
+                var projectPriority = projectPriorityDAL.GetById(priorityId);
+                if (projectPriority != null)
+                {
+                    return projectPriority.ToDto();
+                }
+                else
+                {
+                    throw new Exception("Project priority not found.");
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving project priority.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("An error occurred while retrieving project priority.", ex);
+            }
+        }
+        
     }
 }

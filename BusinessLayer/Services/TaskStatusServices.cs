@@ -12,6 +12,28 @@ namespace BusinessLayer.Services
 {
     public class TaskStatusServices
     {
+        public TaskStatusDTO GetById(int statusId)
+        {
+            try
+            {
+                TaskStatusDAL taskStatusDAL = new TaskStatusDAL();
+                var taskStatus = taskStatusDAL.GetById(statusId);
+
+                if (taskStatus != null)
+                    return taskStatus.ToDto();
+                
+                throw new Exception("Task Status not found");
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<TaskStatusDTO> getTaskStatuses()
         {
             try

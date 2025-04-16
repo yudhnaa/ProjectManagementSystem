@@ -11,6 +11,26 @@ namespace DataLayer.DataAccess
 {
     public class TaskStatusDAL
     {
+        public TaskStatus GetById(int statusId)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var taskStatus = dbContext.TaskStatuses.FirstOrDefault(t => t.Id == statusId && t.IsDeleted == false);
+                    return taskStatus;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         public List<TaskStatus> getTaskStatuses()
         {
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())

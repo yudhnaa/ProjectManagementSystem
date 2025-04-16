@@ -1,6 +1,7 @@
 ﻿using DataLayer.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,47 @@ namespace BusinessLayer.Services
         {
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
             {
-                List<ProjectStatus> projectStatuses = dbContext.ProjectStatuses.ToList();
+                try
+                {
+                    List<ProjectStatus> projectStatuses = dbContext.ProjectStatuses.ToList();
 
-                return projectStatuses;
+                    return projectStatuses;
+                }
+                catch (SqlException ex)
+                {
+                    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                    throw new Exception("Database error occurred while retrieving project statuses.", ex);
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    throw new Exception("An error occurred while retrieving project statuses.", ex);
+
+                }
             }
+        }
+
+        public ProjectStatus GetById(int statusId)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var projectStatus = dbContext.ProjectStatuses.Find(statusId);
+                    return projectStatus;
+                }
+                catch (SqlException ex)
+                {
+                    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                    throw new Exception("Database error occurred while retrieving project status.", ex);
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    throw new Exception("An error occurred while retrieving project status.", ex);
+                }
+            }
+
         }
     }
 }

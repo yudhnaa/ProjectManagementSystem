@@ -19,7 +19,7 @@ namespace BusinessLayer
             {
                 try
                 {
-                    var u = dbContext.Users.Where(us => us.Username == us.Username).FirstOrDefault();
+                    var u = dbContext.Users.Where(us => us.Username == user.Username).FirstOrDefault();
 
                     if (u == null)
                         return null;
@@ -97,6 +97,51 @@ namespace BusinessLayer
                     dbContext.Users.Add(user);
                     dbContext.SaveChanges();
 
+                    return user;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public User UpdateUser(User user)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var existingUser = dbContext.Users.Find(user.Id);
+                    if (existingUser != null)
+                    {
+                        dbContext.Entry(existingUser).CurrentValues.SetValues(user);
+                        dbContext.SaveChanges();
+                    }
+                    return user;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public User GetUserById(int userId)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var user = dbContext.Users.Find(userId);
                     return user;
                 }
                 catch (SqlException ex)

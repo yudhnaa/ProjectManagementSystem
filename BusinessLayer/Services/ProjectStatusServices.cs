@@ -34,5 +34,32 @@ namespace BusinessLayer.Services
                 throw new Exception("An error occurred while retrieving project statuses.", ex);
             }
         }
+
+        public ProjectStatusDTO GetById(int statusId)
+        {
+            try
+            {
+                ProjectStatusDAL projectStatusDAL = new ProjectStatusDAL();
+                var projectStatus = projectStatusDAL.GetById(statusId);
+                if (projectStatus != null)
+                {
+                    return projectStatus.ToDto();
+                }
+                else
+                {
+                    throw new Exception("Project status not found.");
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving project status.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while retrieving project status.", ex);
+            }
+        }
     }
 }

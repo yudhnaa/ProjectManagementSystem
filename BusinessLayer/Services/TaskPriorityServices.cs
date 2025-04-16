@@ -1,5 +1,6 @@
 ﻿using DataLayer.DataAccess;
 using DTOLayer.Mappers;
+using DTOLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,6 +12,29 @@ namespace BusinessLayer.Services
 {
     public class TaskPriorityServices
     {
+        public TaskPriorityDTO GetById(int priorityId)
+        {
+            try
+            {
+                TaskPriorityDAL taskPriorityDAL = new DataLayer.DataAccess.TaskPriorityDAL();
+
+                var taskPriority = taskPriorityDAL.GetById(priorityId);
+
+                if (taskPriority != null)
+                    return taskPriority.ToDto();
+
+                throw new Exception("Task Priority not found");
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<DTOLayer.Models.TaskPriorityDTO> getTaskPriorities()
         {
             try

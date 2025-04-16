@@ -68,6 +68,42 @@ namespace BusinessLayer
             }
         }
 
+        public bool UpdateProject(ProjectDTO project)
+        {
+            try
+            {
+                ProjectDAL projectDAL = new ProjectDAL();
+                Project existingProject = projectDAL.GetProjectById(project.Id);
+                if (existingProject == null)
+                    throw new Exception("Project not found.");
+
+                existingProject.Name = project.Name;
+                existingProject.ProjectCode = project.ProjectCode;
+                existingProject.Description = project.Description;
+                existingProject.StartDate = project.StartDate;
+                existingProject.EndDate = project.EndDate;
+                existingProject.Budget = project.Budget;
+                existingProject.StatusId = project.StatusId;
+                existingProject.ManagerId = project.ManagerId;
+                existingProject.PriorityId = project.PriorityId;
+                existingProject.PercentComplete = project.PercentComplete;
+                existingProject.UpdatedDate = DateTime.Now;
+
+                var res = projectDAL.UpdateProject(existingProject);
+                return res;
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while updating project.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while updating project.", ex);
+            }
+        }
+
         //public ProjectDTO GetProjectById(int projectId)
         //{
         //    using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())

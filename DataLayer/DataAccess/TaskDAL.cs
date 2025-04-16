@@ -1,6 +1,7 @@
 ﻿using DataLayer.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -41,6 +42,7 @@ namespace BusinessLayer.Services
                 using (var dBContext = new ProjectManagementSystemDBContext())
                 {
                     var task = dBContext.Tasks.FirstOrDefault(t => t.Id == taskId);
+
                     return task;
                 }
             }
@@ -207,45 +209,68 @@ namespace BusinessLayer.Services
             }
         }
 
-        public bool RecordTimeEntry(int taskId, DateTime entryDate, string description, int userId)
+        public int UpdateTask(Task task)
         {
-            using (var dBContext = new ProjectManagementSystemDBContext())
+            try
             {
-                try
+                using (var dBContext = new ProjectManagementSystemDBContext())
                 {
-                    //var timeEntry = new TimeEntry
-                    //{
-                    //    TaskId = taskId,
-                    //    UserId = userId,
-                    //     = hours,
-                    //    EntryDate = entryDate,
-                    //    Description = description,
-                    //    CreatedDate = DateTime.Now
-                    //};
+                    var existingTask = dBContext.Tasks.FirstOrDefault(t => t.Id == task.Id);
 
-                    //dBContext.TimeEntries.Add(timeEntry);
+                    if (existingTask == null)
+                        return 0;
 
-                    //// Update actual hours on task
-                    //var task = dBContext.Tasks.FirstOrDefault(t => t.Id == taskId);
-                    //if (task != null)
-                    //{
-                    //    task.ActualHours = (task.ActualHours ?? 0) + hours;
-                    //    task.UpdatedDate = DateTime.Now;
-                    //}
+                    existingTask.Name = task.Name;
+                    existingTask.Code = task.Code;
+                    existingTask.StartDate = task.StartDate;
+                    existingTask.DueDate = task.DueDate;
+                    existingTask.AssignedUserId = task.AssignedUserId;
+                    existingTask.StatusId = task.StatusId;
+                    existingTask.PriorityId = task.PriorityId;
+                    existingTask.ParentTaskId = task.ParentTaskId;
+                    existingTask.EstimatedHours = task.EstimatedHours;
+                    existingTask.Description = task.Description;
 
-                    //dBContext.SaveChanges();
-                    return true;
+                    dBContext.SaveChanges();
+
+
+                    return 1;
                 }
-                catch (SqlException ex)
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Task> GetTaskByKw(string kw, int v)
+        {
+            try
+            {
+                using (var dBContext = new ProjectManagementSystemDBContext())
                 {
-                    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
-                    throw ex;
+                    var tasks = dBContext.Tasks
+                        .Where(t => t.Name.Contains(kw) || t.Code.Contains(kw) || t.Id.Equals(kw))
+                        .Take(v)
+                        .ToList();
+
+                    if (tasks == null || tasks.Count == 0)
+                        return null;
+                    
+                    return tasks;
                 }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    throw ex;
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

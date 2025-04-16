@@ -32,5 +32,28 @@ namespace BusinessLayer.Services
                 throw new Exception("An error occurred while retrieving user roles.", ex);
             }
         }
+
+        public UserRoleDTO GetUserRoleById(int id)
+        {
+            try
+            {
+                UserRoleDAL userRoleDAL = new UserRoleDAL();
+
+                var userRole = userRoleDAL.GetUserRoleById(id);
+
+                return userRole.ToDto();
+
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving user roles.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while retrieving user roles.", ex);
+            }
+        }
     }
 }

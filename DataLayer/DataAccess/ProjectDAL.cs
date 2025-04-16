@@ -130,8 +130,8 @@ namespace BusinessLayer
                     existingProject.PercentComplete = project.PercentComplete;
                     existingProject.UpdatedDate = DateTime.Now;
 
-                    dbContext.SaveChanges();
-                    return true;
+                    var res = dbContext.SaveChanges();
+                    return res > 0;
                 }
                 catch (SqlException ex)
                 {

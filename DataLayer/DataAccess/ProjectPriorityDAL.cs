@@ -31,43 +31,28 @@ namespace BusinessLayer.Services
                 }
             }
         }
-        //public bool AddProjectPriority(ProjectPriorityDTO projectPriorityDTO)
-        //{
-        //    using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
-        //    {
-        //        try
-        //        {
-        //            ProjectPriority projectPriority = projectPriorityDTO.ToProjectPriorityEntity();
-        //            dbContext.ProjectPriorities.Add(projectPriority);
-        //            dbContext.SaveChanges();
-        //            return true;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //}
-        //public bool RemoveProjectPriority(int id)
-        //{
-        //    using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
-        //    {
-        //        try
-        //        {
-        //            ProjectPriority projectPriority = dbContext.ProjectPriorities.FirstOrDefault(pp => pp.Id == id);
-        //            if (projectPriority != null)
-        //            {
-        //                dbContext.ProjectPriorities.Remove(projectPriority);
-        //                dbContext.SaveChanges();
-        //                return true;
-        //            }
-        //            return false;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //}
+
+        public ProjectPriority GetById(int priorityId)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var projectPriority = dbContext.ProjectPriorities.Find(priorityId);
+
+                    return projectPriority;
+                }
+                catch (SqlException ex)
+                {
+                    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    // Handle exceptions (e.g., log the error, rethrow, etc.)
+                    throw ex;
+                }
+            }
+        }
     }
 }

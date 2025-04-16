@@ -1,4 +1,5 @@
-﻿using DataLayer.Domain;
+﻿using BusinessLayer;
+using DataLayer.Domain;
 using DTOLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -18,24 +19,15 @@ namespace PresentationLayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             //Application.Run(new frmLogin());
 
-            //Application.Run(new frmUserHome(new UserDTO
-            //{
-            //    Id = 2,
-            //    Username = "user1",
-            //    UserRole = new DTOLayer.UserRoleDTO { Name = "Admin" }
-            //}));
+            //Mock login user
+            UserServices userServices = new UserServices();
+            //UserDTO user = userServices.CheckLoginUser(new UserDTO { Username = "admin", Password = "1" });
+            UserDTO user = userServices.CheckLoginUser(new UserDTO { Username = "awhite", Password = "1" });
 
-            Application.Run(new frmAdminHome(new User
-            {
-                Id = 1,
-                Username = "Admin",
-                UserRole = new UserRole { Id = 1, Name = "Admin" }
-            }));
-
-
-
+            Application.Run(new FormUserHome(user));
         }
     }
 }

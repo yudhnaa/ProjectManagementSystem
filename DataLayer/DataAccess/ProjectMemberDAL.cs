@@ -87,5 +87,37 @@ namespace BusinessLayer.Services
                 }
             }
         }
+
+        public bool UpdateProjectMember(ProjectMember projectMember)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var existingMember = dbContext.ProjectMembers.FirstOrDefault(pm => pm.Id == projectMember.Id);
+                    if (existingMember != null)
+                    {
+                        existingMember.RoleInProject = projectMember.RoleInProject;
+                        existingMember.IsConfirmed = projectMember.IsConfirmed;
+                        existingMember.ConfirmationDate = projectMember.ConfirmationDate;
+                        existingMember.IsActive = projectMember.IsActive;
+                        existingMember.UpdatedDate = DateTime.Now;
+                        dbContext.SaveChanges();
+
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

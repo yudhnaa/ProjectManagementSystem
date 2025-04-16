@@ -10,6 +10,27 @@ namespace DataLayer.DataAccess
 {
     public class TaskPriorityDAL
     {
+        public TaskPriority GetById(int priorityId)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var taskPriority = dbContext.TaskPriorities.FirstOrDefault(t => t.Id == priorityId && t.IsDeleted == false);
+                    
+                    return taskPriority;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         public List<TaskPriority> getTaskPriorities()
         {
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())

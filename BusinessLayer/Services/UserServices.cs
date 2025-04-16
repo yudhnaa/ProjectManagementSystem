@@ -81,5 +81,50 @@ namespace BusinessLayer
                 throw new Exception("An error occurred: " + ex.Message);
             }
         }
+
+        public bool UpdateUser(UserDTO userDTO)
+        {
+            try
+            {
+                UserDAL userDAL = new UserDAL();
+                var user = userDTO.ToUserEntity();
+
+                user.UpdatedDate = DateTime.Now;
+
+                userDAL.UpdateUser(user);
+                
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred: " + ex.Message);
+            }
+        }
+
+        public UserDTO GetUserById(int userId)
+        {
+            try
+            {
+                UserDAL userDAL = new UserDAL();
+                var user = userDAL.GetUserById(userId);
+                if (user != null)
+                {
+                    return UserDTOMapper.ToDto(user);
+                }
+                return null;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred: " + ex.Message);
+            }
+        }
     }
 }
