@@ -8,23 +8,27 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI;
 using System.Windows.Forms;
 
-namespace PresentationLayer.UC_SideBar
+namespace PresentationLayer.Controls.Project
 {
-    public partial class CtrlPanelTask : System.Windows.Forms.UserControl
+    public partial class CtrlPanelProject : UserControl
     {
-        private List<TaskDTO> _tasks;
+        private List<ProjectDTO> _projects;
 
-        public List<TaskDTO> tasks
+        public List<ProjectDTO> projects
         {
-            get => _tasks;
+            get => _projects;
             set
             {
-                _tasks = value;
+                _projects = value;
                 RefreshTaskList(); // Refresh the ListBox whenever tasks are set
             }
+        }
+
+        public CtrlPanelProject()
+        {
+            InitializeComponent();
         }
 
         private void clearTaskList()
@@ -54,38 +58,20 @@ namespace PresentationLayer.UC_SideBar
         {
             // Clear existing controls in the table layout panel
             clearTaskList();
-            if (tasks == null)
-                return;
-
-            foreach (TaskDTO task in tasks)
+            foreach (ProjectDTO project in projects)
             {
-               CtrlTask ctrlTask = new CtrlTask(task);
+                CtrlProject ctrlProject = new CtrlProject(project);
 
                 tbGrid.RowCount++;
-                tbGrid.Controls.Add(ctrlTask, 0, tbGrid.RowCount - 1);
+                tbGrid.Controls.Add(ctrlProject, 0, tbGrid.RowCount - 1);
                 tbGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                tbGrid.SetColumnSpan(ctrlTask, 2);
+                tbGrid.SetColumnSpan(ctrlProject, 2);
             }
         }
 
-        public CtrlPanelTask()
-        {
-            InitializeComponent();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void UC_Task_Load_1(object sender, EventArgs e)
+        private void CtrlPanelProject_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

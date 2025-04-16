@@ -98,7 +98,7 @@ namespace PresentationLayer.Forms.Other
 
                 if (tasks == null)
                 {
-                    MessageBox.Show("No tasks found.");
+                    MessageBox.Show("No projects found.");
                     return;
                 }
                 cbParentTask.DataSource = tasks;

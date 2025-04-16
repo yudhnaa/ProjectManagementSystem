@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lbTitle.BaseStylesheet" xml:space="preserve">
-    <value>#bunifu-label { padding: 0px; font-family: 'Microsoft Sans Serif'; font-size: 12pt; width: 100%; height: 100%; font-style: normal; font-weight: bold; text-decoration: none; color: rgb(0, 0, 0); text-align: left; }</value>
+  <data name="tbDescription.Text" xml:space="preserve">
+    <value>#402235 Opened 10 days ago by Yeah Gkod in #Project001 #402235 Opened 10 days ago by Yeah Gkod in #Project001 #402235 Opened 10 days ago by Yeah Gkod in #Project001 #402235 Opened 10 days ago by Yeah Gkod in #Project001 #402235 Opened 10 days ago by Yeah Gkod in #Project001 #402235 Opened 10 days ago by Yeah Gkod in #Project001</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pbIcon.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -3795,20 +3795,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAC81v5/AIjfLO7/FjIAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="btnUpdateTask.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAHYAAAAnCAYAAADadbxDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHKSURBVHhe7ZyxSgQxFEVTWlpazMtY+gmWlpaWljb+hYUf
-        ICaz2PsBgp1gJVhtuYW9YGGjyK4oKyh7I2/WFcystk4e98Fpkuw0ZybzFubGuV+qPk0rVcSub3DhI0YS
-        8ehjSuT/mDvAyAdcSUh7dUirubc/q2qw7SOeJOI5vzjpBxLwIhFjH7Cf++uU3gG+wbk0GOcXIv1EYpr4
-        iGF9ktZyn22pVAm4q8LsPf8x6T/S4K4OaT336vRJpdTSweiHVH2ncvstH4mzV2nSYStVu19tlPJFpFTw
-        VA/ShtO2WTus7gJSIhJnHz4iOP1PlE+SspGAW+cj7vMJUjYS8aFip/kEKR+XDxAbUKxRKNYoFGsUijUK
-        xRqFYo1CsUahWKNQrFEo1igUaxSKNQrFGoVijUKxRqFYozj9jCIfJOWjYhm2Moh+8zTMB0np4N75AQ6k
-        wVt3kpRKHXGmYaz1No63ZAEpkkkV0k4b85CAI6YBymceqsPldyirze8E3OQLSVlIxEMn5a5BHnbI5VJr
-        GCukrR9SF1U32PwKP7OZKoTqePb+9aQul7oo3ZZlgIFnQ9V75meE4Lqz/f5Vegdo28wDRvoIpnqaj57q
-        k3tb1CeSOywsTe19BAAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

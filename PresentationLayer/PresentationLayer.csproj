@@ -114,6 +114,42 @@
     <Compile Include="Controls\Custom\RoundedLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\SideBar\CtrlPanelProject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBar\CtrlPanelProject.Designer.cs">
+      <DependentUpon>CtrlPanelProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Project\CtrlProject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Project\CtrlProject.Designer.cs">
+      <DependentUpon>CtrlProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\unused\CtrlProjectDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\unused\CtrlProjectDetail.Designer.cs">
+      <DependentUpon>CtrlProjectDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\unused\ctrl_OverViewTask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\unused\ctrl_OverViewTask.Designer.cs">
+      <DependentUpon>ctrl_OverViewTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\unused\ctrl_TaskPopUp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\unused\ctrl_TaskPopUp.Designer.cs">
+      <DependentUpon>ctrl_TaskPopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\unused\ctrl_Task_Kaban_board.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\unused\ctrl_Task_Kaban_board.Designer.cs">
+      <DependentUpon>ctrl_Task_Kaban_board.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\User\ctrlCreateUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,12 +167,6 @@
     </Compile>
     <Compile Include="Controls\User\ctrlLoginForm.Designer.cs">
       <DependentUpon>ctrlLoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Project\CtrlProjectDetail.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Project\CtrlProjectDetail.Designer.cs">
-      <DependentUpon>CtrlProjectDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\User\ctrlSignUpForm.cs">
       <SubType>UserControl</SubType>
@@ -156,29 +186,23 @@
     <Compile Include="Controls\User\ctrlUserInfo.Designer.cs">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\unused\ctrl_OverViewTask.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\ctrl_OverViewTask.Designer.cs">
-      <DependentUpon>ctrl_OverViewTask.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Task\CtrlTask.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\Task\CtrlTask.Designer.cs">
       <DependentUpon>CtrlTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\unused\ctrl_TaskPopUp.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Forms\MainForm\FormManagerHome.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\unused\ctrl_TaskPopUp.Designer.cs">
-      <DependentUpon>ctrl_TaskPopUp.cs</DependentUpon>
+    <Compile Include="Forms\MainForm\FormManagerHome.Designer.cs">
+      <DependentUpon>FormManagerHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\unused\ctrl_Task_Kaban_board.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Forms\Other\FormProjectDetail.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\unused\ctrl_Task_Kaban_board.Designer.cs">
-      <DependentUpon>ctrl_Task_Kaban_board.cs</DependentUpon>
+    <Compile Include="Forms\Other\FormProjectDetail.Designer.cs">
+      <DependentUpon>FormProjectDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Other\FormProjectUpdate.cs">
       <SubType>Form</SubType>
@@ -249,6 +273,24 @@
       <DependentUpon>CtrlPanelTask.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\Utils.cs" />
+    <EmbeddedResource Include="Controls\SideBar\CtrlPanelProject.resx">
+      <DependentUpon>CtrlPanelProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Project\CtrlProject.resx">
+      <DependentUpon>CtrlProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\unused\CtrlProjectDetail.resx">
+      <DependentUpon>CtrlProjectDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\unused\ctrl_OverViewTask.resx">
+      <DependentUpon>ctrl_OverViewTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\unused\ctrl_TaskPopUp.resx">
+      <DependentUpon>ctrl_TaskPopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\unused\ctrl_Task_Kaban_board.resx">
+      <DependentUpon>ctrl_Task_Kaban_board.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\User\ctrlCreateUser.resx">
       <DependentUpon>ctrlCreateUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,9 +299,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\User\ctrlLoginForm.resx">
       <DependentUpon>ctrlLoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Project\CtrlProjectDetail.resx">
-      <DependentUpon>CtrlProjectDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\User\ctrlSignUpForm.resx">
       <DependentUpon>ctrlSignUpForm.cs</DependentUpon>
@@ -270,17 +309,14 @@
     <EmbeddedResource Include="Controls\User\ctrlUserInfo.resx">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\ctrl_OverViewTask.resx">
-      <DependentUpon>ctrl_OverViewTask.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Task\CtrlTask.resx">
       <DependentUpon>CtrlTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\ctrl_TaskPopUp.resx">
-      <DependentUpon>ctrl_TaskPopUp.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainForm\FormManagerHome.resx">
+      <DependentUpon>FormManagerHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\ctrl_Task_Kaban_board.resx">
-      <DependentUpon>ctrl_Task_Kaban_board.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Other\FormProjectDetail.resx">
+      <DependentUpon>FormProjectDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Other\FormProjectUpdate.resx">
       <DependentUpon>FormProjectUpdate.cs</DependentUpon>

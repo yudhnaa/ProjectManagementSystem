@@ -16,7 +16,6 @@ namespace PresentationLayer.CustomControls
 {
     public partial class CtrlProjectDetail : UserControl
     {
-        public UserDTO user;
         private ProjectDTO projectDTO;
 
         private ProjectServices projectServices;
@@ -33,12 +32,10 @@ namespace PresentationLayer.CustomControls
 
         private Timer debounceTimer;
 
-        public CtrlProjectDetail(UserDTO user, ProjectDTO projectDTO)
+        public CtrlProjectDetail( ProjectDTO projectDTO)
         {
             InitializeComponent();
 
-
-            this.user = user;
             this.projectDTO = projectDTO;
         }
 
@@ -207,7 +204,7 @@ namespace PresentationLayer.CustomControls
                 ManagerId = int.Parse(managerId),
                 PriorityId = int.Parse(cbPriority.SelectedValue.ToString()),
                 //PercentComplete = 0, --> do this on create service
-                CreatedBy = user.Id,
+                //CreatedBy = user.Id,
                 CreatedDate = System.DateTime.Today,
             };
 

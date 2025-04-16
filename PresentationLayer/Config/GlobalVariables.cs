@@ -12,12 +12,12 @@ namespace PresentationLayer.Config
         // Priority Color
         public static Color HighPriorityColor { get; set; } = Color.Red;
         public static Color MediumPriorityColor { get; set; } = Color.Yellow;
-        public static Color LowPriorityColor { get; set; } = Color.Green;
+        public static Color LowPriorityColor { get; set; } = Color.FromArgb(128, 255, 128);
 
         // Status Color
         public static Color NotStartedStatusColor { get; set; } = Color.LightGray;
         public static Color InProgressStatusColor { get; set; } = Color.Yellow;
-        public static Color CompletedStatusColor { get; set; } = Color.Green;
+        public static Color CompletedStatusColor { get; set; } = Color.FromArgb(128, 255, 128);
         public static Color CancelledStatusColor { get; set; } = Color.Red;
 
 

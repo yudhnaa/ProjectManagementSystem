@@ -3,6 +3,7 @@ using BusinessLayer;
 using BusinessLayer.Services;
 using DTOLayer;
 using DTOLayer.Models;
+using PresentationLayer.Controls.Project;
 using PresentationLayer.CustomControls;
 using PresentationLayer.UC_SideBar;
 using PresentationLayer.UC_SideBar.UC_Project;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,6 +29,7 @@ namespace PresentationLayer
         private UserControl ucOverview;
         private UserControl ucGant;
         private UserControl ucHome;
+        private CtrlPanelProject ucProject;
 
         private CtrlListMyProjects ucMyProjects;
 
@@ -50,8 +53,6 @@ namespace PresentationLayer
 
             this.WindowState = FormWindowState.Maximized;
 
-            ucTask = new UC_SideBar.CtrlPanelTask();
-
             this.projects = new List<ProjectDTO>();
 
             this.ucMyProjects = new UC_SideBar.UC_Project.CtrlListMyProjects();
@@ -73,34 +74,36 @@ namespace PresentationLayer
             if (ucMyProjects.selectedItem != null)
             {
                 this.tasks = taskServices.GetTaskByProjectIdAndUserId(ucMyProjects.selectedItem.Id, user.Id);
-                ucTask.tasks = this.tasks;
             }
             
         }
 
         private void MyProjectsControl_ProjectSelected(object sender, ProjectDTO selectedProject)
         {
-            if (panelCenterContent.Controls.Count > 0 && panelCenterContent.Controls[0] is CtrlPanelTask)
-            {
-                loadTasks();
-            }
-            else
-            {
-                FormProjectUpdate formProjectDetail = new FormProjectUpdate(user, selectedProject);
-                formProjectDetail.ShowDialog();
-            }
+           loadTasks();
         }
 
         private void loadProjects()
         {
-            projects = projectServices.GetProjectsByUserId(this.user.Id);
-
-            if (ucMyProjects is UC_SideBar.UC_Project.CtrlListMyProjects myProjectsControl)
+            try
             {
-                myProjectsControl.projects = projects;
+                projects = projectServices.GetProjectsByUserId(this.user.Id);
+                ucMyProjects.projects = projects;
+
+                splitContainer1.Panel2.Controls.Add(ucMyProjects);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading projects: " + ex.Message);
+                return;
             }
 
-            panelMyProjects.Controls.Add(ucMyProjects);
+            
         }
 
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
@@ -121,10 +124,17 @@ namespace PresentationLayer
 
         private void btnTask_Click(object sender, EventArgs e)
         {
+            if (ucTask == null)
+            {
+                ucTask = new UC_SideBar.CtrlPanelTask();
+            }
+
             panelCenterContent.Controls.Clear();
             panelCenterContent.Controls.Add(ucTask);
 
             loadTasks();
+
+            ucTask.tasks = this.tasks;
         }
 
         private void btnGant_Click(object sender, EventArgs e)
@@ -150,11 +160,29 @@ namespace PresentationLayer
             
         }
 
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            if (ucProject == null)
+            {
+                ucProject = new CtrlPanelProject();
+            }
+
+            panelCenterContent.Controls.Clear();
+            panelCenterContent.Controls.Add(ucProject);
+
+            ucProject.projects = this.projects;
+        }
+
         private void btnAvatar_Click(object sender, EventArgs e)
         {
             ctrlUserInfo ctrlUserInfo = new ctrlUserInfo(user);
             panelCenterContent.Controls.Clear();
             panelCenterContent.Controls.Add(ctrlUserInfo);
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

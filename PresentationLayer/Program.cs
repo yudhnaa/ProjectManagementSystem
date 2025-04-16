@@ -27,7 +27,17 @@ namespace PresentationLayer
             //UserDTO user = userServices.CheckLoginUser(new UserDTO { Username = "admin", Password = "1" });
             UserDTO user = userServices.CheckLoginUser(new UserDTO { Username = "awhite", Password = "1" });
 
-            Application.Run(new FormUserHome(user));
+            if (user.UserRoleId == 1)
+            {
+                Application.Run(new FormAdminHome(user));
+
+            }
+            else
+            {
+                Application.Run(new FormUserHome(user));
+
+            }
+
         }
     }
 }

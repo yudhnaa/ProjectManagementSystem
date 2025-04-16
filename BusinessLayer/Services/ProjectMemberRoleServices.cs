@@ -32,5 +32,31 @@ namespace BusinessLayer.Services
                 throw new Exception("An error occurred while retrieving project member roles.", ex);
             }
         }
+
+        public ProjectMemberRoleDTO GetRoleById(int id)
+        {
+            try
+            {
+                ProjectMemberRoleDAL projectMemberRoleDAL = new ProjectMemberRoleDAL();
+                var projectMemberRole = projectMemberRoleDAL.GetRoleById(id);
+                
+                if (projectMemberRole == null)
+                {
+                    throw new Exception($"Project member role with ID {id} not found.");
+                }
+
+                return projectMemberRole.ToDto();
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving project member role.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while retrieving project member role.", ex);
+            }
+        }
     }
 }

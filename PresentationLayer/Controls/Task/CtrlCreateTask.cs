@@ -73,8 +73,11 @@ namespace PresentationLayer.Control
             cbParentTask.DisplayMember = "Code";
             cbParentTask.ValueMember = "Id";
 
-            cbParentTask.Items.Add(parentTask);
-            cbParentTask.SelectedIndex = 0;
+            if (parentTask != null)
+            {
+                cbParentTask.Items.Add(parentTask);
+                cbParentTask.SelectedIndex = 0;
+            }
 
             CbUser.AutoCompleteMode = AutoCompleteMode.Suggest;
             CbUser.AutoCompleteSource = AutoCompleteSource.ListItems;

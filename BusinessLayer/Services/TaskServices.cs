@@ -165,5 +165,28 @@ namespace BusinessLayer.Services
                 throw new Exception("An error occurred while fetching tasks.", ex);
             }
         }
+
+        public int CountTaskByProjectId(int id)
+        {
+            try
+            {
+                TaskDAL taskDAL = new TaskDAL();
+                var count = taskDAL.CountTaskByProjectId(id);
+
+                if (count == 0)
+                    throw new Exception("Tasks not found.");
+                
+                return count;
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while counting tasks.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while counting tasks.", ex);
+            }
+        }
     }
 }

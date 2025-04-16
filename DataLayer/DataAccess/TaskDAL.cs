@@ -273,5 +273,29 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
+
+        public int CountTaskByProjectId(int id)
+        {
+            try
+            {
+                using (var dBContext = new ProjectManagementSystemDBContext())
+                {
+                    var count = dBContext.Tasks.Count(t => t.ProjectId == id);
+                    
+                    if (count == 0)
+                        return 0;
+
+                    return count;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

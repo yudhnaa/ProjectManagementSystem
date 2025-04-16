@@ -42,12 +42,12 @@
             this.listbxMyProjects.TabIndex = 2;
             this.listbxMyProjects.SelectedIndexChanged += new System.EventHandler(this.listbxMyProjects_SelectedIndexChanged);
             // 
-            // UC_MyProjects
+            // CtrlListMyProjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listbxMyProjects);
-            this.Name = "UC_MyProjects";
+            this.Name = "CtrlListMyProjects";
             this.Size = new System.Drawing.Size(207, 226);
             this.Load += new System.EventHandler(this.UC_MyProjects_Load);
             this.ResumeLayout(false);

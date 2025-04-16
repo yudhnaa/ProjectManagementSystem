@@ -1,11 +1,16 @@
-﻿using DTOLayer.Models;
+﻿using BusinessLayer.Services;
+using DTOLayer.Models;
 using PresentationLayer.Forms.Other;
+using PresentationLayer.Utils;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,28 +22,88 @@ namespace PresentationLayer.Control
     {
         private TaskDTO taskDTO;
 
+        private TaskStatusServices taskStatusServices;
+        private TaskPriorityServices taskPriorityServices;
+
+        private TaskStatusDTO taskStatusDTO;
+        private TaskPriorityDTO taskPriorityDTO;
+
         public CtrlTask(TaskDTO taskDTO)
         {
+            this.taskDTO = taskDTO;
+
             InitializeComponent();
 
-            this.taskDTO = taskDTO;
         }
 
         private void ctrl_Task_Load(object sender, EventArgs e)
         {
+
+            if (taskDTO == null)
+            {
+                MessageBox.Show("Task not found");
+                return;
+            }
+
+            taskStatusServices = new TaskStatusServices();
+            taskPriorityServices = new TaskPriorityServices();
+
+            loadTaskData();
+            setTaskData();
+
+        }
+
+        private void loadTaskData()
+        {
+            try
+            {
+                taskStatusServices = new TaskStatusServices();
+                taskPriorityServices = new TaskPriorityServices();
+
+                taskStatusDTO = taskStatusServices.GetById(taskDTO.StatusId);
+                taskPriorityDTO = taskPriorityServices.GetById(taskDTO.PriorityId);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error loading task data: " + ex.Message);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading task data: " + ex.Message);
+                return;
+            }
+        }
+
+        private void setTaskData()
+        {
             lbTitle.Text = taskDTO.Name;
             lbAbstract.Text = String.Format("#{0} Opened {1} days ago by {2} in {3}", taskDTO.Code, taskDTO.CreatedDate, taskDTO.AssignedUserId, taskDTO.ProjectId);
-            
+            lbStatus.Text = taskStatusDTO.Name;
+            lbStatus._BackColor = Utils.Utils.GetStatusColor(taskStatusDTO.Name);
 
+            lbPriority.Text = taskPriorityDTO.Name;
+            lbPriority._BackColor = Utils.Utils.GetPriorityColor(taskPriorityDTO.Name);
+
+            lbDueDate.Text = taskDTO.DueDate?.Date.ToString("dd/MM/yyyy");
+            lbDueDate._BackColor = Color.Green;
         }
 
         private void lbTitle_Click(object sender, EventArgs e)
         {
-            //FormTaskDetail formTaskDetail = new FormTaskDetail(this.taskDTO);
-            //formTaskDetail.ShowDialog();
+            FormTaskDetail formTaskDetail = new FormTaskDetail(this.taskDTO);
+            formTaskDetail.ShowDialog();
+        }
 
+        private void btnUpdateTask_Click(object sender, EventArgs e)
+        {
             FormTaskUpdate formTaskUpdate = new FormTaskUpdate(this.taskDTO);
             formTaskUpdate.ShowDialog();
+        }
+
+        private void lbDueda_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

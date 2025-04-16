@@ -15,6 +15,8 @@ using PresentationLayer.UC_SideBar;
 using PresentationLayer.CustomControls;
 using DataLayer.Domain;
 using PresentationLayer.Control;
+using System.Drawing.Design;
+using System.Data.SqlClient;
 
 namespace PresentationLayer
 {
@@ -53,13 +55,33 @@ namespace PresentationLayer
 
             //this.projectServices = new ProjectServices();
             //this.taskServices = new TaskServices();
+            roleServices = new UserRoleServices();
 
             //btnHome_Click(this, EventArgs.Empty);
 
+            loadUserRole();
 
             lbUsername.Text = this.user.Username;
             lbUserRole.Text = loginUserRole.Name;
             //loadProjects();
+        }
+
+        private void loadUserRole()
+        {
+            try
+            {
+                loginUserRole = roleServices.GetUserRoleById(user.Id);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message);
+                this.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                this.Dispose();
+            }
         }
 
         private void bunifuButton2_Click(object sender, EventArgs e)

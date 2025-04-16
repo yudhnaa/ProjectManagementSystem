@@ -40,14 +40,18 @@ namespace PresentationLayer.UC_SideBar.UC_Project
             }
             else
             {
+                this.Dock = DockStyle.Fill;
+                listbxMyProjects.Items.Clear();
+                this.BringToFront();
+
                 // Populate the ListBox with project names
                 foreach (var project in projects)
                 {
                     listbxMyProjects.Items.Add(project);
                 }
-            }
 
-            //listbxMyProjects.SelectedIndex = 0;
+                listbxMyProjects.SelectedIndex = 0;
+            }
         }
 
         private void listbxMyProjects_SelectedIndexChanged(object sender, EventArgs e)

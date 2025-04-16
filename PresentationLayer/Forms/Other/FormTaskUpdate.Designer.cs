@@ -787,6 +787,7 @@
             this.ClientSize = new System.Drawing.Size(1044, 635);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormTaskUpdate";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormTaskUpdate";
             this.Load += new System.EventHandler(this.FormTaskUpdate_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
