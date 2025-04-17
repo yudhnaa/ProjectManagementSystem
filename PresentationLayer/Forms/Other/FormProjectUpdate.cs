@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PresentationLayer.AppContext;
 
 namespace PresentationLayer
 {
@@ -34,12 +35,12 @@ namespace PresentationLayer
 
         private Timer debounceTimer;
 
-        public FormProjectUpdate(UserDTO user, ProjectDTO projectDTO)
+        public FormProjectUpdate(ProjectDTO projectDTO)
         {
-            InitializeComponent();
-
-            this.user = user;
+            this.user = UserSession.Instance.User;
             this.projectDTO = projectDTO;
+
+            InitializeComponent();
         }
 
         private void FormProjectDetail_Load(object sender, EventArgs e)

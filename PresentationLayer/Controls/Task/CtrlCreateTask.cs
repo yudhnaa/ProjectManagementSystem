@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using C1.Win.C1GanttView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using PresentationLayer.AppContext;
 
 namespace PresentationLayer.Control
 {
@@ -36,21 +37,21 @@ namespace PresentationLayer.Control
         private string lastSearchComboBox = "";
         private System.Windows.Forms.ComboBox currentSearchBox = null;
 
-        public CtrlCreateTask(UserDTO user, TaskDTO parentTask , ProjectDTO project)
+        public CtrlCreateTask(TaskDTO parentTask , ProjectDTO project)
         {
-            InitializeComponent();
-
-            this.user = user;
+            this.user = UserSession.Instance.User;
             this.parentTask = parentTask;
             this.project = project;
+
+            InitializeComponent();   
         }
 
-        public CtrlCreateTask(UserDTO user, ProjectDTO project)
+        public CtrlCreateTask( ProjectDTO project)
         {
-            InitializeComponent();
-
-            this.user = user;
+            this.user = UserSession.Instance.User;
             this.project = project;
+
+            InitializeComponent();
         }
 
         private void ctrl_CreateTasks_Load(object sender, EventArgs e)

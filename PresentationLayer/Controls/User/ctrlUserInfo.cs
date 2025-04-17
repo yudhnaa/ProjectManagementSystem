@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using DTOLayer.Models;
+using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,17 +21,20 @@ namespace PresentationLayer.CustomControls
 
         private UserServices userServices;
 
-        public ctrlUserInfo(UserDTO user)
+        public ctrlUserInfo()
         {
-            InitializeComponent();
-            this.user = user;
+            this.user = UserSession.Instance.User;
 
-            isShowPassword = false;
-            tbPassword.PasswordChar = '*';
+            InitializeComponent();
+
+
         }
 
         private void ctrlUserInfo_Load(object sender, EventArgs e)
         {
+            isShowPassword = false;
+            tbPassword.PasswordChar = '*';
+
             this.Dock = DockStyle.Fill;
 
             loadUserInfo();

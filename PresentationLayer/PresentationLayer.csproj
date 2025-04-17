@@ -35,9 +35,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.Licensing.6.0.4\lib\net48\Bunifu.Licensing.dll</HintPath>
+      <HintPath>..\packages\Bunifu.Licensing.6.0.8\lib\net48\Bunifu.Licensing.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms, Version=0.0.0.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
       <HintPath>..\packages\Bunifu.UI.WinForms.7.2.0\lib\net48\Bunifu.UI.WinForms.dll</HintPath>
@@ -56,12 +59,23 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="RestSharp, Version=110.2.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.110.2.0\lib\net471\RestSharp.dll</HintPath>
     </Reference>
@@ -69,22 +83,58 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.CodeDom, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.CodeDom.8.0.0\lib\net462\System.CodeDom.dll</HintPath>
+    <Reference Include="System.CodeDom, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.CodeDom.9.0.2\lib\net462\System.CodeDom.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
@@ -99,20 +149,36 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppContext\UserSession.cs" />
     <Compile Include="Config\GlobalVariables.cs" />
-    <Compile Include="Controls\Custom\RoundedLabel.cs">
+    <Compile Include="Controls\Others\RoundedLabel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Project\CtrlProjectAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Project\CtrlProjectAdmin.Designer.cs">
+      <DependentUpon>CtrlProjectAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SideBar\CtrlPanelProjectAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBar\CtrlPanelProjectAdmin.Designer.cs">
+      <DependentUpon>CtrlPanelProjectAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SideBar\CtrlPanelProject.cs">
       <SubType>UserControl</SubType>
@@ -125,6 +191,12 @@
     </Compile>
     <Compile Include="Controls\Project\CtrlProject.Designer.cs">
       <DependentUpon>CtrlProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SideBar\CtrlPanelHomeUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBar\CtrlPanelHomeUser.Designer.cs">
+      <DependentUpon>CtrlPanelHomeUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\unused\CtrlProjectDetail.cs">
       <SubType>UserControl</SubType>
@@ -248,10 +320,10 @@
     <Compile Include="Controls\SideBar\CtrlPanelGant.Designer.cs">
       <DependentUpon>CtrlPanelGant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SideBar\CtrlPanelHome.cs">
+    <Compile Include="Controls\unused\CtrlPanelHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SideBar\CtrlPanelHome.Designer.cs">
+    <Compile Include="Controls\unused\CtrlPanelHome.Designer.cs">
       <DependentUpon>CtrlPanelHome.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SideBar\CtrlPanelOverview.cs">
@@ -273,11 +345,20 @@
       <DependentUpon>CtrlPanelTask.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\Utils.cs" />
+    <EmbeddedResource Include="Controls\Project\CtrlProjectAdmin.resx">
+      <DependentUpon>CtrlProjectAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SideBar\CtrlPanelProjectAdmin.resx">
+      <DependentUpon>CtrlPanelProjectAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\CtrlPanelProject.resx">
       <DependentUpon>CtrlPanelProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Project\CtrlProject.resx">
       <DependentUpon>CtrlProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SideBar\CtrlPanelHomeUser.resx">
+      <DependentUpon>CtrlPanelHomeUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\unused\CtrlProjectDetail.resx">
       <DependentUpon>CtrlProjectDetail.cs</DependentUpon>
@@ -350,7 +431,7 @@
     <EmbeddedResource Include="Controls\SideBar\CtrlPanelGant.resx">
       <DependentUpon>CtrlPanelGant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SideBar\CtrlPanelHome.resx">
+    <EmbeddedResource Include="Controls\unused\CtrlPanelHome.resx">
       <DependentUpon>CtrlPanelHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\CtrlPanelOverview.resx">
@@ -412,7 +493,12 @@
       <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

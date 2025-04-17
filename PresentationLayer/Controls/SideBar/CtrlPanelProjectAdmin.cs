@@ -1,4 +1,5 @@
 ﻿using DTOLayer.Models;
+using PresentationLayer.AppContext;
 using PresentationLayer.Control;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,10 @@ using System.Windows.Forms;
 
 namespace PresentationLayer.Controls.Project
 {
-    public partial class CtrlPanelProject : UserControl
+    public partial class CtrlPanelProjectAdmin : UserControl
     {
+        private UserDTO user;
+
         private List<ProjectDTO> _projects;
 
         public List<ProjectDTO> projects
@@ -26,8 +29,10 @@ namespace PresentationLayer.Controls.Project
             }
         }
 
-        public CtrlPanelProject()
+        public CtrlPanelProjectAdmin()
         {
+            this.user = UserSession.Instance.User;
+
             InitializeComponent();
         }
 
@@ -60,28 +65,18 @@ namespace PresentationLayer.Controls.Project
             clearTaskList();
             foreach (ProjectDTO project in projects)
             {
-                CtrlProject ctrlProject = new CtrlProject(project);
+                CtrlProjectAdmin ctrlProjectAdmin = new CtrlProjectAdmin(project);
 
                 tbGrid.RowCount++;
-                tbGrid.Controls.Add(ctrlProject, 0, tbGrid.RowCount - 1);
+                tbGrid.Controls.Add(ctrlProjectAdmin, 0, tbGrid.RowCount - 1);
                 tbGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                tbGrid.SetColumnSpan(ctrlProject, 2);
+                tbGrid.SetColumnSpan(ctrlProjectAdmin, 2);
             }
         }
 
         private void CtrlPanelProject_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;
-
-            //loadProjectStatus(); --> Bo vao combobox
-
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            // Goi ProjectServices de lay du lieu
-
-            //--> Hien thi danh sach len 
         }
     }
 }

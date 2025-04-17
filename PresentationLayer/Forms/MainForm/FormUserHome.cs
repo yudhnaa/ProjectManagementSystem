@@ -3,7 +3,9 @@ using BusinessLayer;
 using BusinessLayer.Services;
 using DTOLayer;
 using DTOLayer.Models;
+using PresentationLayer.AppContext;
 using PresentationLayer.Controls.Project;
+using PresentationLayer.Controls.SideBar;
 using PresentationLayer.CustomControls;
 using PresentationLayer.UC_SideBar;
 using PresentationLayer.UC_SideBar.UC_Project;
@@ -23,12 +25,11 @@ namespace PresentationLayer
     public partial class FormUserHome: Form
     {
         private UserDTO user;
-        private UserRoleDTO loginUserRole;
 
         private CtrlPanelTask ucTask;
         private UserControl ucOverview;
         private UserControl ucGant;
-        private UserControl ucHome;
+        private CtrlPanelHomeUser ucHome;
         private CtrlPanelProject ucProject;
 
         private CtrlListMyProjects ucMyProjects;
@@ -40,16 +41,16 @@ namespace PresentationLayer
         private List<ProjectDTO> projects;
         private List<TaskDTO> tasks;
 
-        public FormUserHome(UserDTO user)
+        public FormUserHome()
         {
+            this.user = UserSession.Instance.User;
+
             InitializeComponent();
-            this.user = user;
         }
 
         private void frmHome_Load(object sender, EventArgs e)
         {
             roleServices = new UserRoleServices();
-            loginUserRole = roleServices.GetUserRoleById(user.UserRoleId);
 
             this.WindowState = FormWindowState.Maximized;
 
@@ -61,11 +62,11 @@ namespace PresentationLayer
             this.projectServices = new ProjectServices();
             this.taskServices = new TaskServices();
 
-            btnHome_Click(this, EventArgs.Empty);
+            //btnHome_Click(this, EventArgs.Empty);
 
 
             lbUsername.Text = this.user.Username;
-            lbUserRole.Text = loginUserRole.Name;
+            lbUserRole.Text = UserSession.Instance.UserRole.Name;
             loadProjects();
         }
 
@@ -115,7 +116,7 @@ namespace PresentationLayer
         {
             if (ucHome == null)
             {
-                ucHome = new UC_SideBar.CtrlPanelHome();
+                ucHome = new CtrlPanelHomeUser();
                 ucHome.Dock = DockStyle.Fill;
             }
             panelCenterContent.Controls.Clear();
@@ -175,7 +176,7 @@ namespace PresentationLayer
 
         private void btnAvatar_Click(object sender, EventArgs e)
         {
-            ctrlUserInfo ctrlUserInfo = new ctrlUserInfo(user);
+            ctrlUserInfo ctrlUserInfo = new ctrlUserInfo();
             panelCenterContent.Controls.Clear();
             panelCenterContent.Controls.Add(ctrlUserInfo);
         }

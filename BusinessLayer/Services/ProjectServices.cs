@@ -103,5 +103,31 @@ namespace BusinessLayer
                 throw new Exception("An error occurred while updating project.", ex);
             }
         }
+
+        public List<ProjectDTO> GetAllProjectsIncludeDeleteCancel()
+        {
+            try
+            {
+                ProjectDAL projectDAL = new ProjectDAL();
+
+                var projects = projectDAL.GetAllProjectsIncludeDeleteCancel();
+
+                return projects.Select(p => p.ToDto()).ToList();
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving all projects.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while retrieving all projects.", ex);
+            }
+        }
+
+        // ham lay danh sach Project kem keyword + status
+            //-->  Goi xuong DAL de truy van du lieu
+            //Xu ly kq va tra ve cho Controller <--
     }
 }

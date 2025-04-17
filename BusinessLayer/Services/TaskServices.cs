@@ -143,7 +143,7 @@ namespace BusinessLayer.Services
 
         }
 
-        public object GetTaskByKw(string kw, int v)
+        public List<TaskDTO> GetTaskByKw(string kw, int v)
         {
             try
             {

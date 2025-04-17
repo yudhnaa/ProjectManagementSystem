@@ -24,6 +24,7 @@ namespace PresentationLayer.Utils
                     return Color.White;
             }
         }
+
         public static Color GetStatusColor(String statusName)
         {
             switch (statusName)

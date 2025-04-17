@@ -2,6 +2,7 @@
 using BusinessLayer.Services;
 using DTOLayer;
 using DTOLayer.Models;
+using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,16 +64,18 @@ namespace PresentationLayer.CustomControls
 
                 UserRoleDTO loginUserRole = roleServices.GetUserRoleById(checkedUser.Id);
 
+                UserSession.Instance.SetUser(checkedUser, loginUserRole);
+
                 if (loginUserRole.Name == "Admin" || loginUserRole.Name == "Manager")
                 { 
-                    Form frmHome = new FormAdminHome(checkedUser);
+                    Form frmHome = new FormAdminHome();
                     frmLogin.Hide();
                     frmHome.Show();
                 }
 
                 if (loginUserRole.Name == "Employee")
                 {
-                    Form frmHome = new FormUserHome(checkedUser);
+                    Form frmHome = new FormUserHome();
                     frmLogin.Hide();
                     frmHome.Show();
                 }

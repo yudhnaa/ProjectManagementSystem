@@ -1,6 +1,8 @@
 ﻿using BusinessLayer;
+using BusinessLayer.Services;
 using DataLayer.Domain;
 using DTOLayer.Models;
+using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,23 +22,32 @@ namespace PresentationLayer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new frmLogin());
+            Application.Run(new FormLogin());
 
-            //Mock login user
-            UserServices userServices = new UserServices();
-            //UserDTO user = userServices.CheckLoginUser(new UserDTO { Username = "admin", Password = "1" });
-            UserDTO user = userServices.CheckLoginUser(new UserDTO { Username = "awhite", Password = "1" });
+            ////Mock login user
 
-            if (user.UserRoleId == 1)
-            {
-                Application.Run(new FormAdminHome(user));
+            //UserServices userServices = new UserServices();
+            //UserRoleServices userRoleServices = new UserRoleServices();
 
-            }
-            else
-            {
-                Application.Run(new FormUserHome(user));
+            //UserDTO user = userServices.CheckLoginUser(
+            //    new UserDTO { 
+            //        //Username = "admin",
+            //        Username = "awhite",
+            //        Password = "1" 
+            //    });
 
-            }
+            //UserSession.Instance.SetUser(user, userRoleServices.GetUserRoleById(user.UserRoleId));
+
+            //if (user.UserRoleId == 1)
+            //{
+            //    Application.Run(new FormAdminHome());
+
+            //}
+            //else
+            //{
+            //    Application.Run(new FormUserHome());
+
+            //}
 
         }
     }

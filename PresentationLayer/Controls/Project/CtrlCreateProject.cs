@@ -3,6 +3,7 @@ using BusinessLayer.Services;
 using DataLayer.Domain;
 using DTOLayer;
 using DTOLayer.Models;
+using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -30,9 +31,10 @@ namespace PresentationLayer.CustomControls
 
         public CtrlCreateProject(UserDTO user)
         {
+            this.user = UserSession.Instance.User;
+
             InitializeComponent();
 
-            this.user = user;
         }
 
         private void ctrlCreateProject_Load(object sender, System.EventArgs e)

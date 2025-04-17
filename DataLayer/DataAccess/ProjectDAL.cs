@@ -86,6 +86,28 @@ namespace BusinessLayer
             }
         }
 
+        public List<Project> GetAllProjectsIncludeDeleteCancel()
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    List<Project> projects = dbContext.Projects.ToList();
+                    return projects;
+                }
+                catch (SqlException ex)
+                {
+                    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    throw ex;
+                }
+            }
+        }
+
         public Project CreateProject(Project project)
         {
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
@@ -174,5 +196,7 @@ namespace BusinessLayer
                 }
             }
         }
+
+        // Truy van danh sach Project theo keyword + status
     }
 }
