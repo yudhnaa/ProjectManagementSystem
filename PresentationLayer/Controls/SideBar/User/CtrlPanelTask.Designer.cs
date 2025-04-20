@@ -1,6 +1,6 @@
-﻿namespace PresentationLayer.Controls.Project
+﻿namespace PresentationLayer.UC_SideBar
 {
-    partial class CtrlPanelProject
+    partial class CtrlPanelTask
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlPanelProject));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlPanelTask));
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -38,11 +38,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbSearch = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.dropdownStatus = new Bunifu.UI.WinForms.BunifuDropdown();
+            this.drpdwnStatus = new Bunifu.UI.WinForms.BunifuDropdown();
             this.btnSearch = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tbGrid.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbGrid
@@ -54,7 +54,7 @@
             this.tbGrid.Controls.Add(this.label1, 0, 0);
             this.tbGrid.Controls.Add(this.tbSearch, 0, 1);
             this.tbGrid.Controls.Add(this.label2, 1, 0);
-            this.tbGrid.Controls.Add(this.flowLayoutPanel1, 1, 1);
+            this.tbGrid.Controls.Add(this.panel1, 1, 1);
             this.tbGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbGrid.Location = new System.Drawing.Point(0, 0);
             this.tbGrid.Name = "tbGrid";
@@ -62,8 +62,9 @@
             this.tbGrid.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbGrid.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tbGrid.Size = new System.Drawing.Size(994, 564);
-            this.tbGrid.TabIndex = 2;
+            this.tbGrid.Size = new System.Drawing.Size(997, 592);
+            this.tbGrid.TabIndex = 1;
+            this.tbGrid.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // label1
             // 
@@ -160,64 +161,54 @@
             this.label2.Location = new System.Drawing.Point(610, 10);
             this.label2.Margin = new System.Windows.Forms.Padding(10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 20);
+            this.label2.Size = new System.Drawing.Size(105, 20);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Project Status";
+            this.label2.Text = "Task Status";
             // 
-            // flowLayoutPanel1
+            // drpdwnStatus
             // 
-            this.flowLayoutPanel1.Controls.Add(this.dropdownStatus);
-            this.flowLayoutPanel1.Controls.Add(this.btnSearch);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(603, 43);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(391, 56);
-            this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // dropdownStatus
-            // 
-            this.dropdownStatus.BackColor = System.Drawing.Color.Transparent;
-            this.dropdownStatus.BackgroundColor = System.Drawing.Color.White;
-            this.dropdownStatus.BorderColor = System.Drawing.Color.Silver;
-            this.dropdownStatus.BorderRadius = 1;
-            this.dropdownStatus.Color = System.Drawing.Color.Silver;
-            this.dropdownStatus.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
-            this.dropdownStatus.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dropdownStatus.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.dropdownStatus.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dropdownStatus.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.dropdownStatus.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
-            this.dropdownStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.dropdownStatus.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
-            this.dropdownStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dropdownStatus.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.dropdownStatus.FillDropDown = true;
-            this.dropdownStatus.FillIndicator = false;
-            this.dropdownStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dropdownStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dropdownStatus.ForeColor = System.Drawing.Color.Black;
-            this.dropdownStatus.FormattingEnabled = true;
-            this.dropdownStatus.Icon = null;
-            this.dropdownStatus.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.dropdownStatus.IndicatorColor = System.Drawing.Color.DarkGray;
-            this.dropdownStatus.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.dropdownStatus.IndicatorThickness = 2;
-            this.dropdownStatus.IsDropdownOpened = false;
-            this.dropdownStatus.ItemBackColor = System.Drawing.Color.White;
-            this.dropdownStatus.ItemBorderColor = System.Drawing.Color.White;
-            this.dropdownStatus.ItemForeColor = System.Drawing.Color.Black;
-            this.dropdownStatus.ItemHeight = 26;
-            this.dropdownStatus.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
-            this.dropdownStatus.ItemHighLightForeColor = System.Drawing.Color.White;
-            this.dropdownStatus.ItemTopMargin = 3;
-            this.dropdownStatus.Location = new System.Drawing.Point(10, 10);
-            this.dropdownStatus.Margin = new System.Windows.Forms.Padding(10);
-            this.dropdownStatus.Name = "dropdownStatus";
-            this.dropdownStatus.Size = new System.Drawing.Size(249, 32);
-            this.dropdownStatus.TabIndex = 2;
-            this.dropdownStatus.Text = null;
-            this.dropdownStatus.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.dropdownStatus.TextLeftMargin = 5;
+            this.drpdwnStatus.BackColor = System.Drawing.Color.Transparent;
+            this.drpdwnStatus.BackgroundColor = System.Drawing.Color.White;
+            this.drpdwnStatus.BorderColor = System.Drawing.Color.Silver;
+            this.drpdwnStatus.BorderRadius = 1;
+            this.drpdwnStatus.Color = System.Drawing.Color.Silver;
+            this.drpdwnStatus.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.drpdwnStatus.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.drpdwnStatus.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.drpdwnStatus.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.drpdwnStatus.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.drpdwnStatus.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
+            this.drpdwnStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.drpdwnStatus.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
+            this.drpdwnStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.drpdwnStatus.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.drpdwnStatus.FillDropDown = true;
+            this.drpdwnStatus.FillIndicator = false;
+            this.drpdwnStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.drpdwnStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.drpdwnStatus.ForeColor = System.Drawing.Color.Black;
+            this.drpdwnStatus.FormattingEnabled = true;
+            this.drpdwnStatus.Icon = null;
+            this.drpdwnStatus.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.drpdwnStatus.IndicatorColor = System.Drawing.Color.DarkGray;
+            this.drpdwnStatus.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.drpdwnStatus.IndicatorThickness = 2;
+            this.drpdwnStatus.IsDropdownOpened = false;
+            this.drpdwnStatus.ItemBackColor = System.Drawing.Color.White;
+            this.drpdwnStatus.ItemBorderColor = System.Drawing.Color.White;
+            this.drpdwnStatus.ItemForeColor = System.Drawing.Color.Black;
+            this.drpdwnStatus.ItemHeight = 26;
+            this.drpdwnStatus.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
+            this.drpdwnStatus.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.drpdwnStatus.ItemTopMargin = 3;
+            this.drpdwnStatus.Location = new System.Drawing.Point(7, 10);
+            this.drpdwnStatus.Margin = new System.Windows.Forms.Padding(10);
+            this.drpdwnStatus.Name = "drpdwnStatus";
+            this.drpdwnStatus.Size = new System.Drawing.Size(249, 32);
+            this.drpdwnStatus.TabIndex = 2;
+            this.drpdwnStatus.Text = null;
+            this.drpdwnStatus.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.drpdwnStatus.TextLeftMargin = 5;
             // 
             // btnSearch
             // 
@@ -269,7 +260,7 @@
             this.btnSearch.IdleIconLeftImage = null;
             this.btnSearch.IdleIconRightImage = null;
             this.btnSearch.IndicateFocus = false;
-            this.btnSearch.Location = new System.Drawing.Point(272, 6);
+            this.btnSearch.Location = new System.Drawing.Point(278, 7);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSearch.OnDisabledState.BorderRadius = 20;
@@ -310,32 +301,40 @@
             this.btnSearch.TextMarginLeft = 0;
             this.btnSearch.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnSearch.UseDefaultRadiusAndThickness = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // CtrlPanelProject
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.drpdwnStatus);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(603, 43);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(391, 53);
+            this.panel1.TabIndex = 6;
+            // 
+            // CtrlPanelTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tbGrid);
-            this.Name = "CtrlPanelProject";
-            this.Size = new System.Drawing.Size(994, 564);
-            this.Load += new System.EventHandler(this.CtrlPanelProject_Load);
+            this.Name = "CtrlPanelTask";
+            this.Size = new System.Drawing.Size(997, 592);
+            this.Load += new System.EventHandler(this.UC_Task_Load_1);
             this.tbGrid.ResumeLayout(false);
             this.tbGrid.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
         private System.Windows.Forms.TableLayoutPanel tbGrid;
-        private System.Windows.Forms.Label label1;
         private Bunifu.UI.WinForms.BunifuTextBox tbSearch;
+        private Bunifu.UI.WinForms.BunifuDropdown drpdwnStatus;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private Bunifu.UI.WinForms.BunifuDropdown dropdownStatus;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnSearch;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -126,5 +126,26 @@ namespace BusinessLayer
                 throw new Exception("An error occurred: " + ex.Message);
             }
         }
+
+        public List<UserDTO> GetAllUsers()
+        {
+            try
+            {
+                UserDAL userDAL = new UserDAL();
+                var users = userDAL.GetAllUsers();
+                if (users == null)
+                    return null;
+
+                return users.Select(u => UserDTOMapper.ToDto(u)).ToList();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred: " + ex.Message);
+            }
+        }
     }
 }

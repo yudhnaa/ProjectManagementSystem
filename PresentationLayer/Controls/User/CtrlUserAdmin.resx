@@ -117,29 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="bunifuTextBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAkQAAAAnCAYAAADuH1eHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADlSURBVHhe7dZBDQMxEARB80dlyzACIwBy2s9JwdBV0nwG
-        Qa8FAMBa997P3vtnZmZmVto00BtEcwAA1EwDCSIAIE0QAQB5gggAyBNEAECeIAIA8gQRAJAniACAPEEE
-        AOQJIgAgTxABAHmCCADIE0QAQJ4gAgDyBBEAkCeIAIA8QQQA5AkiACBPEAEAeYIIAMgTRABAniACAPIE
-        EQCQJ4gAgDxBBADkCSIAIE8QAQB5gggAyBNEAECeIAIA8gQRAJAniACAPEEEAOQJIgAgTxABAHl/QXTO
-        +c5hZmZmVto00BtEAABlD+SsY7ZElwVkAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="btSearch.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGYAAAAnCAYAAAD92z2rAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHKSURBVGhD7ZuxSgQxEIZTWlpa7GQtfQRLS0tLSxvfwsIH
-        EJM97H0AwU6wEqwsr7AXLGwU8UQ54eT+yOx5glm9QrzLFP/A1yTZLfKR7MDOOPdL1MdpqYrY9g3OfERf
-        Ih58TIn8nckeou8DLiSknTqk5XzfZ0bVYNNHPErEc/5y8j9IwItEPPmA3Xz/O6EGfYNTafCUv4jMB4lp
-        4COu6qO0kvtoQ6VIwG0VxqP8YTJ/pMFtHdJq7sXpSaGU0qD/TYp+U3h9lUfi+FWatN9K0exLP/T5IlIK
-        PNa9tOY0bdMMobuAlEDi+N1HBKc5dT5JyiIBN85H3OUTpCwS8a5ihvkEKY/LB4gNKMYoFGMUijEKxRiF
-        YoxCMUahGKNQjFEoxigUYxSKMQrFGIVijEIxRqEYo1CMUZz+xswHSXlUDIvFDaL//K/yQVIa3Dnfw540
-        eOtOklLUESdaTL7atgP8sIAUYVCFtNWWyUrAAasxyzMp6sf5V1F5W78ccJ0vJItFIu47XWZayMwMrRy1
-        FpOHtPFNyjTqBuufzUtMBhZEdTgefZ6Un6VMQ6816aHnmRDMnUmPKy4719esUIOatrFBdh5gqN3g2hWe
-        7/s0PgC0naiDNl60vgAAAABJRU5ErkJggg==
-</value>
+  <data name="lbUsername.BaseStylesheet" xml:space="preserve">
+    <value>#bunifu-label { padding: 0px; font-family: 'Microsoft Sans Serif'; font-size: 12pt; width: 100%; height: 100%; font-style: normal; font-weight: bold; text-decoration: none; color: rgb(0, 0, 0); text-align: left; }</value>
   </data>
 </root>

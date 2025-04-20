@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Services;
 using DataLayer.Domain;
 using DTOLayer;
 using DTOLayer.Mappers;
@@ -15,6 +16,28 @@ namespace BusinessLayer
 {
     public class ProjectServices
     {
+
+        public ProjectDTO GetProjectById(int projectId)
+        {
+            try
+            {
+                ProjectDAL projectDAL = new ProjectDAL();
+                var project = projectDAL.GetProjectById(projectId);
+
+                return project.ToDto();
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving projects.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while retrieving projects.", ex);
+
+            }
+        }
 
         public List<ProjectDTO> GetProjectsByUserId(int userId)
         {
@@ -73,7 +96,7 @@ namespace BusinessLayer
             try
             {
                 ProjectDAL projectDAL = new ProjectDAL();
-                Project existingProject = projectDAL.GetProjectById(project.Id);
+                ProjectDTO existingProject = this.GetProjectById(project.Id);
                 if (existingProject == null)
                     throw new Exception("Project not found.");
 
@@ -89,7 +112,7 @@ namespace BusinessLayer
                 existingProject.PercentComplete = project.PercentComplete;
                 existingProject.UpdatedDate = DateTime.Now;
 
-                var res = projectDAL.UpdateProject(existingProject);
+                var res = projectDAL.UpdateProject(existingProject.ToProjectEntity());
                 return res;
             }
             catch (SqlException ex)
@@ -126,8 +149,62 @@ namespace BusinessLayer
             }
         }
 
+        public bool DeleteProject(ProjectDTO project)
+        {
+            try
+            {
+                ProjectDAL projectDAL = new ProjectDAL();
+                ProjectDTO existingProject = this.GetProjectById(project.Id);
+
+                if (existingProject == null)
+                    throw new Exception("Project not found.");
+
+                ProjectStatusServices projectStatusServices = new ProjectStatusServices();
+                int projectCancelledStatusId = projectStatusServices.GetProjectStatusByName("Cancelled").Id;
+
+                existingProject.StatusId = projectCancelledStatusId;
+                existingProject.IsDeleted = true;
+                existingProject.UpdatedDate = DateTime.Now;
+
+                var res = projectDAL.UpdateProject(existingProject.ToProjectEntity());
+
+                return res;
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while deleting project.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while deleting project.", ex);
+            }
+        }
+
+        public bool HardDeleteProjectById(int id)
+        {
+            throw new NotImplementedException();
+            //try
+            //{
+            //    ProjectDAL projectDAL = new ProjectDAL();
+
+            //    return projectDAL.DeleteProject(id);
+            //}
+            //catch (SqlException ex)
+            //{
+            //    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+            //    throw new Exception("Database error occurred while deleting project.", ex);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Handle other exceptions
+            //    throw new Exception("An error occurred while deleting project.", ex);
+            //}
+        }
+
         // ham lay danh sach Project kem keyword + status
-            //-->  Goi xuong DAL de truy van du lieu
-            //Xu ly kq va tra ve cho Controller <--
+        //-->  Goi xuong DAL de truy van du lieu
+        //Xu ly kq va tra ve cho Controller <--
     }
 }

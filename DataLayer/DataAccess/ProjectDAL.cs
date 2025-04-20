@@ -22,7 +22,7 @@ namespace BusinessLayer
                     // Fetch projects from the database
                     List<Project> projects = dbContext.Projects.
                         Where(p => dbContext.ProjectMembers.
-                            Any(pm => pm.UserId == userId && pm.ProjectId == p.Id) && p.StatusId != 4 && p.IsDeleted != true).ToList();
+                            Any(pm => pm.UserId == userId && pm.ProjectId == p.Id) && p.StatusId != 4 && p.IsDeleted == false).ToList();
 
                     List<Project> projectDTOs = projects;
 
@@ -47,7 +47,7 @@ namespace BusinessLayer
             {
                 try
                 {
-                    Project project = dbContext.Projects.FirstOrDefault(p => p.Id == projectId && p.IsDeleted != true);
+                    Project project = dbContext.Projects.FirstOrDefault(p => p.Id == projectId && p.IsDeleted == false);
 
                     return project;
                 }
@@ -70,7 +70,7 @@ namespace BusinessLayer
             {
                 try
                 {
-                    List<Project> projects = dbContext.Projects.Where(p => p.StatusId != 4 && p.IsDeleted != true).ToList();
+                    List<Project> projects = dbContext.Projects.Where(p => p.StatusId != 4 && p.IsDeleted == false).ToList();
                     return projects;
                 }
                 catch (SqlException ex)
@@ -154,35 +154,6 @@ namespace BusinessLayer
 
                     var res = dbContext.SaveChanges();
                     return res > 0;
-                }
-                catch (SqlException ex)
-                {
-                    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
-                    throw ex;
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    throw ex;
-                }
-            }
-        }
-
-        public bool DeleteProject(int projectId)
-        {
-            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
-            {
-                try
-                {
-                    Project project = dbContext.Projects.FirstOrDefault(p => p.Id == projectId);
-                    if (project == null)
-                        return false;
-
-                    // Soft delete
-                    project.IsDeleted = true;
-                    project.UpdatedDate = DateTime.Now;
-                    dbContext.SaveChanges();
-                    return true;
                 }
                 catch (SqlException ex)
                 {

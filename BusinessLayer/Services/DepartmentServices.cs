@@ -33,6 +33,31 @@ namespace BusinessLayer.Services
             }
         }
 
+        public DepartmentDTO GetDepartmentById(int departmentId)
+        {
+            try
+            {
+                DepartmentDAL departmentDAL = new DepartmentDAL();
+                var department = departmentDAL.GetDepartmentById(departmentId);
+
+                if (department == null)
+                {
+                    throw new Exception("Department not found");
+                }
+                return department.ToDto();
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving the department.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while retrieving the department.", ex);
+            }
+        }
+
         //public List<DepartmentDTO> getDepartmentsByKw(string kw)
         //{
         //    using (var dbContext = new ProjectManagementSystemDBContext())

@@ -13,16 +13,6 @@ namespace BusinessLayer.Services
 {
     public class TaskServices
     {
-        //public List<TaskDTO> GetTaskByProjectId(int projectId)
-        //{
-        //    using (var dBContext = new ProjectManagementSystemDBContext())
-        //    {
-        //        List<TaskDTO> tasks = dBContext.Tasks.Where(t => t.ProjectId == projectId).ToList().Select(p => p.ToDto()).ToList();
-
-        //        return tasks;
-        //    }
-        //}
-
         public List<TaskDTO> GetTaskByProjectIdAndUserId(int projectId, int userId)
         {
             try
@@ -186,6 +176,61 @@ namespace BusinessLayer.Services
             catch (Exception ex)
             {
                 throw new Exception("An error occurred while counting tasks.", ex);
+            }
+        }
+
+        public List<TaskDTO> GetAllTaskIncludeAllStatus()
+        {
+            try
+            {
+                TaskDAL taskDAL = new TaskDAL();
+                var tasks = taskDAL.GetAllTaskIncludeAllStatus();
+
+                if (tasks == null)
+                    throw new Exception("Tasks not found.");
+
+                return tasks.Select(t => t.ToDto()).ToList();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while fetching all tasks.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching all tasks.", ex);
+            }
+        }
+
+        public bool DeleteTask(TaskDTO taskDTO)
+        {
+            try
+            {
+                TaskStatusServices taskStatusServices = new TaskStatusServices();
+                var cancelledTaskStatusId = taskStatusServices.getTaskStatusByName("Cancelled").Id;
+
+                TaskDAL taskDAL = new TaskDAL();
+                TaskDTO existingTask = this.GetTaskById(taskDTO.Id);
+
+                if (existingTask == null)
+                    throw new Exception("Task not found.");
+
+                existingTask.StatusId = cancelledTaskStatusId;
+                existingTask.IsDeleted = true;
+                existingTask.UpdatedDate = DateTime.Now;
+
+                var res = taskDAL.UpdateTask(existingTask.ToTaskEntity());
+
+                return res > 0;
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while deleting task.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting task.", ex);
             }
         }
     }

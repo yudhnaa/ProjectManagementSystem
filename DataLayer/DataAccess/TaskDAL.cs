@@ -17,7 +17,7 @@ namespace BusinessLayer.Services
                 using (var dBContext = new ProjectManagementSystemDBContext())
                 {
                     List<Task> tasks = dBContext.Tasks
-                        .Where(t => t.IsDeleted != true)
+                        .Where(t => t.IsDeleted == false)
                         .ToList();
 
                     return tasks;
@@ -35,13 +35,64 @@ namespace BusinessLayer.Services
             }
         }
 
+        public List<Task> GetAllTaskIncludeAllStatus()
+        {
+            try
+            {
+                using (var dBContext = new ProjectManagementSystemDBContext())
+                {
+                    var tasks = dBContext.Tasks.ToList();
+
+                    if (tasks.Count == 0)
+                        return null;
+
+                    return tasks;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Task> GetTaskByKw(string kw, int v)
+        {
+            try
+            {
+                using (var dBContext = new ProjectManagementSystemDBContext())
+                {
+                    var tasks = dBContext.Tasks
+                        .Where(t => (t.Name.Contains(kw) || t.Code.Contains(kw) || t.Id.Equals(kw)) && t.IsDeleted == false)
+                        .Take(v)
+                        .ToList();
+
+                    if (tasks == null || tasks.Count == 0)
+                        return null;
+
+                    return tasks;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Task GetTaskById(int taskId)
         {
             try
             {
                 using (var dBContext = new ProjectManagementSystemDBContext())
                 {
-                    var task = dBContext.Tasks.FirstOrDefault(t => t.Id == taskId);
+                    var task = dBContext.Tasks.FirstOrDefault(t => t.Id == taskId && t.IsDeleted == false);
 
                     return task;
                 }
@@ -62,7 +113,7 @@ namespace BusinessLayer.Services
             {
                 using (var dBContext = new ProjectManagementSystemDBContext())
                 {
-                    List<Task> tasks = dBContext.Tasks.Where(t => t.ProjectId == projectId).ToList();
+                    List<Task> tasks = dBContext.Tasks.Where(t => t.ProjectId == projectId && t.IsDeleted == false).ToList();
                     return tasks;
                 }
             }
@@ -82,7 +133,7 @@ namespace BusinessLayer.Services
             {
                 using (var dBContext = new ProjectManagementSystemDBContext())
                 {
-                    List<Task> tasks = dBContext.Tasks.Where(t => t.AssignedUserId == userId).ToList();
+                    List<Task> tasks = dBContext.Tasks.Where(t => t.AssignedUserId == userId && t.IsDeleted == false).ToList();
                     return tasks;
                 }
             }
@@ -102,7 +153,7 @@ namespace BusinessLayer.Services
             {
                 using (var dBContext = new ProjectManagementSystemDBContext())
                 {
-                    List<Task> tasks = dBContext.Tasks.Where(t => t.ProjectId == projectId && t.AssignedUserId == userId).ToList();
+                    List<Task> tasks = dBContext.Tasks.Where(t => t.ProjectId == projectId && t.AssignedUserId == userId && t.IsDeleted == false).ToList();
                     return tasks;
                 }
             }
@@ -122,7 +173,7 @@ namespace BusinessLayer.Services
             {
                 using (var dBContext = new ProjectManagementSystemDBContext())
                 {
-                    List<Task> tasks = dBContext.Tasks.Where(t => t.GetType().GetProperty(key).GetValue(t, null).ToString() == value).ToList();
+                    List<Task> tasks = dBContext.Tasks.Where(t => t.GetType().GetProperty(key).GetValue(t, null).ToString() == value && t.IsDeleted == false).ToList();
                     return tasks;
                 }
             }
@@ -227,41 +278,14 @@ namespace BusinessLayer.Services
                     existingTask.AssignedUserId = task.AssignedUserId;
                     existingTask.StatusId = task.StatusId;
                     existingTask.PriorityId = task.PriorityId;
-                    existingTask.ParentTaskId = task.ParentTaskId;
+                    if (task.ParentTaskId > 0)
+                        existingTask.ParentTaskId = task.ParentTaskId;
                     existingTask.EstimatedHours = task.EstimatedHours;
                     existingTask.Description = task.Description;
 
                     dBContext.SaveChanges();
 
-
                     return 1;
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public List<Task> GetTaskByKw(string kw, int v)
-        {
-            try
-            {
-                using (var dBContext = new ProjectManagementSystemDBContext())
-                {
-                    var tasks = dBContext.Tasks
-                        .Where(t => t.Name.Contains(kw) || t.Code.Contains(kw) || t.Id.Equals(kw))
-                        .Take(v)
-                        .ToList();
-
-                    if (tasks == null || tasks.Count == 0)
-                        return null;
-                    
-                    return tasks;
                 }
             }
             catch (SqlException ex)

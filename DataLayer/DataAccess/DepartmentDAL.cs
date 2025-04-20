@@ -32,6 +32,31 @@ namespace BusinessLayer.Services
             }
         }
 
+        public Department GetDepartmentById(int departmentId)
+        {
+            using (var dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var department = dbContext.Departments
+                        .FirstOrDefault(d => d.Id == departmentId);
+                    if (department == null)
+                    {
+                        throw new Exception("Department not found");
+                    }
+                    return department;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         public List<Department> getDepartmentsByKw(string kw)
         {
             using (var dbContext = new ProjectManagementSystemDBContext())

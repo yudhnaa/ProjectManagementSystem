@@ -34,7 +34,7 @@ namespace BusinessLayer.Services
             }
         }
 
-        public List<TaskStatusDTO> getTaskStatuses()
+        public List<TaskStatusDTO> getAllTaskStatuses()
         {
             try
             {
@@ -43,6 +43,28 @@ namespace BusinessLayer.Services
                 var taskStatuses = taskStatusDAL.getTaskStatuses();
 
                 return taskStatuses.Select(t => t.ToDto()).ToList();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public TaskStatusDTO getTaskStatusByName(string v)
+        {
+            try
+            {
+                TaskStatusDAL taskStatusDAL = new TaskStatusDAL();
+                var taskStatus = taskStatusDAL.getTaskStatusByName(v);
+
+                if (taskStatus != null)
+                    return taskStatus.ToDto();
+
+                throw new Exception("Task Status not found");
             }
             catch (SqlException ex)
             {

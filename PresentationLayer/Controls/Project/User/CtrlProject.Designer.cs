@@ -32,11 +32,11 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.Status = new System.Windows.Forms.Label();
-            this.tbDescription = new System.Windows.Forms.TextBox();
             this.pbIcon = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.lbStatus = new PresentationLayer.CustomControls.RoundedLabel();
             this.lbEndDate = new System.Windows.Forms.Label();
             this.lbTaskCount = new System.Windows.Forms.Label();
+            this.lbDescription = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.SuspendLayout();
@@ -47,11 +47,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.lbDescription, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbTitle, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.Status, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tbDescription, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.pbIcon, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbStatus, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbEndDate, 1, 2);
@@ -60,9 +58,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1107, 126);
             this.tableLayoutPanel1.TabIndex = 21;
             // 
@@ -84,27 +82,12 @@
             // 
             this.Status.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Status.Location = new System.Drawing.Point(954, 0);
+            this.Status.Location = new System.Drawing.Point(925, 0);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(147, 31);
             this.Status.TabIndex = 19;
             this.Status.Text = "Status";
             this.Status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tbDescription
-            // 
-            this.tbDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDescription.Enabled = false;
-            this.tbDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDescription.Location = new System.Drawing.Point(64, 41);
-            this.tbDescription.Margin = new System.Windows.Forms.Padding(10);
-            this.tbDescription.Multiline = true;
-            this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(875, 54);
-            this.tbDescription.TabIndex = 20;
-            this.tbDescription.Text = resources.GetString("tbDescription.Text");
             // 
             // pbIcon
             // 
@@ -114,7 +97,7 @@
             this.pbIcon.BorderRadius = 25;
             this.pbIcon.Image = ((System.Drawing.Image)(resources.GetObject("pbIcon.Image")));
             this.pbIcon.IsCircle = true;
-            this.pbIcon.Location = new System.Drawing.Point(2, 27);
+            this.pbIcon.Location = new System.Drawing.Point(2, 13);
             this.pbIcon.Margin = new System.Windows.Forms.Padding(2);
             this.pbIcon.Name = "pbIcon";
             this.tableLayoutPanel1.SetRowSpan(this.pbIcon, 2);
@@ -130,7 +113,7 @@
             this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbStatus.BackColor = System.Drawing.Color.White;
             this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(978, 56);
+            this.lbStatus.Location = new System.Drawing.Point(949, 42);
             this.lbStatus.Name = "lbStatus";
             this.lbStatus.Size = new System.Drawing.Size(100, 23);
             this.lbStatus.TabIndex = 21;
@@ -142,9 +125,9 @@
             this.lbEndDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEndDate.ForeColor = System.Drawing.Color.IndianRed;
-            this.lbEndDate.Location = new System.Drawing.Point(57, 105);
+            this.lbEndDate.Location = new System.Drawing.Point(57, 77);
             this.lbEndDate.Name = "lbEndDate";
-            this.lbEndDate.Size = new System.Drawing.Size(889, 21);
+            this.lbEndDate.Size = new System.Drawing.Size(831, 49);
             this.lbEndDate.TabIndex = 22;
             this.lbEndDate.Text = "EndDate: 1/1/2024";
             // 
@@ -154,12 +137,22 @@
             this.lbTaskCount.AutoSize = true;
             this.lbTaskCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTaskCount.ForeColor = System.Drawing.Color.IndianRed;
-            this.lbTaskCount.Location = new System.Drawing.Point(984, 105);
+            this.lbTaskCount.Location = new System.Drawing.Point(955, 91);
             this.lbTaskCount.Name = "lbTaskCount";
             this.lbTaskCount.Size = new System.Drawing.Size(87, 20);
             this.lbTaskCount.TabIndex = 22;
             this.lbTaskCount.Text = "100 tasks";
             this.lbTaskCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbDescription
+            // 
+            this.lbDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDescription.Location = new System.Drawing.Point(57, 31);
+            this.lbDescription.Name = "lbDescription";
+            this.lbDescription.Size = new System.Drawing.Size(831, 46);
+            this.lbDescription.TabIndex = 26;
+            this.lbDescription.Text = resources.GetString("lbDescription.Text");
             // 
             // CtrlProject
             // 
@@ -181,10 +174,10 @@
         private Bunifu.UI.WinForms.BunifuPictureBox pbIcon;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label Status;
-        private System.Windows.Forms.TextBox tbDescription;
         private System.Windows.Forms.Label lbEndDate;
         private System.Windows.Forms.Label lbTaskCount;
         private System.Windows.Forms.Label lbTitle;
         private CustomControls.RoundedLabel lbStatus;
+        private System.Windows.Forms.Label lbDescription;
     }
 }

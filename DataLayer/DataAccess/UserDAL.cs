@@ -67,13 +67,20 @@ namespace BusinessLayer
             }
         }
 
-        public List<User> GetAllUsers(int pageSize)
+        public List<User> GetAllUsers(int page, int pageSize)
         {
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
             {
                 try
                 {
-                    var users = dbContext.Users.Take(pageSize).ToList();
+                    var users = dbContext.Users
+                        .OrderBy(u => u.Id)
+                        .Skip((page - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToList();
+
+                    if (users == null)
+                        return null;
 
                     return users;
                 }
@@ -143,6 +150,29 @@ namespace BusinessLayer
                 {
                     var user = dbContext.Users.Find(userId);
                     return user;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public List<User> GetAllUsers()
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var users = dbContext.Users.ToList();
+                    if (users == null)
+                        return null;
+
+                    return users;
                 }
                 catch (SqlException ex)
                 {

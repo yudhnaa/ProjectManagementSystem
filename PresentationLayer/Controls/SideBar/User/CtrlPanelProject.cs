@@ -67,11 +67,33 @@ namespace PresentationLayer.Controls.Project
                 tbGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 tbGrid.SetColumnSpan(ctrlProject, 2);
             }
+
+            // Add an empty row at the end
+            tbGrid.RowCount++;
+            tbGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        }
+
+        private void style()
+        {
+            this.Dock = DockStyle.Fill;
+
+            tbGrid.Margin = new Padding(10, 0, 0, 10);
+            if (tbGrid.ColumnCount > 0)
+            {
+                tbGrid.ColumnStyles.Clear();
+                tbGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+                tbGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            }
+
+            tbSearch.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+
+            drpdwnStatus.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+            btnSearch.Anchor = AnchorStyles.Right | AnchorStyles.Top;
         }
 
         private void CtrlPanelProject_Load(object sender, EventArgs e)
         {
-            this.Dock = DockStyle.Fill;
+            style();
 
             //loadProjectStatus(); --> Bo vao combobox
 

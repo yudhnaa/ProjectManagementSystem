@@ -46,7 +46,7 @@ namespace PresentationLayer.CustomControls
 
         }
 
-        public void loadDepartments()
+        private void loadDepartments()
         {
             departmentDTOs = departmentServices.GetAllDepartments();
 
@@ -56,7 +56,7 @@ namespace PresentationLayer.CustomControls
             }
         }
 
-        public void loadUserRoles()
+        private void loadUserRoles()
         {
             userRoleDTOs = userRoleServices.getAllUserRoles();
             if (userRoleDTOs != null)

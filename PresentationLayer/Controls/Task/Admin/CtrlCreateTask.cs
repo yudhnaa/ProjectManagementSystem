@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Services;
 using BusinessLayer;
+using DataLayer.Domain;
 using DTOLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using C1.Win.C1GanttView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using PresentationLayer.AppContext;
 
-namespace PresentationLayer.Forms.Other
+namespace PresentationLayer.Control
 {
-    public partial class FormTaskUpdate : Form
+    public partial class CtrlCreateTask : UserControl
     {
-        private TaskDTO task;
+        public UserDTO user;
+        private ProjectDTO project;
+        public TaskDTO parentTask;
 
         private UserServices userServices;
         private TaskStatusServices taskStatusServices;
@@ -32,14 +37,24 @@ namespace PresentationLayer.Forms.Other
         private string lastSearchComboBox = "";
         private System.Windows.Forms.ComboBox currentSearchBox = null;
 
-        public FormTaskUpdate(TaskDTO task)
+        public CtrlCreateTask(TaskDTO parentTask , ProjectDTO project)
         {
-            InitializeComponent();
+            this.user = UserSession.Instance.User;
+            this.parentTask = parentTask;
+            this.project = project;
 
-            this.task = task;
+            InitializeComponent();   
         }
 
-        private void FormTaskUpdate_Load(object sender, EventArgs e)
+        public CtrlCreateTask( ProjectDTO project)
+        {
+            this.user = UserSession.Instance.User;
+            this.project = project;
+
+            InitializeComponent();
+        }
+
+        private void ctrl_CreateTasks_Load(object sender, EventArgs e)
         {
             userServices = new UserServices();
             taskStatusServices = new TaskStatusServices();
@@ -50,12 +65,6 @@ namespace PresentationLayer.Forms.Other
             debounceTimer.Interval = 1000;
             debounceTimer.Tick += DebounceTimer_Tick;
 
-            tbCode.Enabled = false;
-            tbTitle.Enabled = false;
-            datepickerStart.Enabled = false;
-            cbParentTask.Enabled = false;
-            CbUser.Enabled = false;
-
             CbUser.DisplayMember = "Username";
             CbUser.ValueMember = "Id";
             cbStatus.DisplayMember = "Name";
@@ -65,14 +74,17 @@ namespace PresentationLayer.Forms.Other
             cbParentTask.DisplayMember = "Code";
             cbParentTask.ValueMember = "Id";
 
-            
+            if (parentTask != null)
+            {
+                cbParentTask.Items.Add(parentTask);
+                cbParentTask.SelectedIndex = 0;
+            }
 
             CbUser.AutoCompleteMode = AutoCompleteMode.Suggest;
             CbUser.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             loadTaskStatuses();
             loadTaskPriorities();
-            setTaskInfo();
         }
 
         private void DebounceTimer_Tick(object sender, EventArgs e)
@@ -99,44 +111,9 @@ namespace PresentationLayer.Forms.Other
             }
             else if (currentSearchBox == cbParentTask)
             {
-                string kw = cbParentTask.Text;
-                var tasks = taskServices.GetTaskByKw(kw, 10);
-
-                if (tasks == null)
-                {
-                    MessageBox.Show("No projects found.");
-                    return;
-                }
-                cbParentTask.DataSource = tasks;
-            }
-        }
-
-        private void setTaskInfo()
-        {
-            if (task == null)
-                MessageBox.Show("Not Found Task");
-            
-            tbTitle.Text = task.Name;
-            tbCode.Text = task.Code;
-            datepickerStart.Value = task.StartDate ?? DateTime.Now;
-            datepickerEnd.Value = task.DueDate ?? DateTime.Now;
-            tbEstimate.Text = ((int)task.EstimatedHours).ToString();
-            tbDescription.Text = task.Description;
-
-            cbStatus.SelectedValue = task.StatusId;
-            cbPriority.SelectedValue = task.PriorityId;
-
-            CbUser.DataSource = new List<UserDTO> { userServices.GetUserById(task.AssignedUserId) };
-            CbUser.SelectedValue = task.AssignedUserId;
-
-            if (task.ParentTaskId.HasValue && task.ParentTaskId.Value != -1)
-            {
-                TaskDTO currentParentTask = taskServices.GetTaskById(task.ParentTaskId.Value);
-                if (currentParentTask != null)
-                {
-                    cbParentTask.DataSource = new List<TaskDTO> { currentParentTask };
-                    cbParentTask.SelectedValue = task.ParentTaskId;
-                }
+                //string kw = cbParentTask.Text;
+                //var tasks = taskServices.getTas(kw, 10); // <- Assuming this method exists
+                //cbParentTask.DataSource = tasks;
             }
         }
 
@@ -174,9 +151,9 @@ namespace PresentationLayer.Forms.Other
 
         private void cbParentTask_TextChanged(object sender, EventArgs e)
         {
-            currentSearchBox = cbParentTask;
-            debounceTimer.Stop();
-            debounceTimer.Start();
+            //currentSearchBox = cbParentTask;
+            //debounceTimer.Stop();
+            //debounceTimer.Start();
         }
 
         private void CbUser_TextChanged(object sender, EventArgs e)
@@ -246,33 +223,28 @@ namespace PresentationLayer.Forms.Other
 
             TaskDTO newTask = new TaskDTO
             {
-                Id = task.Id,
                 Code = tbCode.Text,
                 Name = tbTitle.Text,
                 Description = tbDescription.Text,
-                ProjectId = task.ProjectId,
+                ProjectId = project.Id,
                 AssignedUserId = (int)CbUser.SelectedValue,
                 StatusId = (int)cbStatus.SelectedValue,
                 PriorityId = (int)cbPriority.SelectedValue,
                 StartDate = datepickerStart.Value,
                 DueDate = datepickerEnd.Value,
                 EstimatedHours = int.Parse(tbEstimate.Text),
-                ParentTaskId = cbParentTask.Text == "" ? 0 : (int)cbParentTask.SelectedValue,
-                UpdatedDate = DateTime.Now,
+                ParentTaskId = parentTask == null ? -1: parentTask.Id,
+                CreatedDate = DateTime.Now
             };
 
             try
             {
-                taskServices.UpdateTask(newTask);
-                MessageBox.Show("Task update successfully.");
-            }
-            catch (SqlException sqlEx)
-            {
-                MessageBox.Show("Database error: " + sqlEx.Message);
+                taskServices.CreateTask(newTask, this.user.Id);
+                MessageBox.Show("Task created successfully.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error creating newTask: " + ex.Message);
             }
         }
 

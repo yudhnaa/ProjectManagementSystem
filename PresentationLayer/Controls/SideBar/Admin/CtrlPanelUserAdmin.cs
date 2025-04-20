@@ -13,17 +13,17 @@ using System.Windows.Forms;
 
 namespace PresentationLayer.UC_SideBar
 {
-    public partial class CtrlPanelTask : System.Windows.Forms.UserControl
+    public partial class CtrlPanelUserAdmin : System.Windows.Forms.UserControl
     {
-        private List<TaskDTO> _tasks;
+        private List<UserExtraInfoDTO> _users;
 
-        public List<TaskDTO> tasks
+        public List<UserExtraInfoDTO> users
         {
-            get => _tasks;
+            get => _users;
             set
             {
-                _tasks = value;
-                RefreshTaskList(); // Refresh the ListBox whenever tasks are set
+                _users = value;
+                RefreshUserList(); // Refresh the ListBox whenever tasks are set
             }
         }
 
@@ -50,37 +50,55 @@ namespace PresentationLayer.UC_SideBar
             }
         }
 
-        private void RefreshTaskList()
+        private void RefreshUserList()
         {
             // Clear existing controls in the table layout panel
             clearTaskList();
-            if (tasks == null)
+            if (users == null)
                 return;
 
-            foreach (TaskDTO task in tasks)
+            foreach (UserExtraInfoDTO user in users)
             {
-               CtrlTask ctrlTask = new CtrlTask(task);
+               CtrlUserAdmin ctrlUser= new CtrlUserAdmin(user);
 
                 tbGrid.RowCount++;
-                tbGrid.Controls.Add(ctrlTask, 0, tbGrid.RowCount - 1);
+                tbGrid.Controls.Add(ctrlUser, 0, tbGrid.RowCount - 1);
                 tbGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                tbGrid.SetColumnSpan(ctrlTask, 2);
+                tbGrid.SetColumnSpan(ctrlUser, 2);
             }
+
+            // Add an empty row at the end
+            tbGrid.RowCount++;
+            tbGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         }
 
-        public CtrlPanelTask()
+        public CtrlPanelUserAdmin()
         {
             InitializeComponent();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void style()
         {
+            this.Dock = DockStyle.Fill;
 
+            tbGrid.Margin = new Padding(10, 0, 0, 10);
+
+            if (tbGrid.ColumnCount > 0)
+            {
+                tbGrid.ColumnStyles.Clear();
+                tbGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+                tbGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            }
+
+            tbSearch.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+
+            drpdwnStatus.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+            btnSearch.Anchor = AnchorStyles.Right | AnchorStyles.Top;
         }
 
         private void UC_Task_Load_1(object sender, EventArgs e)
         {
-            this.Dock = DockStyle.Fill;
+            style();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)

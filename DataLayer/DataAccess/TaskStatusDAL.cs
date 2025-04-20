@@ -31,6 +31,27 @@ namespace DataLayer.DataAccess
             }
         }
 
+        public TaskStatus getTaskStatusByName(string v)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var taskStatus = dbContext.TaskStatuses.FirstOrDefault(t => t.Name == v && t.IsDeleted == false);
+
+                    return taskStatus;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         public List<TaskStatus> getTaskStatuses()
         {
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())

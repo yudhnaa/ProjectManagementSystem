@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlTask));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
             this.lbTitle = new Bunifu.UI.WinForms.BunifuLabel();
             this.pbIcon = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.lbAbstract = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbDueda = new System.Windows.Forms.Label();
-            this.btnUpdateTask = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.lbStatus = new PresentationLayer.CustomControls.RoundedLabel();
-            this.lbPriority = new PresentationLayer.CustomControls.RoundedLabel();
             this.lbDueDate = new PresentationLayer.CustomControls.RoundedLabel();
+            this.lbPriority = new PresentationLayer.CustomControls.RoundedLabel();
+            this.lbStatus = new PresentationLayer.CustomControls.RoundedLabel();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbDueda = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnEdit = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -103,10 +103,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.btnEdit, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbTitle, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.pbIcon, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbAbstract, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnUpdateTask, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbDueDate, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbPriority, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbStatus, 2, 1);
@@ -122,123 +122,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1221, 117);
             this.tableLayoutPanel1.TabIndex = 20;
             // 
-            // lbDueda
+            // lbDueDate
             // 
-            this.lbDueda.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbDueda.AutoSize = true;
-            this.lbDueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDueda.Location = new System.Drawing.Point(981, 20);
-            this.lbDueda.Name = "lbDueda";
-            this.lbDueda.Size = new System.Drawing.Size(78, 18);
-            this.lbDueda.TabIndex = 19;
-            this.lbDueda.Text = "Due Date";
-            this.lbDueda.Click += new System.EventHandler(this.lbDueda_Click);
-            // 
-            // btnUpdateTask
-            // 
-            this.btnUpdateTask.AllowAnimations = true;
-            this.btnUpdateTask.AllowMouseEffects = true;
-            this.btnUpdateTask.AllowToggling = false;
-            this.btnUpdateTask.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnUpdateTask.AnimationSpeed = 200;
-            this.btnUpdateTask.AutoGenerateColors = false;
-            this.btnUpdateTask.AutoRoundBorders = false;
-            this.btnUpdateTask.AutoSizeLeftIcon = true;
-            this.btnUpdateTask.AutoSizeRightIcon = true;
-            this.btnUpdateTask.BackColor = System.Drawing.Color.Transparent;
-            this.btnUpdateTask.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
-            this.btnUpdateTask.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUpdateTask.BackgroundImage")));
-            this.btnUpdateTask.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnUpdateTask.ButtonText = "Update";
-            this.btnUpdateTask.ButtonTextMarginLeft = 0;
-            this.btnUpdateTask.ColorContrastOnClick = 45;
-            this.btnUpdateTask.ColorContrastOnHover = 45;
-            this.btnUpdateTask.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.btnUpdateTask.CustomizableEdges = borderEdges1;
-            this.btnUpdateTask.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnUpdateTask.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.btnUpdateTask.DisabledFillColor = System.Drawing.Color.Empty;
-            this.btnUpdateTask.DisabledForecolor = System.Drawing.Color.Empty;
-            this.btnUpdateTask.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.btnUpdateTask.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnUpdateTask.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateTask.IconLeft = null;
-            this.btnUpdateTask.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateTask.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.btnUpdateTask.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.btnUpdateTask.IconMarginLeft = 11;
-            this.btnUpdateTask.IconPadding = 10;
-            this.btnUpdateTask.IconRight = null;
-            this.btnUpdateTask.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdateTask.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.btnUpdateTask.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.btnUpdateTask.IconSize = 25;
-            this.btnUpdateTask.IdleBorderColor = System.Drawing.Color.Empty;
-            this.btnUpdateTask.IdleBorderRadius = 0;
-            this.btnUpdateTask.IdleBorderThickness = 0;
-            this.btnUpdateTask.IdleFillColor = System.Drawing.Color.Empty;
-            this.btnUpdateTask.IdleIconLeftImage = null;
-            this.btnUpdateTask.IdleIconRightImage = null;
-            this.btnUpdateTask.IndicateFocus = false;
-            this.btnUpdateTask.Location = new System.Drawing.Point(1093, 68);
-            this.btnUpdateTask.Name = "btnUpdateTask";
-            this.btnUpdateTask.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.btnUpdateTask.OnDisabledState.BorderRadius = 20;
-            this.btnUpdateTask.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnUpdateTask.OnDisabledState.BorderThickness = 1;
-            this.btnUpdateTask.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnUpdateTask.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.btnUpdateTask.OnDisabledState.IconLeftImage = null;
-            this.btnUpdateTask.OnDisabledState.IconRightImage = null;
-            this.btnUpdateTask.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
-            this.btnUpdateTask.onHoverState.BorderRadius = 20;
-            this.btnUpdateTask.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnUpdateTask.onHoverState.BorderThickness = 1;
-            this.btnUpdateTask.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
-            this.btnUpdateTask.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateTask.onHoverState.IconLeftImage = null;
-            this.btnUpdateTask.onHoverState.IconRightImage = null;
-            this.btnUpdateTask.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.btnUpdateTask.OnIdleState.BorderRadius = 20;
-            this.btnUpdateTask.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnUpdateTask.OnIdleState.BorderThickness = 1;
-            this.btnUpdateTask.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
-            this.btnUpdateTask.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateTask.OnIdleState.IconLeftImage = null;
-            this.btnUpdateTask.OnIdleState.IconRightImage = null;
-            this.btnUpdateTask.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.btnUpdateTask.OnPressedState.BorderRadius = 20;
-            this.btnUpdateTask.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnUpdateTask.OnPressedState.BorderThickness = 1;
-            this.btnUpdateTask.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.btnUpdateTask.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateTask.OnPressedState.IconLeftImage = null;
-            this.btnUpdateTask.OnPressedState.IconRightImage = null;
-            this.btnUpdateTask.Size = new System.Drawing.Size(118, 39);
-            this.btnUpdateTask.TabIndex = 22;
-            this.btnUpdateTask.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnUpdateTask.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnUpdateTask.TextMarginLeft = 0;
-            this.btnUpdateTask.TextPadding = new System.Windows.Forms.Padding(0);
-            this.btnUpdateTask.UseDefaultRadiusAndThickness = true;
-            this.btnUpdateTask.Click += new System.EventHandler(this.btnUpdateTask_Click);
-            // 
-            // lbStatus
-            // 
-            this.lbStatus._BackColor = System.Drawing.Color.Empty;
-            this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(718, 70);
-            this.lbStatus.Margin = new System.Windows.Forms.Padding(10);
-            this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Padding = new System.Windows.Forms.Padding(5, 15, 5, 15);
-            this.lbStatus.Size = new System.Drawing.Size(105, 34);
-            this.lbStatus.TabIndex = 20;
-            this.lbStatus.Text = "roundedLabel1";
+            this.lbDueDate._BackColor = System.Drawing.Color.Empty;
+            this.lbDueDate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDueDate.Location = new System.Drawing.Point(968, 70);
+            this.lbDueDate.Margin = new System.Windows.Forms.Padding(10);
+            this.lbDueDate.Name = "lbDueDate";
+            this.lbDueDate.Padding = new System.Windows.Forms.Padding(5, 15, 5, 15);
+            this.lbDueDate.Size = new System.Drawing.Size(105, 34);
+            this.lbDueDate.TabIndex = 21;
+            this.lbDueDate.Text = "roundedLabel2";
             // 
             // lbPriority
             // 
@@ -253,18 +148,18 @@
             this.lbPriority.TabIndex = 21;
             this.lbPriority.Text = "roundedLabel2";
             // 
-            // lbDueDate
+            // lbStatus
             // 
-            this.lbDueDate._BackColor = System.Drawing.Color.Empty;
-            this.lbDueDate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDueDate.Location = new System.Drawing.Point(968, 70);
-            this.lbDueDate.Margin = new System.Windows.Forms.Padding(10);
-            this.lbDueDate.Name = "lbDueDate";
-            this.lbDueDate.Padding = new System.Windows.Forms.Padding(5, 15, 5, 15);
-            this.lbDueDate.Size = new System.Drawing.Size(105, 34);
-            this.lbDueDate.TabIndex = 21;
-            this.lbDueDate.Text = "roundedLabel2";
+            this.lbStatus._BackColor = System.Drawing.Color.Empty;
+            this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.Location = new System.Drawing.Point(718, 70);
+            this.lbStatus.Margin = new System.Windows.Forms.Padding(10);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Padding = new System.Windows.Forms.Padding(5, 15, 5, 15);
+            this.lbStatus.Size = new System.Drawing.Size(105, 34);
+            this.lbStatus.TabIndex = 20;
+            this.lbStatus.Text = "roundedLabel1";
             // 
             // label1
             // 
@@ -277,6 +172,18 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Status";
             // 
+            // lbDueda
+            // 
+            this.lbDueda.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbDueda.AutoSize = true;
+            this.lbDueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDueda.Location = new System.Drawing.Point(981, 20);
+            this.lbDueda.Name = "lbDueda";
+            this.lbDueda.Size = new System.Drawing.Size(78, 18);
+            this.lbDueda.TabIndex = 19;
+            this.lbDueda.Text = "Due Date";
+            this.lbDueda.Click += new System.EventHandler(this.lbDueda_Click);
+            // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -288,6 +195,40 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "Priority";
             this.label2.Click += new System.EventHandler(this.lbDueda_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.AllowAnimations = true;
+            this.btnEdit.AllowBorderColorChanges = true;
+            this.btnEdit.AllowMouseEffects = true;
+            this.btnEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEdit.AnimationSpeed = 200;
+            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnEdit.BorderColor = System.Drawing.Color.Transparent;
+            this.btnEdit.BorderRadius = 1;
+            this.btnEdit.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderStyles.Solid;
+            this.btnEdit.BorderThickness = 1;
+            this.btnEdit.ColorContrastOnClick = 30;
+            this.btnEdit.ColorContrastOnHover = 30;
+            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.btnEdit.CustomizableEdges = borderEdges1;
+            this.btnEdit.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.ImageMargin = new System.Windows.Forms.Padding(0);
+            this.btnEdit.Location = new System.Drawing.Point(1132, 38);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.RoundBorders = true;
+            this.tableLayoutPanel1.SetRowSpan(this.btnEdit, 2);
+            this.btnEdit.ShowBorders = true;
+            this.btnEdit.Size = new System.Drawing.Size(40, 40);
+            this.btnEdit.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
+            this.btnEdit.TabIndex = 28;
+            this.btnEdit.Click += new System.EventHandler(this.btnUpdateTask_Click);
             // 
             // CtrlTask
             // 
@@ -319,8 +260,8 @@
         private CustomControls.RoundedLabel lbStatus;
         private CustomControls.RoundedLabel lbPriority;
         private CustomControls.RoundedLabel lbDueDate;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnUpdateTask;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuIconButton btnEdit;
     }
 }

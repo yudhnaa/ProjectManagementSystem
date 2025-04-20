@@ -36,6 +36,23 @@ namespace PresentationLayer.Control
 
         }
 
+        private void style()
+        {
+            this.Dock = DockStyle.Fill;
+            this.Margin = new Padding(50, 0, 50, 10);
+
+            tableLayoutPanel1.ColumnStyles.Clear();
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+
+            lbTitle.Anchor = AnchorStyles.Left;
+            lbAbstract.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+        }
+
         private void ctrl_Task_Load(object sender, EventArgs e)
         {
 
@@ -44,6 +61,8 @@ namespace PresentationLayer.Control
                 MessageBox.Show("Task not found");
                 return;
             }
+
+            style();
 
             taskStatusServices = new TaskStatusServices();
             taskPriorityServices = new TaskPriorityServices();

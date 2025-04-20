@@ -1,6 +1,5 @@
 ﻿using BusinessLayer.Services;
 using DTOLayer.Models;
-using PresentationLayer.AppContext;
 using PresentationLayer.CustomControls;
 using PresentationLayer.Utils;
 using System;
@@ -16,32 +15,50 @@ using System.Windows.Forms;
 
 namespace PresentationLayer.Controls.Project
 {
-    public partial class CtrlProjectAdmin : UserControl
+    public partial class CtrlProject : UserControl
     {
-        private UserDTO user;
         private ProjectDTO project;
 
         private ProjectStatusServices projectStatusServices;
         private TaskServices taskServices;
 
-        public CtrlProjectAdmin(ProjectDTO project)
+        public CtrlProject(ProjectDTO project)
         {
-            this.project = project;
-            this.user = UserSession.Instance.User;
-
             InitializeComponent();
+
+            this.project = project;
+        }
+
+         private void style()
+        {
+            this.Dock = DockStyle.Fill;
+            this.Margin = new Padding(50, 0, 50, 10);
+
+            tableLayoutPanel1.ColumnStyles.Clear();
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+            lbTitle.Anchor = AnchorStyles.Left;
+            lbTitle.Margin = new Padding(10, 10, 10, 10);
+            lbTitle.Padding = new Padding(0, 0, 0, 0);
+
+            lbDescription.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            lbDescription.Margin = new Padding(13, 0, 0, 10);
 
         }
 
         private void CtrlProject_Load(object sender, EventArgs e)
         {
-            if (project == null || user == null)
+            if (project == null)
             {
-                MessageBox.Show( "Project or user is null");
+                MessageBox.Show("Project is null");
                 this.Dispose();
                 
                 return;
             }
+
+            style();
 
             projectStatusServices = new ProjectStatusServices();
             taskServices = new TaskServices();
@@ -52,7 +69,7 @@ namespace PresentationLayer.Controls.Project
                 var tasksCount = taskServices.CountTaskByProjectId(project.Id);
 
                 lbTitle.Text = project.Name;
-                tbDescription.Text = project.Description;
+                lbDescription.Text = project.Description;
                 lbStatus.Text = projectStatus.Name;
                 lbStatus._BackColor = Utils.Utils.GetStatusColor(projectStatus.Name);
 
@@ -79,17 +96,6 @@ namespace PresentationLayer.Controls.Project
         {
             FormProjectDetail formProjectDetail = new FormProjectDetail(project);
             formProjectDetail.ShowDialog();
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            FormProjectUpdate formProjectUpdate = new FormProjectUpdate(project);
-            formProjectUpdate.ShowDialog();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }

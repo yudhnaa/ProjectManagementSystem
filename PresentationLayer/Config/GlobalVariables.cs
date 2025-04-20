@@ -20,6 +20,9 @@ namespace PresentationLayer.Config
         public static Color CompletedStatusColor { get; set; } = Color.FromArgb(128, 255, 128);
         public static Color CancelledStatusColor { get; set; } = Color.Red;
 
+        //Pagination
+        public static int PageSize { get; set; } = 10;
+
 
     }
 }

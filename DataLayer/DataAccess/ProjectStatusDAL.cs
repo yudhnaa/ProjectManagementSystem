@@ -16,7 +16,7 @@ namespace BusinessLayer.Services
             {
                 try
                 {
-                    List<ProjectStatus> projectStatuses = dbContext.ProjectStatuses.ToList();
+                    List<ProjectStatus> projectStatuses = dbContext.ProjectStatuses.Where(p => p.IsDeleted == false && p.IsActive == true).ToList();
 
                     return projectStatuses;
                 }
@@ -40,7 +40,8 @@ namespace BusinessLayer.Services
             {
                 try
                 {
-                    var projectStatus = dbContext.ProjectStatuses.Find(statusId);
+                    var projectStatus = dbContext.ProjectStatuses
+                                                 .FirstOrDefault(p => p.Id == statusId && p.IsDeleted == false && p.IsActive == true);
                     return projectStatus;
                 }
                 catch (SqlException ex)
@@ -54,7 +55,30 @@ namespace BusinessLayer.Services
                     throw new Exception("An error occurred while retrieving project status.", ex);
                 }
             }
+        }
 
+        public ProjectStatus GetProjectStatusByName(string v)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var projectStatus = dbContext.ProjectStatuses
+                                                 .FirstOrDefault(p => p.Name == v && p.IsDeleted == false && p.IsActive == true);
+
+                    return projectStatus;
+                }
+                catch (SqlException ex)
+                {
+                    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                    throw new Exception("Database error occurred while retrieving project status by name.", ex);
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    throw new Exception("An error occurred while retrieving project status by name.", ex);
+                }
+            }
         }
     }
 }

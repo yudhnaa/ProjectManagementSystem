@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
+using BusinessLayer.Services;
+using DTOLayer;
 using DTOLayer.Models;
-using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,74 +12,87 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PresentationLayer.CustomControls
+namespace PresentationLayer.Forms.Other
 {
-    public partial class ctrlUserInfo : UserControl
+    public partial class FormUserInfoEdit : Form
     {
-        private UserDTO user;
+        private UserExtraInfoDTO user;
+
+        private UserRoleServices userRoleServices;
+        private DepartmentServices departmentServices;
+        private UserExtraInfoServices userExtraInfoServices;
+
+        private List<DepartmentDTO> departmentDTOs;
+        private List<UserRoleDTO> userRoleDTOs;
 
         private bool isShowPassword;
 
-        private UserServices userServices;
-
-        public ctrlUserInfo()
+        public FormUserInfoEdit(UserExtraInfoDTO user)
         {
-            this.user = UserSession.Instance.User;
+            this.user = user;
 
             InitializeComponent();
-
-
         }
 
-        private void ctrlUserInfo_Load(object sender, EventArgs e)
+        private void FormUserInfoEdit_Load(object sender, EventArgs e)
         {
+            if (user == null)
+            {
+                MessageBox.Show("User not found");
+                return;
+            }
+
+            userRoleServices = new UserRoleServices();
+            departmentServices = new DepartmentServices();
+            userExtraInfoServices = new UserExtraInfoServices();
+
+            cbRole.DisplayMember = "Name";
+            cbRole.ValueMember = "Id";
+            cbDepartment.DisplayMember = "Name";
+            cbDepartment.ValueMember = "Id";
+
             isShowPassword = false;
             tbPassword.PasswordChar = '*';
 
-            this.Dock = DockStyle.Fill;
+            loadDepartments();
+            loadUserRoles();
 
-            setUserInfo();
-
-            userServices = new UserServices();
+            setUserData();
         }
 
-        private void setUserInfo()
+        private void loadDepartments()
         {
-            //if (user.Avatar != null)
-            //{
-            //    picAvatar.Image = Image.FromFile(user.Avatar);
-            //}
+            departmentDTOs = departmentServices.GetAllDepartments();
 
+            if (departmentDTOs != null)
+            {
+                cbDepartment.DataSource = departmentDTOs;
+            }
+        }
+
+        private void loadUserRoles()
+        {
+            userRoleDTOs = userRoleServices.getAllUserRoles();
+            if (userRoleDTOs != null)
+            {
+                cbRole.DataSource = userRoleDTOs;
+            }
+        }
+
+        private void setUserData()
+        {
             tbUsername.Text = user.Username;
+            tbPassword.Text = user.Password;
+            tbEmail.Text = user.Email;
             tbFirstname.Text = user.FirstName;
             tbLastname.Text = user.LastName;
-            tbAddress.Text = user.Address;
-            tbEmail.Text = user.Email;
             tbPhone.Text = user.PhoneNumber;
-            tbPassword.Text = user.Password;
+            tbAddress.Text = user.Address;
 
-        }
+            cbDepartment.SelectedValue = user.DepartmentId;
+            cbRole.SelectedValue = user.UserRoleId;
 
-        private void btnShowPassword_Click(object sender, EventArgs e)
-        {
-            isShowPassword = !isShowPassword;
-
-            if (isShowPassword == true)
-            {
-                btnShowPassword.Image = Properties.Resources.open_eye;
-                tbPassword.PasswordChar = '\0';
-
-            }
-            else
-            {
-                btnShowPassword.Image = Properties.Resources.eye;
-                tbPassword.PasswordChar = '*';
-            }
-        }
-
-        private void btCancel_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
+            cbIsActive.Checked = user.IsActive == true ? true : false;
         }
 
         private void UpdateUserInfo()
@@ -96,10 +110,13 @@ namespace PresentationLayer.CustomControls
             user.Email = tbEmail.Text.Trim();
             user.PhoneNumber = tbPhone.Text.Trim();
             user.Password = tbPassword.Text;
+            user.DepartmentId = (int?)cbDepartment.SelectedValue;
+            user.UserRoleId = (int)cbRole.SelectedValue;
+            user.IsActive = cbIsActive.Checked;
 
             try
             {
-                userServices.UpdateUser(user);
+                userExtraInfoServices.UpdateUser(user);
                 MessageBox.Show("User information updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -171,9 +188,27 @@ namespace PresentationLayer.CustomControls
             }
         }
 
-        private void btCreate_Click(object sender, EventArgs e)
+        private void btUpdate_Click(object sender, EventArgs e)
         {
             UpdateUserInfo();
+        }
+
+        private void btnShowPassword_Click(object sender, EventArgs e)
+        {
+
+            isShowPassword = !isShowPassword;
+
+            if (isShowPassword == true)
+            {
+                btnShowPassword.Image = Properties.Resources.open_eye;
+                tbPassword.PasswordChar = '\0';
+
+            }
+            else
+            {
+                btnShowPassword.Image = Properties.Resources.eye;
+                tbPassword.PasswordChar = '*';
+            }
         }
     }
 }
