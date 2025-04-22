@@ -4,9 +4,9 @@ namespace DTOLayer.Mappers
 {
     public static class ProjectStatusDTOMapper
     {
-        public static ProjectStatusDTO ToDto(this DataLayer.Domain.ProjectStatus projectstatus)
+        public static taskStatusDTO ToDto(this DataLayer.Domain.ProjectStatus projectstatus)
         {
-            return new ProjectStatusDTO
+            return new taskStatusDTO
             {
                 Id = projectstatus.Id,
                 Name = projectstatus.Name,
@@ -14,7 +14,7 @@ namespace DTOLayer.Mappers
             };
         }
 
-        public static DataLayer.Domain.ProjectStatus ToProjectStatusEntity(this ProjectStatusDTO model)
+        public static DataLayer.Domain.ProjectStatus ToProjectStatusEntity(this taskStatusDTO model)
         {
             return new DataLayer.Domain.ProjectStatus
             {

@@ -24,7 +24,7 @@ namespace PresentationLayer.CustomControls
         private ProjectPriorityServices projectPriorityServices;
 
         private List<ProjectMemberRoleDTO> projectMemberRoles;
-        private List<ProjectStatusDTO> projectStatuses;
+        private List<taskStatusDTO> projectStatuses;
         private List<ProjectPriorityDTO> projectPriorities;
 
         private Timer debounceTimer;

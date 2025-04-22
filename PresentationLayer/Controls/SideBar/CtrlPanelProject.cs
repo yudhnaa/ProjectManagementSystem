@@ -33,7 +33,7 @@ namespace PresentationLayer.Controls.Project
         // Biến có thể dùng ở nhiều chỗ thì sẽ khai báo toàn cục cho tiện truy cập, mà nhớ để private,
         // khi nào có mục đích rõ ràng hãy mở public ra
         private ProjectStatusServices projectStatusServices;
-        private List<ProjectStatusDTO> projectStatuses;
+        private List<taskStatusDTO> projectStatuses;
 
         public CtrlPanelProject()
         {
@@ -88,7 +88,7 @@ namespace PresentationLayer.Controls.Project
 
             // Tạo 1 đối tượng ProjectStatusDTO giả để chứa cái status "All" (Không lưu xuống database)
             // cho tiện thêm vào dropdown
-            ProjectStatusDTO projectStatusAll = new ProjectStatusDTO();
+            taskStatusDTO projectStatusAll = new taskStatusDTO();
             projectStatusAll.Id = 0;
             projectStatusAll.Name = "All";
 

@@ -79,7 +79,7 @@
     <Compile Include="Models\ProjectMemberRoleDTO.cs" />
     <Compile Include="Models\ProjectMemberRolePermissionDTO.cs" />
     <Compile Include="Models\ProjectPriorityDTO.cs" />
-    <Compile Include="Models\ProjectStatusDTO.cs" />
+    <Compile Include="Models\taskStatusDTO_1.cs" />
     <Compile Include="Models\TaskDTO.cs" />
     <Compile Include="Models\TaskHistoryDTO.cs" />
     <Compile Include="Models\TaskPriorityDTO.cs" />

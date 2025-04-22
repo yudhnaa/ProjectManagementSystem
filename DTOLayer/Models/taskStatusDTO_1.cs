@@ -6,7 +6,7 @@ using System.Data.Entity.Spatial;
 
 namespace DTOLayer.Models
 {
-    public class ProjectStatusDTO
+    public class taskStatusDTO
     {
         public int Id {get; set;}
         public string Name {get; set;}

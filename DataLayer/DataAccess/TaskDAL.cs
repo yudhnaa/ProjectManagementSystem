@@ -298,6 +298,37 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
+
+        public List<Task> GetTaskByKwNOStatus(string kw, int v, int userId, int projectId)
+        {
+            try
+            {
+                using (var dBContext = new ProjectManagementSystemDBContext())
+                {
+                    var tasks = dBContext.Tasks
+                        // t.Id.Equals(kw) --> sai nha, Id là int còn kw là string.
+                        // Nếu muốn ép buộc so sánh thì chuyển Id về string r hẵng so sánh,
+                        // mà không cần thiết lắm nên bỏ qua cũng được
+                        .Where(t => (t.Name.Contains(kw) || t.Code.Contains(kw))&& t.AssignedUserId == userId && t.ProjectId == projectId)
+                        .Take(v)
+                        .ToList();
+
+                    if (tasks == null || tasks.Count == 0)
+                        return null;
+
+                    return tasks;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<Task> GetTaskByKwAndStatus(string kw,int statusId, int v , int userId, int projectId)
         {
             try

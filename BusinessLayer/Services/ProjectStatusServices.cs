@@ -13,7 +13,7 @@ namespace BusinessLayer.Services
 {
     public class ProjectStatusServices
     {
-        public List<ProjectStatusDTO> GetAllProjectStatuses()
+        public List<taskStatusDTO> GetAllProjectStatuses()
         {
             try
             {
@@ -36,7 +36,7 @@ namespace BusinessLayer.Services
             }
         }
         
-        public ProjectStatusDTO GetById(int statusId)
+        public taskStatusDTO GetById(int statusId)
         {
             try
             {

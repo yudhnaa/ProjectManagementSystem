@@ -1,5 +1,7 @@
 ﻿using BusinessLayer.Services;
+using DataLayer.Domain;
 using DTOLayer.Models;
+using LiveCharts.Wpf.Components;
 using PresentationLayer.AppContext;
 using PresentationLayer.Config;
 using PresentationLayer.Control;
@@ -32,6 +34,8 @@ namespace PresentationLayer.UC_SideBar
             }
         }
         private ProjectDTO _selectedProject;
+        private TaskStatusServices taskStatusServices;
+        private List<TaskStatusDTO> taskStatuses;
 
         public ProjectDTO selectedProject
         { 
@@ -99,20 +103,42 @@ namespace PresentationLayer.UC_SideBar
 
         }
 
-        private void UC_Task_Load_1(object sender, EventArgs e)
+        private void LoadTaskStatuses()
+        {
+            //loadTaskStatus(); --> Bo vao combobox
+            taskStatuses = taskStatusServices.getTaskStatuses();
+
+            // Tạo 1 đối tượng TaskStatusDTO giả để chứa cái status "All" (Không lưu xuống database)
+            // cho tiện thêm vào dropdown
+            TaskStatusDTO taskStatusAll = new TaskStatusDTO();
+            taskStatusAll.Id = 0;
+            taskStatusAll.Name = "All";
+
+            taskStatuses.Add(taskStatusAll);
+            ddStatus.DataSource = taskStatuses;
+        }
+
+        private void Style()
         {
             this.Dock = DockStyle.Fill;
-            //khởi tạo để gọi phương thức TaskStatusServices
-            TaskStatusServices taskStatusServices = new TaskStatusServices();
-            //gọi getTaskStatues để lấy trạng thái (task status) khi form được load lên
-            List<TaskStatusDTO> TaskStatuses = taskStatusServices.getTaskStatuses();
-            //hiển thị lên dropdown Status
-            ddStatus.DataSource = TaskStatuses;
+
             //hiển thị tên của các trạng thái
             ddStatus.DisplayMember = "Name";
             //đánh id của các status
             ddStatus.ValueMember = "Id";
+        }
 
+        private void InitService()
+        {
+            taskStatusServices = new TaskStatusServices();
+        }
+      
+        private void UC_Task_Load_1(object sender, EventArgs e)
+        {
+            // Thường thì tách riêng ra thành cách hàm riêng như này sẽ dễ đọc code hơn, mỗi cái 1 nhiệm vụ
+            InitService();
+            Style();
+            LoadTaskStatuses();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -124,6 +150,7 @@ namespace PresentationLayer.UC_SideBar
         {
 
         }
+
 
         private void btSearch_Click(object sender, EventArgs e)
         {
@@ -138,13 +165,12 @@ namespace PresentationLayer.UC_SideBar
                 //lấy userID được khai báo ở UserSession
                 int userId = UserSession.Instance.User.Id;
 
-
                 TaskServices taskServices = new TaskServices();
                 /* taks được khai báo toàn cục 
                  * - lấy các biến keyword,  id (trạng thái -status), 
                  * PageSize được khai báo biến global về số task hiện trên list task
                  * userId và ProjectID là để phân biệt các project nào thì chỉ được xem các task của project đó */
-               tasks = taskServices.GetTaskByKwAndStatus(KeyWordSearch, Id, GlobalVariables.PageSize, userId, selectedProject.Id);
+                tasks = taskServices.GetTaskByKwAndStatus(KeyWordSearch, Id, GlobalVariables.PageSize, userId, selectedProject.Id);
 
                 //load lại list Task
                 RefreshTaskList();
@@ -153,12 +179,16 @@ namespace PresentationLayer.UC_SideBar
             {
                 // Log the SQL exception
                 MessageBox.Show("Database error occurred while fetching tasks "+ sqlEx.Message);
+                tasks = null;
+                clearTaskList();
 
             }
             catch (Exception ex)
             {
                 //trả ra thông báo lỗi không tìm thấy task khi search
                 MessageBox.Show("Task not found "+ ex.Message);
+                tasks = null;
+                clearTaskList();
             }
         }
     }

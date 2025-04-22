@@ -188,19 +188,47 @@ namespace BusinessLayer.Services
                 throw new Exception("An error occurred while counting tasks.", ex);
             }
         }
+        //public List<TaskDTO> GetTaskByKwNOStatus(string kw, int v, int userId, int projectId)
+        //{
+        //    try
+        //    {
+        //        TaskDAL taskDAL = new TaskDAL();
+        //        var tasks = taskDAL.GetTaskByKwNOStatus(kw, v, userId, projectId);
 
-        
-        public List<TaskDTO> GetTaskByKwAndStatus(string kw, int id, int v, int userId, int projectId)
+        //        if (tasks == null)
+        //            throw new Exception("Tasks not found.");
+
+        //        return tasks.Select(t => t.ToDto()).ToList();
+        //    }
+        //    catch (SqlException sqlEx)
+        //    {
+        //        // Log the SQL exception
+        //        throw new Exception("Database error occurred while fetching tasks.", sqlEx);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("An error occurred while fetching tasks.", ex);
+        //    }
+        //}
+
+        public List<TaskDTO> GetTaskByKwAndStatus(string kw, int statusId, int v, int userId, int projectId)
         {
             try
             {
                 TaskDAL taskDAL = new TaskDAL();
                 //truyền vào các biến tham số [kw(từ khóa), id(trạng thái), v(số lượng lấy để hiển thị), userId, projectId] cho phương thức 
-                var tasks = taskDAL.GetTaskByKwAndStatus(kw, id, v, userId, projectId);
+                var tasks = taskDAL.GetTaskByKwAndStatus(kw, statusId, v, userId, projectId);
+
+                // Nếu statusId == 0 thì gọi phương thức GetTasksByKw()
+                if (statusId == 0)
+                    tasks = taskDAL.GetTaskByKwNOStatus(kw, v, userId, projectId);
+                else
+                    // Nếu statusId != 0 thì gọi phương thức GetTaskProjectsByKwAndStatus()
+                    tasks = taskDAL.GetTaskByKwAndStatus(kw, statusId, v, userId, projectId);
 
                 //kiểm tra nêu không có kết quả thì trả về thông báo
                 if (tasks == null)
-                    throw new Exception("Task not found");
+                    return null;
 
                 //hiển thị ra danh sách kết quả nếu phù hợp với kw và id(status)
                 return tasks.Select(t => t.ToDto()).ToList();

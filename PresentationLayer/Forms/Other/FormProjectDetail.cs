@@ -29,7 +29,7 @@ namespace PresentationLayer
 
         private List<ProjectMemberDTO> projectMembers;
         private List<ProjectMemberRoleDTO> projectMemberRoles;
-        private ProjectStatusDTO projectStatusDTO;
+        private taskStatusDTO projectStatusDTO;
         private ProjectPriorityDTO projectPriorityDTO;
 
         private Timer debounceTimer;
