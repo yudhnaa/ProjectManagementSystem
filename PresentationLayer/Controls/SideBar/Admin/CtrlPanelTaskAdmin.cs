@@ -1,9 +1,12 @@
-﻿using DTOLayer.Models;
+﻿using BusinessLayer.Services;
+using DataLayer.Domain;
+using DTOLayer.Models;
 using PresentationLayer.Control;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +19,9 @@ namespace PresentationLayer.UC_SideBar
     public partial class CtrlPanelTaskAdmin : System.Windows.Forms.UserControl
     {
         private List<TaskDTO> _tasks;
+
+        private TaskStatusServices taskStatusServices;
+        private System.Threading.Tasks.TaskStatus taskStatus;
 
         public List<TaskDTO> tasks
         {
@@ -85,24 +91,99 @@ namespace PresentationLayer.UC_SideBar
             if (tbGrid.ColumnCount > 0)
             {
                 tbGrid.ColumnStyles.Clear();
-                tbGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-                tbGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+                tbGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
+                tbGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
             }
 
             tbSearch.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-
             drpdwnStatus.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
             btnSearch.Anchor = AnchorStyles.Right | AnchorStyles.Top;
-        }
-
-        private void UC_Task_Load_1(object sender, EventArgs e)
-        {
-            style();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void UC_Task_Load_1(object sender, EventArgs e)
+        {
+            try
+            {
+                taskStatusServices = new TaskStatusServices();
+                List<TaskStatusDTO> taskStatuses = taskStatusServices.getAllTaskStatuses();
+
+                taskStatuses.Insert(0, new TaskStatusDTO
+                {
+                    Id = -1,        // hoặc giá trị không nằm trong bảng thực tế
+                    Name = "Show All"
+                });
+
+                if (taskStatuses == null || taskStatuses.Count == 0)
+                {
+                    MessageBox.Show("No task status found.");
+                    style();
+                    return;
+                }
+
+                //Them vao combobox
+                drpdwnStatus.DataSource = taskStatuses;
+                drpdwnStatus.DisplayMember = "Name";
+                drpdwnStatus.ValueMember = "Id";
+
+                //Muc dau tien lam mac dinh
+                if (drpdwnStatus.Items.Count > 0)
+                {
+                    drpdwnStatus.SelectedIndex = 0;
+                }
+                style();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                style();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                style();
+            }
+        }
+
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TaskServices taskServices = new TaskServices();
+                string keyword = tbSearch.Text.Trim();
+                int selectedStatus = Convert.ToInt32(drpdwnStatus.SelectedValue);
+
+                if (selectedStatus == -1)
+                {
+                    // 👉 Nếu chọn "Tất cả", lấy toàn bộ task (có thể kèm từ khóa nếu muốn)
+                    tasks = taskServices.GetAllTaskIncludeAllStatus(); // hoặc SearchAllTaskAdmin(keyword)
+                }
+                else
+                {
+                    tasks = taskServices.SearchTaskAdmin(keyword, selectedStatus);
+                }
+
+                if (tasks == null || tasks.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy task nào với từ khóa này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                RefreshTaskList();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Lỗi cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

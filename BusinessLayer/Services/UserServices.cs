@@ -66,8 +66,8 @@ namespace BusinessLayer
                 user.UpdatedDate = null;
 
                 var res = userDAL.createUser(user);
-                
-                if (res != null) 
+
+                if (res != null)
                     return UserDTOMapper.ToDto(res);
 
                 return null;
@@ -92,7 +92,7 @@ namespace BusinessLayer
                 user.UpdatedDate = DateTime.Now;
 
                 userDAL.UpdateUser(user);
-                
+
                 return true;
             }
             catch (SqlException ex)
@@ -137,6 +137,24 @@ namespace BusinessLayer
                     return null;
 
                 return users.Select(u => UserDTOMapper.ToDto(u)).ToList();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred: " + ex.Message);
+            }
+        }
+
+        public List<UserExtraInfoDTO> SearchUsersAdmin(string keyword, int RoleID, int DepartmentID)
+        {
+            try
+            {
+                UserDAL userDAL = new UserDAL();
+                var users = userDAL.GetProjectsByKeywordAndStatusAndDepartment(keyword, RoleID, DepartmentID);
+                return users.Select(u => UserExtraInfoDTOMapper.ToDto(u)).ToList();
             }
             catch (SqlException ex)
             {

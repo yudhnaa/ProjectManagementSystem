@@ -184,5 +184,26 @@ namespace BusinessLayer
                 }
             }
         }
+        public List<User> GetProjectsByKeywordAndStatusAndDepartment(string keyword, int statusId, int departmentID)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var users = dbContext.Users
+                        .Where(p => p.Username.Contains(keyword) && p.UserRoleId == statusId && p.DepartmentId == departmentID && p.IsDeleted == false)
+                        .ToList();
+                    return users;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

@@ -118,16 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tbSearch.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAkIAAAAnCAYAAADjASfAAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADlSURBVHhe7dZBDcQwEATB8EdlyzAORgAk2k+kw9BV0nwG
-        QV8XAEDZOee31nrMzMzMCpv2+UJoDgCAimkfIQQAJAkhACBLCAEAWUIIAMgSQgBAlhACALKEEACQJYQA
-        gCwhBABkCSEAIEsIAQBZQggAyBJCAECWEAIAsoQQAJAlhACALCEEAGQJIQAgSwgBAFlCCADIEkIAQJYQ
-        AgCyhBAAkCWEAIAsIQQAZAkhACBLCAEAWUIIAMgSQgBAlhACALKEEACQJYQAgCwhBABkCSEAIOsvhPbe
-        9xxmZmZmhU37fCEEAFD0AoSPP8N2+YuUAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="btnSearch.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGYAAAAnCAYAAAD92z2rAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -140,6 +130,16 @@
         eOtOklLUESdaTL7atgP8sIAUYVCFtNWWyUrAAasxyzMp6sf5V1F5W78ccJ0vJItFIu47XWZayMwMrRy1
         FpOHtPFNyjTqBuufzUtMBhZEdTgefZ6Un6VMQ6816aHnmRDMnUmPKy4719esUIOatrFBdh5gqN3g2hWe
         7/s0PgC0naiDNl60vgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="tbSearch.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAiQAAAAnCAYAAAA/+FP3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADkSURBVHhe7dZBDcMwAATB8EdlyzACIwBa+ROpBLx9zEj3
+        OQR7XQAA/2CtdY8xPmZmZmYntxvkDZJ9AACcthtEkAAAKUECAOQECQCQEyQAQE6QAAA5QQIA5AQJAJAT
+        JABATpAAADlBAgDkBAkAkBMkAEBOkAAAOUECAOQECQCQEyQAQE6QAAA5QQIA5AQJAJATJABATpAAADlB
+        AgDkBAkAkBMkAEBOkAAAOUECAOQECQCQEyQAQE6QAAA5QQIA5AQJAJATJABATpAAADlBAgDkfoJkzvns
+        w8zMzOzkdoO8QQIAUPoCqWckaO3DzKMAAAAASUVORK5CYII=
 </value>
   </data>
 </root>

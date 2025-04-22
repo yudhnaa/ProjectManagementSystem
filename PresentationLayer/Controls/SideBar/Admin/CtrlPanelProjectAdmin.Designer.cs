@@ -38,9 +38,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbSearch = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.drpdwnStatus = new Bunifu.UI.WinForms.BunifuDropdown();
-            this.btnSearch = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSearch = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.drpdwnStatus = new Bunifu.UI.WinForms.BunifuDropdown();
             this.tbGrid.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -48,8 +48,8 @@
             // tbGrid
             // 
             this.tbGrid.ColumnCount = 2;
-            this.tbGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tbGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tbGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.95976F));
+            this.tbGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.04024F));
             this.tbGrid.Controls.Add(this.label1, 0, 0);
             this.tbGrid.Controls.Add(this.tbSearch, 0, 1);
             this.tbGrid.Controls.Add(this.label2, 1, 0);
@@ -69,7 +69,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(10, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(10);
+            this.label1.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 20);
             this.label1.TabIndex = 4;
@@ -96,6 +96,7 @@
             this.tbSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSearch.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
             this.tbSearch.DefaultText = "";
+            this.tbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbSearch.FillColor = System.Drawing.Color.White;
             this.tbSearch.HideSelection = true;
             this.tbSearch.IconLeft = null;
@@ -105,7 +106,7 @@
             this.tbSearch.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSearch.Lines = new string[0];
             this.tbSearch.Location = new System.Drawing.Point(10, 50);
-            this.tbSearch.Margin = new System.Windows.Forms.Padding(10);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.tbSearch.MaxLength = 32767;
             this.tbSearch.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSearch.Modified = false;
@@ -131,7 +132,7 @@
             stateProperties8.ForeColor = System.Drawing.Color.Empty;
             stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbSearch.OnIdleState = stateProperties8;
-            this.tbSearch.Padding = new System.Windows.Forms.Padding(3);
+            this.tbSearch.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tbSearch.PasswordChar = '\0';
             this.tbSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbSearch.PlaceholderText = "Enter text";
@@ -157,56 +158,21 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(606, 10);
-            this.label2.Margin = new System.Windows.Forms.Padding(10);
+            this.label2.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "Project Status";
             // 
-            // drpdwnStatus
+            // panel1
             // 
-            this.drpdwnStatus.BackColor = System.Drawing.Color.Transparent;
-            this.drpdwnStatus.BackgroundColor = System.Drawing.Color.White;
-            this.drpdwnStatus.BorderColor = System.Drawing.Color.Silver;
-            this.drpdwnStatus.BorderRadius = 1;
-            this.drpdwnStatus.Color = System.Drawing.Color.Silver;
-            this.drpdwnStatus.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
-            this.drpdwnStatus.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.drpdwnStatus.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.drpdwnStatus.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.drpdwnStatus.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.drpdwnStatus.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
-            this.drpdwnStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.drpdwnStatus.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
-            this.drpdwnStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.drpdwnStatus.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.drpdwnStatus.FillDropDown = true;
-            this.drpdwnStatus.FillIndicator = false;
-            this.drpdwnStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.drpdwnStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.drpdwnStatus.ForeColor = System.Drawing.Color.Black;
-            this.drpdwnStatus.FormattingEnabled = true;
-            this.drpdwnStatus.Icon = null;
-            this.drpdwnStatus.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.drpdwnStatus.IndicatorColor = System.Drawing.Color.DarkGray;
-            this.drpdwnStatus.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.drpdwnStatus.IndicatorThickness = 2;
-            this.drpdwnStatus.IsDropdownOpened = false;
-            this.drpdwnStatus.ItemBackColor = System.Drawing.Color.White;
-            this.drpdwnStatus.ItemBorderColor = System.Drawing.Color.White;
-            this.drpdwnStatus.ItemForeColor = System.Drawing.Color.Black;
-            this.drpdwnStatus.ItemHeight = 26;
-            this.drpdwnStatus.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
-            this.drpdwnStatus.ItemHighLightForeColor = System.Drawing.Color.White;
-            this.drpdwnStatus.ItemTopMargin = 3;
-            this.drpdwnStatus.Location = new System.Drawing.Point(8, 10);
-            this.drpdwnStatus.Margin = new System.Windows.Forms.Padding(10);
-            this.drpdwnStatus.Name = "drpdwnStatus";
-            this.drpdwnStatus.Size = new System.Drawing.Size(249, 32);
-            this.drpdwnStatus.TabIndex = 2;
-            this.drpdwnStatus.Text = null;
-            this.drpdwnStatus.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.drpdwnStatus.TextLeftMargin = 5;
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.drpdwnStatus);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(599, 43);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(392, 53);
+            this.panel1.TabIndex = 6;
             // 
             // btnSearch
             // 
@@ -258,7 +224,7 @@
             this.btnSearch.IdleIconLeftImage = null;
             this.btnSearch.IdleIconRightImage = null;
             this.btnSearch.IndicateFocus = false;
-            this.btnSearch.Location = new System.Drawing.Point(283, 7);
+            this.btnSearch.Location = new System.Drawing.Point(240, 7);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSearch.OnDisabledState.BorderRadius = 20;
@@ -299,16 +265,52 @@
             this.btnSearch.TextMarginLeft = 0;
             this.btnSearch.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnSearch.UseDefaultRadiusAndThickness = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // panel1
+            // drpdwnStatus
             // 
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.drpdwnStatus);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(599, 43);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(392, 53);
-            this.panel1.TabIndex = 6;
+            this.drpdwnStatus.BackColor = System.Drawing.Color.Transparent;
+            this.drpdwnStatus.BackgroundColor = System.Drawing.Color.White;
+            this.drpdwnStatus.BorderColor = System.Drawing.Color.Silver;
+            this.drpdwnStatus.BorderRadius = 1;
+            this.drpdwnStatus.Color = System.Drawing.Color.Silver;
+            this.drpdwnStatus.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.drpdwnStatus.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.drpdwnStatus.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.drpdwnStatus.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.drpdwnStatus.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.drpdwnStatus.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
+            this.drpdwnStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.drpdwnStatus.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
+            this.drpdwnStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.drpdwnStatus.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.drpdwnStatus.FillDropDown = true;
+            this.drpdwnStatus.FillIndicator = false;
+            this.drpdwnStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.drpdwnStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.drpdwnStatus.ForeColor = System.Drawing.Color.Black;
+            this.drpdwnStatus.FormattingEnabled = true;
+            this.drpdwnStatus.Icon = null;
+            this.drpdwnStatus.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.drpdwnStatus.IndicatorColor = System.Drawing.Color.DarkGray;
+            this.drpdwnStatus.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.drpdwnStatus.IndicatorThickness = 2;
+            this.drpdwnStatus.IsDropdownOpened = false;
+            this.drpdwnStatus.ItemBackColor = System.Drawing.Color.White;
+            this.drpdwnStatus.ItemBorderColor = System.Drawing.Color.White;
+            this.drpdwnStatus.ItemForeColor = System.Drawing.Color.Black;
+            this.drpdwnStatus.ItemHeight = 26;
+            this.drpdwnStatus.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
+            this.drpdwnStatus.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.drpdwnStatus.ItemTopMargin = 3;
+            this.drpdwnStatus.Location = new System.Drawing.Point(10, 10);
+            this.drpdwnStatus.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.drpdwnStatus.Name = "drpdwnStatus";
+            this.drpdwnStatus.Size = new System.Drawing.Size(208, 32);
+            this.drpdwnStatus.TabIndex = 2;
+            this.drpdwnStatus.Text = null;
+            this.drpdwnStatus.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.drpdwnStatus.TextLeftMargin = 5;
             // 
             // CtrlPanelProjectAdmin
             // 

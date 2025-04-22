@@ -156,6 +156,26 @@ namespace BusinessLayer.Services
             }
         }
 
+        public List<TaskDTO> SearchTaskAdmin(string keyword, int statusId)
+        {
+            try
+            {
+                TaskDAL taskDAL = new TaskDAL();
+                var tasks = taskDAL.GetTasksByKeywordAndStatus(keyword, statusId);
+                return tasks.Select(p => p.ToDto()).ToList();
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving tasks.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while retrieving tasks.", ex);
+            }
+        }
+
         public int CountTaskByProjectId(int id)
         {
             try

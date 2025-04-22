@@ -85,7 +85,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.pbIcon, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lbName, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbDepartment, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbRoleName, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
@@ -93,6 +92,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnEdit, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnDelete, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbUsername, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbName, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";

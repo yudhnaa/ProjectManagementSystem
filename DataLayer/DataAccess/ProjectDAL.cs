@@ -169,5 +169,26 @@ namespace BusinessLayer
         }
 
         // Truy van danh sach Project theo keyword + status
+        public List<Project> GetProjectsByKeywordAndStatus(string keyword, int statusId)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var projects = dbContext.Projects
+                        .Where(p => p.Name.Contains(keyword) && p.StatusId == statusId && p.IsDeleted == false)
+                        .ToList();
+                    return projects;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

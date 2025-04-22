@@ -66,7 +66,7 @@ namespace BusinessLayer.Services
                 using (var dBContext = new ProjectManagementSystemDBContext())
                 {
                     var tasks = dBContext.Tasks
-                        .Where(t => (t.Name.Contains(kw) || t.Code.Contains(kw) || t.Id.Equals(kw)) && t.IsDeleted == false)
+                        .Where(t => (t.Name.Contains(kw) || t.Code.Contains(kw)) && t.IsDeleted == false)
                         .Take(v)
                         .ToList();
 
@@ -83,6 +83,27 @@ namespace BusinessLayer.Services
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        public List<Task> GetTasksByKeywordAndStatus(string keyword, int statusId)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var tasks = dbContext.Tasks
+                        .Where(t => t.Name.Contains(keyword) && t.StatusId == statusId && t.IsDeleted == false)
+                        .ToList();
+                    return tasks;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 

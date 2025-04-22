@@ -1,4 +1,5 @@
-﻿using DTOLayer.Models;
+﻿using BusinessLayer;
+using DTOLayer.Models;
 using PresentationLayer.Control;
 using System;
 using System.Collections.Generic;
@@ -101,7 +102,9 @@ namespace PresentationLayer.Controls.Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            
             // Goi ProjectServices de lay du lieu
+            ProjectServices services = new ProjectServices();
 
             //--> Hien thi danh sach len 
         }
