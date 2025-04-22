@@ -1,9 +1,14 @@
-﻿using DTOLayer.Models;
+﻿using BusinessLayer;
+using BusinessLayer.Services;
+using DTOLayer.Models;
+using PresentationLayer.AppContext;
+using PresentationLayer.Config;
 using PresentationLayer.Control;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,6 +30,10 @@ namespace PresentationLayer.Controls.Project
                 RefreshTaskList(); // Refresh the ListBox whenever tasks are set
             }
         }
+        // Biến có thể dùng ở nhiều chỗ thì sẽ khai báo toàn cục cho tiện truy cập, mà nhớ để private,
+        // khi nào có mục đích rõ ràng hãy mở public ra
+        private ProjectStatusServices projectStatusServices;
+        private List<ProjectStatusDTO> projectStatuses;
 
         public CtrlPanelProject()
         {
@@ -58,23 +67,54 @@ namespace PresentationLayer.Controls.Project
         {
             // Clear existing controls in the table layout panel
             clearTaskList();
-            foreach (ProjectDTO project in projects)
+            if (projects != null)
             {
-                CtrlProject ctrlProject = new CtrlProject(project);
+                foreach (ProjectDTO project in projects)
+                {
+                    CtrlProject ctrlProject = new CtrlProject(project);
 
-                tbGrid.RowCount++;
-                tbGrid.Controls.Add(ctrlProject, 0, tbGrid.RowCount - 1);
-                tbGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                tbGrid.SetColumnSpan(ctrlProject, 2);
+                    tbGrid.RowCount++;
+                    tbGrid.Controls.Add(ctrlProject, 0, tbGrid.RowCount - 1);
+                    tbGrid.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    tbGrid.SetColumnSpan(ctrlProject, 2);
+                }
             }
         }
 
-        private void CtrlPanelProject_Load(object sender, EventArgs e)
+        private void LoadProjectStatuses()
+        {
+            //loadProjectStatus(); --> Bo vao combobox
+            projectStatuses = projectStatusServices.GetAllProjectStatuses();
+
+            // Tạo 1 đối tượng ProjectStatusDTO giả để chứa cái status "All" (Không lưu xuống database)
+            // cho tiện thêm vào dropdown
+            ProjectStatusDTO projectStatusAll = new ProjectStatusDTO();
+            projectStatusAll.Id = 0;
+            projectStatusAll.Name = "All";
+
+            projectStatuses.Add(projectStatusAll);
+
+            ddProjectStatus.DataSource = projectStatuses;
+        }
+
+        private void Style()
         {
             this.Dock = DockStyle.Fill;
 
-            //loadProjectStatus(); --> Bo vao combobox
+            ddProjectStatus.DisplayMember = "Name";
+            ddProjectStatus.ValueMember = "Id";
+        }
 
+        private void InitService()
+        {
+            projectStatusServices = new ProjectStatusServices();
+        }
+        private void CtrlPanelProject_Load(object sender, EventArgs e)
+        {
+            // Thường thì tách riêng ra thành cách hàm riêng như này sẽ dễ đọc code hơn, mỗi cái 1 nhiệm vụ
+            InitService();
+            Style();
+            LoadProjectStatuses();   
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -82,6 +122,38 @@ namespace PresentationLayer.Controls.Project
             // Goi ProjectServices de lay du lieu
 
             //--> Hien thi danh sach len 
+            try
+            {
+                //keyword là từ khóa nhập vào ô tìm kiếm 
+                string KeyWordSearchProject = tbProjectSearch.Text;
+                //lấy trạng thái của project
+                int statusId = (int)ddProjectStatus.SelectedValue;
+
+                ProjectServices projectServices = new ProjectServices();
+                //trong getProjectByKwAndStatus thì gọi các biến kw, statusId, v(số project hiển thị trên list)
+                projects = projectServices.GetProjectsByKwAndStatus(KeyWordSearchProject, statusId, GlobalVariables.PageSize);
+            //--> khúc này nếu mà chọn status là All thì truyền vào statusId là "0"
+
+                //load lại list hiển thị danh sách project
+                RefreshTaskList();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                MessageBox.Show("Database error occurred while fetching project " + sqlEx.Message);
+                projects = null;
+                clearTaskList();
+
+            }
+            catch (Exception ex)
+            {
+                //Thông báo về lỗi không tìm thấy project avf thông điệp lỗi
+                MessageBox.Show("Project not found " + ex.Message);
+                projects = null;
+                clearTaskList();
+            }
         }
+
+
     }
 }

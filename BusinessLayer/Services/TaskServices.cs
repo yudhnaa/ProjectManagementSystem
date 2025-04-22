@@ -188,5 +188,33 @@ namespace BusinessLayer.Services
                 throw new Exception("An error occurred while counting tasks.", ex);
             }
         }
+
+        
+        public List<TaskDTO> GetTaskByKwAndStatus(string kw, int id, int v, int userId, int projectId)
+        {
+            try
+            {
+                TaskDAL taskDAL = new TaskDAL();
+                //truyền vào các biến tham số [kw(từ khóa), id(trạng thái), v(số lượng lấy để hiển thị), userId, projectId] cho phương thức 
+                var tasks = taskDAL.GetTaskByKwAndStatus(kw, id, v, userId, projectId);
+
+                //kiểm tra nêu không có kết quả thì trả về thông báo
+                if (tasks == null)
+                    throw new Exception("Task not found");
+
+                //hiển thị ra danh sách kết quả nếu phù hợp với kw và id(status)
+                return tasks.Select(t => t.ToDto()).ToList();
+
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while fetching tasks.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching tasks.", ex);
+            }
+        }
     }
 }

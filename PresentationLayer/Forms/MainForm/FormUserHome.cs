@@ -82,6 +82,8 @@ namespace PresentationLayer
         private void MyProjectsControl_ProjectSelected(object sender, ProjectDTO selectedProject)
         {
            loadTasks();
+            if(ucMyProjects.selectedItem!= null && ucTask != null)
+                ucTask.selectedProject = ucMyProjects.selectedItem;
         }
 
         private void loadProjects()
@@ -127,7 +129,7 @@ namespace PresentationLayer
         {
             if (ucTask == null)
             {
-                ucTask = new UC_SideBar.CtrlPanelTask();
+                ucTask = new UC_SideBar.CtrlPanelTask(ucMyProjects.selectedItem);
             }
 
             panelCenterContent.Controls.Clear();
@@ -140,13 +142,8 @@ namespace PresentationLayer
 
         private void btnGant_Click(object sender, EventArgs e)
         {
-            if (ucGant == null)
-            {
-                ucGant = new UC_SideBar.CtrlPanelGant();
-                ucGant.Dock = DockStyle.Fill;
-            }
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ucGant);
+           
+
         }
 
         private void btnOverview_Click(object sender, EventArgs e)

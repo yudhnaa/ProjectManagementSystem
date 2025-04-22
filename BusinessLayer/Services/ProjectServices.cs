@@ -127,7 +127,46 @@ namespace BusinessLayer
         }
 
         // ham lay danh sach Project kem keyword + status
-            //-->  Goi xuong DAL de truy van du lieu
-            //Xu ly kq va tra ve cho Controller <--
+        //-->  Goi xuong DAL de truy van du lieu
+        //Xu ly kq va tra ve cho Controller <--
+
+        public List<ProjectDTO> GetProjectsByKwAndStatus(string kw, int statusId, int v)
+        {
+            try
+            {
+                ProjectDAL projectDAL = new ProjectDAL();
+                //khai báo biến và gán bởi lấy các thông tin về keyword và status
+                List<Project> projects;
+
+                // Nếu statusId == 0 thì gọi phương thức GetProjectsByKw()
+                if (statusId == 0)
+                    projects = projectDAL.GetProjectsByKw(kw, v);
+                else
+                    // Nếu statusId != 0 thì gọi phương thức GetProjectsByKwAndStatus()
+                    projects = projectDAL.GetProjectsByKwAndStatus(kw, statusId, v);
+
+            // Làm như kia cũng oki mà nó không linh hoạt, với tường minh code á
+            // nên nâng cấp lên như này sẽ oki hơn
+
+                // trả về danh sách các project được gán kiểu DTO
+                if (projects != null)
+                    return projects.Select(p => p.ToDto()).ToList();
+
+                return null;
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                throw new Exception("Database error occurred while retrieving projects.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw new Exception("An error occurred while retrieving projects.", ex);
+
+            }
+        }
+      
+       
     }
 }

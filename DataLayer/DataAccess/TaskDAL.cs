@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace BusinessLayer.Services
@@ -288,6 +289,37 @@ namespace BusinessLayer.Services
                     return count;
                 }
             }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Task> GetTaskByKwAndStatus(string kw,int statusId, int v , int userId, int projectId)
+        {
+            try
+            {
+                //sử dụng bDContext 
+                using (var dBContext = new ProjectManagementSystemDBContext())
+                {
+                    //truy vấn dữ liệu where statusId = statusId AND Id like kw AND Name like kw AND code like kw
+                    var tasks = dBContext.Tasks.Where(t => t.TaskStatus.Id == statusId && (t.Code.Contains(kw) || t.Name.Contains(kw)) &&  t.AssignedUserId == userId && t.ProjectId == projectId)
+                                .Take(v)
+                                .ToList();
+                    //Take v là lấy số lượng v task hiển thị danh sách
+                    
+                    //kiểm tra không tìm thấy task thì trả về null
+                    if (tasks == null || tasks.Count == 0)
+                        return null;
+                    
+                    //trả về danh sách tasks
+                    return tasks;
+                }
+            }
+            //catch bắt các ngoại lệ
             catch (SqlException ex)
             {
                 throw ex;

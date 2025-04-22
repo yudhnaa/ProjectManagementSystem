@@ -40,8 +40,39 @@ namespace BusinessLayer
                 }
             }
         }
+        public List<Project> GetProjectsByKwAndStatus(string kw, int statusId, int v)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    // Fetch projects from the database
+                    List<Project> projects = dbContext.Projects.
+                        Where(p => (p.StatusId == statusId || statusId ==1002) && (p.ProjectCode.Contains(kw) || p.Name.Contains(kw)))
+                        .Take(v).ToList();
+                    /*đoạn statusId == 1002 là để bắt id của All trong dropdown vì statusId trong Database không đổi nển mặc định All -> status.Id == 1002 (select bảng TaskStatus để xem Id)
+                     * vậy nê khi trả về neeys status là All thì sẽ là dự vào keyword mà ta tìm kiếm*/
 
-        public Project GetProjectById(int projectId)
+                    //List<Project> projectDTOs = projects;
+                    if (projects.Count == 0 || projects == null)
+                        return null;
+
+                    return projects;
+                }
+                catch (SqlException ex)
+                {
+                    // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    throw ex;
+                }
+            }
+        }
+
+            public Project GetProjectById(int projectId)
         {
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
             {
@@ -194,6 +225,29 @@ namespace BusinessLayer
                     // Handle other exceptions
                     throw ex;
                 }
+            }
+        }
+
+        public List<Project> GetProjectsByKw(string kw, int v)
+        {
+            try
+            {
+                using (ProjectManagementSystemDBContext dBContext = new ProjectManagementSystemDBContext())
+                {
+                    var projects = dBContext.Projects.Where(p => p.Name.Contains(kw) || p.ProjectCode.Contains(kw)).ToList();
+
+                    return projects;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+
+            } 
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

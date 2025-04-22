@@ -31,7 +31,6 @@ namespace PresentationLayer
 
         private UC_SideBar.CtrlPanelTask ucTask;
         private CtrlPanelOverview ctrlPanelOverview;
-        private CtrlPanelGant ctrlPanelGant;
         private CtrlPanelHome ctrlPanelHome;
         private CtrlPanelProjectAdmin ctrlPanelProjectAdmin;
 
