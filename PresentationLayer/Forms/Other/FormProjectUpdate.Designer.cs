@@ -77,7 +77,7 @@
             this.datePickerEnd = new Bunifu.UI.WinForms.BunifuDatePicker();
             this.datePickerStart = new Bunifu.UI.WinForms.BunifuDatePicker();
             this.tbProjectDesrciption = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.btCreateProject = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
+            this.btnCreateProject = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -211,7 +211,9 @@
             // 
             // role
             // 
+            this.role.DisplayIndex = 2;
             this.role.Text = "Role";
+            this.role.Width = 179;
             // 
             // bunifuCustomLabel10
             // 
@@ -468,9 +470,10 @@
             this.listviewMembers.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.listviewMembers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
-            this.name,
-            this.role});
+            this.role,
+            this.name});
             this.tableLayoutPanel1.SetColumnSpan(this.listviewMembers, 2);
+            this.listviewMembers.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listviewMembers.HideSelection = false;
             this.listviewMembers.Location = new System.Drawing.Point(411, 241);
             this.listviewMembers.Name = "listviewMembers";
@@ -482,7 +485,9 @@
             // 
             // name
             // 
+            this.name.DisplayIndex = 1;
             this.name.Text = "Name";
+            this.name.Width = 179;
             // 
             // bunifuCustomLabel8
             // 
@@ -528,7 +533,7 @@
             this.tableLayoutPanel1.Controls.Add(this.bunifuCustomLabel11, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 3, 9);
             this.tableLayoutPanel1.Controls.Add(this.listviewMembers, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.btCreateProject, 3, 10);
+            this.tableLayoutPanel1.Controls.Add(this.btnCreateProject, 3, 10);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -922,97 +927,97 @@
             this.tbProjectDesrciption.UseSystemPasswordChar = false;
             this.tbProjectDesrciption.WordWrap = true;
             // 
-            // btCreateProject
+            // btnCreateProject
             // 
-            this.btCreateProject.AllowAnimations = true;
-            this.btCreateProject.AllowMouseEffects = true;
-            this.btCreateProject.AllowToggling = false;
-            this.btCreateProject.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btCreateProject.AnimationSpeed = 200;
-            this.btCreateProject.AutoGenerateColors = false;
-            this.btCreateProject.AutoRoundBorders = false;
-            this.btCreateProject.AutoSizeLeftIcon = true;
-            this.btCreateProject.AutoSizeRightIcon = true;
-            this.btCreateProject.BackColor = System.Drawing.Color.Transparent;
-            this.btCreateProject.BackColor1 = System.Drawing.Color.DodgerBlue;
-            this.btCreateProject.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btCreateProject.BackgroundImage")));
-            this.btCreateProject.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.btCreateProject.ButtonText = "Update";
-            this.btCreateProject.ButtonTextMarginLeft = 0;
-            this.btCreateProject.ColorContrastOnClick = 45;
-            this.btCreateProject.ColorContrastOnHover = 45;
-            this.btCreateProject.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnCreateProject.AllowAnimations = true;
+            this.btnCreateProject.AllowMouseEffects = true;
+            this.btnCreateProject.AllowToggling = false;
+            this.btnCreateProject.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnCreateProject.AnimationSpeed = 200;
+            this.btnCreateProject.AutoGenerateColors = false;
+            this.btnCreateProject.AutoRoundBorders = false;
+            this.btnCreateProject.AutoSizeLeftIcon = true;
+            this.btnCreateProject.AutoSizeRightIcon = true;
+            this.btnCreateProject.BackColor = System.Drawing.Color.Transparent;
+            this.btnCreateProject.BackColor1 = System.Drawing.Color.DodgerBlue;
+            this.btnCreateProject.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCreateProject.BackgroundImage")));
+            this.btnCreateProject.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnCreateProject.ButtonText = "Update";
+            this.btnCreateProject.ButtonTextMarginLeft = 0;
+            this.btnCreateProject.ColorContrastOnClick = 45;
+            this.btnCreateProject.ColorContrastOnHover = 45;
+            this.btnCreateProject.Cursor = System.Windows.Forms.Cursors.Default;
             borderEdges3.BottomLeft = true;
             borderEdges3.BottomRight = true;
             borderEdges3.TopLeft = true;
             borderEdges3.TopRight = true;
-            this.btCreateProject.CustomizableEdges = borderEdges3;
-            this.btCreateProject.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btCreateProject.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.btCreateProject.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btCreateProject.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.btCreateProject.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
-            this.btCreateProject.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCreateProject.ForeColor = System.Drawing.Color.White;
-            this.btCreateProject.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btCreateProject.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.btCreateProject.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.btCreateProject.IconMarginLeft = 11;
-            this.btCreateProject.IconPadding = 10;
-            this.btCreateProject.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btCreateProject.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.btCreateProject.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.btCreateProject.IconSize = 25;
-            this.btCreateProject.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.btCreateProject.IdleBorderRadius = 40;
-            this.btCreateProject.IdleBorderThickness = 1;
-            this.btCreateProject.IdleFillColor = System.Drawing.Color.DodgerBlue;
-            this.btCreateProject.IdleIconLeftImage = null;
-            this.btCreateProject.IdleIconRightImage = null;
-            this.btCreateProject.IndicateFocus = false;
-            this.btCreateProject.Location = new System.Drawing.Point(622, 612);
-            this.btCreateProject.Margin = new System.Windows.Forms.Padding(10);
-            this.btCreateProject.Name = "btCreateProject";
-            this.btCreateProject.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.btCreateProject.OnDisabledState.BorderRadius = 40;
-            this.btCreateProject.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.btCreateProject.OnDisabledState.BorderThickness = 1;
-            this.btCreateProject.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btCreateProject.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.btCreateProject.OnDisabledState.IconLeftImage = null;
-            this.btCreateProject.OnDisabledState.IconRightImage = null;
-            this.btCreateProject.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.btCreateProject.onHoverState.BorderRadius = 40;
-            this.btCreateProject.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.btCreateProject.onHoverState.BorderThickness = 1;
-            this.btCreateProject.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.btCreateProject.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.btCreateProject.onHoverState.IconLeftImage = null;
-            this.btCreateProject.onHoverState.IconRightImage = null;
-            this.btCreateProject.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.btCreateProject.OnIdleState.BorderRadius = 40;
-            this.btCreateProject.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.btCreateProject.OnIdleState.BorderThickness = 1;
-            this.btCreateProject.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
-            this.btCreateProject.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.btCreateProject.OnIdleState.IconLeftImage = null;
-            this.btCreateProject.OnIdleState.IconRightImage = null;
-            this.btCreateProject.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.btCreateProject.OnPressedState.BorderRadius = 40;
-            this.btCreateProject.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.btCreateProject.OnPressedState.BorderThickness = 1;
-            this.btCreateProject.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.btCreateProject.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.btCreateProject.OnPressedState.IconLeftImage = null;
-            this.btCreateProject.OnPressedState.IconRightImage = null;
-            this.btCreateProject.Size = new System.Drawing.Size(150, 39);
-            this.btCreateProject.TabIndex = 19;
-            this.btCreateProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btCreateProject.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btCreateProject.TextMarginLeft = 0;
-            this.btCreateProject.TextPadding = new System.Windows.Forms.Padding(0);
-            this.btCreateProject.UseDefaultRadiusAndThickness = true;
-            this.btCreateProject.Click += new System.EventHandler(this.btCreateProject_Click);
+            this.btnCreateProject.CustomizableEdges = borderEdges3;
+            this.btnCreateProject.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnCreateProject.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnCreateProject.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnCreateProject.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnCreateProject.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
+            this.btnCreateProject.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateProject.ForeColor = System.Drawing.Color.White;
+            this.btnCreateProject.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreateProject.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.btnCreateProject.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.btnCreateProject.IconMarginLeft = 11;
+            this.btnCreateProject.IconPadding = 10;
+            this.btnCreateProject.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCreateProject.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.btnCreateProject.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.btnCreateProject.IconSize = 25;
+            this.btnCreateProject.IdleBorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnCreateProject.IdleBorderRadius = 40;
+            this.btnCreateProject.IdleBorderThickness = 1;
+            this.btnCreateProject.IdleFillColor = System.Drawing.Color.DodgerBlue;
+            this.btnCreateProject.IdleIconLeftImage = null;
+            this.btnCreateProject.IdleIconRightImage = null;
+            this.btnCreateProject.IndicateFocus = false;
+            this.btnCreateProject.Location = new System.Drawing.Point(622, 612);
+            this.btnCreateProject.Margin = new System.Windows.Forms.Padding(10);
+            this.btnCreateProject.Name = "btnCreateProject";
+            this.btnCreateProject.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnCreateProject.OnDisabledState.BorderRadius = 40;
+            this.btnCreateProject.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnCreateProject.OnDisabledState.BorderThickness = 1;
+            this.btnCreateProject.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnCreateProject.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnCreateProject.OnDisabledState.IconLeftImage = null;
+            this.btnCreateProject.OnDisabledState.IconRightImage = null;
+            this.btnCreateProject.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.btnCreateProject.onHoverState.BorderRadius = 40;
+            this.btnCreateProject.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnCreateProject.onHoverState.BorderThickness = 1;
+            this.btnCreateProject.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.btnCreateProject.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.btnCreateProject.onHoverState.IconLeftImage = null;
+            this.btnCreateProject.onHoverState.IconRightImage = null;
+            this.btnCreateProject.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnCreateProject.OnIdleState.BorderRadius = 40;
+            this.btnCreateProject.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnCreateProject.OnIdleState.BorderThickness = 1;
+            this.btnCreateProject.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
+            this.btnCreateProject.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.btnCreateProject.OnIdleState.IconLeftImage = null;
+            this.btnCreateProject.OnIdleState.IconRightImage = null;
+            this.btnCreateProject.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btnCreateProject.OnPressedState.BorderRadius = 40;
+            this.btnCreateProject.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnCreateProject.OnPressedState.BorderThickness = 1;
+            this.btnCreateProject.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btnCreateProject.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.btnCreateProject.OnPressedState.IconLeftImage = null;
+            this.btnCreateProject.OnPressedState.IconRightImage = null;
+            this.btnCreateProject.Size = new System.Drawing.Size(150, 39);
+            this.btnCreateProject.TabIndex = 19;
+            this.btnCreateProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnCreateProject.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnCreateProject.TextMarginLeft = 0;
+            this.btnCreateProject.TextPadding = new System.Windows.Forms.Padding(0);
+            this.btnCreateProject.UseDefaultRadiusAndThickness = true;
+            this.btnCreateProject.Click += new System.EventHandler(this.btCreateProject_Click);
             // 
             // FormProjectUpdate
             // 
@@ -1065,6 +1070,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ListView listviewMembers;
         private System.Windows.Forms.ColumnHeader name;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 btCreateProject;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 btnCreateProject;
     }
 }

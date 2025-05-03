@@ -46,6 +46,8 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbPriority = new PresentationLayer.CustomControls.RoundedLabel();
+            this.lbStatus = new PresentationLayer.CustomControls.RoundedLabel();
             this.lbTaskProject = new Bunifu.UI.WinForms.BunifuLabel();
             this.lbTaskName = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuButton1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -65,8 +67,6 @@
             this.lbOwner = new System.Windows.Forms.Label();
             this.lbCreatedBy = new System.Windows.Forms.Label();
             this.lbDueDate = new System.Windows.Forms.Label();
-            this.lbPriority = new PresentationLayer.CustomControls.RoundedLabel();
-            this.lbStatus = new PresentationLayer.CustomControls.RoundedLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -117,6 +117,32 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(758, 938);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // lbPriority
+            // 
+            this.lbPriority._BackColor = System.Drawing.Color.Empty;
+            this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbPriority.AutoSize = true;
+            this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPriority.Location = new System.Drawing.Point(382, 112);
+            this.lbPriority.Name = "lbPriority";
+            this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.lbPriority.Size = new System.Drawing.Size(76, 30);
+            this.lbPriority.TabIndex = 23;
+            this.lbPriority.Text = "Priority";
+            // 
+            // lbStatus
+            // 
+            this.lbStatus._BackColor = System.Drawing.Color.Empty;
+            this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.Location = new System.Drawing.Point(382, 170);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.lbStatus.Size = new System.Drawing.Size(76, 30);
+            this.lbStatus.TabIndex = 24;
+            this.lbStatus.Text = "Status";
             // 
             // lbTaskProject
             // 
@@ -1155,7 +1181,7 @@
             this.lbCreatedBy.Name = "lbCreatedBy";
             this.lbCreatedBy.Size = new System.Drawing.Size(373, 59);
             this.lbCreatedBy.TabIndex = 19;
-            this.lbCreatedBy.Text = "label1";
+            this.lbCreatedBy.Text = "lbComment";
             this.lbCreatedBy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbDueDate
@@ -1169,32 +1195,6 @@
             this.lbDueDate.TabIndex = 21;
             this.lbDueDate.Text = "label3";
             this.lbDueDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbPriority
-            // 
-            this.lbPriority._BackColor = System.Drawing.Color.Empty;
-            this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbPriority.AutoSize = true;
-            this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPriority.Location = new System.Drawing.Point(382, 112);
-            this.lbPriority.Name = "lbPriority";
-            this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.lbPriority.Size = new System.Drawing.Size(76, 30);
-            this.lbPriority.TabIndex = 23;
-            this.lbPriority.Text = "Priority";
-            // 
-            // lbStatus
-            // 
-            this.lbStatus._BackColor = System.Drawing.Color.Empty;
-            this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbStatus.AutoSize = true;
-            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(382, 170);
-            this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.lbStatus.Size = new System.Drawing.Size(76, 30);
-            this.lbStatus.TabIndex = 24;
-            this.lbStatus.Text = "Status";
             // 
             // FormTaskDetail
             // 

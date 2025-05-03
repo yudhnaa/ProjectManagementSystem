@@ -66,21 +66,21 @@ namespace PresentationLayer.CustomControls
 
         private void loadRole()
         {
-            projectMemberRoles = projectMemberRoleServices.GetAllProjectMemberRoles();
+            projectMemberRoles = projectMemberRoleServices.GetAllProjectMemberRoles("");
 
             cbRole.DataSource = projectMemberRoles;
         }
 
         private void loadStatus()
         {
-            projectStatuses = projectStatusServices.GetAllProjectStatuses();
+            projectStatuses = projectStatusServices.GetAllProjectStatuses("");
 
             cbStatus.DataSource = projectStatuses;
         }
 
         private void loadPriority()
         {
-            projectPriorities = projectPriorityServices.GetAllProjectPriorities();
+            projectPriorities = projectPriorityServices.GetAllProjectPriorities("");
 
             cbPriority.DataSource = projectPriorities;
         }
@@ -200,7 +200,7 @@ namespace PresentationLayer.CustomControls
                     };
 
                     // Add project member to the database
-                    bool isAddedToProject = projectMemberServices.AddMemberToProject(projectMemberDTO);
+                    bool isAddedToProject = projectMemberServices.CreateMemberToProject(projectMemberDTO);
                     if (!isAddedToProject)
                     {
                         MessageBox.Show("Member is already in this project");
@@ -264,7 +264,7 @@ namespace PresentationLayer.CustomControls
                     // Fetch the user from the database
                     string kw = cbMember.Text;
                     int pageSize = 10;
-                    List<UserDTO> users = userServices.GetUserByKw(kw, pageSize);
+                    List<UserDTO> users = userServices.GetAllUsers(kw);
 
                     // Set the data source of the combo box to the list of users
                     cbMember.DataSource = users;

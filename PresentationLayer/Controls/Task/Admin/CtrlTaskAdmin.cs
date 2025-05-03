@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PresentationLayer.Control
+namespace PresentationLayer.Controls
 {
     public partial class CtrlTaskAdmin : UserControl
     {
@@ -43,11 +43,11 @@ namespace PresentationLayer.Control
 
             tableLayoutPanel1.ColumnStyles.Clear();
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
             lbTitle.Anchor = AnchorStyles.Left;
             lbAbstract.Anchor = AnchorStyles.Left | AnchorStyles.Top;
@@ -83,16 +83,16 @@ namespace PresentationLayer.Control
                 taskPriorityServices = new TaskPriorityServices();
 
                 taskStatusDTO = taskStatusServices.GetById(taskDTO.StatusId);
-                taskPriorityDTO = taskPriorityServices.GetById(taskDTO.PriorityId);
+                taskPriorityDTO = taskPriorityServices.GetTaskPriorityById(taskDTO.PriorityId);
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error loading task data: " + ex.Message);
+                MessageBox.Show("Error loading currentTask data: " + ex.Message);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading task data: " + ex.Message);
+                MessageBox.Show("Error loading currentTask data: " + ex.Message);
                 return;
             }
         }
@@ -126,10 +126,10 @@ namespace PresentationLayer.Control
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (this.taskDTO.IsDeleted == true)
-                MessageBox.Show("This task is cancelled");
+                MessageBox.Show("This currentTask is cancelled");
             else
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel this task?", "Delete Task", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel this currentTask?", "Delete Task", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     try
@@ -138,18 +138,18 @@ namespace PresentationLayer.Control
                         bool deleteRes = taskServices.DeleteTask(taskDTO);
                         if (!deleteRes)
                         {
-                            MessageBox.Show("Failed to delete task.");
+                            MessageBox.Show("Failed to delete currentTask.");
                             return;
                         }
                         MessageBox.Show("Task deleted successfully.");
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show("Error deleting task: " + ex.Message);
+                        MessageBox.Show("Error deleting currentTask: " + ex.Message);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error deleting task: " + ex.Message);
+                        MessageBox.Show("Error deleting currentTask: " + ex.Message);
                     }
                 }
             }

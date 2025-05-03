@@ -51,20 +51,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\DepartmentServices.cs" />
-    <Compile Include="Services\ProjectMemberRoleServices.cs" />
-    <Compile Include="Services\ProjectMemberServices.cs" />
-    <Compile Include="Services\ProjectPriorityServices.cs" />
-    <Compile Include="Services\ProjectServices.cs" />
+    <Compile Include="Services\Ipml\DepartmentServices.cs" />
+    <Compile Include="Services\IDepartmentServices.cs" />
+    <Compile Include="Services\IUserServices.cs" />
+    <Compile Include="Services\ITaskCommentServices.cs" />
+    <Compile Include="Services\IUserRoleServices.cs" />
+    <Compile Include="Services\Ipml\TaskCommentServices.cs" />
+    <Compile Include="Services\ITaskStatusServices.cs" />
+    <Compile Include="Services\IUserExtraInfoServices.cs" />
+    <Compile Include="Services\ITaskPriorityServices.cs" />
+    <Compile Include="Services\ITaskServices.cs" />
+    <Compile Include="Services\ITaskHistoryServices.cs" />
+    <Compile Include="Services\IProjectStatusServices.cs" />
+    <Compile Include="Services\IProjectServices.cs" />
+    <Compile Include="Services\IProjectPriorityServices.cs" />
+    <Compile Include="Services\IProjectMemberServices.cs" />
+    <Compile Include="Services\IProjectMemberRoleServices.cs" />
+    <Compile Include="Services\Ipml\ProjectMemberRoleServices.cs" />
+    <Compile Include="Services\Ipml\ProjectMemberServices.cs" />
+    <Compile Include="Services\Ipml\ProjectPriorityServices.cs" />
+    <Compile Include="Services\Ipml\ProjectServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ProjectStatusServices.cs" />
-    <Compile Include="Services\TaskHistoryServices.cs" />
-    <Compile Include="Services\TaskPriorityServices.cs" />
-    <Compile Include="Services\TaskServices.cs" />
-    <Compile Include="Services\TaskStatusServices.cs" />
-    <Compile Include="Services\UserExtraInfoServices.cs" />
-    <Compile Include="Services\UserRoleServices.cs" />
-    <Compile Include="Services\UserServices.cs" />
+    <Compile Include="Services\Ipml\ProjectStatusServices.cs" />
+    <Compile Include="Services\Ipml\TaskHistoryServices.cs" />
+    <Compile Include="Services\Ipml\TaskPriorityServices.cs" />
+    <Compile Include="Services\Ipml\TaskServices.cs" />
+    <Compile Include="Services\Ipml\TaskStatusServices.cs" />
+    <Compile Include="Services\Ipml\UserExtraInfoServices.cs" />
+    <Compile Include="Services\Ipml\UserRoleServices.cs" />
+    <Compile Include="Services\Ipml\UserServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

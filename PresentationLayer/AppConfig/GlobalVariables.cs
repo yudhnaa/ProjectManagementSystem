@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PresentationLayer.Config
+{
+    public static class GlobalVariables
+    {
+        // Priority Color
+        public static Color CriticalPriorityColor { get; set; } = Color.Red; // red
+        public static Color HighPriorityColor { get; set; } = Color.FromArgb(247, 90, 90);
+        public static Color MediumPriorityColor { get; set; } = Color.Yellow;
+        public static Color LowPriorityColor { get; set; } = Color.FromArgb(128, 255, 128);
+
+        // Status Color
+        public static Color NotStartedStatusColor { get; set; } = Color.LightGray;
+        public static Color InProgressStatusColor { get; set; } = Color.Yellow;
+        public static Color CompletedStatusColor { get; set; } = Color.FromArgb(128, 255, 128);
+        public static Color CancelledStatusColor { get; set; } = Color.Red;
+
+        // User Status Color
+        public static Color ActiveStatusColor { get; set; } = Color.FromArgb(128, 255, 128);
+        public static Color InactiveStatusColor { get; set; } = Color.Red;
+
+        // Button Colors
+        public static Color ButtonHoverFillColor { get; set; } = Color.WhiteSmoke;
+        public static Color ButtonPressedFillColor { get; set; } = Color.WhiteSmoke;
+        public static Color ButtonIdleFillColor { get; set; } = Color.White;
+        public static Color ButtonBorderColor { get; set; } = Color.White;
+
+        //Font color
+        public static Color FontColorLightBackground { get; set; } = Color.Black;
+        public static Color FontColorLightBackground2 { get; set; } = Color.DarkGray;
+
+        public static Color FontColorDarkBackground { get; set; } = Color.White;
+        public static Color FontColorDarkBackground2 { get; set; } = Color.WhiteSmoke;
+
+
+        //Pagination
+        public static int PageSize { get; set; } = 10;
+
+
+
+
+    }
+}

@@ -66,9 +66,9 @@ namespace PresentationLayer
         {
             try
             {
-                projectMemberRoles = projectMemberRoleServices.GetAllProjectMemberRoles();
+                projectMemberRoles = projectMemberRoleServices.GetAllProjectMemberRoles("");
                 projectStatusDTO = projectStatusServices.GetById(projectDTO.Id);
-                projectPriorityDTO = projectPriorityServices.GetById(projectDTO.PriorityId);
+                projectPriorityDTO = projectPriorityServices.GetAllProjectPrioritiesById(projectDTO.PriorityId);
             }
             catch (SqlException ex)
             {

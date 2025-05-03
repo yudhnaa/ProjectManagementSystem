@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PresentationLayer.Utils
 {
@@ -14,6 +15,8 @@ namespace PresentationLayer.Utils
         {
             switch (priorityName)
             {
+                case "Critical":
+                    return GlobalVariables.CriticalPriorityColor;
                 case "High":
                     return GlobalVariables.HighPriorityColor;
                 case "Medium":
@@ -37,6 +40,19 @@ namespace PresentationLayer.Utils
                     return GlobalVariables.CompletedStatusColor;
                 case "Cancelled":
                     return GlobalVariables.CancelledStatusColor;
+                default:
+                    return Color.White;
+            }
+        }
+
+        public static Color GetUserStatusColor(string statusName)
+        {
+            switch (statusName)
+            {
+                case "Active":
+                    return GlobalVariables.ActiveStatusColor;
+                case "Inactive":
+                    return GlobalVariables.InactiveStatusColor;
                 default:
                     return Color.White;
             }

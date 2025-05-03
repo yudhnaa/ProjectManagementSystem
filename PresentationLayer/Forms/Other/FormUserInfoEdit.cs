@@ -62,7 +62,7 @@ namespace PresentationLayer.Forms.Other
 
         private void loadDepartments()
         {
-            departmentDTOs = departmentServices.GetAllDepartments();
+            departmentDTOs = departmentServices.GetAllDepartments("");
 
             if (departmentDTOs != null)
             {
@@ -72,7 +72,7 @@ namespace PresentationLayer.Forms.Other
 
         private void loadUserRoles()
         {
-            userRoleDTOs = userRoleServices.getAllUserRoles();
+            userRoleDTOs = userRoleServices.GetAllUserRoles("");
             if (userRoleDTOs != null)
             {
                 cbRole.DataSource = userRoleDTOs;

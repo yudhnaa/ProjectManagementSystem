@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PresentationLayer.Control
+namespace PresentationLayer.Controls
 {
     public partial class ctrl_Task_Kaban_board : UserControl
     {

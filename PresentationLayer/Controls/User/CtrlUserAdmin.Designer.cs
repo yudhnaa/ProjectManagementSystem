@@ -1,4 +1,4 @@
-﻿namespace PresentationLayer.Control
+﻿namespace PresentationLayer.Controls
 {
     partial class CtrlUserAdmin
     {
@@ -32,7 +32,6 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
             this.lbUsername = new Bunifu.UI.WinForms.BunifuLabel();
-            this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pbIcon = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.lbDepartment = new PresentationLayer.CustomControls.RoundedLabel();
@@ -41,6 +40,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnEdit = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.btnDelete = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
+            this.lbName = new System.Windows.Forms.Label();
+            this.Status = new System.Windows.Forms.Label();
+            this.lbStatus = new PresentationLayer.CustomControls.RoundedLabel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.SuspendLayout();
@@ -65,34 +67,26 @@
             this.lbUsername.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lbUsername.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
-            // lbName
-            // 
-            this.lbName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.Location = new System.Drawing.Point(57, 52);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(555, 14);
-            this.lbName.TabIndex = 19;
-            this.lbName.Text = "Name: ABC Awhite";
-            // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnCount = 6;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.lbStatus, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Status, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.pbIcon, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbDepartment, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbRoleName, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnEdit, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnDelete, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbUsername, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbName, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnEdit, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnDelete, 5, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -100,7 +94,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(881, 83);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(952, 83);
             this.tableLayoutPanel1.TabIndex = 20;
             // 
             // pbIcon
@@ -153,7 +147,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(645, 10);
-            this.label1.Name = "label1";
+            this.label1.Name = "lbComment";
             this.label1.Size = new System.Drawing.Size(43, 18);
             this.label1.TabIndex = 19;
             this.label1.Text = "Role";
@@ -193,7 +187,7 @@
             this.btnEdit.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnEdit.Image = global::PresentationLayer.Properties.Resources.edit;
             this.btnEdit.ImageMargin = new System.Windows.Forms.Padding(0);
-            this.btnEdit.Location = new System.Drawing.Point(835, 3);
+            this.btnEdit.Location = new System.Drawing.Point(908, 3);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.RoundBorders = true;
             this.btnEdit.ShowBorders = true;
@@ -226,7 +220,7 @@
             this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnDelete.Image = global::PresentationLayer.Properties.Resources.trash;
             this.btnDelete.ImageMargin = new System.Windows.Forms.Padding(0);
-            this.btnDelete.Location = new System.Drawing.Point(835, 42);
+            this.btnDelete.Location = new System.Drawing.Point(907, 42);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.RoundBorders = true;
             this.btnDelete.ShowBorders = true;
@@ -234,6 +228,39 @@
             this.btnDelete.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
             this.btnDelete.TabIndex = 25;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // lbName
+            // 
+            this.lbName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.Location = new System.Drawing.Point(57, 52);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(555, 14);
+            this.lbName.TabIndex = 19;
+            this.lbName.Text = "Name: ABC Awhite";
+            // 
+            // Status
+            // 
+            this.Status.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status.Location = new System.Drawing.Point(830, 4);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(60, 31);
+            this.Status.TabIndex = 29;
+            this.Status.Text = "Status";
+            this.Status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbStatus
+            // 
+            this.lbStatus._BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbStatus.BackColor = System.Drawing.Color.White;
+            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.Location = new System.Drawing.Point(826, 48);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(68, 23);
+            this.lbStatus.TabIndex = 31;
+            this.lbStatus.Text = "Active";
             // 
             // CtrlUserAdmin
             // 
@@ -246,7 +273,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CtrlUserAdmin";
-            this.Size = new System.Drawing.Size(881, 83);
+            this.Size = new System.Drawing.Size(952, 83);
             this.Load += new System.EventHandler(this.ctrl_User_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -259,7 +286,6 @@
 
         private Bunifu.UI.WinForms.BunifuLabel lbUsername;
         private Bunifu.UI.WinForms.BunifuPictureBox pbIcon;
-        private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private CustomControls.RoundedLabel lbRoleName;
         private CustomControls.RoundedLabel lbDepartment;
@@ -267,5 +293,8 @@
         private System.Windows.Forms.Label label2;
         private Bunifu.UI.WinForms.BunifuButton.BunifuIconButton btnDelete;
         private Bunifu.UI.WinForms.BunifuButton.BunifuIconButton btnEdit;
+        private System.Windows.Forms.Label lbName;
+        private CustomControls.RoundedLabel lbStatus;
+        private System.Windows.Forms.Label Status;
     }
 }

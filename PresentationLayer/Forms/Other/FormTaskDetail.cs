@@ -50,7 +50,7 @@ namespace PresentationLayer.Forms.Other
                 lbCreatedBy.Text = userServices.GetUserById(task.CreatedBy).Username;
                 lbDueDate.Text = task.DueDate?.ToString("dd/MM/yyyy");
 
-                TaskPriorityDTO priority = taskPriorityServices.GetById(task.PriorityId);
+                TaskPriorityDTO priority = taskPriorityServices.GetTaskPriorityById(task.PriorityId);
                 TaskStatusDTO status = taskStatusServices.GetById(task.StatusId);
 
                 lbPriority._BackColor = Utils.Utils.GetPriorityColor(priority.Name);

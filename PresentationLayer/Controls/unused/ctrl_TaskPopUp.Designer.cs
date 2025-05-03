@@ -1,5 +1,5 @@
 ﻿
-namespace PresentationLayer.Control
+namespace PresentationLayer.Controls
 {
     partial class ctrl_TaskPopUp
     {

@@ -1,4 +1,6 @@
-namespace DTOLayer
+using DTOLayer.Models;
+
+namespace DTOLayer.Mappers
 {
     public static class UserRoleDTOMapper
     {

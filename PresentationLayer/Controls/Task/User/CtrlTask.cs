@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PresentationLayer.Control
+namespace PresentationLayer.Controls
 {
     public partial class CtrlTask : UserControl
     {
@@ -80,16 +80,16 @@ namespace PresentationLayer.Control
                 taskPriorityServices = new TaskPriorityServices();
 
                 taskStatusDTO = taskStatusServices.GetById(taskDTO.StatusId);
-                taskPriorityDTO = taskPriorityServices.GetById(taskDTO.PriorityId);
+                taskPriorityDTO = taskPriorityServices.GetTaskPriorityById(taskDTO.PriorityId);
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error loading task data: " + ex.Message);
+                MessageBox.Show("Error loading currentTask data: " + ex.Message);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading task data: " + ex.Message);
+                MessageBox.Show("Error loading currentTask data: " + ex.Message);
                 return;
             }
         }

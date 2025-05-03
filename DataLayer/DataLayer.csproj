@@ -50,18 +50,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\DepartmentDAL.cs" />
-    <Compile Include="DataAccess\ProjectMemberRoleDAL.cs" />
-    <Compile Include="DataAccess\ProjectMemberDAL.cs" />
-    <Compile Include="DataAccess\ProjectPriorityDAL.cs" />
-    <Compile Include="DataAccess\ProjectDAL.cs" />
-    <Compile Include="DataAccess\ProjectStatusDAL.cs" />
-    <Compile Include="DataAccess\TaskDAL.cs" />
-    <Compile Include="DataAccess\TaskHistoryDAL.cs" />
-    <Compile Include="DataAccess\TaskPriorityDAL.cs" />
-    <Compile Include="DataAccess\TaskStatusDAL.cs" />
-    <Compile Include="DataAccess\UserRoleDAL.cs" />
-    <Compile Include="DataAccess\UserDAL.cs" />
+    <Compile Include="DataAccess\Impl\DepartmentDAL.cs" />
+    <Compile Include="DataAccess\IDepartmentDAL.cs" />
+    <Compile Include="DataAccess\ITaskCommentDAL.cs" />
+    <Compile Include="DataAccess\Impl\TaskCommentDAL.cs" />
+    <Compile Include="DataAccess\IProjectDAL.cs" />
+    <Compile Include="DataAccess\IProjectMemberDAL.cs" />
+    <Compile Include="DataAccess\IProjectMemberRoleDAL.cs" />
+    <Compile Include="DataAccess\IProjectPriorityDAL.cs" />
+    <Compile Include="DataAccess\IProjectStatusDAL.cs" />
+    <Compile Include="DataAccess\ITaskDAL.cs" />
+    <Compile Include="DataAccess\ITaskHistoryDAL.cs" />
+    <Compile Include="DataAccess\ITaskPriorityDAL.cs" />
+    <Compile Include="DataAccess\ITaskStatusDAL.cs" />
+    <Compile Include="DataAccess\IUserDAL.cs" />
+    <Compile Include="DataAccess\IUserRoleDAL.cs" />
+    <Compile Include="DataAccess\Impl\ProjectMemberRoleDAL.cs" />
+    <Compile Include="DataAccess\Impl\ProjectMemberDAL.cs" />
+    <Compile Include="DataAccess\Impl\ProjectPriorityDAL.cs" />
+    <Compile Include="DataAccess\Impl\ProjectDAL.cs" />
+    <Compile Include="DataAccess\Impl\ProjectStatusDAL.cs" />
+    <Compile Include="DataAccess\Impl\TaskDAL.cs" />
+    <Compile Include="DataAccess\Impl\TaskHistoryDAL.cs" />
+    <Compile Include="DataAccess\Impl\TaskPriorityDAL.cs" />
+    <Compile Include="DataAccess\Impl\TaskStatusDAL.cs" />
+    <Compile Include="DataAccess\Impl\UserRoleDAL.cs" />
+    <Compile Include="DataAccess\Impl\UserDAL.cs" />
     <Compile Include="Domain\AuditLog.cs" />
     <Compile Include="Domain\Department.cs" />
     <Compile Include="Domain\EmailNotification.cs" />
@@ -91,11 +105,18 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\UserRole.cs" />
     <Compile Include="Domain\UserRolePermission.cs" />
+    <Compile Include="EnumObjects\ProjectMemberRoleEnum.cs" />
+    <Compile Include="EnumObjects\ProjectPriorityEnum.cs" />
+    <Compile Include="EnumObjects\ProjectStatusEnum.cs" />
+    <Compile Include="EnumObjects\TaskPriorityEnum.cs" />
+    <Compile Include="EnumObjects\TaskStatusEnum.cs" />
+    <Compile Include="EnumObjects\UserRoleEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

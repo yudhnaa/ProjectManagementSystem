@@ -85,7 +85,7 @@ namespace PresentationLayer.Forms.Other
                 int selectionStart = CbUser.SelectionStart;
 
                 // Fetch users
-                var users = userServices.GetUserByKw(searchText, 10);
+                var users = userServices.GetAllUsers(searchText);
 
                 // Update DataSource
                 CbUser.BeginUpdate();
@@ -100,7 +100,7 @@ namespace PresentationLayer.Forms.Other
             else if (currentSearchBox == cbParentTask)
             {
                 string kw = cbParentTask.Text;
-                var tasks = taskServices.GetTaskByKw(kw, 10);
+                var tasks = taskServices.GetAllTask(kw);
 
                 if (tasks == null)
                 {
@@ -144,7 +144,7 @@ namespace PresentationLayer.Forms.Other
         {
             try
             {
-                taskStatusDTOs = taskStatusServices.getAllTaskStatuses();
+                taskStatusDTOs = taskStatusServices.GetAllTaskStatuses("");
                 if (taskStatusDTOs != null)
                 {
                     cbStatus.DataSource = taskStatusDTOs;
@@ -160,7 +160,7 @@ namespace PresentationLayer.Forms.Other
         {
             try
             {
-                taskPriorityDTOs = taskPriorityServices.getTaskPriorities();
+                taskPriorityDTOs = taskPriorityServices.GetAllTaskPriorities("");
                 if (taskPriorityDTOs != null)
                 {
                     cbPriority.DataSource = taskPriorityDTOs;

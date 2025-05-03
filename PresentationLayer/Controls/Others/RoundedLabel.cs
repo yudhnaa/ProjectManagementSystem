@@ -16,6 +16,9 @@ namespace PresentationLayer.CustomControls
         [Browsable(true)]
         public Color _BackColor { get; set; }
 
+        [Browsable(true)]
+        public ContentAlignment _TextAlign { get; set; } = ContentAlignment.MiddleLeft;
+
         public RoundedLabel()
         {
             this.DoubleBuffered = true;
@@ -31,7 +34,9 @@ namespace PresentationLayer.CustomControls
                     e.Graphics.FillPath(brush, graphicsPath);
                 using (var pen = new Pen(_BackColor, 1.0f))
                     e.Graphics.DrawPath(pen, graphicsPath);
-                TextRenderer.DrawText(e.Graphics, Text, this.Font, this.ClientRectangle, this.ForeColor);
+
+                var textFormatFlags = _getTextFormatFlags(_TextAlign);
+                TextRenderer.DrawText(e.Graphics, Text, this.Font, this.ClientRectangle, this.ForeColor, textFormatFlags);
             }
         }
 
@@ -46,6 +51,33 @@ namespace PresentationLayer.CustomControls
             path.AddArc(rectangle.X, rectangle.Y + rectangle.Height - cornerRadius - diminisher, cornerRadius, cornerRadius, 90, 90);
             path.CloseAllFigures();
             return path;
+        }
+
+        private TextFormatFlags _getTextFormatFlags(ContentAlignment alignment)
+        {
+            switch (alignment)
+            {
+                case ContentAlignment.TopLeft:
+                    return TextFormatFlags.Top | TextFormatFlags.Left;
+                case ContentAlignment.TopCenter:
+                    return TextFormatFlags.Top | TextFormatFlags.HorizontalCenter;
+                case ContentAlignment.TopRight:
+                    return TextFormatFlags.Top | TextFormatFlags.Right;
+                case ContentAlignment.MiddleLeft:
+                    return TextFormatFlags.VerticalCenter | TextFormatFlags.Left;
+                case ContentAlignment.MiddleCenter:
+                    return TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter;
+                case ContentAlignment.MiddleRight:
+                    return TextFormatFlags.VerticalCenter | TextFormatFlags.Right;
+                case ContentAlignment.BottomLeft:
+                    return TextFormatFlags.Bottom | TextFormatFlags.Left;
+                case ContentAlignment.BottomCenter:
+                    return TextFormatFlags.Bottom | TextFormatFlags.HorizontalCenter;
+                case ContentAlignment.BottomRight:
+                    return TextFormatFlags.Bottom | TextFormatFlags.Right;
+                default:
+                    return TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
+            }
         }
     }
 }

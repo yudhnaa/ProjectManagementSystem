@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using BusinessLayer.Services;
 using DTOLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,7 @@ namespace PresentationLayer.CustomControls
             UserServices userServices = new UserServices();
             try
             {
-                userServices.createUser(userDTO);
+                userServices.CreateUser(userDTO);
                 MessageBox.Show("User created successfully!");
                 this.Hide();
                 ctrlLogin.Show();

@@ -67,29 +67,29 @@ namespace PresentationLayer
             loadStatus();
             loadRole();
             loadPriority();
-            loadProjectInfo();
+            SetProjectInfo();
         }
 
         private void loadRole()
         {
-            projectMemberRoles = projectMemberRoleServices.GetAllProjectMemberRoles();
+            projectMemberRoles = projectMemberRoleServices.GetAllProjectMemberRoles("");
             cbRole.DataSource = projectMemberRoles;
         }
 
         private void loadStatus()
         {
-            projectStatuses = projectStatusServices.GetAllProjectStatuses();
+            projectStatuses = projectStatusServices.GetAllProjectStatuses("");
             cbStatus.DataSource = projectStatuses;
         }
 
         private void loadPriority()
         {
-            projectPriorities = projectPriorityServices.GetAllProjectPriorities();
+            projectPriorities = projectPriorityServices.GetAllProjectPriorities("");
 
             cbPriority.DataSource = projectPriorities;
         }
 
-        private void loadProjectInfo()
+        private void SetProjectInfo()
         {
 
             tbProjectName.Text = projectDTO.Name;
@@ -326,7 +326,7 @@ namespace PresentationLayer
                     // Fetch the user from the database
                     string kw = cbMember.Text;
                     int pageSize = 10;
-                    List<UserDTO> users = userServices.GetUserByKw(kw, pageSize);
+                    List<UserDTO> users = userServices.GetAllUsers(kw);
 
                     // Set the data source of the combo box to the list of users
                     cbMember.DataSource = users;

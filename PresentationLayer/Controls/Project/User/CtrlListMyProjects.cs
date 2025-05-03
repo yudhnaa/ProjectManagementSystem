@@ -15,12 +15,12 @@ namespace PresentationLayer.UC_SideBar.UC_Project
     public partial class CtrlListMyProjects : UserControl
     {
         // Define a delegate and event for selection change
-        public delegate void ProjectSelectedEventHandler(object sender, ProjectDTO selectedProject);
+        public delegate void ProjectSelectedEventHandler(object sender, ProjectForListDTO selectedProject);
         public event ProjectSelectedEventHandler ProjectSelected;
 
-        public List<ProjectDTO> projects { get; set; }
+        public List<ProjectForListDTO> projects { get; set; }
 
-        public ProjectDTO selectedItem { get; set; }
+        public ProjectForListDTO selectedItem { get; set; }
 
         public CtrlListMyProjects()
         {
@@ -58,10 +58,10 @@ namespace PresentationLayer.UC_SideBar.UC_Project
         {
             if (listbxMyProjects.SelectedItem != null)
             {
-                selectedItem = (ProjectDTO) listbxMyProjects.SelectedItem;
+                selectedItem = (ProjectForListDTO) listbxMyProjects.SelectedItem;
 
                 // Trigger the event and pass the selected project
-                ProjectSelected?.Invoke(this, (ProjectDTO)selectedItem);
+                ProjectSelected?.Invoke(this, (ProjectForListDTO)selectedItem);
             }
 
         }
