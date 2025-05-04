@@ -1,64 +1,73 @@
-﻿using Bunifu.UI.WinForms.Helpers.Transitions;
-using BusinessLayer;
+﻿using BusinessLayer;
 using BusinessLayer.Services;
 using DataLayer.Domain;
 using DataLayer.EnumObjects;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
-using PresentationLayer.Config;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace PresentationLayer.Controls.SideBar.Admin
 {
     public partial class CtrlPanelProjectAdminNew : UserControl
     {
-        private UserDTO user;
+        // Services
+        private readonly ProjectServices _projectServices;
+        private readonly ProjectMemberServices _projectMemberServices;
+        private readonly UserServices _userServices;
+        private readonly ProjectMemberRoleServices _projectMemberRoleServices;
+        private readonly ProjectStatusServices _projectStatusServices;
+        private readonly ProjectPriorityServices _projectPriorityServices;
 
-        private ProjectServices projectServices;
-        private ProjectMemberServices projectMemberServices;
-        private UserServices userServices;
-        private ProjectMemberRoleServices projectMemberRoleServices;
-        private ProjectStatusServices projectStatusServices;
-        private ProjectPriorityServices projectPriorityServices;
+        // Data
+        private List<ProjectForListDTO> _projects;
+        private ProjectDTO _currentProject;
+        private List<ProjectMemberDTO> _currentProjectMembers;
+        private List<ProjectMemberRoleDTO> _projectMemberRoles;
+        private List<ProjectStatusDTO> _projectStatuses;
+        private List<ProjectPriorityDTO> _projectPriorities;
 
-        private List<ProjectForListDTO> projects;
-
-        private ProjectDTO currentProject;
-        private List<ProjectMemberDTO> currentProjectMembers;
-
-        private List<ProjectMemberRoleDTO> projectMemberRoles;
-        private List<ProjectStatusDTO> projectStatuses;
-        private List<ProjectPriorityDTO> projectPriorities;
-
-        private Timer debounceTimer;
+        // UI
+        private readonly Timer _debounceTimer;
+        private readonly UserDTO _user;
 
         public CtrlPanelProjectAdminNew()
         {
-            this.user = UserSession.Instance.User;
+            _user = UserSession.Instance.User;
+
+            // Initialize services
+            _projectServices = new ProjectServices();
+            _projectMemberServices = new ProjectMemberServices();
+            _userServices = new UserServices();
+            _projectMemberRoleServices = new ProjectMemberRoleServices();
+            _projectStatusServices = new ProjectStatusServices();
+            _projectPriorityServices = new ProjectPriorityServices();
+
+            // Initialize debounce timer
+            _debounceTimer = new Timer { Interval = 1000 };
+            _debounceTimer.Tick += DebounceTimer_Tick;
 
             InitializeComponent();
+            InitializeControls();
         }
 
-        private void InitControls()
+        private void InitializeControls()
         {
-            this.Dock = DockStyle.Fill;
+            Dock = DockStyle.Fill;
 
+            // Configure DataGridView
             dgvItems.AutoGenerateColumns = false;
             dgvItems.ReadOnly = true;
             dgvItems.MultiSelect = false;
             dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            // Configure combo boxes
             cbMember.DisplayMember = "Username";
             cbMember.ValueMember = "Id";
             cbRole.DisplayMember = "Name";
@@ -68,202 +77,137 @@ namespace PresentationLayer.Controls.SideBar.Admin
             cbStatus.DisplayMember = "Name";
             cbStatus.ValueMember = "Id";
 
+            // Configure columns
+            ConfigureDataGridViewColumns();
+        }
+
+        private void ConfigureDataGridViewColumns()
+        {
             dgvItems.Columns.Clear();
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Id", HeaderText = "Id", Width = 50, Name = "Id" });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Name", HeaderText = "Project Name", Width = 200 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "ProjectCode", HeaderText = "Project Code", Width = 100 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "StartDate", HeaderText = "Start Date", Width = 100 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn()
+
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Id",
+                HeaderText = "Id",
+                Width = 50,
+                Name = "Id"
+            });
+
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Name",
+                HeaderText = "Project Name",
+                Width = 200
+            });
+
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "ProjectCode",
+                HeaderText = "Project Code",
+                Width = 100
+            });
+
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "StartDate",
+                HeaderText = "Start Date",
+                Width = 100
+            });
+
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "StatusId",
                 HeaderText = "Status",
                 Width = 100,
-                Name = "Status",
-                CellTemplate = new DataGridViewTextBoxCell()
+                Name = "Status"
             });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn()
+
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "PriorityId",
-                HeaderText = "Priority Id",
+                HeaderText = "Priority",
                 Width = 100,
-                Name = "Priority",
-                CellTemplate = new DataGridViewTextBoxCell()
+                Name = "Priority"
             });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "PercentComplete", HeaderText = "Percent Complete", Width = 100 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "IsDeleted", HeaderText = "Is Deleted", Width = 100 });
-            dgvItems.CellFormatting += (s, e) =>
+
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
             {
-                if (e.ColumnIndex == dgvItems.Columns["Status"].Index && e.Value != null)
-                {
-                    int statusId = (int)e.Value;
-                    e.Value = ProjectStatusEnumExtensions.ToString(statusId);
-                    e.FormattingApplied = true;
-                }
+                DataPropertyName = "PercentComplete",
+                HeaderText = "Percent Complete",
+                Width = 100
+            });
 
-                if (e.ColumnIndex == dgvItems.Columns["Priority"].Index && e.Value != null)
-                {
-                    int statusId = (int)e.Value;
-                    e.Value = ProjectPriorityEnumExtensions.ToString(statusId);
-                    e.FormattingApplied = true;
-                }
-            };
-        }
-
-        private void InitServices()
-        {
-            projectServices = new ProjectServices();
-            projectMemberServices = new ProjectMemberServices();
-            userServices = new UserServices();
-
-            projectMemberRoleServices = new ProjectMemberRoleServices();
-            projectStatusServices = new ProjectStatusServices();
-            projectPriorityServices = new ProjectPriorityServices();
-        }
-
-        private void LoadProjects()
-        {
-            try
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
             {
-                projects = projectServices.GetAllProjectsForListInlcudeInActive("");
+                DataPropertyName = "IsDeleted",
+                HeaderText = "Is Deleted",
+                Width = 100
+            });
 
-                if (projects != null && projects.Count > 0)
-                {
-                    dgvItems.DataSource = projects;
-
-                    dgvItems.Rows[0].Selected = true;
-                }
-                else
-                    MessageBox.Show("No projects found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Database error occurred while retrieving projects.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while retrieving projects.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void LoadRole()
-        {
-            projectMemberRoles = projectMemberRoleServices.GetAllProjectMemberRoles("");
-            cbRole.DataSource = projectMemberRoles;
-        }
-
-        private void LoadStatus()
-        {
-            projectStatuses = projectStatusServices.GetAllProjectStatuses("");
-            cbStatus.DataSource = projectStatuses;
-        }
-
-        private void LoadPriority()
-        {
-            projectPriorities = projectPriorityServices.GetAllProjectPriorities("");
-
-            cbPriority.DataSource = projectPriorities;
-        }
-
-        private void SetProjectInfo()
-        {
-            tbProjectName.Text = currentProject.Name;
-            tbProjectCode.Text = currentProject.ProjectCode;
-            tbProjectDesrciption.Text = currentProject.Description;
-            datePickerStart.Value = (DateTime)currentProject.StartDate;
-            datePickerEnd.Value = (DateTime)currentProject.EndDate;
-            tbBudget.Text = currentProject.Budget.ToString();
-            cbStatus.SelectedValue = currentProject.StatusId;
-            cbPriority.SelectedValue = currentProject.PriorityId;
-
-            currentProjectMembers = projectMemberServices.GetProjectMembersById(currentProject.Id);
-            listviewMembers.Items.Clear();
-            listviewMembers.BeginUpdate();
-            foreach (ProjectMemberDTO member in currentProjectMembers)
-            {
-                UserDTO user = userServices.GetUserById(member.UserId);
-                ProjectMemberRoleDTO role = projectMemberRoles.FirstOrDefault(r => r.Id == member.RoleInProject);
-                if (user != null && role != null)
-                {
-                    listviewMembers.Items.Add(new ListViewItem(new string[] { user.Id.ToString(), user.LastName, role.Name }));
-                }
-            }
-            listviewMembers.EndUpdate();
-            listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
-            cbStatus.SelectedValue = currentProject.StatusId;
-            cbPriority.SelectedValue = currentProject.PriorityId;
+            dgvItems.CellFormatting += DgvItems_CellFormatting;
         }
 
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
         {
-            InitControls();
-            InitServices();
-            LoadRole();
-            LoadStatus();
-            LoadPriority();
-            LoadProjects();
+            LoadInitialData();
+        }
+
+        private void DgvItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dgvItems.Columns["Status"].Index && e.Value != null)
+            {
+                e.Value = ProjectStatusEnumExtensions.ToString((int)e.Value);
+                e.FormattingApplied = true;
+            }
+
+            if (e.ColumnIndex == dgvItems.Columns["Priority"].Index && e.Value != null)
+            {
+                e.Value = ProjectPriorityEnumExtensions.ToString((int)e.Value);
+                e.FormattingApplied = true;
+            }
         }
 
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvItems.SelectedRows.Count == 1 && dgvItems.SelectedRows[0].Cells["Id"].Value != null)
             {
-                DataGridViewRow item = dgvItems.SelectedRows[0];
-
-                try
-                {
-                    currentProject = projectServices.GetProjectById((int)item.Cells["Id"].Value);
-                    SetProjectInfo();
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Database error occurred while retrieving project details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred while retrieving project details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                var item = dgvItems.SelectedRows[0];
+                LoadProjectDetails((int)item.Cells["Id"].Value);
             }
         }
 
-        private void btnRemoveMember_Click(object sender, System.EventArgs e)
+        private void btnRemoveMember_Click(object sender, EventArgs e)
         {
             if (listviewMembers.SelectedItems.Count > 0)
             {
-                // Remove the selected item from the ListView
                 listviewMembers.Items.Remove(listviewMembers.SelectedItems[0]);
             }
             else
             {
-                MessageBox.Show("Please select a member to remove.");
+                ShowMessage("Please select a member to remove.");
             }
-
         }
 
-        private void btnAddMember_Click(object sender, System.EventArgs e)
+        private void btnAddMember_Click(object sender, EventArgs e)
         {
             if (cbMember.SelectedItem == null || cbRole.SelectedItem == null)
             {
-                MessageBox.Show("Please select a user and a role.");
+                ShowMessage("Please select a user and a role.");
                 return;
             }
 
-            // Get the selected user from the combo box
-            UserDTO selectedUser = (UserDTO)cbMember.SelectedItem;
+            var selectedUser = (UserDTO)cbMember.SelectedItem;
 
-            if (listviewMembers.Items.Cast<ListViewItem>().Any(item => item.SubItems[0].Text == selectedUser.Id.ToString()))
+            if (listviewMembers.Items.Cast<ListViewItem>()
+                .Any(item => item.SubItems[0].Text == selectedUser.Id.ToString()))
             {
-                MessageBox.Show("User already exists in the list.");
+                ShowMessage("User already exists in the list.");
                 return;
             }
 
-            // Get the selected role from the combo box
-            ProjectMemberRoleDTO selectedRole = (ProjectMemberRoleDTO)cbRole.SelectedItem;
+            var selectedRole = (ProjectMemberRoleDTO)cbRole.SelectedItem;
 
-            listviewMembers.Items.Add(new ListViewItem(new string[]
+            listviewMembers.Items.Add(new ListViewItem(new[]
             {
                 selectedUser.Id.ToString(),
                 selectedUser.LastName,
@@ -273,296 +217,81 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void cbMember_KeyUp(object sender, KeyEventArgs e)
         {
-            // Initialize the debounce timer if it hasn't been created yet
-            if (debounceTimer == null)
-            {
-                debounceTimer = new Timer();
-                debounceTimer.Interval = 1000;
-                debounceTimer.Tick += (s, args) =>
-                {
-                    debounceTimer.Stop(); // Stop the timer to prevent repeated execution
-
-                    // Fetch the user from the database
-                    string kw = cbMember.Text;
-                    List<UserDTO> users = userServices.GetAllUsers(kw);
-
-                    // Set the data source of the combo box to the list of users
-                    if (users != null)
-                    {
-                        cbMember.DataSource = users;
-                        cbMember.SelectedIndex = -1;
-                    }
-
-                };
-            }
-
-            // Restart the timer on every text change
-            debounceTimer.Stop();
-            debounceTimer.Start();
+            _debounceTimer.Stop();
+            _debounceTimer.Start();
         }
 
-        private bool ValidateProjectInput()
+        private void DebounceTimer_Tick(object sender, EventArgs e)
         {
-            // Validate project name
-            if (string.IsNullOrWhiteSpace(tbProjectName.Text))
+            _debounceTimer.Stop();
+
+            var keyword = cbMember.Text;
+            var users = _userServices.GetAllUsers(keyword);
+
+            if (users != null)
             {
-                MessageBox.Show("Project name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbProjectName.Focus();
-                return false;
+                cbMember.DataSource = users;
+                cbMember.SelectedIndex = -1;
             }
-
-            // Validate project code
-            if (string.IsNullOrWhiteSpace(tbProjectCode.Text))
-            {
-                MessageBox.Show("Project code is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbProjectCode.Focus();
-                return false;
-            }
-
-            // Validate budget
-            if (string.IsNullOrWhiteSpace(tbBudget.Text) || !decimal.TryParse(tbBudget.Text, out decimal budget) || budget <= 0)
-            {
-                MessageBox.Show("Please enter a valid budget amount.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbBudget.Focus();
-                return false;
-            }
-
-            // Validate date range
-            if (datePickerEnd.Value <= datePickerStart.Value)
-            {
-                MessageBox.Show("End date must be after the start date.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                datePickerEnd.Focus();
-                return false;
-            }
-
-            // Validate status selection
-            if (cbStatus.SelectedValue == null)
-            {
-                MessageBox.Show("Please select a project status.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cbStatus.Focus();
-                return false;
-            }
-
-            // Validate priority selection
-            if (cbPriority.SelectedValue == null)
-            {
-                MessageBox.Show("Please select a project priority.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cbPriority.Focus();
-                return false;
-            }
-
-            // Validate that at least one Manager exists in team members
-            string managerId = listviewMembers.Items.Cast<ListViewItem>()
-                .FirstOrDefault(item => item.SubItems[2].Text == "Manager")?.SubItems[0].Text;
-
-            if (string.IsNullOrEmpty(managerId))
-            {
-                MessageBox.Show("Please add a team member with Manager role.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Validate that at least one team member exists
-            if (listviewMembers.Items.Count == 0)
-            {
-                MessageBox.Show("Please add at least one team member to the project.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            return true;
-        }
-
-        private int[] GetUserIdsNotInListView()
-        {
-            var listViewUserIds = listviewMembers.Items
-                .Cast<ListViewItem>()
-                .Select(item => int.Parse(item.SubItems[0].Text))
-                .ToArray();
-
-            var userIdsNotInListView = currentProjectMembers
-                .Where(m => !listViewUserIds.Contains(m.UserId))
-                .Select(m => m.UserId)
-                .ToArray();
-
-            return userIdsNotInListView;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
-            // Validate input before proceeding
-            if (!ValidateProjectInput())
-                return;
-
-            string managerId = listviewMembers.Items.Cast<ListViewItem>()
-                .FirstOrDefault(item => item.SubItems[2].Text == "Manager")?.SubItems[0].Text;
-
-            ProjectDTO project = new ProjectDTO
-            {
-                Id = currentProject.Id,
-                Name = tbProjectName.Text,
-                ProjectCode = tbProjectCode.Text,
-                Description = tbProjectDesrciption.Text,
-                StartDate = datePickerStart.Value,
-                EndDate = datePickerEnd.Value,
-                Budget = decimal.Parse(tbBudget.Text),
-                StatusId = int.Parse(cbStatus.SelectedValue.ToString()),
-                ManagerId = int.Parse(managerId),
-                PriorityId = int.Parse(cbPriority.SelectedValue.ToString()),
-                CreatedBy = user.Id
-            };
+            if (!ValidateProjectInput()) return;
 
             try
             {
-                var res = projectServices.UpdateProject(project);
-                if (res == true)
+                var project = CreateProjectDTOFromForm();
+                var result = _projectServices.UpdateProject(project);
+
+                if (result)
                 {
-                    var userIdsNotInListView = GetUserIdsNotInListView();
-
-                    foreach (ListViewItem item in listviewMembers.Items)
-                    {
-                        if (item.SubItems[2].Text == "Manager")
-                            continue;
-
-                        // Create a new project member
-                        ProjectMemberDTO projectMemberDTO = new ProjectMemberDTO
-                        {
-                            UserId = int.Parse(item.SubItems[0].Text),
-                            RoleInProject = projectMemberRoles.First(r => r.Name == item.SubItems[2].Text).Id,
-                            ProjectId = currentProject.Id,
-                            CreatedDate = System.DateTime.Today,
-                        };
-
-                        // Add project member to the database
-                        var updateRes = projectMemberServices.UpdateProjectMember(projectMemberDTO, userIdsNotInListView);
-                        if (updateRes == false)
-                        {
-                            MessageBox.Show("Failed to update project member.");
-                            return;
-                        }
-                    }
+                    UpdateProjectMembers(project.Id);
+                    ClearForm();
+                    ShowMessage("Project updated successfully.", "Success");
                 }
-
-                // Clear the form fields
-                tbProjectName.Clear();
-                tbProjectCode.Clear();
-                tbBudget.Clear();
-                tbProjectDesrciption.Clear();
-                cbMember.SelectedItem = null;
-                cbRole.SelectedItem = null;
-
-                //Readload Project List
-                MessageBox.Show("Remember Reload Project List");
-
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}");
+                ShowMessage($"Database error: {ex.Message}", "Error", MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}");
+                ShowMessage($"An error occurred: {ex.Message}", "Error", MessageBoxIcon.Error);
             }
-        }
-
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
         }
 
         private void btCreateProject_Click(object sender, EventArgs e)
         {
-            // Validate input before proceeding
-            if (!ValidateProjectInput())
-                return;
-
-            string managerId = listviewMembers.Items.Cast<ListViewItem>()
-                .FirstOrDefault(item => item.SubItems[2].Text == "Manager")?.SubItems[0].Text;
-
-            ProjectDTO project = new ProjectDTO
-            {
-                Name = tbProjectName.Text,
-                ProjectCode = tbProjectCode.Text,
-                Description = tbProjectDesrciption.Text,
-                StartDate = datePickerStart.Value,
-                EndDate = datePickerEnd.Value,
-                Budget = decimal.Parse(tbBudget.Text),
-                StatusId = int.Parse(cbStatus.SelectedValue.ToString()),
-                ManagerId = int.Parse(managerId),
-                PriorityId = int.Parse(cbPriority.SelectedValue.ToString()),
-                //PercentComplete = 0, --> do this on create service
-                CreatedBy = user.Id,
-                CreatedDate = System.DateTime.Today,
-            };
+            if (!ValidateProjectInput()) return;
 
             try
             {
-                ProjectDTO newProj = projectServices.CreateProject(project);
+                var project = CreateProjectDTOFromForm();
+                var newProject = _projectServices.CreateProject(project);
 
-                foreach (ListViewItem item in listviewMembers.Items)
+                if (newProject != null)
                 {
-                    if (item.SubItems[2].Text == "Manager")
-                        continue;
-
-                    // Create a new project member
-                    ProjectMemberDTO projectMemberDTO = new ProjectMemberDTO
-                    {
-                        UserId = int.Parse(item.SubItems[0].Text),
-                        RoleInProject = projectMemberRoles.First(r => r.Name == item.SubItems[2].Text).Id,
-                        ProjectId = newProj.Id,
-                        CreatedDate = System.DateTime.Today,
-                    };
-
-                    // Add project member to the database
-                    bool isAddedToProject = projectMemberServices.CreateMemberToProject(projectMemberDTO);
-                    if (!isAddedToProject)
-                    {
-                        MessageBox.Show("Member is already in this project");
-                    }
+                    AddProjectMembers(newProject.Id);
+                    ClearForm();
+                    ShowMessage("Project created successfully.", "Success");
                 }
-
-                // Clear the form fields
-                tbProjectName.Clear();
-                tbProjectCode.Clear();
-                tbBudget.Clear();
-                tbProjectDesrciption.Clear();
-                cbMember.SelectedItem = null;
-                cbRole.SelectedItem = null;
-                listviewMembers.Items.Clear();
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}");
+                ShowMessage($"Database error: {ex.Message}", "Error", MessageBoxIcon.Error);
             }
-        }
-
-        private void btCancelProject_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
+            catch (Exception ex)
+            {
+                ShowMessage($"An error occurred: {ex.Message}", "Error", MessageBoxIcon.Error);
+            }
         }
 
         private void tbSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                try
-                {
-                    string keyword = tbSearch.Text.Trim();
-                    keyword = string.IsNullOrEmpty(keyword) ? "" : keyword;
-
-                    int pageSize = GlobalVariables.PageSize;
-                    projects = projectServices.GetAllProjectsForListInlcudeInActive(keyword);
-
-                    dgvItems.DataSource = projects;
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show($"Lỗi cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                SearchProjects(tbSearch.Text.Trim());
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
@@ -575,6 +304,273 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
             }
+        }
+
+        private void LoadInitialData()
+        {
+            try
+            {
+                _projectMemberRoles = _projectMemberRoleServices.GetAllProjectMemberRoles("");
+                _projectStatuses = _projectStatusServices.GetAllProjectStatuses("");
+                _projectPriorities = _projectPriorityServices.GetAllProjectPriorities("");
+
+                cbRole.DataSource = _projectMemberRoles;
+                cbStatus.DataSource = _projectStatuses;
+                cbPriority.DataSource = _projectPriorities;
+
+                LoadProjects("");
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Error loading initial data: {ex.Message}", "Error", MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadProjects(string keyword)
+        {
+            try
+            {
+                _projects = _projectServices.GetAllProjectsForListInlcudeInActive(keyword);
+
+                if (_projects?.Count > 0)
+                {
+                    dgvItems.DataSource = _projects;
+                    dgvItems.Rows[0].Selected = true;
+                }
+                else
+                {
+                    ShowMessage("No projects found.", "Information", MessageBoxIcon.Information);
+                }
+            }
+            catch (SqlException ex)
+            {
+                ShowMessage("Database error occurred while retrieving projects.", "Error", MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage("An error occurred while retrieving projects.", "Error", MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadProjectDetails(int projectId)
+        {
+            try
+            {
+                _currentProject = _projectServices.GetProjectById(projectId);
+                _currentProjectMembers = _projectMemberServices.GetProjectMembersById(projectId);
+
+                SetProjectInfo();
+            }
+            catch (SqlException ex)
+            {
+                ShowMessage("Database error occurred while retrieving project details.", "Error", MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage("An error occurred while retrieving project details.", "Error", MessageBoxIcon.Error);
+            }
+        }
+
+        private void SetProjectInfo()
+        {
+            if (_currentProject == null) return;
+
+            tbProjectName.Text = _currentProject.Name;
+            tbProjectCode.Text = _currentProject.ProjectCode;
+            tbProjectDesrciption.Text = _currentProject.Description;
+            datePickerStart.Value = _currentProject.StartDate ?? DateTime.Today;
+            datePickerEnd.Value = _currentProject.EndDate ?? DateTime.Today.AddDays(30);
+            tbBudget.Text = _currentProject.Budget.ToString();
+            cbStatus.SelectedValue = _currentProject.StatusId;
+            cbPriority.SelectedValue = _currentProject.PriorityId;
+
+            LoadProjectMembers();
+        }
+
+        private void LoadProjectMembers()
+        {
+            listviewMembers.BeginUpdate();
+            listviewMembers.Items.Clear();
+
+            foreach (var member in _currentProjectMembers)
+            {
+                var user = _userServices.GetUserById(member.UserId);
+                var role = _projectMemberRoles.FirstOrDefault(r => r.Id == member.RoleInProject);
+
+                if (user != null && role != null)
+                {
+                    listviewMembers.Items.Add(new ListViewItem(new[] {
+                        user.Id.ToString(),
+                        user.LastName,
+                        role.Name
+                    }));
+                }
+            }
+
+            listviewMembers.EndUpdate();
+            listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void SearchProjects(string keyword)
+        {
+            try
+            {
+                LoadProjects(string.IsNullOrEmpty(keyword) ? "" : keyword);
+            }
+            catch (SqlException ex)
+            {
+                ShowMessage($"Database error: {ex.Message}", "Error", MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage($"Error: {ex.Message}", "Error", MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ValidateProjectInput()
+        {
+            if (string.IsNullOrWhiteSpace(tbProjectName.Text))
+            {
+                ShowMessage("Project name is required.", "Validation Error", MessageBoxIcon.Warning);
+                tbProjectName.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(tbProjectCode.Text))
+            {
+                ShowMessage("Project code is required.", "Validation Error", MessageBoxIcon.Warning);
+                tbProjectCode.Focus();
+                return false;
+            }
+
+            if (!decimal.TryParse(tbBudget.Text, out decimal budget) || budget <= 0)
+            {
+                ShowMessage("Please enter a valid budget amount.", "Validation Error", MessageBoxIcon.Warning);
+                tbBudget.Focus();
+                return false;
+            }
+
+            if (datePickerEnd.Value <= datePickerStart.Value)
+            {
+                ShowMessage("End date must be after the start date.", "Validation Error", MessageBoxIcon.Warning);
+                datePickerEnd.Focus();
+                return false;
+            }
+
+            if (cbStatus.SelectedValue == null)
+            {
+                ShowMessage("Please select a project status.", "Validation Error", MessageBoxIcon.Warning);
+                cbStatus.Focus();
+                return false;
+            }
+
+            if (cbPriority.SelectedValue == null)
+            {
+                ShowMessage("Please select a project priority.", "Validation Error", MessageBoxIcon.Warning);
+                cbPriority.Focus();
+                return false;
+            }
+
+            if (!listviewMembers.Items.Cast<ListViewItem>().Any(item => item.SubItems[2].Text == "Manager"))
+            {
+                ShowMessage("Please add a team member with Manager role.", "Validation Error", MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (listviewMembers.Items.Count == 0)
+            {
+                ShowMessage("Please add at least one team member to the project.", "Validation Error", MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private ProjectDTO CreateProjectDTOFromForm()
+        {
+            var managerId = listviewMembers.Items.Cast<ListViewItem>()
+                .First(item => item.SubItems[2].Text == "Manager").SubItems[0].Text;
+
+            return new ProjectDTO
+            {
+                Id = _currentProject?.Id ?? 0,
+                Name = tbProjectName.Text,
+                ProjectCode = tbProjectCode.Text,
+                Description = tbProjectDesrciption.Text,
+                StartDate = datePickerStart.Value,
+                EndDate = datePickerEnd.Value,
+                Budget = decimal.Parse(tbBudget.Text),
+                StatusId = (int)cbStatus.SelectedValue,
+                ManagerId = int.Parse(managerId),
+                PriorityId = (int)cbPriority.SelectedValue,
+                CreatedBy = _user.Id
+            };
+        }
+
+        private void UpdateProjectMembers(int projectId)
+        {
+            var userIdsNotInListView = _currentProjectMembers
+                .Where(m => !listviewMembers.Items.Cast<ListViewItem>()
+                    .Any(item => int.Parse(item.SubItems[0].Text) == m.UserId))
+                .Select(m => m.UserId)
+                .ToArray();
+
+            foreach (ListViewItem item in listviewMembers.Items)
+            {
+                if (item.SubItems[2].Text == "Manager") continue;
+
+                var projectMember = new ProjectMemberDTO
+                {
+                    UserId = int.Parse(item.SubItems[0].Text),
+                    RoleInProject = _projectMemberRoles.First(r => r.Name == item.SubItems[2].Text).Id,
+                    ProjectId = projectId,
+                    CreatedDate = DateTime.Today,
+                };
+
+                if (!_projectMemberServices.UpdateProjectMember(projectMember, userIdsNotInListView))
+                {
+                    ShowMessage("Failed to update project member.");
+                    return;
+                }
+            }
+        }
+
+        private void AddProjectMembers(int projectId)
+        {
+            foreach (ListViewItem item in listviewMembers.Items)
+            {
+                if (item.SubItems[2].Text == "Manager") continue;
+
+                var projectMember = new ProjectMemberDTO
+                {
+                    UserId = int.Parse(item.SubItems[0].Text),
+                    RoleInProject = _projectMemberRoles.First(r => r.Name == item.SubItems[2].Text).Id,
+                    ProjectId = projectId,
+                    CreatedDate = DateTime.Today,
+                };
+
+                if (!_projectMemberServices.CreateMemberToProject(projectMember))
+                {
+                    ShowMessage("Member is already in this project");
+                }
+            }
+        }
+
+        private void ClearForm()
+        {
+            tbProjectName.Clear();
+            tbProjectCode.Clear();
+            tbBudget.Clear();
+            tbProjectDesrciption.Clear();
+            cbMember.SelectedItem = null;
+            cbRole.SelectedItem = null;
+            listviewMembers.Items.Clear();
+        }
+
+        private void ShowMessage(string message, string title = "", MessageBoxIcon icon = MessageBoxIcon.Information)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, icon);
         }
     }
 }

@@ -1,162 +1,188 @@
-﻿using Bunifu.UI.WinForms.Helpers.Transitions;
-using BusinessLayer;
-using BusinessLayer.Services;
-using C1.Win.Localization.Design;
+﻿using BusinessLayer.Services;
 using DataLayer.Domain;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
-using PresentationLayer.Config;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace PresentationLayer.Controls.SideBar.Admin
 {
     public partial class CtrlPanelProjectPriorityNew : UserControl
     {
-        private UserDTO user;
+        private readonly UserDTO _user;
+        private readonly ProjectPriorityServices projectPriorityServices = new();
 
-        private ProjectPriorityServices projectPriorityServices;
-
-        private List<ProjectPriorityDTO> projectPriorities;
-
-        private ProjectPriorityDTO currentItem;
+        private List<ProjectPriorityDTO> _projectPriorities;
+        private ProjectPriorityDTO _currentItem;
 
         public CtrlPanelProjectPriorityNew()
         {
-            this.user = UserSession.Instance.User;
+            _user = UserSession.Instance.User;
             InitializeComponent();
         }
+
         private void CtrlPanelProjectPriorityNew_Load(object sender, EventArgs e)
         {
-            InitControl();
-            InitServices();
             try
             {
+                InitializeControl();
                 LoadProjectPriorities();
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Database error occurred while loading project priority: " + ex.Message);
+                ShowErrorMessage("Database error occurred while loading project priorities", ex);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while loading project priority: " + ex.Message);
+                ShowErrorMessage("An unexpected error occurred", ex);
             }
-
         }
 
-        private void InitControl()
+        private void InitializeControl()
         {
-            this.Dock = DockStyle.Fill;
-            this.DoubleBuffered = true;
+            Dock = DockStyle.Fill;
+            DoubleBuffered = true;
 
+            ConfigureDataGridView();
+        }
+
+        private void ConfigureDataGridView()
+        {
             dgvItems.AutoGenerateColumns = false;
             dgvItems.ReadOnly = true;
             dgvItems.MultiSelect = false;
             dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
             dgvItems.Columns.Clear();
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Id", HeaderText = "Id", Name = "Id", Width = 50, ReadOnly = true });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Name", HeaderText = "Name", Name = "Name", Width = 100 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Description", HeaderText = "Description", Name = "Description", Width = 200 });
 
+            AddDataGridViewColumn("Id", "Id", 50);
+            AddDataGridViewColumn("Name", "Name", 100);
+            AddDataGridViewColumn("Description", "Description", 200);
         }
 
-        private void InitServices()
+        private void AddDataGridViewColumn(string propertyName, string headerText, int width)
         {
-            projectPriorityServices = new ProjectPriorityServices();
+            dgvItems.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = propertyName,
+                HeaderText = headerText,
+                Name = propertyName,
+                Width = width,
+                ReadOnly = true
+            });
         }
 
-        private void LoadProjectPriorities()
+        private void LoadProjectPriorities(string keyword = null)
         {
-            projectPriorities = projectPriorityServices.GetAllProjectPrioritiesInlcudeInActive("");
-            dgvItems.DataSource = projectPriorities;
+            try
+            {
+                _projectPriorities = projectPriorityServices.GetAllProjectPrioritiesInlcudeInActive(keyword);
+                dgvItems.DataSource = _projectPriorities;
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("Error loading project priorities", ex);
+            }
         }
 
         private void SetSelectedItemData()
         {
-            if (currentItem == null) return;
+            if (_currentItem == null)
+            {
+                ClearForm();
+                return;
+            }
 
-            tbId.Text = currentItem.Id.ToString();
-            tbName.Text = currentItem.Name;
-            tbDescription.Text = currentItem.Description;
+            tbId.Text = _currentItem.Id.ToString();
+            tbName.Text = _currentItem.Name;
+            tbDescription.Text = _currentItem.Description;
+        }
+
+        private void ClearForm()
+        {
+            tbId.Text = "0";
+            tbName.Clear();
+            tbDescription.Clear();
         }
 
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvItems.SelectedRows.Count > 0)
+            if (dgvItems.SelectedRows.Count > 0 && dgvItems.SelectedRows[0].DataBoundItem is ProjectPriorityDTO selectedItem)
             {
-                currentItem = dgvItems.SelectedRows[0].DataBoundItem as ProjectPriorityDTO;
+                _currentItem = selectedItem;
                 SetSelectedItemData();
             }
-
         }
 
         private void btCreateProject_Click(object sender, EventArgs e)
         {
-            tbId.Text = "0";
-            tbName.Text = string.Empty;
-            tbDescription.Text = string.Empty;
+            _currentItem = null;
+            ClearForm();
         }
 
         private bool ValidateInput()
         {
-            if (string.IsNullOrWhiteSpace(tbId.Text))
+            if (string.IsNullOrWhiteSpace(tbName.Text))
             {
-                MessageBox.Show("Project status name is required.");
+                ShowValidationError("Project priority name is required");
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(tbDescription.Text))
             {
-                MessageBox.Show("Project status description is required.");
+                ShowValidationError("Project priority description is required");
                 return false;
             }
+
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
 
-            bool isRefresh = false;
-
-            if (tbId.Text.Equals("0"))
+            try
             {
-                ProjectPriorityDTO newProjectPriority = new ProjectPriorityDTO()
+                bool success;
+
+                if (tbId.Text == "0") // New item
                 {
-                    Name = tbId.Text,
-                    Description = tbDescription.Text,
-                };
+                    var newProjectPriority = new ProjectPriorityDTO
+                    {
+                        Name = tbName.Text.Trim(),
+                        Description = tbDescription.Text.Trim()
+                    };
 
-                isRefresh = projectPriorityServices.CreateProjectPriority(newProjectPriority);
-            }
-            else
-            {
-                currentItem.Name = tbName.Text;
-                currentItem.Description = tbDescription.Text;
+                    success = projectPriorityServices.CreateProjectPriority(newProjectPriority);
+                }
+                else // Existing item
+                {
+                    if (_currentItem == null) return;
 
-                isRefresh = projectPriorityServices.UpdateProjectPriority(currentItem);
-            }
+                    _currentItem.Name = tbName.Text.Trim();
+                    _currentItem.Description = tbDescription.Text.Trim();
 
-            if (isRefresh)
-            {
-                MessageBox.Show("Project status saved successfully.");
-                LoadProjectPriorities();
+                    success = projectPriorityServices.UpdateProjectPriority(_currentItem);
+                }
+
+                if (success)
+                {
+                    MessageBox.Show("Project priority saved successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadProjectPriorities();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to save project priority.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Failed to save project status.");
+                ShowErrorMessage("Error saving project priority", ex);
             }
         }
 
@@ -166,21 +192,12 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 try
                 {
-                    string keyword = tbSearch.Text.Trim();
-                    keyword = string.IsNullOrEmpty(keyword) ? null : keyword;
-                    int pageSize = GlobalVariables.PageSize;
-
-                    projectPriorities = projectPriorityServices.GetAllProjectPrioritiesInlcudeInActive(keyword);
-
-                    dgvItems.DataSource = projectPriorities;
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show($"Lỗi cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var keyword = string.IsNullOrWhiteSpace(tbSearch.Text) ? null : tbSearch.Text.Trim();
+                    LoadProjectPriorities(keyword);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ShowErrorMessage("Error searching project priorities", ex);
                 }
 
                 e.Handled = true;
@@ -190,11 +207,25 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void splitContainer1_Paint(object sender, PaintEventArgs e)
         {
-            SplitContainer s = sender as SplitContainer;
-            if (s != null)
+            if (sender is SplitContainer splitContainer)
             {
-                e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
+                using (var brush = new SolidBrush(SystemColors.Control))
+                {
+                    e.Graphics.FillRectangle(brush, splitContainer.SplitterRectangle);
+                }
             }
         }
+
+        private void ShowErrorMessage(string message, Exception ex = null)
+        {
+            var fullMessage = ex == null ? message : $"{message}: {ex.Message}";
+            MessageBox.Show(fullMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void ShowValidationError(string message)
+        {
+            MessageBox.Show(message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
     }
 }

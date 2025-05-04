@@ -47,7 +47,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
         {
             this.user = UserSession.Instance.User;
             InitializeComponent();
-            
+
         }
 
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
@@ -106,7 +106,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 tasks = taskServices.GetAllTaskForListInlcudeInActive("");
 
-                if (tasks != null && tasks.Count>0)
+                if (tasks != null && tasks.Count > 0)
                 {
                     dgvItems.DataSource = tasks;
                     dgvItems.Columns.Clear();
@@ -161,7 +161,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 cbProject.DataSource = new List<ProjectForListDTO> { currentTaskProject };
                 cbProject.SelectedValue = currentTask.ProjectId;
-            } else
+            }
+            else
             {
                 cbProject.DataSource = null;
                 cbProject.Text = "No project found";
@@ -286,11 +287,11 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
             catch (SqlException ex)
             {
-                
+
             }
             catch (Exception ex)
             {
- 
+
             }
         }
 
@@ -398,7 +399,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 ProjectId = currentTask.ProjectId,
                 AssignedUserId = (int)CbUser.SelectedValue,
                 StatusId = (int)cbStatus.SelectedValue,
-                PriorityId = (int)cbPriority.SelectedValue,   
+                PriorityId = (int)cbPriority.SelectedValue,
                 StartDate = datepickerStart.Value,
                 DueDate = datepickerEnd.Value,
                 EstimatedHours = int.Parse(tbEstimate.Text),

@@ -50,6 +50,8 @@ namespace BusinessLayer.Services
                 UserDAL userDAL = new UserDAL();
 
                 var user = userDAL.CheckLoginUser(userDTO.ToUserEntity());
+                if (user == null)
+                    return null;
 
                 return UserDTOMapper.ToDto(user);
             }

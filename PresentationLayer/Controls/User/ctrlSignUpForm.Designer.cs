@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlSignUpForm));
-            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -51,7 +51,7 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties18 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties19 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties20 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.bunifuLabel5 = new Bunifu.UI.WinForms.BunifuLabel();
             this.btnShowPassword = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.btnSignUp = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -61,15 +61,23 @@
             this.tbSignUpEmail = new Bunifu.UI.WinForms.BunifuTextBox();
             this.tbSignUpPassword = new Bunifu.UI.WinForms.BunifuTextBox();
             this.btnSignUpBack = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuLabel5
             // 
             this.bunifuLabel5.AllowParentOverrides = false;
+            this.bunifuLabel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bunifuLabel5.AutoEllipsis = false;
+            this.bunifuLabel5.AutoSize = false;
+            this.bunifuLabel5.AutoSizeHeightOnly = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.bunifuLabel5, 2);
             this.bunifuLabel5.CursorType = null;
             this.bunifuLabel5.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold);
-            this.bunifuLabel5.Location = new System.Drawing.Point(159, 27);
+            this.bunifuLabel5.Location = new System.Drawing.Point(165, 5);
             this.bunifuLabel5.Name = "bunifuLabel5";
             this.bunifuLabel5.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel5.Size = new System.Drawing.Size(121, 45);
@@ -83,6 +91,7 @@
             this.btnShowPassword.AllowAnimations = true;
             this.btnShowPassword.AllowBorderColorChanges = true;
             this.btnShowPassword.AllowMouseEffects = true;
+            this.btnShowPassword.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnShowPassword.AnimationSpeed = 200;
             this.btnShowPassword.BackColor = System.Drawing.Color.Transparent;
             this.btnShowPassword.BackgroundColor = System.Drawing.Color.Transparent;
@@ -93,15 +102,16 @@
             this.btnShowPassword.ColorContrastOnClick = 30;
             this.btnShowPassword.ColorContrastOnHover = 30;
             this.btnShowPassword.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.btnShowPassword.CustomizableEdges = borderEdges1;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.btnShowPassword.CustomizableEdges = borderEdges3;
             this.btnShowPassword.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnShowPassword.Image = global::PresentationLayer.Properties.Resources.eye;
             this.btnShowPassword.ImageMargin = new System.Windows.Forms.Padding(0);
-            this.btnShowPassword.Location = new System.Drawing.Point(358, 220);
+            this.btnShowPassword.Location = new System.Drawing.Point(353, 2);
+            this.btnShowPassword.Margin = new System.Windows.Forms.Padding(0);
             this.btnShowPassword.Name = "btnShowPassword";
             this.btnShowPassword.RoundBorders = true;
             this.btnShowPassword.ShowBorders = true;
@@ -115,7 +125,7 @@
             this.btnSignUp.AllowAnimations = true;
             this.btnSignUp.AllowMouseEffects = true;
             this.btnSignUp.AllowToggling = false;
-            this.btnSignUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSignUp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSignUp.AnimationSpeed = 200;
             this.btnSignUp.AutoGenerateColors = false;
             this.btnSignUp.AutoRoundBorders = false;
@@ -129,12 +139,13 @@
             this.btnSignUp.ButtonTextMarginLeft = 0;
             this.btnSignUp.ColorContrastOnClick = 45;
             this.btnSignUp.ColorContrastOnHover = 45;
+            this.tableLayoutPanel1.SetColumnSpan(this.btnSignUp, 2);
             this.btnSignUp.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.btnSignUp.CustomizableEdges = borderEdges2;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.btnSignUp.CustomizableEdges = borderEdges1;
             this.btnSignUp.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnSignUp.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSignUp.DisabledFillColor = System.Drawing.Color.Empty;
@@ -160,7 +171,7 @@
             this.btnSignUp.IdleIconLeftImage = null;
             this.btnSignUp.IdleIconRightImage = null;
             this.btnSignUp.IndicateFocus = false;
-            this.btnSignUp.Location = new System.Drawing.Point(143, 334);
+            this.btnSignUp.Location = new System.Drawing.Point(174, 288);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSignUp.OnDisabledState.BorderRadius = 20;
@@ -194,7 +205,7 @@
             this.btnSignUp.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btnSignUp.OnPressedState.IconLeftImage = null;
             this.btnSignUp.OnPressedState.IconRightImage = null;
-            this.btnSignUp.Size = new System.Drawing.Size(144, 40);
+            this.btnSignUp.Size = new System.Drawing.Size(103, 29);
             this.btnSignUp.TabIndex = 14;
             this.btnSignUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSignUp.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -207,7 +218,7 @@
             // 
             this.tbSignUpLastName.AcceptsReturn = false;
             this.tbSignUpLastName.AcceptsTab = false;
-            this.tbSignUpLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSignUpLastName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tbSignUpLastName.AnimationSpeed = 200;
             this.tbSignUpLastName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.tbSignUpLastName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -233,7 +244,7 @@
             this.tbSignUpLastName.IconRight = null;
             this.tbSignUpLastName.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSignUpLastName.Lines = new string[0];
-            this.tbSignUpLastName.Location = new System.Drawing.Point(219, 98);
+            this.tbSignUpLastName.Location = new System.Drawing.Point(229, 63);
             this.tbSignUpLastName.MaxLength = 32767;
             this.tbSignUpLastName.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSignUpLastName.Modified = false;
@@ -269,7 +280,7 @@
             this.tbSignUpLastName.SelectionLength = 0;
             this.tbSignUpLastName.SelectionStart = 0;
             this.tbSignUpLastName.ShortcutsEnabled = true;
-            this.tbSignUpLastName.Size = new System.Drawing.Size(174, 39);
+            this.tbSignUpLastName.Size = new System.Drawing.Size(192, 39);
             this.tbSignUpLastName.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSignUpLastName.TabIndex = 9;
             this.tbSignUpLastName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -284,7 +295,7 @@
             // 
             this.tbSignUpFirstName.AcceptsReturn = false;
             this.tbSignUpFirstName.AcceptsTab = false;
-            this.tbSignUpFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSignUpFirstName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbSignUpFirstName.AnimationSpeed = 200;
             this.tbSignUpFirstName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.tbSignUpFirstName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -310,7 +321,7 @@
             this.tbSignUpFirstName.IconRight = null;
             this.tbSignUpFirstName.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSignUpFirstName.Lines = new string[0];
-            this.tbSignUpFirstName.Location = new System.Drawing.Point(37, 98);
+            this.tbSignUpFirstName.Location = new System.Drawing.Point(31, 63);
             this.tbSignUpFirstName.MaxLength = 32767;
             this.tbSignUpFirstName.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSignUpFirstName.Modified = false;
@@ -346,7 +357,7 @@
             this.tbSignUpFirstName.SelectionLength = 0;
             this.tbSignUpFirstName.SelectionStart = 0;
             this.tbSignUpFirstName.ShortcutsEnabled = true;
-            this.tbSignUpFirstName.Size = new System.Drawing.Size(176, 39);
+            this.tbSignUpFirstName.Size = new System.Drawing.Size(192, 39);
             this.tbSignUpFirstName.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSignUpFirstName.TabIndex = 10;
             this.tbSignUpFirstName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -361,7 +372,7 @@
             // 
             this.tbSignUpUsername.AcceptsReturn = false;
             this.tbSignUpUsername.AcceptsTab = false;
-            this.tbSignUpUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSignUpUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbSignUpUsername.AnimationSpeed = 200;
             this.tbSignUpUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.tbSignUpUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -376,6 +387,7 @@
             this.tbSignUpUsername.BorderThickness = 1;
             this.tbSignUpUsername.CharacterCase = Bunifu.UI.WinForms.BunifuTextBox.CharacterCases.Normal;
             this.tbSignUpUsername.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.tableLayoutPanel1.SetColumnSpan(this.tbSignUpUsername, 2);
             this.tbSignUpUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSignUpUsername.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
             this.tbSignUpUsername.DefaultText = "";
@@ -387,7 +399,7 @@
             this.tbSignUpUsername.IconRight = null;
             this.tbSignUpUsername.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSignUpUsername.Lines = new string[0];
-            this.tbSignUpUsername.Location = new System.Drawing.Point(37, 157);
+            this.tbSignUpUsername.Location = new System.Drawing.Point(30, 118);
             this.tbSignUpUsername.MaxLength = 32767;
             this.tbSignUpUsername.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSignUpUsername.Modified = false;
@@ -423,7 +435,7 @@
             this.tbSignUpUsername.SelectionLength = 0;
             this.tbSignUpUsername.SelectionStart = 0;
             this.tbSignUpUsername.ShortcutsEnabled = true;
-            this.tbSignUpUsername.Size = new System.Drawing.Size(356, 39);
+            this.tbSignUpUsername.Size = new System.Drawing.Size(392, 39);
             this.tbSignUpUsername.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSignUpUsername.TabIndex = 11;
             this.tbSignUpUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -438,7 +450,7 @@
             // 
             this.tbSignUpEmail.AcceptsReturn = false;
             this.tbSignUpEmail.AcceptsTab = false;
-            this.tbSignUpEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSignUpEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbSignUpEmail.AnimationSpeed = 200;
             this.tbSignUpEmail.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.tbSignUpEmail.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -453,6 +465,7 @@
             this.tbSignUpEmail.BorderThickness = 1;
             this.tbSignUpEmail.CharacterCase = Bunifu.UI.WinForms.BunifuTextBox.CharacterCases.Normal;
             this.tbSignUpEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.tableLayoutPanel1.SetColumnSpan(this.tbSignUpEmail, 2);
             this.tbSignUpEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSignUpEmail.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
             this.tbSignUpEmail.DefaultText = "";
@@ -464,7 +477,7 @@
             this.tbSignUpEmail.IconRight = null;
             this.tbSignUpEmail.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSignUpEmail.Lines = new string[0];
-            this.tbSignUpEmail.Location = new System.Drawing.Point(37, 275);
+            this.tbSignUpEmail.Location = new System.Drawing.Point(30, 228);
             this.tbSignUpEmail.MaxLength = 32767;
             this.tbSignUpEmail.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSignUpEmail.Modified = false;
@@ -500,7 +513,7 @@
             this.tbSignUpEmail.SelectionLength = 0;
             this.tbSignUpEmail.SelectionStart = 0;
             this.tbSignUpEmail.ShortcutsEnabled = true;
-            this.tbSignUpEmail.Size = new System.Drawing.Size(356, 39);
+            this.tbSignUpEmail.Size = new System.Drawing.Size(392, 39);
             this.tbSignUpEmail.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSignUpEmail.TabIndex = 12;
             this.tbSignUpEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -541,7 +554,8 @@
             this.tbSignUpPassword.IconRight = null;
             this.tbSignUpPassword.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSignUpPassword.Lines = new string[0];
-            this.tbSignUpPassword.Location = new System.Drawing.Point(37, 216);
+            this.tbSignUpPassword.Location = new System.Drawing.Point(0, 0);
+            this.tbSignUpPassword.Margin = new System.Windows.Forms.Padding(0);
             this.tbSignUpPassword.MaxLength = 32767;
             this.tbSignUpPassword.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSignUpPassword.Modified = false;
@@ -577,7 +591,7 @@
             this.tbSignUpPassword.SelectionLength = 0;
             this.tbSignUpPassword.SelectionStart = 0;
             this.tbSignUpPassword.ShortcutsEnabled = true;
-            this.tbSignUpPassword.Size = new System.Drawing.Size(316, 39);
+            this.tbSignUpPassword.Size = new System.Drawing.Size(353, 39);
             this.tbSignUpPassword.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSignUpPassword.TabIndex = 13;
             this.tbSignUpPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -593,7 +607,7 @@
             this.btnSignUpBack.AllowAnimations = true;
             this.btnSignUpBack.AllowMouseEffects = true;
             this.btnSignUpBack.AllowToggling = false;
-            this.btnSignUpBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSignUpBack.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSignUpBack.AnimationSpeed = 200;
             this.btnSignUpBack.AutoGenerateColors = false;
             this.btnSignUpBack.AutoRoundBorders = false;
@@ -608,11 +622,11 @@
             this.btnSignUpBack.ColorContrastOnClick = 45;
             this.btnSignUpBack.ColorContrastOnHover = 45;
             this.btnSignUpBack.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.btnSignUpBack.CustomizableEdges = borderEdges3;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.btnSignUpBack.CustomizableEdges = borderEdges2;
             this.btnSignUpBack.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnSignUpBack.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSignUpBack.DisabledFillColor = System.Drawing.Color.Empty;
@@ -638,7 +652,7 @@
             this.btnSignUpBack.IdleIconLeftImage = null;
             this.btnSignUpBack.IdleIconRightImage = null;
             this.btnSignUpBack.IndicateFocus = false;
-            this.btnSignUpBack.Location = new System.Drawing.Point(17, 36);
+            this.btnSignUpBack.Location = new System.Drawing.Point(3, 10);
             this.btnSignUpBack.Name = "btnSignUpBack";
             this.btnSignUpBack.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSignUpBack.OnDisabledState.BorderRadius = 20;
@@ -672,7 +686,7 @@
             this.btnSignUpBack.OnPressedState.ForeColor = System.Drawing.Color.Black;
             this.btnSignUpBack.OnPressedState.IconLeftImage = null;
             this.btnSignUpBack.OnPressedState.IconRightImage = null;
-            this.btnSignUpBack.Size = new System.Drawing.Size(48, 36);
+            this.btnSignUpBack.Size = new System.Drawing.Size(21, 35);
             this.btnSignUpBack.TabIndex = 15;
             this.btnSignUpBack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSignUpBack.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -681,25 +695,60 @@
             this.btnSignUpBack.UseDefaultRadiusAndThickness = true;
             this.btnSignUpBack.Click += new System.EventHandler(this.btnSignUpBack_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.45597F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.45599F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.088032F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.tbSignUpLastName, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnSignUp, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tbSignUpFirstName, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tbSignUpUsername, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbSignUpEmail, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnSignUpBack, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.bunifuLabel5, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(430, 390);
+            this.tableLayoutPanel1.TabIndex = 18;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 2);
+            this.flowLayoutPanel1.Controls.Add(this.tbSignUpPassword);
+            this.flowLayoutPanel1.Controls.Add(this.btnShowPassword);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(30, 168);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(392, 49);
+            this.flowLayoutPanel1.TabIndex = 18;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
             // ctrlSignUpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.bunifuLabel5);
-            this.Controls.Add(this.btnShowPassword);
-            this.Controls.Add(this.btnSignUp);
-            this.Controls.Add(this.tbSignUpLastName);
-            this.Controls.Add(this.tbSignUpFirstName);
-            this.Controls.Add(this.tbSignUpUsername);
-            this.Controls.Add(this.tbSignUpEmail);
-            this.Controls.Add(this.tbSignUpPassword);
-            this.Controls.Add(this.btnSignUpBack);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ctrlSignUpForm";
             this.Size = new System.Drawing.Size(430, 390);
-            this.Load += new System.EventHandler(this.ctrlSignUp_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -714,5 +763,7 @@
         private Bunifu.UI.WinForms.BunifuTextBox tbSignUpEmail;
         private Bunifu.UI.WinForms.BunifuTextBox tbSignUpPassword;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnSignUpBack;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

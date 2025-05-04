@@ -22,19 +22,9 @@ namespace PresentationLayer
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            
-
-        }
-
-        private void ctrlSignUpForm1_Load(object sender, EventArgs e)
-        {
-            this.ctrlSignUpForm1.ctrlLogin = ctrlLoginForm1;
-        }
-
-        private void ctrlLoginForm1_Load(object sender, EventArgs e)
-        {
-            this.ctrlLoginForm1.ctrlSignUp = ctrlSignUpForm1;
-            this.ctrlLoginForm1.frmLogin = this;
+            ctrlLoginForm1.ctrlSignUp = ctrlSignUpForm1;
+            ctrlLoginForm1.frmLogin = this;
+            ctrlSignUpForm1.ctrlLogin = ctrlLoginForm1;
         }
     }
 }

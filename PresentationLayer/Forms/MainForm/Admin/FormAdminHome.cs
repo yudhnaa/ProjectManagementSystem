@@ -1,28 +1,24 @@
-﻿using BusinessLayer.Services;
-using BusinessLayer;
-using DTOLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bunifu.UI.WinForms.BunifuButton;
+
+using BusinessLayer.Services;
+using DTOLayer;
 using DTOLayer.Models;
-using PresentationLayer.UC_SideBar;
-using PresentationLayer.CustomControls;
 using DataLayer.Domain;
-using PresentationLayer.Controls;
-using System.Drawing.Design;
-using System.Data.SqlClient;
-using PresentationLayer.Controls.Project;
+
 using PresentationLayer.AppContext;
 using PresentationLayer.Config;
-using PresentationLayer.Controls.SideBar.Admin;
-using Bunifu.UI.WinForms.BunifuButton;
 using PresentationLayer.Utils;
+using PresentationLayer.Controls;
+using PresentationLayer.Controls.Project;
+using PresentationLayer.Controls.SideBar.Admin;
+using PresentationLayer.CustomControls;
+using PresentationLayer.UC_SideBar;
 
 namespace PresentationLayer
 {
@@ -37,10 +33,6 @@ namespace PresentationLayer
         private CtrlPanelProjectAdminNew ctrlPanelProjectAdminNew;
         private CtrlPanelTaskAdminNew ctrlPanelTaskAdminNew;
         private CtrlPanelUserAdminNew ctrlPanelUserAdminNew;
-
-        private CtrlPanelTaskAdmin ctrlPanelTaskAdmin;
-        private CtrlPanelProjectAdmin ctrlPanelProjectAdmin;
-        private CtrlPanelUserAdmin ctrlPanelUserAdmin;
         private CtrlPanelProjectStatusNew ctrlPanelProjectStatus;
         private CtrlPanelTaskStatusNew ctrlPanelTaskStatusNew;
         private CtrlPanelProjectPriorityNew ctrlPanelProjectPriorityNew;
@@ -53,10 +45,7 @@ namespace PresentationLayer
 
         private BunifuButton currentButton
         {
-            get
-            {
-                return _currentButton;
-            }
+            get => _currentButton;
             set
             {
                 _previousButton = _currentButton ?? value;
@@ -79,11 +68,47 @@ namespace PresentationLayer
             }
         }
 
+        public FormAdminHome()
+        {
+            user = UserSession.Instance.User;
+            InitializeComponent();
+
+            InitFormSettings();
+            InitControls();
+            InitServices();
+            btnProject_Click(btnProject, null);
+        }
+
+        private void InitFormSettings()
+        {
+            WindowState = FormWindowState.Normal;
+            Size = new Size(1920, 1080);
+            StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = true;
+        }
+
+        private void InitControls()
+        {
+            lbUsername.Text = user.Username;
+            lbUserRole.Text = UserSession.Instance.UserRole.Name;
+
+            foreach (var btn in panelLeft.Controls.OfType<BunifuButton>())
+                InitButton(btn);
+        }
+
+        private void InitServices()
+        {
+            taskServices = new TaskServices();
+            projectServices = new ProjectServices();
+            userServices = new UserExtraInfoServices();
+        }
+
         private void InitButton(BunifuButton btn)
         {
             btn.CustomizableEdges.TopLeft = false;
             btn.CustomizableEdges.BottomLeft = false;
-
             btn.CustomizableEdges.BottomRight = true;
             btn.CustomizableEdges.TopRight = true;
 
@@ -106,150 +131,53 @@ namespace PresentationLayer
             btn.Margin = new Padding(10, 0, 0, 0);
         }
 
-        private void InitControls()
+        private void LoadControl<T>(BunifuButton button, ref T control, Func<T> createControl) where T : UserControl
         {
-            btnProject_Click(btnProject, null);
+            currentButton = button;
 
-            this.WindowState = FormWindowState.Maximized;
-
-            lbUsername.Text = this.user.Username;
-            lbUserRole.Text = UserSession.Instance.UserRole.Name;
-
-            panelLeft.Controls.OfType<BunifuButton>()
-                .ToList()
-                .ForEach(btn => InitButton(btn));
-        }
-
-        private void InitServices()
-        {
-            taskServices = new TaskServices();
-            projectServices = new ProjectServices();
-            userServices = new UserExtraInfoServices();
-        }
-
-        public FormAdminHome()
-        {
-            this.user = UserSession.Instance.User;
-
-            InitializeComponent();
-
-            InitControls();
-            InitServices();
-        }
-
-        private void btnProject_Click(object sender, EventArgs e)
-        {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelProjectAdminNew == null)
-                ctrlPanelProjectAdminNew = new CtrlPanelProjectAdminNew();
+            if (control == null)
+                control = createControl();
 
             panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelProjectAdminNew);
-            ctrlPanelProjectAdminNew.BringToFront();
+            panelCenterContent.Controls.Add(control);
+            control.BringToFront();
         }
 
-        private void btnTask_Click(object sender, EventArgs e)
+        private void btnProject_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelProjectAdminNew, () => new CtrlPanelProjectAdminNew());
+
+        private void btnTask_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelTaskAdminNew, () => new CtrlPanelTaskAdminNew());
+
+        private void btnUsers_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelUserAdminNew, () => new CtrlPanelUserAdminNew());
+
+        private void btnTaskStatusAdmin_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelTaskStatusNew, () => new CtrlPanelTaskStatusNew());
+
+        private void btnProjectStatusAdmin_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelProjectStatus, () => new CtrlPanelProjectStatusNew());
+
+        private void btnUserRoleAdmin_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelUserRoleNew, () => new CtrlPanelUserRoleNew());
+
+        private void btnTaskPriorityAdmin_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelTaskPriorityNew, () => new CtrlPanelTaskPriorityNew());
+
+        private void btnProjectPriorityAdmin_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelProjectPriorityNew, () => new CtrlPanelProjectPriorityNew());
+
+        private void btnDepartmentAdmin_Click(object sender, EventArgs e) =>
+            LoadControl(sender as BunifuButton, ref ctrlPanelDepartmentAdminNew, () => new CtrlPanelDepartmentNew());
+
+        private void panelLeft_Paint(object sender, PaintEventArgs e) => DrawRightBorder(sender, e);
+        private void panel2_Paint(object sender, PaintEventArgs e) => DrawRightBorder(sender, e);
+
+        private void DrawRightBorder(object sender, PaintEventArgs e)
         {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelTaskAdminNew == null)
-                ctrlPanelTaskAdminNew = new CtrlPanelTaskAdminNew();
-
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelTaskAdminNew);
-            ctrlPanelTaskAdminNew.BringToFront();
-        }
-
-        private void btnUsers_Click(object sender, EventArgs e)
-        {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelUserAdminNew == null)
-                ctrlPanelUserAdminNew = new CtrlPanelUserAdminNew();
-
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelUserAdminNew);
-            ctrlPanelUserAdminNew.BringToFront();
-        }
-
-        private void btnTaskStatusAdmin_Click(object sender, EventArgs e)
-        {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelTaskStatusNew == null)
-                ctrlPanelTaskStatusNew = new CtrlPanelTaskStatusNew();
-
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelTaskStatusNew);
-            ctrlPanelTaskStatusNew.BringToFront();
-        }
-
-        private void btnProjectStatusAdmin_Click(object sender, EventArgs e)
-        {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelProjectStatus == null)
-                ctrlPanelProjectStatus = new CtrlPanelProjectStatusNew();
-
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelProjectStatus);
-            ctrlPanelProjectStatus.BringToFront();
-        }
-
-        private void btnUserRoleAdmin_Click(object sender, EventArgs e)
-        {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelUserRoleNew == null)
-                ctrlPanelUserRoleNew = new CtrlPanelUserRoleNew();
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelUserRoleNew);
-        }
-
-        private void btnTaskPriorityAdmin_Click(object sender, EventArgs e)
-        {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelTaskPriorityNew == null)
-                ctrlPanelTaskPriorityNew = new CtrlPanelTaskPriorityNew();
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelTaskPriorityNew);
-        }
-
-        private void btnProjectPriorityAdmin_Click(object sender, EventArgs e)
-        {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelProjectPriorityNew == null)
-                ctrlPanelProjectPriorityNew = new CtrlPanelProjectPriorityNew();
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelProjectPriorityNew);
-            ctrlPanelProjectPriorityNew.BringToFront();
-        }
-
-        private void btnDepartmentAdmin_Click(object sender, EventArgs e)
-        {
-            currentButton = sender as BunifuButton;
-
-            if (ctrlPanelDepartmentAdminNew == null)
-                ctrlPanelDepartmentAdminNew = new CtrlPanelDepartmentNew();
-            panelCenterContent.Controls.Clear();
-            panelCenterContent.Controls.Add(ctrlPanelDepartmentAdminNew);
-            ctrlPanelDepartmentAdminNew.BringToFront();
-        }
-
-        private void bunifuSeparator1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelLeft_Paint(object sender, PaintEventArgs e)
-        {
-            Panel panel = sender as Panel;
-            if (panel != null)
+            if (sender is Panel panel)
             {
-                using (Pen pen = new Pen(Color.LightGray, 1)) 
+                using (Pen pen = new Pen(Color.Silver, 1))
                 {
                     int x = panel.Width - 1;
                     e.Graphics.DrawLine(pen, x, 0, x, panel.Height);
@@ -257,17 +185,9 @@ namespace PresentationLayer
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void FormAdminHome_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Panel panel = sender as Panel;
-            if (panel != null)
-            {
-                using (Pen pen = new Pen(Color.LightGray, 1))
-                {
-                    int x = panel.Width - 1;
-                    e.Graphics.DrawLine(pen, x, 0, x, panel.Height);
-                }
-            }
+            Application.Exit();
         }
     }
 }

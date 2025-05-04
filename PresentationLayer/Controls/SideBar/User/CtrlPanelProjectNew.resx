@@ -117,10 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tbSearch.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAA8gAAAAjCAYAAABIOSPeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD8SURBVHhe7ddBCcAwEETR+FeVEBmVUQENy0AOtbDvwVzG
+        wR8DAAAAiL33M+f8zMzMzMzMzLqtmvgGch0AAADQUTWxQAYAAKA9gQwAAAACGQAAAEIgAwAAgEAGAACA
+        EMgAAAAgkAEAACAEMgAAAAhkAAAACIEMAAAAAhkAAABCIAMAAIBABgAAgBDIAAAAIJABAAAgBDIAAAAI
+        ZAAAAAiBDAAAAAIZAAAAQiADAACAQAYAAIAQyAAAACCQAQAAIAQyAAAACGQAAAAIgQwAAAACGQAAAEIg
+        AwAAgEAGAACAEMgAAADwD+S11luHmZmZmZmZWbdVE99ABgAAgO4OFF+CNQwcDMEAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="lbShortDescription.BaseStylesheet" xml:space="preserve">
     <value>#bunifu-label { padding: 0px; font-family: 'Microsoft Sans Serif'; font-size: 12pt; width: 100%; height: 100%; font-style: normal; font-weight: normal; text-decoration: none; color: rgb(160, 160, 160); text-align: left; }</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tbProjectDesrciption.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAfcAAABWCAYAAADSQt/YAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -205,16 +215,6 @@
         UuqRm5OZtNYPEB6+1oO2FSoNQmOMeebmYyFUHpzWzhUFtG0wpsHt2cqVxoUxD5bj1Ov1lId50KbD2P7w
         8HCAiYClY5pViMg9/LEgCAbNZjNDFeIYiDYB+nIcxxav6MQ6NBF57Pb/f4YUishzVCGsEr18GSkb27o2
         9GXf91/jpdBufyeia/YX+StslQK61ysAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="tbSearch.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAA8gAAAAjCAYAAABIOSPeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD8SURBVHhe7ddBCcAwEETR+FeVEBmVUQENy0AOtbDvwVzG
-        wR8DAAAAiL33M+f8zMzMzMzMzLqtmvgGch0AAADQUTWxQAYAAKA9gQwAAAACGQAAAEIgAwAAgEAGAACA
-        EMgAAAAgkAEAACAEMgAAAAhkAAAACIEMAAAAAhkAAABCIAMAAIBABgAAgBDIAAAAIJABAAAgBDIAAAAI
-        ZAAAAAiBDAAAAAIZAAAAQiADAACAQAYAAIAQyAAAACCQAQAAIAQyAAAACGQAAAAIgQwAAAACGQAAAEIg
-        AwAAgEAGAACAEMgAAADwD+S11luHmZmZmZmZWbdVE99ABgAAgO4OFF+CNQwcDMEAAAAASUVORK5CYII=
 </value>
   </data>
 </root>

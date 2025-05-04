@@ -21,9 +21,9 @@ namespace PresentationLayer.Controls.SideBar.Admin
 {
     public partial class CtrlPanelProjectStatusNew : UserControl
     {
-        private UserDTO user;
+        private readonly UserDTO user;
 
-        private ProjectStatusServices projectStatusServices;
+        private readonly ProjectStatusServices projectStatusServices = new();
 
         private List<ProjectStatusDTO> projectStatuses;
 
@@ -37,7 +37,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void CtrlPanelProjectStatus_Load(object sender, EventArgs e)
         {
             InitControl();
-            InitServices();
             try
             {
                 LoadProjectStatuses();
@@ -70,12 +69,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
             dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Description", HeaderText = "Description", Name = "Description", Width = 200 });
 
         }
-
-        private void InitServices()
-        {
-            projectStatusServices = new ProjectStatusServices();
-        }
-
         private void LoadProjectStatuses()
         {
             projectStatuses = projectStatusServices.GetAllProjectStatusesInlcudeInActive("");

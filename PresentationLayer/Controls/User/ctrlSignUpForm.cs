@@ -16,59 +16,35 @@ namespace PresentationLayer.CustomControls
     public partial class ctrlSignUpForm : UserControl
     {
         public UserControl ctrlLogin { get; set; }
-        private bool isShowPassword;
+        private bool isPasswordVisible = false;
 
-        public ctrlSignUpForm()
-        {
-            InitializeComponent();
-            isShowPassword = false;
-            this.Hide();
-            btnShowPassword.Image = Properties.Resources.eye;
-            tbSignUpPassword.PasswordChar = '*';
-        }
+        public ctrlSignUpForm() : this(null) { }
 
         public ctrlSignUpForm(UserControl ctrlLogin)
         {
             InitializeComponent();
             this.ctrlLogin = ctrlLogin;
-            isShowPassword = false;
-            this.Hide();
-            btnShowPassword.Image = Properties.Resources.eye;
             tbSignUpPassword.PasswordChar = '*';
+            btnShowPassword.Image = Properties.Resources.eye;
+            this.Hide();
         }
 
         private void btnSignUpBack_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ctrlLogin.Show();
-        }
-
-        private void ctrlSignUp_Load(object sender, EventArgs e)
-        {
-
+            ctrlLogin?.Show();
         }
 
         private void btnShowPassword_Click(object sender, EventArgs e)
         {
-            isShowPassword = !isShowPassword;
-
-            if (isShowPassword == true)
-            {
-
-                btnShowPassword.Image = Properties.Resources.open_eye;
-                tbSignUpPassword.PasswordChar = '\0';
-
-            }
-            else
-            {
-                btnShowPassword.Image = Properties.Resources.eye;
-                tbSignUpPassword.PasswordChar = '*';
-            }
+            isPasswordVisible = !isPasswordVisible;
+            tbSignUpPassword.PasswordChar = isPasswordVisible ? '\0' : '*';
+            btnShowPassword.Image = isPasswordVisible ? Properties.Resources.open_eye : Properties.Resources.eye;
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            UserDTO userDTO = new UserDTO
+            var userDTO = new UserDTO
             {
                 FirstName = tbSignUpFirstName.Text,
                 LastName = tbSignUpLastName.Text,
@@ -77,13 +53,13 @@ namespace PresentationLayer.CustomControls
                 Email = tbSignUpEmail.Text
             };
 
-            UserServices userServices = new UserServices();
+            var userServices = new UserServices();
             try
             {
                 userServices.CreateUser(userDTO);
                 MessageBox.Show("User created successfully!");
                 this.Hide();
-                ctrlLogin.Show();
+                ctrlLogin?.Show();
             }
             catch (Exception ex)
             {

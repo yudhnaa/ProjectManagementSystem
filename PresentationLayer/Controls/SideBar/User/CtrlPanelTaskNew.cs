@@ -143,16 +143,19 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private void InitServices()
         {
-            // Initialize services here
-            taskServices = new TaskServices();
-            userServices = new UserServices();
-            taskStatusServices = new TaskStatusServices();
-            taskPriorityServices = new TaskPriorityServices();
-            taskServices = new TaskServices();
-            taskCommentServices = new TaskCommentServices();
-
-
+            // Initialize services once to avoid redundant object creation
+            if (taskServices == null)
+                taskServices = new TaskServices();
+            if (userServices == null)
+                userServices = new UserServices();
+            if (taskStatusServices == null)
+                taskStatusServices = new TaskStatusServices();
+            if (taskPriorityServices == null)
+                taskPriorityServices = new TaskPriorityServices();
+            if (taskCommentServices == null)
+                taskCommentServices = new TaskCommentServices();
         }
+
         private void LoadTasks()
         {
             if (CurrentProject == null)
@@ -162,26 +165,19 @@ namespace PresentationLayer.Controls.SideBar.User
             {
                 tasks = taskServices.GetTaskForlistByProjectId(CurrentProject.Id);
 
-                if (tasks != null && tasks.Count>0)
+                if (tasks?.Count > 0)
                 {
                     dgvItems.DataSource = tasks;
-
                     dgvItems.Rows[0].Selected = true;
-
                 }
                 else
                 {
                     MessageBox.Show("No tasks found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Database error occurred while retrieving tasks.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while retrieving tasks.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogError("Error retrieving tasks", ex);
             }
         }
 
@@ -190,27 +186,25 @@ namespace PresentationLayer.Controls.SideBar.User
             try
             {
                 taskStatusDTOs = taskStatusServices.GetAllTaskStatuses("");
-                if (taskStatusDTOs != null)
-                {
-                    cbStatus.DataSource = taskStatusDTOs;
-                }
+                cbStatus.DataSource = taskStatusDTOs ?? new List<TaskStatusDTO>();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading newTask statuses: " + ex.Message);
+                LogError("Error loading task statuses", ex);
             }
         }
 
         private void SetTaskInfo()
         {
-            // Load priority and status information
             try
             {
-                lbTaskProject.Text = String.Format("Project Id: {0} / Task Id: {1} - Task Code: {2} ", CurrentProject.ProjectCode, currentTask.Id, currentTask.Code);
+                lbTaskProject.Text = $"Project Id: {CurrentProject.ProjectCode} / Task Id: {currentTask.Id} - Task Code: {currentTask.Code}";
 
-                // Load user information 
-                lbOwner.Text = userServices.GetUserById(currentTask.AssignedUserId).Username;
-                lbCreatedBy.Text = userServices.GetUserById(currentTask.CreatedBy).Username;
+                var assignedUser = userServices.GetUserById(currentTask.AssignedUserId);
+                var createdByUser = userServices.GetUserById(currentTask.CreatedBy);
+
+                lbOwner.Text = assignedUser?.Username ?? "Unknown";
+                lbCreatedBy.Text = createdByUser?.Username ?? "Unknown";
                 lbDueDate.Text = currentTask.DueDate?.ToString("dd/MM/yyyy");
                 tbDescription.Text = currentTask.Description;
 
@@ -218,51 +212,12 @@ namespace PresentationLayer.Controls.SideBar.User
                 lbStatus._BackColor = Utils.Utils.GetStatusColor(lbStatus.Text);
                 cbStatus.SelectedIndex = currentTask.StatusId - 1;
 
-                lbPriority.Text =  TaskPriorityEnumExtensions.ToString(currentTask.PriorityId);
+                lbPriority.Text = TaskPriorityEnumExtensions.ToString(currentTask.PriorityId);
                 lbPriority._BackColor = Utils.Utils.GetPriorityColor(lbPriority.Text);
-
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(Text = "Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Text = "Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
-
-        private void dgvItems_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvItems.SelectedRows.Count == 1 && dgvItems.SelectedRows[0].Cells["Id"].Value != null)
-            {
-                DataGridViewRow item = dgvItems.SelectedRows[0];
-
-                try
-                {
-                    toggleMode.Checked = false;
-
-                    currentTask = taskServices.GetTaskById((int)item.Cells["Id"].Value);
-
-                    if (user.Id == currentTask.AssignedUserId)
-                        toggleMode.Visible = true;
-                    else
-                        toggleMode.Visible = false;
-
-                    SetTaskInfo();
-                    LoadTaskComments();
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Database error occurred while retrieving project details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred while retrieving project details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                LogError("Error setting task info", ex);
             }
         }
 
@@ -272,30 +227,20 @@ namespace PresentationLayer.Controls.SideBar.User
             {
                 taskComments = await Task.Run(() => taskCommentServices.GetAllTaskCommentsById(currentTask.Id));
 
-                for (int i = panelComments.Controls.Count - 1; i >= 0; i--)
-                {
-                    Control control = panelComments.Controls[i];
-                    if (!(control is BunifuSeparator))
-                    {
-                        panelComments.Controls.Remove(control);
-                    }
-                }
+                panelComments.Controls
+                    .OfType<Control>()
+                    .Where(control => !(control is BunifuSeparator))
+                    .ToList()
+                    .ForEach(control => panelComments.Controls.Remove(control));
 
-                // Set task comments if available
-                if (taskComments != null && taskComments.Count > 0)
+                if (taskComments?.Count > 0)
                 {
                     SetTaskComments();
                 }
             }
-            catch (SqlException ex)
-            {
-                // Log or handle the exception as needed
-                MessageBox.Show("Database error occurred while retrieving task comments: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             catch (Exception ex)
             {
-                // Log or handle the exception as needed
-                MessageBox.Show("An error occurred while retrieving task comments: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogError("Error retrieving task comments", ex);
             }
         }
 
@@ -306,15 +251,45 @@ namespace PresentationLayer.Controls.SideBar.User
 
             foreach (var taskComment in taskComments)
             {
-                UserDTO userComment = userServices.GetUserById(taskComment.UserId);
+                var userComment = userServices.GetUserById(taskComment.UserId);
                 if (userComment == null)
                     continue;
 
-                ControlComment controlComment = new ControlComment();
-                controlComment.Dock = DockStyle.Fill;
+                var controlComment = new ControlComment
+                {
+                    Dock = DockStyle.Fill
+                };
                 controlComment.SetComment(taskComment.CommentText, userComment.Username, ProjectMemberRoleEnumExtensions.ToString(userComment.UserRoleId));
                 panelComments.Controls.Add(controlComment);
             }
+        }
+
+        private void dgvItems_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvItems.SelectedRows.Count != 1 || dgvItems.SelectedRows[0].Cells["Id"].Value == null)
+                return;
+
+            try
+            {
+                toggleMode.Checked = false;
+
+                currentTask = taskServices.GetTaskById((int)dgvItems.SelectedRows[0].Cells["Id"].Value);
+
+                toggleMode.Visible = user.Id == currentTask.AssignedUserId;
+
+                SetTaskInfo();
+                LoadTaskComments();
+            }
+            catch (Exception ex)
+            {
+                LogError("Error retrieving project details", ex);
+            }
+        }
+
+        private void LogError(string message, Exception ex)
+        {
+            // Centralized error logging
+            MessageBox.Show($"{message}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private bool ValidateInputs()

@@ -17,103 +17,101 @@ namespace PresentationLayer.CustomControls
 {
     public partial class ctrlLoginForm : UserControl
     {
-        public UserControl ctrlSignUp {get; set; }
+        public UserControl ctrlSignUp { get; set; }
         public Form frmLogin { get; set; }
-        private bool isShowPassword;
 
-        public ctrlLoginForm()
-        {
-            InitializeComponent();
-            isShowPassword = false;
-            tbPassword.PasswordChar = '*';
-        }
+        private bool isPasswordVisible = false;
+
+        public ctrlLoginForm() : this(null) { }
 
         public ctrlLoginForm(UserControl ctrlSignUp)
         {
             InitializeComponent();
             this.ctrlSignUp = ctrlSignUp;
-            isShowPassword = false;
             tbPassword.PasswordChar = '*';
         }
 
-        private UserDTO loginUser(string userName, string password)
+        private UserDTO AuthenticateUser(string username, string password)
         {
-            UserDTO user = new UserDTO
+            var userServices = new UserServices();
+            return userServices.CheckLoginUser(new UserDTO
             {
-                Username = userName,
+                Username = username,
                 Password = password
-            };
+            });
+        }
 
-            UserServices userServices = new UserServices();
-            UserDTO checkedUser = userServices.CheckLoginUser(user);
 
-            return checkedUser;
+        private bool ValidateInputs(string username, string password)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                MessageBox.Show("Username cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tbUsername.Focus();
+                return false;
+            }
 
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Password cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tbPassword.Focus();
+                return false;
+            }
+
+            return true;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string userName = tbUsername.Text.Trim();
+            string username = tbUsername.Text.Trim();
             string password = tbPassword.Text;
 
-            UserDTO checkedUser = loginUser(userName, password);
+            if (!ValidateInputs(username, password))
+                return;
 
-            if (checkedUser != null)
+            var user = AuthenticateUser(username, password);
+
+            if (user != null)
             {
-                UserRoleServices roleServices = new UserRoleServices();
+                var role = new UserRoleServices().GetUserRoleById(user.Id);
+                UserSession.Instance.SetUser(user, role);
 
-                UserRoleDTO loginUserRole = roleServices.GetUserRoleById(checkedUser.Id);
-
-                UserSession.Instance.SetUser(checkedUser, loginUserRole);
-
-                if (loginUserRole.Name == "Admin" || loginUserRole.Name == "Manager")
-                { 
-                    Form frmHome = new FormAdminHome();
-                    frmLogin.Hide();
-                    frmHome.Show();
-                }
-
-                if (loginUserRole.Name == "Employee")
+                Form homeForm = role.Name switch
                 {
-                    Form frmHome = new FormUserHome();
+                    "Admin" or "Manager" => new FormAdminHome(),
+                    "Employee" => new FormUserHome(),
+                    _ => null
+                };
+
+                if (homeForm != null)
+                {
                     frmLogin.Hide();
-                    frmHome.Show();
+                    homeForm.Show();
                 }
             }
             else
             {
-                DialogResult result = MessageBox.Show("Try Again?", "Login Failed", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
-                if (result == DialogResult.Retry)
+                if (MessageBox.Show("Try Again?", "Login Failed", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning) == DialogResult.Retry)
                 {
                     tbUsername.Clear();
                     tbPassword.Clear();
                     tbUsername.Focus();
                 }
             }
-
         }
-
+      
         private void btnShowPassword_Click(object sender, EventArgs e)
         {
-            isShowPassword = !isShowPassword;
-
-            if (isShowPassword == true)
-            {
-                btnShowPassword.Image = Properties.Resources.open_eye;
-                tbPassword.PasswordChar = '\0';
-
-            }
-            else
-            {
-                btnShowPassword.Image = Properties.Resources.eye;
-                tbPassword.PasswordChar = '*';
-            }
+            isPasswordVisible = !isPasswordVisible;
+            tbPassword.PasswordChar = isPasswordVisible ? '\0' : '*';
+            btnShowPassword.Image = isPasswordVisible ? Properties.Resources.open_eye : Properties.Resources.eye;
         }
 
         private void btnSignUpp_Click(object sender, EventArgs e)
         {
             this.Hide();
-            this.ctrlSignUp.Show();
+            ctrlSignUp?.Show();
         }
     }
+
 }

@@ -15,14 +15,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace PresentationLayer.Controls.SideBar.User
 {
     public partial class CtrlPanelProjectNew : UserControl
     {
-        private UserDTO user;
+        private readonly UserDTO user;
 
         private ProjectServices projectServices;
         private ProjectMemberServices projectMemberServices;
@@ -32,73 +31,30 @@ namespace PresentationLayer.Controls.SideBar.User
         private ProjectPriorityServices projectPriorityServices;
 
         private List<ProjectForListDTO> projects;
-
         private ProjectDTO currentProject;
         private List<ProjectMemberDTO> currentProjectMembers;
 
         private List<ProjectMemberRoleDTO> projectMemberRoles;
-        private List<ProjectStatusDTO> projectStatuses;
-        private List<ProjectPriorityDTO> projectPriorities;
-
-        private Timer debounceTimer;
+        private Dictionary<int, UserDTO> userCache = new Dictionary<int, UserDTO>();
 
         public CtrlPanelProjectNew()
         {
-            this.user = UserSession.Instance.User;
-
+            user = UserSession.Instance.User;
             InitializeComponent();
+        }
+
+        private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
+        {
+            InitControls();
+            InitServices();
+            LoadRoles();
+            LoadProjects();
         }
 
         private void InitControls()
         {
-            this.Dock = DockStyle.Fill;
-
-            dgvItems.AutoGenerateColumns = false;
-            dgvItems.ReadOnly = true;
-            dgvItems.MultiSelect = false;
-            dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgvItems.Columns.Clear();
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Id", HeaderText = "Id", Width = 50, Name = "Id" });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Name", HeaderText = "Project Name", Width = 200 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "ProjectCode", HeaderText = "Project Code", Width = 100 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "StartDate", HeaderText = "Start Date", Width = 100 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                DataPropertyName = "StatusId",
-                HeaderText = "Status",
-                Width = 100,
-                Name = "Status",
-                CellTemplate = new DataGridViewTextBoxCell()
-            });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                DataPropertyName = "PriorityId",
-                HeaderText = "Priority Id",
-                Width = 100,
-                Name = "Priority",
-                CellTemplate = new DataGridViewTextBoxCell()
-            });
-
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "PercentComplete", HeaderText = "Percent Complete", Width = 100 });
-            dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "IsDeleted", HeaderText = "Is Deleted", Width = 100 });
-            dgvItems.CellFormatting += (s, e) =>
-            {
-                if (e.ColumnIndex == dgvItems.Columns["Status"].Index && e.Value != null)
-                {
-                    int statusId = (int)e.Value;
-                    e.Value = ProjectStatusEnumExtensions.ToString(statusId);
-                    e.FormattingApplied = true;
-                }
-
-                if (e.ColumnIndex == dgvItems.Columns["Priority"].Index && e.Value != null)
-                {
-                    int statusId = (int)e.Value;
-                    e.Value = ProjectPriorityEnumExtensions.ToString(statusId);
-                    e.FormattingApplied = true;
-                }
-            };
+            Dock = DockStyle.Fill;
+            ConfigureDataGridView();
         }
 
         private void InitServices()
@@ -106,10 +62,53 @@ namespace PresentationLayer.Controls.SideBar.User
             projectServices = new ProjectServices();
             projectMemberServices = new ProjectMemberServices();
             userServices = new UserServices();
-
             projectMemberRoleServices = new ProjectMemberRoleServices();
             projectStatusServices = new ProjectStatusServices();
             projectPriorityServices = new ProjectPriorityServices();
+        }
+
+        private void ConfigureDataGridView()
+        {
+            dgvItems.AutoGenerateColumns = false;
+            dgvItems.ReadOnly = true;
+            dgvItems.MultiSelect = false;
+            dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dgvItems.Columns.Clear();
+            dgvItems.Columns.AddRange(new DataGridViewColumn[]
+            {
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Width = 50, Name = "Id" },
+                new DataGridViewTextBoxColumn { DataPropertyName = "Name", HeaderText = "Project Name", Width = 200 },
+                new DataGridViewTextBoxColumn { DataPropertyName = "ProjectCode", HeaderText = "Project Code", Width = 100 },
+                new DataGridViewTextBoxColumn { DataPropertyName = "StartDate", HeaderText = "Start Date", Width = 100 },
+                CreateEnumTextColumn("StatusId", "Status", ProjectStatusEnumExtensions.ToString),
+                CreateEnumTextColumn("PriorityId", "Priority", ProjectPriorityEnumExtensions.ToString),
+                new DataGridViewTextBoxColumn { DataPropertyName = "PercentComplete", HeaderText = "Percent Complete", Width = 100 },
+                new DataGridViewTextBoxColumn { DataPropertyName = "IsDeleted", HeaderText = "Is Deleted", Width = 100 }
+            });
+        }
+
+        private DataGridViewTextBoxColumn CreateEnumTextColumn(string propertyName, string headerText, Func<int, string> enumToString)
+        {
+            var column = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = propertyName,
+                HeaderText = headerText,
+                Name = headerText,
+                Width = 100
+            };
+
+            dgvItems.CellFormatting += (s, e) =>
+            {
+                if (e.ColumnIndex == dgvItems.Columns[headerText].Index && e.Value is int intValue)
+                {
+                    e.Value = enumToString(intValue);
+                    e.FormattingApplied = true;
+                }
+            };
+
+            return column;
         }
 
         private void LoadProjects()
@@ -118,40 +117,56 @@ namespace PresentationLayer.Controls.SideBar.User
             {
                 projects = projectServices.GetProjectsForListByUserId(user.Id);
 
-                if (projects != null && projects.Count > 0)
+                if (projects?.Any() == true)
                 {
                     dgvItems.DataSource = projects;
-
                     dgvItems.Rows[0].Selected = true;
                 }
                 else
+                {
                     MessageBox.Show("No projects found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 MessageBox.Show("Database error occurred while retrieving projects.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
-            catch (Exception ex)
+            }
+            catch (Exception)
             {
                 MessageBox.Show("An error occurred while retrieving projects.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void LoadRole()
+        private void LoadRoles()
         {
             projectMemberRoles = projectMemberRoleServices.GetAllProjectMemberRoles("");
         }
 
+        private void LoadProjectDetail(int projectId)
+        {
+            try
+            {
+                currentProject = projectServices.GetProjectById(projectId);
+                SetProjectInfo();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Database error occurred while retrieving project details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occurred while retrieving project details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void SetProjectInfo()
         {
-            lbShortDescription.Text = String.Format("Project: {0} / Code: {1}", currentProject.Name, currentProject.ProjectCode);
+            lbShortDescription.Text = $"Project: {currentProject.Name} / Code: {currentProject.ProjectCode}";
             lbName.Text = currentProject.Name;
             tbProjectCode.Text = currentProject.ProjectCode;
-
             tbProjectDesrciption.Text = currentProject.Description;
-            datePickerStart.Value = (DateTime)currentProject.StartDate;
-            datePickerEnd.Value = (DateTime)currentProject.EndDate;
+            datePickerStart.Value = currentProject.StartDate ?? DateTime.Now;
+            datePickerEnd.Value = currentProject.EndDate ?? DateTime.Now;
             tbBudget.Text = currentProject.Budget.ToString();
 
             lbPriority.Text = TaskPriorityEnumExtensions.ToString(currentProject.PriorityId);
@@ -161,99 +176,79 @@ namespace PresentationLayer.Controls.SideBar.User
             lbStatus._BackColor = Utils.Utils.GetStatusColor(lbStatus.Text);
 
             currentProjectMembers = projectMemberServices.GetProjectMembersById(currentProject.Id);
-            listviewMembers.Items.Clear();
             listviewMembers.BeginUpdate();
-            foreach (ProjectMemberDTO member in currentProjectMembers)
+            listviewMembers.Items.Clear();
+
+            foreach (var member in currentProjectMembers)
             {
-                UserDTO user = userServices.GetUserById(member.UserId);
-                ProjectMemberRoleDTO role = projectMemberRoles.FirstOrDefault(r => r.Id == member.RoleInProject);
-                if (user != null && role != null)
+                if (!userCache.TryGetValue(member.UserId, out var memberUser))
                 {
-                    listviewMembers.Items.Add(new ListViewItem(new string[] { user.Id.ToString(), user.LastName, role.Name }));
+                    memberUser = userServices.GetUserById(member.UserId);
+                    if (memberUser != null) userCache[member.UserId] = memberUser;
+                }
+
+                var role = projectMemberRoles.FirstOrDefault(r => r.Id == member.RoleInProject);
+                if (memberUser != null && role != null)
+                {
+                    listviewMembers.Items.Add(new ListViewItem(new[] { memberUser.Id.ToString(), memberUser.LastName, role.Name }));
                 }
             }
+
             listviewMembers.EndUpdate();
             listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
-        {
-            InitControls();
-            InitServices();
-            LoadRole();
-            LoadProjects();
-        }
-
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvItems.SelectedRows.Count == 1 && dgvItems.SelectedRows[0].Cells["Id"].Value != null)
+            if (dgvItems.SelectedRows.Count == 1 && dgvItems.SelectedRows[0].Cells["Id"].Value is int projectId)
             {
-                DataGridViewRow item = dgvItems.SelectedRows[0];
-
-                try
-                {
-                    currentProject = projectServices.GetProjectById((int)item.Cells["Id"].Value);
-                    SetProjectInfo();
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Database error occurred while retrieving project details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred while retrieving project details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                LoadProjectDetail(projectId);
             }
         }
 
-        private void btnRemoveMember_Click(object sender, System.EventArgs e)
+        private void btnRemoveMember_Click(object sender, EventArgs e)
         {
             if (listviewMembers.SelectedItems.Count > 0)
             {
-                // Remove the selected item from the ListView
                 listviewMembers.Items.Remove(listviewMembers.SelectedItems[0]);
             }
             else
             {
                 MessageBox.Show("Please select a member to remove.");
             }
-
         }
 
         private void tbSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                try
-                {
-                    string keyword = tbSearch.Text.Trim();
-                    keyword = string.IsNullOrEmpty(keyword) ? "" : keyword;
-
-                    int pageSize = GlobalVariables.PageSize;
-                    projects = projectServices.GetAllProjectsForList(keyword);
-
-                    dgvItems.DataSource = projects;
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show($"Lỗi cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                SearchProjects(tbSearch.Text.Trim());
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
         }
 
+        private void SearchProjects(string keyword)
+        {
+            try
+            {
+                projects = projectServices.GetAllProjectsForList(keyword ?? "");
+                dgvItems.DataSource = projects;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void splitContainer1_Paint(object sender, PaintEventArgs e)
         {
-            SplitContainer s = sender as SplitContainer;
-            if (s != null)
+            if (sender is SplitContainer s)
             {
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
             }
