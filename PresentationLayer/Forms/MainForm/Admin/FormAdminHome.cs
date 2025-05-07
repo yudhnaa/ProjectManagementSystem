@@ -82,7 +82,7 @@ namespace PresentationLayer
         private void InitFormSettings()
         {
             WindowState = FormWindowState.Normal;
-            Size = new Size(1920, 1080);
+            Size = new Size(1720, 880);
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
