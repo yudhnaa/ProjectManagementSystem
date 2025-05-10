@@ -2,6 +2,7 @@
 using DataLayer.Domain;
 using DataLayer.EnumObjects;
 using DTOLayer.Models;
+using System;
 using System.Collections.Generic;
 
 namespace BusinessLayer.Services
@@ -30,5 +31,6 @@ namespace BusinessLayer.Services
         List<TaskForListDTO> GetTaskAllForlistByProjectIdAndUserIdAndKwInlcudeInActive(int projectId, int userId, string kw);
         bool UpdateTask(TaskDTO newTaskDTO);
         bool UpdateTaskStatus(int taskId, TaskStatusEnum? taskStatusEnum);
+        Dictionary<DateTime, int> GetCompletedTaskByDate(int userId);
     }
 }
