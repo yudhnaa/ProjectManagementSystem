@@ -193,6 +193,12 @@
     <Compile Include="Controls\Others\RoundedLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\SideBar\User\CtrlPanelGant.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBar\User\CtrlPanelGant.Designer.cs">
+      <DependentUpon>CtrlPanelGant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SideBar\User\CtrlPanelProjectNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -525,6 +531,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Others\LabelWithImage.resx">
       <DependentUpon>LabelWithImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelGant.resx">
+      <DependentUpon>CtrlPanelGant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelProjectNew.resx">
       <DependentUpon>CtrlPanelProjectNew.cs</DependentUpon>

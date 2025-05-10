@@ -35,7 +35,7 @@ namespace PresentationLayer
                 {
                     //Username = "admin",
                     Username = "awhite",
-                    Password = "hashed_password_789"
+                    Password = "1"
                 });
 
             Color.FromArgb(159, 179, 223);

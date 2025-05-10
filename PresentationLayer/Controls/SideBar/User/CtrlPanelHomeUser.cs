@@ -43,10 +43,8 @@ namespace PresentationLayer.Controls.SideBar
         {
             this.Dock = DockStyle.Fill;
             
-
             int marginH = (int)(tableLayoutPanel1.Width / 4 * 0.2);
             int marginV = (int)(tableLayoutPanel1.Height / 4 * 0.2);
-
 
             chart2.Margin = new Padding(marginH, marginV, marginH, marginV);
             chart3.Margin = new Padding(marginH, marginV, marginH, marginV);
@@ -59,6 +57,7 @@ namespace PresentationLayer.Controls.SideBar
             var taskInProject = new TaskServices();
             var data = taskInProject.CountTaskByProjectAndUserId(userId);
             // Clear existing series
+            chart2.Titles.Clear();
             chart2.Series.Clear();
 
             // Create a new series
@@ -94,6 +93,7 @@ namespace PresentationLayer.Controls.SideBar
             var data = taskServices.CountTaskByStatusAndUserId(userId);
             
             // Clear existing series
+            chart3.Titles.Clear();
             chart3.Series.Clear();
 
             // Create a new series
@@ -124,6 +124,7 @@ namespace PresentationLayer.Controls.SideBar
             var taskServices = new TaskServices();
             var data = taskServices.GetCompletedTaskByDate(userId);
             // Clear existing series
+            chartCompletedTasks.Titles.Clear();
             chartCompletedTasks.Series.Clear();
 
             Series series1 = new Series

@@ -175,9 +175,9 @@ namespace PresentationLayer
 
         private void btnGant_Click(object sender, EventArgs e)
         {
-            //currentButton = sender as BunifuButton;
-            //ucGant ??= new CtrlPanelGant { Dock = DockStyle.Fill };
-            //LoadControl(ucGant);
+            currentButton = sender as BunifuButton;
+            ucGant ??= new CtrlPanelGant { Dock = DockStyle.Fill };
+            LoadControl(ucGant);
         }
 
         private void btnProjects_Click(object sender, EventArgs e)
