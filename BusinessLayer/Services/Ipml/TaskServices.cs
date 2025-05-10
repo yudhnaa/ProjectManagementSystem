@@ -487,5 +487,22 @@ namespace BusinessLayer.Services
                 throw new Exception("An error occurred while updating task.", ex);
             }
         }
+
+        public Dictionary<DateTime, int> GetCompletedTaskByDate(int userId)
+        {
+            ITaskDAL taskDAL= new TaskDAL();
+            List<Task> tasks = taskDAL.GetAllTasks("", false);
+
+            var taskUser = taskDAL.GetTaskByUserId(userId, false).Select(t=>TaskDTOMapper.ToDto(t)).ToList();
+
+            var grouped = taskUser
+                .Where(t=>t.UpdatedDate.HasValue)
+                .GroupBy(t=>t.UpdatedDate.Value.Date)
+                .OrderBy(g=>g.Key)
+                .ToDictionary(g=>g.Key, g=>g.Count());
+
+            return grouped;
+
+        }
     }
 }

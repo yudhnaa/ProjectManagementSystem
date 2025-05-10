@@ -3,8 +3,6 @@ using Bunifu.UI.WinForms;
 using BusinessLayer;
 using BusinessLayer.Services;
 using BusinessLayer.Services.Ipml;
-using C1.GanttView;
-using C1.Win.Localization.Design;
 using DataLayer.Domain;
 using DataLayer.EnumObjects;
 using DTOLayer;
@@ -52,11 +50,11 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private TaskDTO currentTask;
 
-        private ITaskServices taskServices;
-        private IUserServices userServices;
-        private ITaskStatusServices taskStatusServices;
-        private ITaskPriorityServices taskPriorityServices;
-        private ITaskCommentServices taskCommentServices;
+        private readonly ITaskServices taskServices = new TaskServices();
+        private readonly IUserServices userServices = new UserServices();
+        private readonly ITaskStatusServices taskStatusServices = new TaskStatusServices();
+        private readonly ITaskPriorityServices taskPriorityServices = new TaskPriorityServices();
+        private readonly ITaskCommentServices taskCommentServices = new TaskCommentServices();
 
         private List<TaskStatusDTO> taskStatusDTOs;
         private List<TaskCommentDTO> taskComments;
@@ -71,7 +69,6 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
         {
-            InitServices();
             LoadTaskStatuses();
         }
 
@@ -141,21 +138,6 @@ namespace PresentationLayer.Controls.SideBar.User
             };
         }
 
-        private void InitServices()
-        {
-            // Initialize services once to avoid redundant object creation
-            if (taskServices == null)
-                taskServices = new TaskServices();
-            if (userServices == null)
-                userServices = new UserServices();
-            if (taskStatusServices == null)
-                taskStatusServices = new TaskStatusServices();
-            if (taskPriorityServices == null)
-                taskPriorityServices = new TaskPriorityServices();
-            if (taskCommentServices == null)
-                taskCommentServices = new TaskCommentServices();
-        }
-
         private void LoadTasks()
         {
             if (CurrentProject == null)
@@ -210,7 +192,7 @@ namespace PresentationLayer.Controls.SideBar.User
 
                 lbStatus.Text = TaskStatusEnumExtensions.ToString(currentTask.StatusId);
                 lbStatus._BackColor = Utils.Utils.GetStatusColor(lbStatus.Text);
-                cbStatus.SelectedIndex = currentTask.StatusId - 1;
+                //cbStatus.SelectedIndex = currentTask.StatusId - 1;
 
                 lbPriority.Text = TaskPriorityEnumExtensions.ToString(currentTask.PriorityId);
                 lbPriority._BackColor = Utils.Utils.GetPriorityColor(lbPriority.Text);
@@ -335,7 +317,6 @@ namespace PresentationLayer.Controls.SideBar.User
             {
                 try
                 {
-                    taskServices = new TaskServices();
                     string keyword = tbSearch.Text.Trim();
                     keyword = string.IsNullOrEmpty(keyword) ? "" : keyword;
 

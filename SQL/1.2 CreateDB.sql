@@ -1,3 +1,5 @@
+Use master
+GO
 Create DATABASE [ProjectManagementSystemDB]
 GO
 Use [ProjectManagementSystemDB]
@@ -30,7 +32,7 @@ CREATE TABLE [dbo].[Departments](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](100) NOT NULL,
 	[Description] [nvarchar](200) NULL,
-	[ManagerId] [int] NULL,
+	[ManagerId] [int]  NULL,
 	[IsActive] [bit] NULL,
 	[IsDeleted] [bit] NULL,
 	[CreatedDate] [datetime] NULL,
@@ -291,7 +293,7 @@ CREATE TABLE [dbo].[Projects](
 	[StatusId] [int] NOT NULL,
 	[ManagerId] [int] NOT NULL,
 	[PriorityId] [int] NOT NULL,
-	[PercentComplete] [decimal](5, 2) NULL,
+	[PercentComplete] [decimal](5, 2) DEFAULT 0 NULL,
 	[IsDeleted] [bit] NULL,
 	[CreatedBy] [int] NOT NULL,
 	[CreatedDate] [datetime] NULL,
@@ -606,13 +608,10 @@ CREATE TABLE [dbo].[Users](
 	[Avatar] [nvarchar](255) NULL,
 	[UserRoleId] [int] NOT NULL,
 	[PositionId] [int] NULL,
-	[HireDate] [date] NULL,
-	[DepartmentId] [int] NULL,
-	[ReportTo] [int] NULL,
-	[Salary] [decimal](18, 2) NULL,
+	[DepartmentId] [int] NOT NULL,
 	[LastLogin] [datetime] NULL,
-	[IsActive] [bit] NULL,
-	[IsDeleted] [bit] NULL,
+	[IsActive] [bit] NULL DEFAULT 0,
+	[IsDeleted] [bit] NOT NULL DEFAULT 0,
 	[CreatedDate] [datetime] NULL,
 	[UpdatedDate] [datetime] NULL,
 PRIMARY KEY CLUSTERED 
@@ -691,8 +690,6 @@ ALTER TABLE [dbo].[ProjectPriorities] ADD  DEFAULT (getdate()) FOR [CreatedDate]
 GO
 ALTER TABLE [dbo].[ProjectPriorities] ADD  DEFAULT (getdate()) FOR [UpdatedDate]
 GO
-ALTER TABLE [dbo].[Projects] ADD  DEFAULT ((0)) FOR [PercentComplete]
-GO
 ALTER TABLE [dbo].[Projects] ADD  DEFAULT ((0)) FOR [IsDeleted]
 GO
 ALTER TABLE [dbo].[Projects] ADD  DEFAULT (getdate()) FOR [CreatedDate]
@@ -761,13 +758,7 @@ ALTER TABLE [dbo].[UserRoles] ADD  DEFAULT (getdate()) FOR [CreatedDate]
 GO
 ALTER TABLE [dbo].[UserRoles] ADD  DEFAULT (getdate()) FOR [UpdatedDate]
 GO
-ALTER TABLE [dbo].[Users] ADD  DEFAULT ((1)) FOR [IsActive]
-GO
-ALTER TABLE [dbo].[Users] ADD  DEFAULT ((0)) FOR [IsDeleted]
-GO
 ALTER TABLE [dbo].[Users] ADD  DEFAULT (getdate()) FOR [CreatedDate]
-GO
-ALTER TABLE [dbo].[Users] ADD  DEFAULT (getdate()) FOR [UpdatedDate]
 GO
 ALTER TABLE [dbo].[AuditLogs]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[Users] ([Id])
@@ -894,9 +885,6 @@ REFERENCES [dbo].[Positions] ([Id])
 GO
 ALTER TABLE [dbo].[Users]  WITH CHECK ADD FOREIGN KEY([DepartmentId])
 REFERENCES [dbo].[Departments] ([Id])
-GO
-ALTER TABLE [dbo].[Users]  WITH CHECK ADD FOREIGN KEY([ReportTo])
-REFERENCES [dbo].[Users] ([Id])
 GO
 ALTER TABLE [dbo].[TaskDependencies]  WITH CHECK ADD  CONSTRAINT [CHK_TaskDependency] CHECK  (([TaskId]<>[DependsOnTaskId]))
 GO

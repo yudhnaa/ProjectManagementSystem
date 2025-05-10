@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BusinessLayer.Services;
+using DTOLayer.Models;
+using PresentationLayer.AppContext;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +16,12 @@ namespace PresentationLayer.Controls.SideBar
 {
     public partial class CtrlPanelHomeUser : UserControl
     {
+        private readonly UserDTO user;
+        private readonly IUserServices userServices= new UserServices();
+        private readonly ITaskServices taskServices= new TaskServices();
         public CtrlPanelHomeUser()
         {
+            user = UserSession.Instance.User;
             InitializeComponent();
             
         }
@@ -30,7 +37,7 @@ namespace PresentationLayer.Controls.SideBar
             
             GenerateChartData2();
             GenerateChartData3();
-            GenerateChartData4();
+            SetDataChartCompletedOfDay(user.Id);
 
             int marginH = (int)(tableLayoutPanel1.Width / 4 * 0.4);
             int marginV = (int)(tableLayoutPanel1.Height / 4 * 0.4);
@@ -38,7 +45,7 @@ namespace PresentationLayer.Controls.SideBar
 
             chart2.Margin = new Padding(marginH, marginV, marginH, marginV);
             chart3.Margin = new Padding(marginH, marginV, marginH, marginV);
-            chart4.Margin = new Padding(marginH, marginV, marginH, marginV);
+            chartCompletedTasks.Margin = new Padding(marginH, marginV, marginH, marginV);
 
         }
 
@@ -62,7 +69,7 @@ namespace PresentationLayer.Controls.SideBar
             // Add series to chart
             chart2.Series.Add(series);
 
-            // Set chart titles (optional)
+            // SetDataChartCompletedOfDay chart titles (optional)
             chart2.Titles.Add("Sample Chart");
             chart2.ChartAreas[0].AxisX.Title = "X Axis";
             chart2.ChartAreas[0].AxisY.Title = "Y Axis";
@@ -88,36 +95,39 @@ namespace PresentationLayer.Controls.SideBar
             // Add series to chart
             chart3.Series.Add(series);
 
-            // Set chart titles (optional)
+            // SetDataChartCompletedOfDay chart titles (optional)
             chart3.Titles.Add("Sample Chart");
             chart3.ChartAreas[0].AxisX.Title = "X Axis";
             chart3.ChartAreas[0].AxisY.Title = "Y Axis";
         }
 
-        private void GenerateChartData4()
+        private void SetDataChartCompletedOfDay(int userId)
         {
+            var taskServices = new TaskServices();
+            var data = taskServices.GetCompletedTaskByDate(userId);
             // Clear existing series
-            chart4.Series.Clear();
+            chartCompletedTasks.Series.Clear();
 
-            // Create a new series
-            Series series = new Series("Sample Data");
-            series.ChartType = SeriesChartType.Spline;
-
-            // Generate sample data
-            Random rnd = new Random();
-            for (int i = 1; i <= 10; i++)
+            Series series1 = new Series
             {
-                int yValue = rnd.Next(10, 100); // Random value between 10 and 100
-                series.Points.AddXY(i, yValue);
+                Name = "Số Task đã hoàn thành",
+                ChartType = SeriesChartType.Spline,
+                BorderWidth = 2,
+                Color = Color.Blue,
+                XValueType = ChartValueType.Date,
+                YValueType = ChartValueType.Int32,
+            };
+
+           foreach (var item in data)
+            {
+                series1.Points.AddXY(item.Key, item.Value);
             }
+            chartCompletedTasks.Series.Add(series1);
 
-            // Add series to chart
-            chart4.Series.Add(series);
-
-            // Set chart titles (optional)
-            chart4.Titles.Add("Sample Chart");
-            chart4.ChartAreas[0].AxisX.Title = "X Axis";
-            chart4.ChartAreas[0].AxisY.Title = "Y Axis";
+            // SetDataChartCompletedOfDay chart titles (optional)
+            chartCompletedTasks.Titles.Add("Task Hoàn thành theo ngày");
+            chartCompletedTasks.ChartAreas[0].AxisX.Title = "Ngày";
+            chartCompletedTasks.ChartAreas[0].AxisY.Title = "Số Task hoàn thành";
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -143,5 +153,8 @@ namespace PresentationLayer.Controls.SideBar
                 e.Graphics.DrawLine(pen, x, 0, x, panel.Height); // Vẽ đường dọc
             }
         }
+
+       
+
     }
 }

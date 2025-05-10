@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -495,12 +495,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controls\SideBar\User\CtrlPanelGant.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\SideBar\User\CtrlPanelGant.Designer.cs">
-      <DependentUpon>CtrlPanelGant.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\unused\CtrlPanelHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -693,9 +687,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelGant.resx">
-      <DependentUpon>CtrlPanelGant.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\unused\CtrlPanelHome.resx">
       <DependentUpon>CtrlPanelHome.cs</DependentUpon>
     </EmbeddedResource>

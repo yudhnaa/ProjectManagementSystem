@@ -413,6 +413,5 @@ namespace PresentationLayer.UC_SideBar
 
         #endregion
 
-        private C1.Win.C1GanttView.C1GanttView c1GanttView1;
     }
 }

@@ -41,15 +41,23 @@ INSERT INTO [Departments] (Name, Description, ManagerId) VALUES
 ('Sales', 'Sales Department', NULL);
 
 -- Insert sample data into Users
-INSERT INTO [Users] (Username, Password, Email, FirstName, LastName, PhoneNumber, Address, Avatar, UserRoleId, PositionId, HireDate, DepartmentId, ReportTo, Salary, LastLogin, IsActive, IsDeleted, CreatedDate, UpdatedDate) VALUES
-('admin', 'hashed_password_123', 'admin@pms.com', 'System', 'Administrator', '555-0100', '123 Admin St, Admin City', '/avatars/admin.jpg', 1, 1, '2022-01-01', 1, NULL, 8000.00, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('jsmith', 'hashed_password_456', 'john.smith@pms.com', 'John', 'Smith', '555-0101', '456 Manager Ave, Business City', '/avatars/jsmith.jpg', 2, 2, '2022-03-15', 1, 1, 6000.00, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('awhite', 'hashed_password_789', 'alice.white@pms.com', 'Alice', 'White', '555-0102', '789 Developer Ln, Tech Town', '/avatars/awhite.jpg', 3, 3, '2022-06-10', 1, 2, 4500.00, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('bbrown', 'hashed_password_101', 'bob.brown@pms.com', 'Bob', 'Brown', '555-0103', '101 Tester Rd, QA City', '/avatars/bbrown.jpg', 3, 3, '2023-01-20', 1, 2, 4200.00, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('cjones', 'hashed_password_102', 'carol.jones@pms.com', 'Carol', 'Jones', '555-0104', '102 Designer Blvd, UX Town', '/avatars/cjones.jpg', 2, 2, '2023-05-15', 2, 1, 5500.00, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('dgreen', 'hashed_password_103', 'david.green@pms.com', 'David', 'Green', '555-0105', '103 DevOps Ave, Cloud City', '/avatars/dgreen.jpg', 3, 3, '2023-08-22', 2, 5, 4800.00, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('eblack', 'hashed_password_104', 'emma.black@pms.com', 'Emma', 'Black', '555-0106', '104 Analyst St, Data Town', '/avatars/eblack.jpg', 3, 3, '2024-01-10', 2, 5, 4300.00, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('fwilson', 'hashed_password_105', 'frank.wilson@pms.com', 'Frank', 'Wilson', '555-0107', '105 Product Rd, Business Park', '/avatars/fwilson.jpg', 2, 2, '2024-03-05', 1, 1, 5800.00, GETDATE(), 1, 0, GETDATE(), GETDATE());
+INSERT INTO [Users] (Username, Password, Email, FirstName, LastName, PhoneNumber, Address, Avatar, UserRoleId, PositionId, DepartmentId, LastLogin, IsActive, IsDeleted, CreatedDate, UpdatedDate) VALUES
+('admin', '1', 'admin@pms.com', 'System', 'Administrator', '555-0100', '123 Admin St, Admin City', '/avatars/admin.jpg', 1, 1, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('jsmith', '1', 'john.smith@pms.com', 'John', 'Smith', '555-0101', '456 Manager Ave, Business City', '/avatars/jsmith.jpg', 2, 2, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('awhite', '1', 'alice.white@pms.com', 'Alice', 'White', '555-0102', '789 Developer Ln, Tech Town', '/avatars/awhite.jpg', 3, 3, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('bbrown', '1', 'bob.brown@pms.com', 'Bob', 'Brown', '555-0103', '101 Tester Rd, QA City', '/avatars/bbrown.jpg', 3, 3, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('cjones', '1', 'carol.jones@pms.com', 'Carol', 'Jones', '555-0104', '102 Designer Blvd, UX Town', '/avatars/cjones.jpg', 2, 2, 2, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('dgreen', '1', 'david.green@pms.com', 'David', 'Green', '555-0105', '103 DevOps Ave, Cloud City', '/avatars/dgreen.jpg', 3, 3, 2, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('eblack', '1', 'emma.black@pms.com', 'Emma', 'Black', '555-0106', '104 Analyst St, Data Town', '/avatars/eblack.jpg', 3, 3, 2, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('fwilson', '1', 'frank.wilson@pms.com', 'Frank', 'Wilson', '555-0107', '105 Product Rd, Business Park', '/avatars/fwilson.jpg', 2, 2, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('gmoore', '1', 'grace.moore@pms.com', 'Grace', 'Moore', '555-0108', '106 Finance St, Money City', '/avatars/gmoore.jpg', 3, 3, 3, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('hlee', '1', 'henry.lee@pms.com', 'Henry', 'Lee', '555-0109', '107 Marketing Blvd, Branding Town', '/avatars/hlee.jpg', 2, 2, 4, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('iperez', '1', 'isabel.perez@pms.com', 'Isabel', 'Perez', '555-0110', '108 Sales Ave, Revenue City', '/avatars/iperez.jpg', 3, 3, 5, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('jkim', '1', 'james.kim@pms.com', 'James', 'Kim', '555-0111', '109 IT Pkwy, Server Town', '/avatars/jkim.jpg', 3, 3, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('knguyen', '1', 'kelly.nguyen@pms.com', 'Kelly', 'Nguyen', '555-0112', '110 HR Lane, Recruitment City', '/avatars/knguyen.jpg', 3, 3, 2, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('lgarcia', '1', 'luis.garcia@pms.com', 'Luis', 'Garcia', '555-0113', '111 Finance Dr, Budget Town', '/avatars/lgarcia.jpg', 2, 2, 3, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('mwang', '1', 'mia.wang@pms.com', 'Mia', 'Wang', '555-0114', '112 Marketing St, Creative City', '/avatars/mwang.jpg', 3, 3, 4, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('nsingh', '1', 'noah.singh@pms.com', 'Noah', 'Singh', '555-0115', '113 Sales Blvd, Client Town', '/avatars/nsingh.jpg', 3, 3, 5, GETDATE(), 1, 0, GETDATE(), GETDATE());
 
 -- Finally, update Departments with manager references after Users exist
 UPDATE [Departments] SET ManagerId = 2 WHERE Name = 'IT';
@@ -94,9 +102,9 @@ INSERT INTO [Tasks] (Code, Name, Description, ProjectId, AssignedUserId, StatusI
 ('T003', 'Task 3', 'First task description', 1, 3, 2, 1, '2025-01-15', '2025-02-15', 40.00, 25.00, 1),
 ('T004', 'Task 4', 'Second task description', 1, 3, 1, 2, '2025-02-16', '2025-03-15', 60.00, 0.00, 1),
 ('T007', 'Task 7', 'Second task description', 2, 2, 1, 2, '2025-02-16', '2025-03-15', 60.00, 0.00, 1),
-('T008', 'Task 8', 'Second task description', 2, 3, 1, 2, '2025-02-16', '2025-03-15', 60.00, 0.00, 1);
-
-
+('T008', 'Task 8', 'Second task description', 2, 3, 1, 2, '2025-02-16', '2025-03-15', 60.00, 0.00, 1),
+('T009', 'Task 9', '9th task description', 2, 3, 1, 2, '2025-02-16', '2025-03-15', 60.00, 0.00, 1),
+('T0010', 'Task 10', '10th task description', 2, 3, 1, 3, '2026-01-11', '2026-03-15', 10.00, 0.00, 1);
 
 -- Insert sample data into ProjectMemberRoles
 INSERT INTO [ProjectMemberRoles] (Name, Description, CreatedDate, UpdatedDate) VALUES
@@ -111,3 +119,52 @@ INSERT INTO [ProjectMembers] (ProjectId, UserId, JoinDate, RoleInProject, IsConf
 (1, 3, '2025-01-03', 2, 1, '2025-01-04', 1, 0, GETDATE(), GETDATE()), -- Developer for Project Alpha
 (2, 2, '2025-02-01', 1, 1, '2025-02-02', 1, 0, GETDATE(), GETDATE()), -- Manager for Project Beta
 (2, 3, '2025-02-03', 2, 1, '2025-02-04', 1, 0, GETDATE(), GETDATE()); -- Developer for Project Beta
+
+
+-- Insert sample data into TaskComments table
+INSERT INTO [dbo].[TaskComments] ([TaskId], [UserId], [CommentText], [IsEdited], [CreatedDate], [UpdatedDate])
+VALUES
+    (1, 1, 'Initial comment on the task.', 0, GETDATE(), GETDATE()),
+    (1, 2, 'Follow-up comment with additional details.', 0, GETDATE(), GETDATE()),
+    (2, 3, 'Requesting clarification on the task requirements.', 0, GETDATE(), GETDATE()),
+    (3, 1, 'Updated the task description based on feedback.', 1, GETDATE(), GETDATE()),
+    (3, 2, 'Task is on track for completion.', 0, GETDATE(), GETDATE()),
+    (3, 3, 'Need to review the task with the team.', 0, GETDATE(), GETDATE()),
+    (3, 1, 'Task has been updated with new requirements.', 0, GETDATE(), GETDATE()),
+    (3, 2, 'Completed the first phase of the task.', 0, GETDATE(), GETDATE()),
+    (3, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0, GETDATE(), GETDATE()),
+    (3, 3, 'Awaiting confirmation from the project manager.', 0, GETDATE(), GETDATE()),
+    (4, 1, 'Task is under review by the team lead.', 0, GETDATE(), GETDATE()),
+    (4, 2, 'Finalizing the task for submission.', 0, GETDATE(), GETDATE()),
+    (4, 3, 'Need to discuss the task with the team.', 0, GETDATE(), GETDATE()),
+    (4, 1, 'Finalizing the task details before submission.', 0, GETDATE(), GETDATE()),
+    (4, 2, 'Task has been completed successfully.', 0, GETDATE(), GETDATE()),
+    (4, 3, 'Awaiting approval for the completed task.', 0, GETDATE(), GETDATE()),
+    (4, 4, 'Marked this task as completed.', 0, GETDATE(), GETDATE()),
+    (5, 1, 'Task is in progress and on schedule.', 0, GETDATE(), GETDATE()),
+    (5, 2, 'Need to address some issues with the task.', 0, GETDATE(), GETDATE()),
+    (5, 3, 'Task is behind schedule due to unforeseen circumstances.', 0, GETDATE(), GETDATE()),
+    (5, 1, 'Task is progressing well and on track.', 0, GETDATE(), GETDATE()),
+    (5, 2, 'Need to allocate more resources to this task.', 0, GETDATE(), GETDATE()),
+    (5, 3, 'Task is nearing completion.', 0, GETDATE(), GETDATE()),
+    (6, 1, 'Task has been assigned to the development team.', 0, GETDATE(), GETDATE()),
+    (6, 2, 'Need to review the task with the project manager.', 0, GETDATE(), GETDATE()),
+    (6, 3, 'Task is in the testing phase.', 0, GETDATE(), GETDATE()),
+    (6, 1, 'Task is ready for review by the QA team.', 0, GETDATE(), GETDATE()),
+    (6, 2, 'Need to finalize the task details before submission.', 0, GETDATE(), GETDATE()),
+    (6, 3, 'Awaiting feedback from the QA team.', 0, GETDATE(), GETDATE()),
+    (7, 1, 'Task is in progress and on schedule.', 0, GETDATE(), GETDATE()),
+    (7, 2, 'Need to address some issues with the task.', 0, GETDATE(), GETDATE()),
+    (7, 3, 'Task is behind schedule due to unforeseen circumstances.', 0, GETDATE(), GETDATE()),
+    (7, 1, 'Task is progressing well and on track.', 0, GETDATE(), GETDATE()),
+    (7, 2, 'Need to allocate more resources to this task.', 0, GETDATE(), GETDATE()),
+    (7, 3, 'Task is nearing completion.', 0, GETDATE(), GETDATE()),
+    (7, 1, 'Task is in the final stages of development.', 0, GETDATE(), GETDATE()),
+    (7, 2, 'Need to finalize the task details before submission.', 0, GETDATE(), GETDATE()),
+    (7, 3, 'Awaiting feedback from the project manager.', 0, GETDATE(), GETDATE()),
+    (8, 1, 'Task has been assigned to the development team.', 0, GETDATE(), GETDATE()),
+    (8, 2, 'Need to review the task with the project manager.', 0, GETDATE(), GETDATE()),
+    (8, 3, 'Task is in the testing phase.', 0, GETDATE(), GETDATE()),
+    (8, 1, 'Task is ready for review by the QA team.', 0, GETDATE(), GETDATE()),
+    (8, 2, 'Need to finalize the task details before submission.', 0, GETDATE(), GETDATE()),
+    (8, 3, 'Awaiting feedback from the QA team.', 0, GETDATE(), GETDATE());
