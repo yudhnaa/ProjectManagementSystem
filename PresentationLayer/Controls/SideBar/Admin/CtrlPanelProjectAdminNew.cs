@@ -17,12 +17,12 @@ namespace PresentationLayer.Controls.SideBar.Admin
     public partial class CtrlPanelProjectAdminNew : UserControl
     {
         // Services
-        private readonly ProjectServices _projectServices;
-        private readonly ProjectMemberServices _projectMemberServices;
-        private readonly UserServices _userServices;
-        private readonly ProjectMemberRoleServices _projectMemberRoleServices;
-        private readonly ProjectStatusServices _projectStatusServices;
-        private readonly ProjectPriorityServices _projectPriorityServices;
+        private readonly IProjectServices _projectServices = new ProjectServices();
+        private readonly IProjectMemberServices _projectMemberServices = new ProjectMemberServices();
+        private readonly IUserServices _userServices = new UserServices();
+        private readonly IProjectMemberRoleServices _projectMemberRoleServices = new ProjectMemberRoleServices();
+        private readonly IProjectStatusServices _projectStatusServices = new ProjectStatusServices();
+        private readonly IProjectPriorityServices _projectPriorityServices = new ProjectPriorityServices();
 
         // Data
         private List<ProjectForListDTO> _projects;

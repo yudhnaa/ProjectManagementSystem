@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace PresentationLayer.Controls.SideBar.User
     public partial class CtrlPanelTaskNew : UserControl
     {
         private readonly UserDTO user;
-        private TaskDTO parentTask;
+        private readonly TaskDTO parentTask;
 
         private ProjectForListDTO _currentProject;
         public ProjectForListDTO CurrentProject
@@ -52,15 +53,17 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private TaskDTO currentTask;
 
-        private ITaskServices taskServices;
-        private IUserServices userServices;
-        private ITaskStatusServices taskStatusServices;
-        private ITaskPriorityServices taskPriorityServices;
-        private ITaskCommentServices taskCommentServices;
+        private readonly ITaskServices taskServices = new TaskServices();
+        private readonly IUserServices userServices = new UserServices();
+        private readonly ITaskStatusServices taskStatusServices = new TaskStatusServices();
+        private readonly ITaskPriorityServices taskPriorityServices = new TaskPriorityServices();
+        private readonly ITaskCommentServices taskCommentServices = new TaskCommentServices();
 
         private List<TaskStatusDTO> taskStatusDTOs;
         private List<TaskCommentDTO> taskComments;
         private RoundedLabel lbStatus;
+
+
 
         public CtrlPanelTaskNew()
         {
@@ -71,7 +74,6 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
         {
-            InitServices();
             LoadTaskStatuses();
         }
 
@@ -141,20 +143,7 @@ namespace PresentationLayer.Controls.SideBar.User
             };
         }
 
-        private void InitServices()
-        {
-            // Initialize services once to avoid redundant object creation
-            if (taskServices == null)
-                taskServices = new TaskServices();
-            if (userServices == null)
-                userServices = new UserServices();
-            if (taskStatusServices == null)
-                taskStatusServices = new TaskStatusServices();
-            if (taskPriorityServices == null)
-                taskPriorityServices = new TaskPriorityServices();
-            if (taskCommentServices == null)
-                taskCommentServices = new TaskCommentServices();
-        }
+        
 
         private void LoadTasks()
         {
@@ -335,7 +324,6 @@ namespace PresentationLayer.Controls.SideBar.User
             {
                 try
                 {
-                    taskServices = new TaskServices();
                     string keyword = tbSearch.Text.Trim();
                     keyword = string.IsNullOrEmpty(keyword) ? "" : keyword;
 

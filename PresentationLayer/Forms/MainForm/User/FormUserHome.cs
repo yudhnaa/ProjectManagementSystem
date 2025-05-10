@@ -39,6 +39,7 @@ namespace PresentationLayer
 
         private BunifuButton _currentButton;
         private BunifuButton _previousButton;
+        
 
         private BunifuButton currentButton
         {
@@ -80,6 +81,11 @@ namespace PresentationLayer
                 InitButton(btn);
 
             btnHome_Click(btnHome, null); // Default screen  
+        }
+
+        public void ucHome_Selected()
+        {
+
         }
 
         private void LoadProjects()
@@ -157,6 +163,7 @@ namespace PresentationLayer
             currentButton = sender as BunifuButton;
             ucHome ??= new CtrlPanelHomeUser { Dock = DockStyle.Fill };
             LoadControl(ucHome);
+            ucHome.LoadAllCharts();
         }
 
         private void btnTask_Click(object sender, EventArgs e)

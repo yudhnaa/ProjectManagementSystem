@@ -13,7 +13,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
     public partial class CtrlPanelProjectPriorityNew : UserControl
     {
         private readonly UserDTO _user;
-        private readonly ProjectPriorityServices projectPriorityServices = new();
+        private readonly IProjectPriorityServices projectPriorityServices = new ProjectPriorityServices();
 
         private List<ProjectPriorityDTO> _projectPriorities;
         private ProjectPriorityDTO _currentItem;

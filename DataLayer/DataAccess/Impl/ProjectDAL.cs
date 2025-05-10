@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using System.Linq;
@@ -50,7 +51,9 @@ namespace DataLayer.DataAccess
 
                     if (!isIncludeInActive)
                     {
-                        query = query.Where(p => ProjectStatusEnumExtensions.FromId(p.StatusId) != ProjectStatusEnum.Cancelled && p.IsDeleted == false);
+                        int cancelledId = ProjectStatusEnumExtensions.ToId(ProjectStatusEnum.Cancelled);
+
+                        query = query.Where(p => p.StatusId != cancelledId && p.IsDeleted == false);
                     }
 
                     return query.ToList();

@@ -9,6 +9,9 @@ namespace BusinessLayer.Services
     public interface ITaskServices
     {
         int CountTaskByProjectId(int id);
+        Dictionary<string, int> CountTaskByStatusAndUserId(int userId);
+        Dictionary<string, int> CountTaskByProjectAndUserId(int userId);
+
         bool CreateTask(TaskDTO taskDTO, int createdByUserId);
         bool DeleteTask(TaskDTO taskDTO);
         List<TaskDTO> GetAllTask(string kw);

@@ -23,7 +23,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
     {
         private readonly UserDTO user;
 
-        private readonly ProjectStatusServices projectStatusServices = new();
+        private readonly IProjectStatusServices projectStatusServices = new ProjectStatusServices();
 
         private List<ProjectStatusDTO> projectStatuses;
 

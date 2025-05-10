@@ -24,7 +24,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
     {
         private UserDTO user;
 
-        private UserRoleServices userRoleServices;
+        private readonly IUserRoleServices userRoleServices = new UserRoleServices();
 
         private List<UserRoleDTO> userRolees;
 
@@ -38,7 +38,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void CtrlPanelUserRoleNew_Load(object sender, EventArgs e)
         {
             InitControl();
-            InitServices();
             try
             {
                 LoadUserRolees();
@@ -72,10 +71,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         }
 
-        private void InitServices()
-        {
-            userRoleServices = new UserRoleServices();
-        }
+        
 
         private void LoadUserRolees()
         {

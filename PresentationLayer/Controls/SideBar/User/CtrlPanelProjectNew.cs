@@ -23,12 +23,12 @@ namespace PresentationLayer.Controls.SideBar.User
     {
         private readonly UserDTO user;
 
-        private ProjectServices projectServices;
-        private ProjectMemberServices projectMemberServices;
-        private UserServices userServices;
-        private ProjectMemberRoleServices projectMemberRoleServices;
-        private ProjectStatusServices projectStatusServices;
-        private ProjectPriorityServices projectPriorityServices;
+        private readonly IProjectServices projectServices = new ProjectServices();
+        private readonly IProjectMemberServices projectMemberServices = new ProjectMemberServices();
+        private readonly IUserServices userServices = new UserServices();
+        private readonly IProjectMemberRoleServices projectMemberRoleServices= new ProjectMemberRoleServices();
+        private readonly IProjectStatusServices projectStatusServices = new ProjectStatusServices();
+        private readonly IProjectPriorityServices projectPriorityServices = new ProjectPriorityServices();
 
         private List<ProjectForListDTO> projects;
         private ProjectDTO currentProject;
@@ -46,7 +46,6 @@ namespace PresentationLayer.Controls.SideBar.User
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
         {
             InitControls();
-            InitServices();
             LoadRoles();
             LoadProjects();
         }
@@ -57,15 +56,7 @@ namespace PresentationLayer.Controls.SideBar.User
             ConfigureDataGridView();
         }
 
-        private void InitServices()
-        {
-            projectServices = new ProjectServices();
-            projectMemberServices = new ProjectMemberServices();
-            userServices = new UserServices();
-            projectMemberRoleServices = new ProjectMemberRoleServices();
-            projectStatusServices = new ProjectStatusServices();
-            projectPriorityServices = new ProjectPriorityServices();
-        }
+
 
         private void ConfigureDataGridView()
         {
@@ -115,17 +106,10 @@ namespace PresentationLayer.Controls.SideBar.User
         {
             try
             {
-                projects = projectServices.GetProjectsForListByUserId(user.Id);
-
-                if (projects?.Any() == true)
-                {
-                    dgvItems.DataSource = projects;
-                    dgvItems.Rows[0].Selected = true;
-                }
-                else
-                {
-                    MessageBox.Show("No projects found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                projects = projectServices.GetAllProjectsForList("");
+                dgvItems.DataSource = projects;
+                dgvItems.Rows[0].Selected = true;
+          
             }
             catch (SqlException)
             {

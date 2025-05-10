@@ -22,17 +22,17 @@ namespace PresentationLayer.Controls.SideBar.Admin
     {
         private UserDTO user;
         private TaskDTO parentTask;
-        private TaskServices taskServices;
+        private readonly ITaskServices taskServices = new TaskServices();
 
         private List<TaskForListDTO> tasks;
 
         private TaskDTO currentTask;
-        private ProjectForListDTO currentTaskProject;
+        private ProjectForListDTO currentTaskProject = new ProjectForListDTO();
 
-        private UserServices userServices;
-        private TaskStatusServices taskStatusServices;
-        private TaskPriorityServices taskPriorityServices;
-        private ProjectServices projectServices;
+        private readonly IUserServices userServices = new UserServices();
+        private readonly ITaskStatusServices taskStatusServices = new TaskStatusServices();
+        private readonly ITaskPriorityServices taskPriorityServices = new TaskPriorityServices();
+        private readonly IProjectServices projectServices = new ProjectServices();
 
         private List<TaskStatusDTO> taskStatusDTOs;
         private List<TaskPriorityDTO> taskPriorityDTOs;
@@ -53,7 +53,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
         {
             InitConTrols();
-            InitServices();
             LoadTaskStatuses();
             LoadTaskPriorities();
             LoadTasks();
@@ -87,18 +86,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             debounceTimer.Tick += DebounceTimer_Tick;
         }
 
-        private void InitServices()
-        {
-            // Initialize services here
-            taskServices = new TaskServices();
-            userServices = new UserServices();
-            taskStatusServices = new TaskStatusServices();
-            taskPriorityServices = new TaskPriorityServices();
-            taskServices = new TaskServices();
-            projectServices = new ProjectServices();
-
-
-        }
+        
         private void LoadTasks()
         {
             // Load data into controls here
@@ -468,7 +456,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 try
                 {
-                    taskServices = new TaskServices();
                     string keyword = tbSearch.Text.Trim();
                     int pageSize = 10;
 

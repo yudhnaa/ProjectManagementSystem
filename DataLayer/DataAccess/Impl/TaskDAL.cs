@@ -30,6 +30,7 @@ namespace DataLayer.DataAccess
             }
         }
 
+        
         public Task GetTaskById(int taskId, bool isIncludeInActive)
         {
             using (var dbContext = new ProjectManagementSystemDBContext())
@@ -273,6 +274,22 @@ namespace DataLayer.DataAccess
                 }
             }
         }
+        //public List<Task> GetTasksByUserWithStatus(int userId)
+        //{
+        //    using (var dbContext = new ProjectManagementSystemDBContext())
+        //    {
+        //        try
+        //        {
+        //            return dbContext.Tasks
+        //            .Where(t => t.AssignedUserId == userId && (t.IsDeleted == false || t.IsDeleted == null))
+        //            .ToList();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //}
 
         public List<Task> GetTaskByProjectIdAndUserIdAndKw(int projectId, int userId, string kw, bool isIncludeInActive)
         {
