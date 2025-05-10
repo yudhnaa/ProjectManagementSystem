@@ -34,7 +34,7 @@ namespace PresentationLayer
                 {
                     //Username = "admin",
                     Username = "awhite",
-                    Password = "1"
+                    Password = "hashed_password_789"
                 });
 
             UserSession.Instance.SetUser(user, userRoleServices.GetUserRoleById(user.UserRoleId));
