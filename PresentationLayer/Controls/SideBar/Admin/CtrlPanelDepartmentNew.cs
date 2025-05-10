@@ -19,8 +19,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
     {
         private readonly UserDTO user;
 
-        private readonly DepartmentServices departmentServices = new();
-        private readonly UserServices userSerices = new();
+        private readonly IDepartmentServices departmentServices = new DepartmentServices();
+        private readonly IUserServices userSerices = new UserServices();
 
         private List<DepartmentDTO> departmentes;
         private DepartmentDTO currentItem;
@@ -269,5 +269,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
         }
 
+        
     }
 }

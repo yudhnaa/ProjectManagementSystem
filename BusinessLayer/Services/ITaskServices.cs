@@ -1,5 +1,4 @@
-﻿using DataLayer.DataAccess;
-using DataLayer.Domain;
+﻿using DataLayer.Domain;
 using DataLayer.Domain;
 using DataLayer.EnumObjects;
 using DTOLayer.Models;
@@ -11,6 +10,9 @@ namespace BusinessLayer.Services
     public interface ITaskServices
     {
         int CountTaskByProjectId(int id);
+        Dictionary<string, int> CountTaskByStatusAndUserId(int userId);
+        Dictionary<string, int> CountTaskByProjectAndUserId(int userId);
+
         bool CreateTask(TaskDTO taskDTO, int createdByUserId);
         bool DeleteTask(TaskDTO taskDTO);
         List<TaskDTO> GetAllTask(string kw);
@@ -29,8 +31,6 @@ namespace BusinessLayer.Services
         List<TaskForListDTO> GetTaskAllForlistByProjectIdAndUserIdAndKwInlcudeInActive(int projectId, int userId, string kw);
         bool UpdateTask(TaskDTO newTaskDTO);
         bool UpdateTaskStatus(int taskId, TaskStatusEnum? taskStatusEnum);
-
         Dictionary<DateTime, int> GetCompletedTaskByDate(int userId);
-
     }
 }

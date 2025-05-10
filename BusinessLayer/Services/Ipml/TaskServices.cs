@@ -24,7 +24,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                
+
                 var count = taskDAL.CountTaskByProjectId(id);
 
                 if (count == 0)
@@ -41,6 +41,43 @@ namespace BusinessLayer.Services
             {
                 throw new Exception("An error occurred while counting tasks.", ex);
             }
+        }
+        public Dictionary<string, int> CountTaskByStatusAndUserId(int userId)
+        {
+            ITaskStatusDAL taskStatusDAL = new TaskStatusDAL();
+            List<TaskStatus> taskStatuses = taskStatusDAL.GetAllTaskStatuses("", false);
+
+            var tasks = taskDAL.GetTaskByUserId(userId, false).Select(t => TaskDTOMapper.ToDto(t)).ToList();
+
+                var grouped = tasks
+                .GroupBy(t => t.StatusId)
+                .ToDictionary(g => {
+                    return taskStatuses.Where(ts => ts.Id == g.Key).FirstOrDefault().Name;
+                }, g => g.Count());
+
+            foreach(var status in taskStatuses)
+            {
+                bool isContainKey = grouped.ContainsKey(status.Name);
+                if (isContainKey == false)
+                {
+                    grouped.Add(status.Name, 0);
+                }
+            }
+            return grouped;
+        }
+        public Dictionary<string, int> CountTaskByProjectAndUserId(int userId)
+        {
+            IProjectDAL projectDAL = new ProjectDAL();
+            var projects = projectDAL.GetAllProjects("", false);
+
+            var tasks = taskDAL.GetTaskByUserId(userId, false);
+
+            var grouped = tasks
+                .GroupBy(t => t.ProjectId)
+            .ToDictionary(g => {
+                return projects.Where(ts => ts.Id == g.Key).FirstOrDefault().Name;
+            }, g => g.Count());
+            return grouped;
         }
 
         public bool CreateTask(TaskDTO taskDTO, int createdByUserId)
@@ -490,16 +527,16 @@ namespace BusinessLayer.Services
 
         public Dictionary<DateTime, int> GetCompletedTaskByDate(int userId)
         {
-            ITaskDAL taskDAL= new TaskDAL();
+            ITaskDAL taskDAL = new TaskDAL();
             List<Task> tasks = taskDAL.GetAllTasks("", false);
 
-            var taskUser = taskDAL.GetTaskByUserId(userId, false).Select(t=>TaskDTOMapper.ToDto(t)).ToList();
+            var taskUser = taskDAL.GetTaskByUserId(userId, false).Select(t => TaskDTOMapper.ToDto(t)).ToList();
 
             var grouped = taskUser
-                .Where(t=>t.UpdatedDate.HasValue)
-                .GroupBy(t=>t.UpdatedDate.Value.Date)
-                .OrderBy(g=>g.Key)
-                .ToDictionary(g=>g.Key, g=>g.Count());
+                .Where(t => t.UpdatedDate.HasValue)
+                .GroupBy(t => t.UpdatedDate.Value.Date)
+                .OrderBy(g => g.Key)
+                .ToDictionary(g => g.Key, g => g.Count());
 
             return grouped;
 

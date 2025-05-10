@@ -26,10 +26,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private UserExtraInfoDTO currentUser;
 
-        private UserRoleServices userRoleServices;
-        private DepartmentServices departmentServices;
-        private UserExtraInfoServices userExtraInfoServices;
-        private UserServices userServices;
+        private readonly IUserRoleServices userRoleServices = new UserRoleServices();
+        private readonly IDepartmentServices departmentServices = new DepartmentServices();
+        private readonly IUserExtraInfoServices userExtraInfoServices = new UserExtraInfoServices();
+        private readonly IUserServices userServices = new UserServices();
 
         private List<DepartmentDTO> departmentDTOs;
         private List<UserRoleDTO> userRoleDTOs;
@@ -51,7 +51,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
 
             InitConTrols();
-            InitServices();
             try
             {
                 LoadDepartments();
@@ -88,16 +87,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             tbPassword.PasswordChar = '*';
         }
 
-        private void InitServices()
-        {
-            // Initialize services here
-            userRoleServices = new UserRoleServices();
-            departmentServices = new DepartmentServices();
-            userExtraInfoServices = new UserExtraInfoServices();
-            userServices = new UserServices();
-
-
-        }
+        
         private void LoadDepartments()
         {
             departmentDTOs = departmentServices.GetAllDepartments("");

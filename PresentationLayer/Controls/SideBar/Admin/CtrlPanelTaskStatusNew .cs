@@ -23,7 +23,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
     {
         private UserDTO user;
 
-        private TaskStatusServices taskStatusServices;
+        private readonly ITaskStatusServices taskStatusServices = new TaskStatusServices();
 
         private List<TaskStatusDTO> taskStatuses;
 
@@ -37,7 +37,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void CtrlPanelTasktStatusNew_Load(object sender, EventArgs e)
         {
             InitControl();
-            InitServices();
             try
             {
                 LoadTaskStatuses();
@@ -71,11 +70,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         }
 
-        private void InitServices()
-        {
-            taskStatusServices = new TaskStatusServices();
-        }
-
+       
         private void LoadTaskStatuses()
         {
             taskStatuses = taskStatusServices.GetAllTaskStatusesInlcudeInActive("");

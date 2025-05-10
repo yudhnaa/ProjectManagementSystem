@@ -16,31 +16,36 @@ namespace PresentationLayer.Controls.SideBar
 {
     public partial class CtrlPanelHomeUser : UserControl
     {
+
         private readonly UserDTO user;
-        private readonly IUserServices userServices= new UserServices();
-        private readonly ITaskServices taskServices= new TaskServices();
+        private readonly IUserServices userServices = new UserServices();
+        private readonly ITaskServices taskServices = new TaskServices();
+
         public CtrlPanelHomeUser()
         {
             user = UserSession.Instance.User;
             InitializeComponent();
-            
         }
 
         private void CtrlPanelHomeUser_Load(object sender, EventArgs e)
         {
             InitControl();
+            LoadAllCharts();
         }
 
+        public void LoadAllCharts()
+        {
+            SetDataChartTasksPerProject(user.Id);
+            SetDataChartStatusOfTask(user.Id);
+            SetDataChartCompletedOfDay(user.Id);
+        }
         private void InitControl()
         {
             this.Dock = DockStyle.Fill;
             
-            GenerateChartData2();
-            GenerateChartData3();
-            SetDataChartCompletedOfDay(user.Id);
 
-            int marginH = (int)(tableLayoutPanel1.Width / 4 * 0.4);
-            int marginV = (int)(tableLayoutPanel1.Height / 4 * 0.4);
+            int marginH = (int)(tableLayoutPanel1.Width / 4 * 0.2);
+            int marginV = (int)(tableLayoutPanel1.Height / 4 * 0.2);
 
 
             chart2.Margin = new Padding(marginH, marginV, marginH, marginV);
@@ -49,54 +54,67 @@ namespace PresentationLayer.Controls.SideBar
 
         }
 
-        private void GenerateChartData2()
+        private void SetDataChartTasksPerProject(int userId)
         {
+            var taskInProject = new TaskServices();
+            var data = taskInProject.CountTaskByProjectAndUserId(userId);
             // Clear existing series
             chart2.Series.Clear();
 
             // Create a new series
-            Series series = new Series("Sample Data");
-            series.ChartType = SeriesChartType.Column;
-
-            // Generate sample data
-            Random rnd = new Random();
-            for (int i = 1; i <= 10; i++)
+            Series series = new Series
             {
-                int yValue = rnd.Next(10, 100); // Random value between 10 and 100
-                series.Points.AddXY(i, yValue);
+                Name = "Tasks per Project",
+                ChartType = SeriesChartType.Column,
+                Color = Color.CornflowerBlue,
+                BorderWidth = 1,
+                
+                YValueType = ChartValueType.Int32
+            };
+            
+            // Generate sample data
+            foreach(var item in data)
+            {
+                series.Points.AddXY(item.Key, item.Value);
             }
 
             // Add series to chart
             chart2.Series.Add(series);
 
-            // SetDataChartCompletedOfDay chart titles (optional)
-            chart2.Titles.Add("Sample Chart");
-            chart2.ChartAreas[0].AxisX.Title = "X Axis";
-            chart2.ChartAreas[0].AxisY.Title = "Y Axis";
+            // Set chart titles (optional)
+            chart2.Titles.Add("Task Count per Project");
+            chart2.ChartAreas[0].AxisX.Title = "Project";
+            chart2.ChartAreas[0].AxisY.Title = "Task";
+            chart2.ChartAreas[0].AxisY.MajorGrid.LineWidth = 1;
         }
 
-        private void GenerateChartData3()
+        private void SetDataChartStatusOfTask(int userId)
         {
+            var taskServices = new TaskServices();
+            var data = taskServices.CountTaskByStatusAndUserId(userId);
+            
             // Clear existing series
             chart3.Series.Clear();
 
             // Create a new series
-            Series series = new Series("Sample Data");
-            series.ChartType = SeriesChartType.Doughnut;
+            Series series = new Series
+            {
+                ChartType = SeriesChartType.Doughnut,
+                IsValueShownAsLabel = true
+            };
+            series["DoughnutRadius"] = "40";
 
             // Generate sample data
-            Random rnd = new Random();
-            for (int i = 1; i <= 10; i++)
-            {
-                int yValue = rnd.Next(10, 100); // Random value between 10 and 100
-                series.Points.AddXY(i, yValue);
+            foreach (var item in data)
+            { 
+                 series.Points.AddXY(item.Key, item.Value);
             }
-
+            series.LabelFormat = "#";
             // Add series to chart
             chart3.Series.Add(series);
 
-            // SetDataChartCompletedOfDay chart titles (optional)
-            chart3.Titles.Add("Sample Chart");
+            // Set chart titles (optional)
+            chart3.Titles.Add("Task Counts by Status");
             chart3.ChartAreas[0].AxisX.Title = "X Axis";
             chart3.ChartAreas[0].AxisY.Title = "Y Axis";
         }
@@ -118,7 +136,7 @@ namespace PresentationLayer.Controls.SideBar
                 YValueType = ChartValueType.Int32,
             };
 
-           foreach (var item in data)
+            foreach (var item in data)
             {
                 series1.Points.AddXY(item.Key, item.Value);
             }
@@ -129,6 +147,7 @@ namespace PresentationLayer.Controls.SideBar
             chartCompletedTasks.ChartAreas[0].AxisX.Title = "Ngày";
             chartCompletedTasks.ChartAreas[0].AxisY.Title = "Số Task hoàn thành";
         }
+
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -153,8 +172,5 @@ namespace PresentationLayer.Controls.SideBar
                 e.Graphics.DrawLine(pen, x, 0, x, panel.Height); // Vẽ đường dọc
             }
         }
-
-       
-
     }
 }

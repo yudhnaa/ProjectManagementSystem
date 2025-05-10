@@ -3,6 +3,8 @@ using Bunifu.UI.WinForms;
 using BusinessLayer;
 using BusinessLayer.Services;
 using BusinessLayer.Services.Ipml;
+using C1.GanttView;
+using C1.Win.Localization.Design;
 using DataLayer.Domain;
 using DataLayer.EnumObjects;
 using DTOLayer;
@@ -15,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -30,7 +33,7 @@ namespace PresentationLayer.Controls.SideBar.User
     public partial class CtrlPanelTaskNew : UserControl
     {
         private readonly UserDTO user;
-        private TaskDTO parentTask;
+        private readonly TaskDTO parentTask;
 
         private ProjectForListDTO _currentProject;
         public ProjectForListDTO CurrentProject
@@ -59,6 +62,8 @@ namespace PresentationLayer.Controls.SideBar.User
         private List<TaskStatusDTO> taskStatusDTOs;
         private List<TaskCommentDTO> taskComments;
         private RoundedLabel lbStatus;
+
+
 
         public CtrlPanelTaskNew()
         {
@@ -138,6 +143,8 @@ namespace PresentationLayer.Controls.SideBar.User
             };
         }
 
+        
+
         private void LoadTasks()
         {
             if (CurrentProject == null)
@@ -192,7 +199,7 @@ namespace PresentationLayer.Controls.SideBar.User
 
                 lbStatus.Text = TaskStatusEnumExtensions.ToString(currentTask.StatusId);
                 lbStatus._BackColor = Utils.Utils.GetStatusColor(lbStatus.Text);
-                //cbStatus.SelectedIndex = currentTask.StatusId - 1;
+                cbStatus.SelectedIndex = currentTask.StatusId - 1;
 
                 lbPriority.Text = TaskPriorityEnumExtensions.ToString(currentTask.PriorityId);
                 lbPriority._BackColor = Utils.Utils.GetPriorityColor(lbPriority.Text);

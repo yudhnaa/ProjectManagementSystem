@@ -23,7 +23,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
     {
         private UserDTO user;
 
-        private TaskPriorityServices taskPriorityServices;
+        private readonly ITaskPriorityServices taskPriorityServices = new TaskPriorityServices();
 
         private List<TaskPriorityDTO> taskPriorities;
 
@@ -37,7 +37,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void CtrlPanelTasktPriorityNew_Load(object sender, EventArgs e)
         {
             InitControl();
-            InitServices();
             try
             {
                 LoadTaskPriorityes();
@@ -71,10 +70,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         }
 
-        private void InitServices()
-        {
-            taskPriorityServices = new TaskPriorityServices();
-        }
+        
 
         private void LoadTaskPriorityes()
         {
