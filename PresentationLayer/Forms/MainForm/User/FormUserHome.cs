@@ -26,8 +26,7 @@ namespace PresentationLayer
         private CtrlPanelTaskNew ucTask;
         private CtrlPanelHomeUser ucHome;
         private CtrlPanelProjectNew ucProject;
-        private UserControl ucOverview;
-        private UserControl ucGant;
+        private CtrlPanelGant ucGant;
         private CtrlListMyProjects ucMyProjects;
 
         // target-typed new expressions. c# >= 9.0
@@ -81,11 +80,6 @@ namespace PresentationLayer
                 InitButton(btn);
 
             btnHome_Click(btnHome, null); // Default screen  
-        }
-
-        public void ucHome_Selected()
-        {
-
         }
 
         private void LoadProjects()
@@ -145,6 +139,9 @@ namespace PresentationLayer
         {
             ucTask ??= new CtrlPanelTaskNew();
             ucTask.CurrentProject = selectedProject;
+
+            ucGant ??= new CtrlPanelGant();
+            ucGant.CurrentProject = selectedProject;
         }
 
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
@@ -165,7 +162,6 @@ namespace PresentationLayer
             LoadControl(ucHome);
             ucHome.LoadAllCharts();
         }
-
         private void btnTask_Click(object sender, EventArgs e)
         {
             currentButton = sender as BunifuButton;

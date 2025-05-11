@@ -34,6 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C1.Win.C1GanttView.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Schedule.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -43,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Services\Ipml\DepartmentServices.cs" />
     <Compile Include="Services\IDepartmentServices.cs" />
+    <Compile Include="Services\Ipml\TaskGanttServiceImpl.cs" />
+    <Compile Include="Services\ITaskDependencyService.cs" />
     <Compile Include="Services\IUserServices.cs" />
     <Compile Include="Services\ITaskCommentServices.cs" />
     <Compile Include="Services\IUserRoleServices.cs" />
@@ -80,6 +85,7 @@
     <Compile Include="Services\Ipml\UserExtraInfoServices.cs" />
     <Compile Include="Services\Ipml\UserRoleServices.cs" />
     <Compile Include="Services\Ipml\UserServices.cs" />
+    <Compile Include="Services\Ipml\TaskDependencyService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

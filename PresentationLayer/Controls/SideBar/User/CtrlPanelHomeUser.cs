@@ -20,17 +20,18 @@ namespace PresentationLayer.Controls.SideBar
         private readonly UserDTO user;
         private readonly IUserServices userServices = new UserServices();
         private readonly ITaskServices taskServices = new TaskServices();
-
+        private readonly Chart chart = new Chart();
         public CtrlPanelHomeUser()
         {
             user = UserSession.Instance.User;
             InitializeComponent();
         }
 
+
         private void CtrlPanelHomeUser_Load(object sender, EventArgs e)
         {
             InitControl();
-            LoadAllCharts();
+            //LoadAllCharts();
         }
 
         public void LoadAllCharts()
@@ -54,13 +55,18 @@ namespace PresentationLayer.Controls.SideBar
 
         }
 
+        private void ResetChartData(Chart chart)
+        {
+            chart.Titles.Clear();
+            chart.Series.Clear();
+        }
+
         private void SetDataChartTasksPerProject(int userId)
         {
             var taskInProject = new TaskServices();
             var data = taskInProject.CountTaskByProjectAndUserId(userId);
             // Clear existing series
-            chart2.Series.Clear();
-
+            ResetChartData(chart2);
             // Create a new series
             Series series = new Series
             {
@@ -92,9 +98,9 @@ namespace PresentationLayer.Controls.SideBar
         {
             var taskServices = new TaskServices();
             var data = taskServices.CountTaskByStatusAndUserId(userId);
-            
+
             // Clear existing series
-            chart3.Series.Clear();
+            ResetChartData(chart3);
 
             // Create a new series
             Series series = new Series
@@ -122,7 +128,7 @@ namespace PresentationLayer.Controls.SideBar
         private void GenerateChartData4()
         {
             // Clear existing series
-            chart4.Series.Clear();
+            ResetChartData(chart4);
 
             // Create a new series
             Series series = new Series("Sample Data");

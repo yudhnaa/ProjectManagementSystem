@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 
 namespace BusinessLayer.Services
@@ -523,6 +524,59 @@ namespace BusinessLayer.Services
             {
                 throw new Exception("An error occurred while updating task.", ex);
             }
+        }
+
+        public List<TaskForGanttChartDTO> GetTaskByProjectIdWithDependencies(int projectId, int userId)
+        {
+            try
+            {
+                IUserServices userServices = new UserServices();
+                ITaskDependencyService taskDependencyService = new TaskDependencyService();
+
+                UserDTO user = userServices.GetUserById(userId);
+                //List<TaskDependencyDTO> taskDependencyDTOs = 
+
+                var tasks = taskDAL.GetTaskByProjectIdAndUserId(projectId, userId, isIncludeInActive: false)
+                    .Select(t => new TaskForGanttChartDTO
+                    {
+                        Id = t.Id,
+                        Code = t.Code,
+                        Name = t.Name,
+                        Description = t.Description,
+                        ProjectId = t.ProjectId,
+                        AssignedUserId = t.AssignedUserId,
+                        AssignedUserName = user.FirstName + " " + user.LastName,
+                        StatusId = t.StatusId,
+                        PriorityId = t.PriorityId,
+                        StartDate = t.StartDate,
+                        DueDate = t.DueDate,
+                        EstimatedHours = t.EstimatedHours,
+                        ActualHours = t.ActualHours,
+                        PercentComplete = t.PercentComplete,
+                        ParentTaskId = t.ParentTaskId,
+                        //TaskDependencies = new List<TaskDependencyDTO>(),
+                        TaskDependencies = taskDependencyService.GetDependentByTaskIds(t.Id).Select(d => new TaskDependencyDTO
+                        {
+                            TaskId = d.TaskId,
+                            DependsOnTaskId = d.DependsOnTaskId,
+                            DependencyType = d.DependencyType
+                        }).ToList(),
+                        IsDeleted = t.IsDeleted
+                    }).ToList();
+
+                return tasks;
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while updating task.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while updating task.", ex);
+            }
+
+            
         }
     }
 }

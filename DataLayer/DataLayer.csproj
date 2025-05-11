@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\Impl\DepartmentDAL.cs" />
     <Compile Include="DataAccess\IDepartmentDAL.cs" />
+    <Compile Include="DataAccess\Impl\TaskDependencyDAL.cs" />
     <Compile Include="DataAccess\ITaskCommentDAL.cs" />
     <Compile Include="DataAccess\Impl\TaskCommentDAL.cs" />
     <Compile Include="DataAccess\IProjectDAL.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="DataAccess\IProjectPriorityDAL.cs" />
     <Compile Include="DataAccess\IProjectStatusDAL.cs" />
     <Compile Include="DataAccess\ITaskDAL.cs" />
+    <Compile Include="DataAccess\ITaskDependencyDAL.cs" />
     <Compile Include="DataAccess\ITaskHistoryDAL.cs" />
     <Compile Include="DataAccess\ITaskPriorityDAL.cs" />
     <Compile Include="DataAccess\ITaskStatusDAL.cs" />

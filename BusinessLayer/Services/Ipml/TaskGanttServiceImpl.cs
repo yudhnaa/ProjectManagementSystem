@@ -1,95 +1,29 @@
-﻿using Bunifu.UI.WinForms.Extensions;
-using BusinessLayer.Services;
-using C1.Win.C1GanttView;
-using C1.Win.C1Themes;
+﻿using C1.Win.C1GanttView;
 using DataLayer.Domain;
-using DTOLayer.Models;
-using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace PresentationLayer.UC_SideBar
+namespace PresentationLayer.Utils
 {
-    public partial class CtrlPanelGant : UserControl
+    public class TaskGanttService
     {
-        private readonly UserDTO user = UserSession.Instance.User;
-
-        private List<TaskForGanttChartDTO> tasks = new List<TaskForGanttChartDTO>();
-
-        private readonly ITaskServices taskServices = new TaskServices();
-
-        private ProjectForListDTO _currentProject;
-        public ProjectForListDTO CurrentProject
+        /// <summary>
+        /// Loads project tasks into the C1GanttView component
+        /// </summary>
+        public void LoadProjectTasks(C1GanttView ganttView, IEnumerable<DataLayer.Domain.Task> tasks)
         {
-            get { return _currentProject; }
-            set
-            {
-                _currentProject = value;
-                if (_currentProject != null)
-                {
-                    LoadTasksList();
-                    LoadProjectTasks(tasks);
-                }
-            }
-        }
-
-
-        public CtrlPanelGant()
-        {
-            InitializeComponent();
-            InitControls();
-        }
-
-        private void InitControls()
-        {
-            this.Dock = DockStyle.Fill;
-
-            c1GanttView1.Dock = DockStyle.Fill;
-            c1GanttView1.ToolStrip.Enabled = false;
-            c1GanttView1.Columns[0].Visible = false;
-            c1GanttView1.EmptyAreaBackColor = Color.White;
-            c1GanttView1.Font = new Font("Segoe UI", 14);
-
-
-            c1GanttView1.Tasks.AllowEdit = false;
-            c1GanttView1.Tasks.AllowNew = false;
-            c1GanttView1.Tasks.AllowRemove = false;
-        }
-
-        private void LoadTasksList()
-        {
-            if (CurrentProject == null)
+            if (ganttView == null || tasks == null)
                 return;
 
-            try
-            {
-                tasks = taskServices.GetTaskByProjectIdWithDependencies(CurrentProject.Id, user.Id);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error retrieving tasks: " + ex.Message);
-            }
-        }
+            // Clear existing tasks
+            ganttView.Tasks.Clear();
+            ganttView.Resources.Clear();
 
-        public void LoadProjectTasks(IEnumerable<TaskForGanttChartDTO> tasks)
-        {
-            if (c1GanttView1 == null || tasks == null)
-                return;
-
-            c1GanttView1.Tasks.Clear();
-            c1GanttView1.Resources.Clear();
-
-            // a dictionary to track added tasks by their ID
+            // Create a dictionary to track added tasks by their ID
             Dictionary<int, C1.Win.C1GanttView.Task> addedTasks = new Dictionary<int, C1.Win.C1GanttView.Task>();
 
-            // Add all tasks to the gantt view
+            // First pass: Add all tasks to the gantt view
             foreach (var domainTask in tasks)
             {
                 if (domainTask.IsDeleted.GetValueOrDefault(false))
@@ -128,11 +62,11 @@ namespace PresentationLayer.UC_SideBar
                     ganttTask.ConstraintDate = domainTask.StartDate.Value;
                 }
 
-                c1GanttView1.Tasks.Add(ganttTask);
+                ganttView.Tasks.Add(ganttTask);
                 addedTasks.Add(domainTask.Id, ganttTask);
             }
 
-            // Set parent-child relationships
+            // Second pass: Setup parent-child relationships
             foreach (var domainTask in tasks)
             {
                 if (domainTask.IsDeleted.GetValueOrDefault(false) || !addedTasks.ContainsKey(domainTask.Id))
@@ -148,7 +82,7 @@ namespace PresentationLayer.UC_SideBar
                 }
             }
 
-            // Setup task dependencies
+            // Third pass: Setup task dependencies
             foreach (var domainTask in tasks)
             {
                 if (domainTask.IsDeleted.GetValueOrDefault(false) || !addedTasks.ContainsKey(domainTask.Id))
@@ -190,6 +124,7 @@ namespace PresentationLayer.UC_SideBar
                 }
             }
 
+            // Add resources
             HashSet<int> processedUserIds = new HashSet<int>();
             foreach (var domainTask in tasks)
             {
@@ -198,22 +133,24 @@ namespace PresentationLayer.UC_SideBar
 
                 if (domainTask.AssignedUserId > 0 && !processedUserIds.Contains(domainTask.AssignedUserId))
                 {
+                    var user = domainTask.User;
+                    if (user != null)
+                    {
+                        Resource resource = new Resource();
+                        resource.ID = user.Id;
+                        resource.Name = $"{user.FirstName} {user.LastName}";
+                        ganttView.Resources.Add(resource);
 
-                    Resource resource = new Resource();
-                    resource.ID = domainTask.AssignedUserId;
-                    resource.Name = domainTask.Name;
-                    c1GanttView1.Resources.Add(resource);
+                        // Add resource to the task
+                        ResourceRef resourceRef = new ResourceRef();
+                        resourceRef.ResourceID = resource.ID;
+                        resourceRef.Amount = 1;
+                        addedTasks[domainTask.Id].ResourceRefs.Add(resourceRef);
 
-                    // Add resource to the task
-                    ResourceRef resourceRef = new ResourceRef();
-                    resourceRef.ResourceID = resource.ID;
-                    resourceRef.Amount = 1;
-                    addedTasks[domainTask.Id].ResourceRefs.Add(resourceRef);
-
-                    processedUserIds.Add(domainTask.AssignedUserId);
+                        processedUserIds.Add(user.Id);
+                    }
                 }
             }
-
         }
     }
 }
