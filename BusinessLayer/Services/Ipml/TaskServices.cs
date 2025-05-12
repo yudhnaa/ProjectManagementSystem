@@ -641,5 +641,47 @@ namespace BusinessLayer.Services
 
             
         }
+
+        public List<TaskForListDTO> GetTasksForlistByProjectIdAndKw(int projectId, string kw)
+        {
+            try
+            {
+                List<Task> tasks = taskDAL.GetTaskByProjectIdAndKw(projectId, kw, isIncludeInActive: false);
+                if (tasks == null)
+                    return null;
+
+                return tasks.Select(t => TaskForListDTOMapper.ToDto(t)).ToList();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while fetching tasks.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching tasks.", ex);
+            }
+        }
+
+        public List<TaskForListDTO> GetTaskAllForlistByProjectIdAndUserIdAndKwInlcudeInActive(int projectId, string kw)
+        {
+            try
+            {
+                List<Task> tasks = taskDAL.GetTaskByProjectIdAndKw(projectId, kw, isIncludeInActive: true);
+                if (tasks == null)
+                    return null;
+
+                return tasks.Select(t => TaskForListDTOMapper.ToDto(t)).ToList();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while fetching tasks.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching tasks.", ex);
+            }
+        }
     }
 }

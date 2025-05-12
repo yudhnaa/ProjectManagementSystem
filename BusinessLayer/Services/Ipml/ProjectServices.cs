@@ -338,7 +338,7 @@ namespace BusinessLayer.Services
             try
             {
                 ProjectDAL projectDAL = new ProjectDAL();
-                var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: false);
+                var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: true);
                 if (projects == null)
                     return null;
 

@@ -15,17 +15,22 @@ namespace BusinessLayer.Services
     public class UserServices : IUserServices
     {
         private readonly IUserDAL userDAL = new UserDAL();
+
+        public string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
         public UserDTO CreateUser(UserDTO userDTO)
         {
             try
             {
-                
-
                 var user = userDTO.ToUserEntity();
                 user.LastLogin = null;
                 user.IsActive = true;
                 user.IsDeleted = false;
+                user.CreatedDate = DateTime.Now;
                 user.UpdatedDate = null;
+                user.Password = HashPassword(user.Password);
 
                 var res = userDAL.CreateUser(user);
 
@@ -48,9 +53,18 @@ namespace BusinessLayer.Services
         {
             try
             {
-                
-
                 var user = userDAL.CheckLoginUser(userDTO.ToUserEntity());
+
+                if (user != null && BCrypt.Net.BCrypt.Verify(userDTO.Password, user.Password))
+                {
+                    user.LastLogin = DateTime.Now;
+                    userDAL.UpdateUser(user);
+                }
+                else if (user != null && !BCrypt.Net.BCrypt.Verify(userDTO.Password, user.Password))
+                {
+                    return null;
+                }
+
                 if (user == null)
                     return null;
 
@@ -189,8 +203,13 @@ namespace BusinessLayer.Services
         {
             try
             {
-                
                 var user = userDTO.ToUserEntity();
+
+                var curUser = userDAL.GetUserById(userDTO.Id, true);
+                if (!curUser.Password.Equals(userDTO.Password))
+                {
+                    user.Password = HashPassword(userDTO.Password);
+                }
 
                 user.UpdatedDate = DateTime.Now;
 

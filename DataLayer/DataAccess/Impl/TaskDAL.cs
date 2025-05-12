@@ -311,5 +311,25 @@ namespace DataLayer.DataAccess
                 }
             }
         }
+
+        public List<Task> GetTaskByProjectIdAndKw(int projectId, string kw, bool isIncludeInActive)
+        {
+            using (var dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    IQueryable<Task> query = dbContext.Tasks.Where(t => t.ProjectId == projectId && (t.Name.Contains(kw) || t.Code.Contains(kw)));
+
+                    if (!isIncludeInActive)
+                        query = query.Where(t => t.IsDeleted == false);
+
+                    return query.ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

@@ -28,6 +28,8 @@ namespace BusinessLayer.Services
         List<TaskForListDTO> GetTaskForlistByProjectIdAndUserIdInlcudeInActive(int projectId, int userId);
         List<TaskForListDTO> GetTasksForlistByProjectIdAndUserIdAndKw(int projectId, int userId, string kw);
         List<TaskForListDTO> GetTaskAllForlistByProjectIdAndUserIdAndKwInlcudeInActive(int projectId, int userId, string kw);
+        List<TaskForListDTO> GetTasksForlistByProjectIdAndKw(int projectId, string kw);
+        List<TaskForListDTO> GetTaskAllForlistByProjectIdAndUserIdAndKwInlcudeInActive(int projectId, string kw);
         bool UpdateTask(TaskDTO newTaskDTO);
         bool UpdateTaskStatus(int taskId, TaskStatusEnum? taskStatusEnum);
         List<TaskForGanttChartDTO> GetTaskByProjectIdWithDependencies(int projectId, int userId);

@@ -14,17 +14,30 @@ namespace BusinessLayer.Services
     public class UserExtraInfoServices : IUserExtraInfoServices
     {
         private IUserDAL userDAL = new UserDAL();
-        public UserExtraInfoDTO Createuser(UserDTO userDTO)
+
+        public string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+        public UserExtraInfoDTO Createuser(UserExtraInfoDTO userDTO)
         {
             try
             {
                 var user = userDTO.ToUserEntity();
+                user.LastLogin = null;
                 user.IsActive = true;
+                user.IsDeleted = false;
                 user.CreatedDate = DateTime.Now;
+                user.UpdatedDate = null;
+                user.Password = HashPassword(user.Password);
 
                 var res = userDAL.CreateUser(user);
 
-                return UserExtraInfoDTOMapper.ToDto(res);
+                if (res != null)
+                    return UserExtraInfoDTOMapper.ToDto(res);
+
+                return null;
             }
             catch (SqlException ex)
             {
@@ -123,6 +136,17 @@ namespace BusinessLayer.Services
             try
             {
                 var userEntity = user.ToUserEntity();
+
+                var curUser = userDAL.GetUserById(user.Id, true);
+                if (!BCrypt.Net.BCrypt.Verify(userEntity.Password, curUser.Password))
+                {
+                    userEntity.Password = HashPassword(user.Password);
+                }
+                else
+                {
+                    userEntity.Password = curUser.Password;
+                }
+
                 userEntity.UpdatedDate = DateTime.Now;
 
                 var res = userDAL.UpdateUser(userEntity);

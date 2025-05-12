@@ -33,12 +33,7 @@ namespace PresentationLayer.UC_SideBar.UC_Project
 
         private void UC_MyProjects_Load(object sender, EventArgs e)
         {
-            if (projects == null || projects.Count == 0)
-            {
-                MessageBox.Show("No projects available.");
-                return;
-            }
-            else
+            if (projects != null && projects.Count != 0)
             {
                 this.Dock = DockStyle.Fill;
                 listbxMyProjects.Items.Clear();

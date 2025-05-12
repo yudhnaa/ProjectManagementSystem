@@ -281,15 +281,70 @@ namespace PresentationLayer.Controls.SideBar.Admin
             return false;
         }
 
+        private bool CreateUser()
+        {
+            UserExtraInfoDTO newUser = new UserExtraInfoDTO()
+            {
+                // Update the user object with form data
+                Username = tbUsername.Text.Trim(),
+                FirstName = tbFirstname.Text.Trim(),
+                LastName = tbLastname.Text.Trim(),
+                Address = tbAddress.Text.Trim(),
+                Email = tbEmail.Text.Trim(),
+                PhoneNumber = tbPhone.Text.Trim(),
+                Password = tbPassword.Text,
+                DepartmentId = (int?)cbDepartment.SelectedValue,
+                UserRoleId = (int)cbRole.SelectedValue,
+                IsActive = cbIsActive.Checked
+
+            };
+
+            try
+            {
+                var res = userExtraInfoServices.Createuser(newUser);
+                if (res != null)
+                {
+                    MessageBox.Show("User created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            bool res = UpdateUserInfo();
-
-            if (res)
+            if (isCreating)
             {
-                isCreating = false;
-                LoadUsers();
+                bool res = CreateUser();
+
+                if (res)
+                {
+                    isCreating = false;
+                    tbUsername.Enabled = false;
+                    LoadUsers();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+            else
+            {
+                bool res = UpdateUserInfo();
+
+                if (res)
+                {
+                    isCreating = false;
+                    LoadUsers();
+                    tbUsername.Enabled = false;
+                }
+            }
+
         }
 
         private void ResetControl()
@@ -313,6 +368,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             if (isCreating)
             {
                 isCreating = false;
+                tbUsername.Enabled = false;
                 ResetControl();
                 LoadUsers();
             }
@@ -338,6 +394,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             if (!isCreating)
             {
                 isCreating = true;
+                tbUsername.Enabled = true;
                 ResetControl();
             }
         }

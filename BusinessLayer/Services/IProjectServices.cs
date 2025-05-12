@@ -17,6 +17,8 @@ namespace BusinessLayer.Services
         ProjectForListDTO GetProjectForListByIdInlcudeInActive(int projectId);
         List<ProjectDTO> GetProjectsByUserId(int userId);
         List<ProjectDTO> GetProjectsByUserIdInlcudeInActive(int userId);
+        List<ProjectForListDTO> GetProjectsForListByUserId(int userId);
+        List<ProjectForListDTO> GetProjectsForListByUserIdInlcudeInActive(int userId);
         bool HardDeleteProjectById(int id);
         bool UpdateProject(ProjectDTO project);
     }

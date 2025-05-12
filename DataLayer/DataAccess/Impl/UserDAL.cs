@@ -22,8 +22,7 @@ namespace DataLayer.DataAccess
                 {
                     var u = dbContext.Users.FirstOrDefault(us => us.Username == user.Username);
 
-                    // Bug fix: Password comparison was comparing user.Password with itself
-                    if (u != null && u.Password == user.Password)
+                    if (u != null)
                         return u;
 
                     return null;
@@ -154,7 +153,8 @@ namespace DataLayer.DataAccess
                     existingUser.DepartmentId = user.DepartmentId;
                     existingUser.IsActive = user.IsActive;
                     existingUser.IsDeleted = user.IsDeleted ?? false;
-                    existingUser.UpdatedDate = DateTime.Now;
+                    existingUser.UpdatedDate = user.UpdatedDate;
+                    existingUser.Password = user.Password;
                     //existingUser.UpdatedBy = user.UpdatedBy;
 
 

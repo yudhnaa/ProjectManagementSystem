@@ -311,12 +311,6 @@
     <Compile Include="Controls\Task\User\CtrlTask.Designer.cs">
       <DependentUpon>CtrlTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm\FormManagerHome.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MainForm\FormManagerHome.Designer.cs">
-      <DependentUpon>FormManagerHome.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Other\FormProjectCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -475,9 +469,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Task\User\CtrlTask.resx">
       <DependentUpon>CtrlTask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm\FormManagerHome.resx">
-      <DependentUpon>FormManagerHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Other\FormProjectCreate.resx">
       <DependentUpon>FormProjectCreate.cs</DependentUpon>

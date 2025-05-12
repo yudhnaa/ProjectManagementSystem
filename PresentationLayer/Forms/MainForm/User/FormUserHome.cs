@@ -29,9 +29,9 @@ namespace PresentationLayer
         private CtrlListMyProjects ucMyProjects;
 
         // target-typed new expressions. c# >= 9.0
-        private readonly UserRoleServices roleServices = new();
-        private readonly ProjectServices projectServices = new();
-        private readonly TaskServices taskServices = new();
+        private readonly IUserRoleServices roleServices = new UserRoleServices();
+        private readonly IProjectServices projectServices = new ProjectServices();
+        private readonly ITaskServices taskServices = new TaskServices();
 
         private List<ProjectForListDTO> projects = new();
 

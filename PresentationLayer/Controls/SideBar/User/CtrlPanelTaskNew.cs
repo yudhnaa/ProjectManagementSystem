@@ -327,7 +327,7 @@ namespace PresentationLayer.Controls.SideBar.User
                     string keyword = tbSearch.Text.Trim();
                     keyword = string.IsNullOrEmpty(keyword) ? "" : keyword;
 
-                    tasks = taskServices.GetTasksForlistByProjectIdAndUserIdAndKw(CurrentProject.Id, user.Id, keyword);
+                    tasks = taskServices.GetTasksForlistByProjectIdAndKw(CurrentProject.Id, keyword);
 
                     if (tasks == null || tasks.Count == 0)
                     {

@@ -5,7 +5,7 @@ namespace BusinessLayer.Services
 {
     public interface IUserExtraInfoServices
     {
-        UserExtraInfoDTO Createuser(UserDTO userDTO);
+        UserExtraInfoDTO Createuser(UserExtraInfoDTO userDTO);
         List<UserExtraInfoDTO> GetAllUser(string kw);
         List<UserExtraInfoDTO> GetAllUserInlcudeInActive(string kw);
         UserExtraInfoDTO GetUserById(int id);
