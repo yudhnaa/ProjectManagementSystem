@@ -36,17 +36,11 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private readonly Timer _debounceTimer;
         private readonly UserDTO _user;
 
+        private bool isCreating = false;
+
         public CtrlPanelProjectAdminNew()
         {
             _user = UserSession.Instance.User;
-
-            // Initialize services
-            _projectServices = new ProjectServices();
-            _projectMemberServices = new ProjectMemberServices();
-            _userServices = new UserServices();
-            _projectMemberRoleServices = new ProjectMemberRoleServices();
-            _projectStatusServices = new ProjectStatusServices();
-            _projectPriorityServices = new ProjectPriorityServices();
 
             // Initialize debounce timer
             _debounceTimer = new Timer { Interval = 1000 };
@@ -169,6 +163,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
+            isCreating = false;
             if (dgvItems.SelectedRows.Count == 1 && dgvItems.SelectedRows[0].Cells["Id"].Value != null)
             {
                 var item = dgvItems.SelectedRows[0];
@@ -241,15 +236,35 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
             try
             {
-                var project = CreateProjectDTOFromForm();
-                var result = _projectServices.UpdateProject(project);
-
-                if (result)
+                if (isCreating)
                 {
-                    UpdateProjectMembers(project.Id);
-                    ClearForm();
-                    ShowMessage("Project updated successfully.", "Success");
+                    var project = CreateProjectDTOFromForm();
+                    var newProject = _projectServices.CreateProject(project);
+
+                    if (newProject != null)
+                    {
+                        AddProjectMembers(newProject.Id);
+                        ClearForm();
+                        ShowMessage("Project created successfully.", "Success");
+                        LoadProjects("");
+
+                        isCreating = false;
+                    }
                 }
+                else
+                {
+                    var project = CreateProjectDTOFromForm();
+                    var result = _projectServices.UpdateProject(project);
+
+                    if (result)
+                    {
+                        UpdateProjectMembers(project.Id);
+                        ClearForm();
+                        ShowMessage("Project updated successfully.", "Success");
+                        LoadProjects("");
+                    }
+                }
+
             }
             catch (SqlException ex)
             {
@@ -263,28 +278,27 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void btCreateProject_Click(object sender, EventArgs e)
         {
-            if (!ValidateProjectInput()) return;
+            if (!isCreating)
+            {
+                isCreating = true;
+                ClearFields();
+            }
 
-            try
-            {
-                var project = CreateProjectDTOFromForm();
-                var newProject = _projectServices.CreateProject(project);
+        }
 
-                if (newProject != null)
-                {
-                    AddProjectMembers(newProject.Id);
-                    ClearForm();
-                    ShowMessage("Project created successfully.", "Success");
-                }
-            }
-            catch (SqlException ex)
-            {
-                ShowMessage($"Database error: {ex.Message}", "Error", MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                ShowMessage($"An error occurred: {ex.Message}", "Error", MessageBoxIcon.Error);
-            }
+        private void ClearFields()
+        {
+            tbProjectName.Clear();
+            tbProjectCode.Clear();
+            tbProjectDesrciption.Clear();
+            tbBudget.Clear();
+            tbPercentComplete.Clear();
+            datePickerStart.Value = DateTime.Today;
+            datePickerEnd.Value = DateTime.Today.AddDays(30);
+            cbStatus.SelectedIndex = -1;
+            cbPriority.SelectedIndex = -1;
+            cbRole.SelectedIndex = -1;
+            listviewMembers.Items.Clear();
         }
 
         private void tbSearch_KeyDown(object sender, KeyEventArgs e)
@@ -357,7 +371,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             try
             {
                 _currentProject = _projectServices.GetProjectById(projectId);
-                _currentProjectMembers = _projectMemberServices.GetProjectMembersById(projectId);
+                _currentProjectMembers = _projectMemberServices.GetProjectMembersByProjectIdInlcudeInActive(projectId);
 
                 SetProjectInfo();
             }
@@ -378,9 +392,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
             tbProjectName.Text = _currentProject.Name;
             tbProjectCode.Text = _currentProject.ProjectCode;
             tbProjectDesrciption.Text = _currentProject.Description;
+            tbBudget.Text = _currentProject.Budget.ToString();
+            tbPercentComplete.Text = _currentProject.PercentComplete.ToString();
             datePickerStart.Value = _currentProject.StartDate ?? DateTime.Today;
             datePickerEnd.Value = _currentProject.EndDate ?? DateTime.Today.AddDays(30);
-            tbBudget.Text = _currentProject.Budget.ToString();
             cbStatus.SelectedValue = _currentProject.StatusId;
             cbPriority.SelectedValue = _currentProject.PriorityId;
 
@@ -392,17 +407,29 @@ namespace PresentationLayer.Controls.SideBar.Admin
             listviewMembers.BeginUpdate();
             listviewMembers.Items.Clear();
 
+            // add manager
+            var user = _userServices.GetUserById(_currentProject.ManagerId);
+            var role = _projectMemberRoles.FirstOrDefault(r => r.Id == ProjectMemberRoleEnum.Manager.ToId());
+
+            listviewMembers.Items.Add(new ListViewItem(new[] {
+                        user.Id.ToString(),
+                        user.LastName,
+                        role.Name,
+                        true.ToString(),
+            }));
+
             foreach (var member in _currentProjectMembers)
             {
-                var user = _userServices.GetUserById(member.UserId);
-                var role = _projectMemberRoles.FirstOrDefault(r => r.Id == member.RoleInProject);
+                user = _userServices.GetUserById(member.UserId);
+                role = _projectMemberRoles.FirstOrDefault(r => r.Id == member.RoleInProject);
 
                 if (user != null && role != null)
                 {
                     listviewMembers.Items.Add(new ListViewItem(new[] {
                         user.Id.ToString(),
                         user.LastName,
-                        role.Name
+                        role.Name,
+                        member.IsConfirmed.ToString(),
                     }));
                 }
             }
@@ -451,6 +478,13 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 return false;
             }
 
+            if (!double.TryParse(tbPercentComplete.Text, out double percent) || percent < 0 || percent > 100)
+            {
+                ShowMessage("Please enter a valid percent.", "Validation Error", MessageBoxIcon.Warning);
+                tbBudget.Focus();
+                return false;
+            }
+
             if (datePickerEnd.Value <= datePickerStart.Value)
             {
                 ShowMessage("End date must be after the start date.", "Validation Error", MessageBoxIcon.Warning);
@@ -484,6 +518,17 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 return false;
             }
 
+            int managerCount = listviewMembers.Items
+                .Cast<ListViewItem>()
+                .Count(item => item.SubItems[2].Text == "Manager");
+
+            if (managerCount > 1)
+            {
+                ShowMessage("Project can have only 1 Manager.", "Validation Error", MessageBoxIcon.Warning);
+                return false;
+            }
+
+
             return true;
         }
 
@@ -504,7 +549,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 StatusId = (int)cbStatus.SelectedValue,
                 ManagerId = int.Parse(managerId),
                 PriorityId = (int)cbPriority.SelectedValue,
-                CreatedBy = _user.Id
+                CreatedBy = _user.Id,
+                PercentComplete = decimal.Parse(tbPercentComplete.Text)
             };
         }
 
@@ -526,11 +572,21 @@ namespace PresentationLayer.Controls.SideBar.Admin
                     RoleInProject = _projectMemberRoles.First(r => r.Name == item.SubItems[2].Text).Id,
                     ProjectId = projectId,
                     CreatedDate = DateTime.Today,
+                    IsConfirmed = bool.TryParse(item.SubItems[2].Text, out bool res) && res
                 };
 
-                if (!_projectMemberServices.UpdateProjectMember(projectMember, userIdsNotInListView))
+                if (!_projectMemberServices.UpdateProjectMember(projectMember))
                 {
                     ShowMessage("Failed to update project member.");
+                    return;
+                }
+            }
+
+            foreach (var userId in userIdsNotInListView)
+            {
+                if (!_projectMemberServices.RemoveProjectMember(projectId, userId))
+                {
+                    ShowMessage("Failed to remove project member.");
                     return;
                 }
             }
@@ -571,6 +627,11 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void ShowMessage(string message, string title = "", MessageBoxIcon icon = MessageBoxIcon.Information)
         {
             MessageBox.Show(message, title, MessageBoxButtons.OK, icon);
+        }
+
+        private void btCancelProject_Click(object sender, EventArgs e)
+        {
+            LoadProjects("");
         }
     }
 }

@@ -1,3 +1,4 @@
+using DataLayer.DataAccess;
 using System;
 
 namespace DataLayer.EnumObjects
@@ -37,7 +38,7 @@ namespace DataLayer.EnumObjects
             {
                 return role.Value.ToString();
             }
-            return string.Empty;
+            return "Not Config";
         }
     }
 }

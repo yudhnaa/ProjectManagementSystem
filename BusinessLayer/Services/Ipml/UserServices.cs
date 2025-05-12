@@ -14,11 +14,12 @@ namespace BusinessLayer.Services
 {
     public class UserServices : IUserServices
     {
+        private readonly IUserDAL userDAL = new UserDAL();
         public UserDTO CreateUser(UserDTO userDTO)
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
 
                 var user = userDTO.ToUserEntity();
                 user.LastLogin = null;
@@ -47,7 +48,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
 
                 var user = userDAL.CheckLoginUser(userDTO.ToUserEntity());
                 if (user == null)
@@ -69,7 +70,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
                 var user = userDAL.GetUserById(userId, isIncludeInActive: false);
 
                 if (user != null && user.IsDeleted == false && user.IsActive == true)
@@ -96,7 +97,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
                 var users = userDAL.GetAllUsers(kw, isIncludeInActive: false);
                 if (users == null)
                     return null;
@@ -117,7 +118,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
                 var users = userDAL.GetAllUsers(kw, isIncludeInActive: true);
                 if (users == null)
                     return null;
@@ -138,7 +139,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
                 var user = userDAL.GetUserById(userId, isIncludeInActive: false);
 
                 if (user == null)
@@ -160,7 +161,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
                 var user = userDAL.GetUserById(userId, isIncludeInActive: true);
 
                 if (user == null)
@@ -188,7 +189,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
                 var user = userDTO.ToUserEntity();
 
                 user.UpdatedDate = DateTime.Now;
@@ -196,6 +197,43 @@ namespace BusinessLayer.Services
                 var res = userDAL.UpdateUser(user);
 
                 return res;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred: " + ex.Message);
+            }
+        }
+
+        public List<UserDTO> GetUsersInProject(string kw, int ProjectId)
+        {
+            try
+            {
+                IProjectMemberDAL projectMemberDAL = new ProjectMemberDAL();
+                var projectMembers = projectMemberDAL.GetProjectMembersByProjectId(ProjectId, isIncludeInActive: false);
+
+                if (projectMembers == null)
+                    return null;
+
+                List<UserDTO> users = new List<UserDTO>();
+                foreach (var projectMember in projectMembers)
+                {
+                    var user = userDAL.GetUserById(projectMember.UserId, isIncludeInActive: false);
+                    if (user != null)
+                    {
+                        if (user.Username.Contains(kw) || user.FirstName.Contains(kw) || user.LastName.Contains(kw))
+                        {
+                            users.Add(UserDTOMapper.ToDto(user));
+                        }
+                    }
+                }
+
+                if (users == null)
+                    return null;
+                return users;
             }
             catch (SqlException ex)
             {

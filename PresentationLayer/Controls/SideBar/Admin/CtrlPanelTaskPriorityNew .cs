@@ -161,5 +161,43 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
             }
         }
+
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    string keyword = tbSearch.Text.Trim();
+
+                    if (string.IsNullOrEmpty(keyword))
+                    {
+                        taskPriorities = taskPriorityServices.GetAllTaskPriorities("");
+                    }
+                    else
+                    {
+                        taskPriorities = taskPriorityServices.GetAllTaskPriorities(keyword);
+                    }
+
+                    if (taskPriorities == null || taskPriorities.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy task nào với từ khóa này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    dgvItems.DataSource = taskPriorities;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show($"Lỗi cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
     }
 }

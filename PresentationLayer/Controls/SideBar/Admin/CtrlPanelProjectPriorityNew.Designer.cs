@@ -855,6 +855,7 @@
             this.btCancel.TextMarginLeft = 0;
             this.btCancel.TextPadding = new System.Windows.Forms.Padding(0);
             this.btCancel.UseDefaultRadiusAndThickness = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // CtrlPanelProjectPriorityNew
             // 

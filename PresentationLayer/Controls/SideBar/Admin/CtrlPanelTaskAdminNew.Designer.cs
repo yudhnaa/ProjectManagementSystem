@@ -354,7 +354,7 @@
             this.bunifuLabel1.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuLabel1.Name = "bunifuLabel1";
             this.bunifuLabel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel1.Size = new System.Drawing.Size(251, 20);
+            this.bunifuLabel1.Size = new System.Drawing.Size(227, 20);
             this.bunifuLabel1.TabIndex = 0;
             this.bunifuLabel1.Text = "Task Title";
             this.bunifuLabel1.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -600,7 +600,7 @@
             this.tbDescription.SelectionLength = 0;
             this.tbDescription.SelectionStart = 0;
             this.tbDescription.ShortcutsEnabled = true;
-            this.tbDescription.Size = new System.Drawing.Size(514, 162);
+            this.tbDescription.Size = new System.Drawing.Size(514, 109);
             this.tbDescription.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbDescription.TabIndex = 1;
             this.tbDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -633,10 +633,11 @@
             // cbParentTask
             // 
             this.cbParentTask.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbParentTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbParentTask.FormattingEnabled = true;
-            this.cbParentTask.Location = new System.Drawing.Point(290, 307);
+            this.cbParentTask.Location = new System.Drawing.Point(290, 304);
             this.cbParentTask.Name = "cbParentTask";
-            this.cbParentTask.Size = new System.Drawing.Size(203, 21);
+            this.cbParentTask.Size = new System.Drawing.Size(203, 28);
             this.cbParentTask.TabIndex = 5;
             this.cbParentTask.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbParentTask_KeyUp);
             // 
@@ -676,6 +677,7 @@
             this.datepickerStart.FillDatePicker = false;
             this.datepickerStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datepickerStart.ForeColor = System.Drawing.Color.Black;
+            this.datepickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datepickerStart.Icon = ((System.Drawing.Image)(resources.GetObject("datepickerStart.Icon")));
             this.datepickerStart.IconColor = System.Drawing.Color.Gray;
             this.datepickerStart.IconLocation = Bunifu.UI.WinForms.BunifuDatePicker.Indicator.Right;
@@ -705,6 +707,7 @@
             this.datepickerEnd.FillDatePicker = false;
             this.datepickerEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datepickerEnd.ForeColor = System.Drawing.Color.Black;
+            this.datepickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datepickerEnd.Icon = ((System.Drawing.Image)(resources.GetObject("datepickerEnd.Icon")));
             this.datepickerEnd.IconColor = System.Drawing.Color.Gray;
             this.datepickerEnd.IconLocation = Bunifu.UI.WinForms.BunifuDatePicker.Indicator.Right;
@@ -769,7 +772,7 @@
             this.btCreate.BackColor1 = System.Drawing.Color.DodgerBlue;
             this.btCreate.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btCreate.BackgroundImage")));
             this.btCreate.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.btCreate.ButtonText = "Create";
+            this.btCreate.ButtonText = "New";
             this.btCreate.ButtonTextMarginLeft = 0;
             this.btCreate.ColorContrastOnClick = 45;
             this.btCreate.ColorContrastOnHover = 45;
@@ -802,7 +805,7 @@
             this.btCreate.IdleIconLeftImage = null;
             this.btCreate.IdleIconRightImage = null;
             this.btCreate.IndicateFocus = false;
-            this.btCreate.Location = new System.Drawing.Point(149, 541);
+            this.btCreate.Location = new System.Drawing.Point(149, 488);
             this.btCreate.Name = "btCreate";
             this.btCreate.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btCreate.OnDisabledState.BorderRadius = 40;
@@ -976,11 +979,13 @@
             // cbProject
             // 
             this.cbProject.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbProject.FormattingEnabled = true;
-            this.cbProject.Location = new System.Drawing.Point(290, 239);
+            this.cbProject.Location = new System.Drawing.Point(290, 236);
             this.cbProject.Name = "cbProject";
-            this.cbProject.Size = new System.Drawing.Size(203, 21);
+            this.cbProject.Size = new System.Drawing.Size(203, 28);
             this.cbProject.TabIndex = 6;
+            this.cbProject.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbProject_KeyUp);
             // 
             // bunifuLabel11
             // 
@@ -1119,10 +1124,11 @@
             // CbUser
             // 
             this.CbUser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CbUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbUser.FormattingEnabled = true;
-            this.CbUser.Location = new System.Drawing.Point(290, 173);
+            this.CbUser.Location = new System.Drawing.Point(290, 169);
             this.CbUser.Name = "CbUser";
-            this.CbUser.Size = new System.Drawing.Size(203, 21);
+            this.CbUser.Size = new System.Drawing.Size(203, 28);
             this.CbUser.TabIndex = 5;
             this.CbUser.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CbUser_KeyUp);
             // 
@@ -1131,7 +1137,7 @@
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel1.Controls.Add(this.btCancel);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(264, 538);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(264, 485);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(252, 44);
             this.flowLayoutPanel1.TabIndex = 29;
@@ -1316,6 +1322,7 @@
             this.btCancel.TextMarginLeft = 0;
             this.btCancel.TextPadding = new System.Windows.Forms.Padding(0);
             this.btCancel.UseDefaultRadiusAndThickness = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // CtrlPanelTaskAdminNew
             // 

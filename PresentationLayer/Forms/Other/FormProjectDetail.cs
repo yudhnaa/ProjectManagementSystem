@@ -96,7 +96,7 @@ namespace PresentationLayer
             cbStatus.SelectedText = projectStatusDTO.Name;
             cbPriority.SelectedText = projectPriorityDTO.Name;
 
-            projectMembers = projectMemberServices.GetProjectMembersById(projectDTO.Id);
+            projectMembers = projectMemberServices.GetProjectMembersByProjectId(projectDTO.Id);
             listviewMembers.Items.Clear();
             listviewMembers.BeginUpdate();
             foreach (ProjectMemberDTO member in projectMembers)

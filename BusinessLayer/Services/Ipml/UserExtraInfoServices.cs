@@ -13,12 +13,11 @@ namespace BusinessLayer.Services
 {
     public class UserExtraInfoServices : IUserExtraInfoServices
     {
+        private IUserDAL userDAL = new UserDAL();
         public UserExtraInfoDTO Createuser(UserDTO userDTO)
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
-
                 var user = userDTO.ToUserEntity();
                 user.IsActive = true;
                 user.CreatedDate = DateTime.Now;
@@ -41,7 +40,6 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
                 var users = userDAL.GetAllUsers(kw, isIncludeInActive: false);
                 if (users == null)
                     return null;
@@ -62,7 +60,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
                 var users = userDAL.GetAllUsers(kw, isIncludeInActive: true);
                 if (users == null)
                     return null;
@@ -82,8 +80,7 @@ namespace BusinessLayer.Services
         public UserExtraInfoDTO GetUserById(int id)
         {
             try
-            {
-                UserDAL userDAL = new UserDAL();
+            {   
                 var user = userDAL.GetUserById(id, isIncludeInActive: false);
                 if (user == null)
                     throw new Exception("User not found");
@@ -104,7 +101,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
+                
                 var user = userDAL.GetUserById(id, isIncludeInActive: true);
                 if (user == null)
                     throw new Exception("User not found");
@@ -125,7 +122,6 @@ namespace BusinessLayer.Services
         {
             try
             {
-                UserDAL userDAL = new UserDAL();
                 var userEntity = user.ToUserEntity();
                 userEntity.UpdatedDate = DateTime.Now;
 

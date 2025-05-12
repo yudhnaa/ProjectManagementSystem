@@ -8,7 +8,7 @@ namespace DataLayer.DataAccess
 {
     public class ProjectMemberDAL : IProjectMemberDAL
     {
-        public List<ProjectMember> GetProjectMembersById(int projectId, bool isIncludeInActive)
+        public List<ProjectMember> GetProjectMembersByProjectId(int projectId, bool isIncludeInActive)
         {
             using (var dbContext = new ProjectManagementSystemDBContext())
             {
@@ -89,6 +89,23 @@ namespace DataLayer.DataAccess
                 catch (Exception ex) when (ex is SqlException || ex is Exception)
                 {
                     throw;
+                }
+            }
+        }
+
+        public List<ProjectMember> GetAllProjectMembers(string kw, bool isIncludeInActive)
+        {
+            using (var dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    return dbContext.ProjectMembers
+                        .Where(pm => (pm.User.FirstName.Contains(kw) || pm.User.LastName.Contains(kw)) && (isIncludeInActive || (pm.IsActive == true && pm.IsDeleted == false)))
+                        .ToList();
+                }
+                catch (Exception ex) when (ex is SqlException || ex is Exception)
+                {
+                    throw new Exception("An error occurred while retrieving all project members.", ex);
                 }
             }
         }

@@ -248,6 +248,7 @@
             this.tbSearch.TextPlaceholder = "Enter text";
             this.tbSearch.UseSystemPasswordChar = false;
             this.tbSearch.WordWrap = true;
+            this.tbSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyUp);
             // 
             // lbProjects
             // 
@@ -566,11 +567,11 @@
             this.btCancel.OnIdleState.ForeColor = System.Drawing.Color.DodgerBlue;
             this.btCancel.OnIdleState.IconLeftImage = null;
             this.btCancel.OnIdleState.IconRightImage = null;
-            this.btCancel.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btCancel.OnPressedState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btCancel.OnPressedState.BorderRadius = 40;
             this.btCancel.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             this.btCancel.OnPressedState.BorderThickness = 1;
-            this.btCancel.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btCancel.OnPressedState.FillColor = System.Drawing.Color.Gainsboro;
             this.btCancel.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btCancel.OnPressedState.IconLeftImage = null;
             this.btCancel.OnPressedState.IconRightImage = null;
@@ -581,6 +582,7 @@
             this.btCancel.TextMarginLeft = 0;
             this.btCancel.TextPadding = new System.Windows.Forms.Padding(0);
             this.btCancel.UseDefaultRadiusAndThickness = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // bunifuCustomLabel5
             // 

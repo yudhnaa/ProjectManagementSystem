@@ -153,7 +153,7 @@ namespace DataLayer.DataAccess
                     existingUser.UserRoleId = user.UserRoleId;
                     existingUser.DepartmentId = user.DepartmentId;
                     existingUser.IsActive = user.IsActive;
-                    existingUser.IsDeleted = user.IsDeleted;
+                    existingUser.IsDeleted = user.IsDeleted ?? false;
                     existingUser.UpdatedDate = DateTime.Now;
                     //existingUser.UpdatedBy = user.UpdatedBy;
 

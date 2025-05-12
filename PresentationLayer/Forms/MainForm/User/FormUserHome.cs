@@ -4,7 +4,6 @@ using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
 using PresentationLayer.Config;
-using PresentationLayer.Controls.Project;
 using PresentationLayer.Controls.SideBar;
 using PresentationLayer.Controls.SideBar.User;
 using PresentationLayer.CustomControls;

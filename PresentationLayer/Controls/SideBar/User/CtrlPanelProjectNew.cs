@@ -159,7 +159,7 @@ namespace PresentationLayer.Controls.SideBar.User
             lbStatus.Text = TaskStatusEnumExtensions.ToString(currentProject.StatusId);
             lbStatus._BackColor = Utils.Utils.GetStatusColor(lbStatus.Text);
 
-            currentProjectMembers = projectMemberServices.GetProjectMembersById(currentProject.Id);
+            currentProjectMembers = projectMemberServices.GetProjectMembersByProjectId(currentProject.Id);
             listviewMembers.BeginUpdate();
             listviewMembers.Items.Clear();
 

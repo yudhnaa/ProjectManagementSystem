@@ -15,7 +15,6 @@ using PresentationLayer.AppContext;
 using PresentationLayer.Config;
 using PresentationLayer.Utils;
 using PresentationLayer.Controls;
-using PresentationLayer.Controls.Project;
 using PresentationLayer.Controls.SideBar.Admin;
 using PresentationLayer.CustomControls;
 using PresentationLayer.UC_SideBar;
@@ -31,6 +30,7 @@ namespace PresentationLayer
         private UserExtraInfoServices userServices;
 
         private CtrlPanelProjectAdminNew ctrlPanelProjectAdminNew;
+        private CtrlPanelProjectMember ctrlPanelProjectMember;
         private CtrlPanelTaskAdminNew ctrlPanelTaskAdminNew;
         private CtrlPanelUserAdminNew ctrlPanelUserAdminNew;
         private CtrlPanelProjectStatusNew ctrlPanelProjectStatus;
@@ -146,6 +146,8 @@ namespace PresentationLayer
         private void btnProject_Click(object sender, EventArgs e) =>
             LoadControl(sender as BunifuButton, ref ctrlPanelProjectAdminNew, () => new CtrlPanelProjectAdminNew());
 
+        private void btnProjectMemeber_Click(object sender, EventArgs e) => 
+            LoadControl(sender as BunifuButton, ref ctrlPanelProjectMember, () => new CtrlPanelProjectMember());
         private void btnTask_Click(object sender, EventArgs e) =>
             LoadControl(sender as BunifuButton, ref ctrlPanelTaskAdminNew, () => new CtrlPanelTaskAdminNew());
 
@@ -189,5 +191,7 @@ namespace PresentationLayer
         {
             Application.Exit();
         }
+
+       
     }
 }

@@ -191,6 +191,12 @@
     <Compile Include="Controls\Others\RoundedLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\SideBar\Admin\CtrlPanelProjectMember.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBar\Admin\CtrlPanelProjectMember.Designer.cs">
+      <DependentUpon>CtrlPanelProjectMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SideBar\User\CtrlPanelProjectNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,12 +208,6 @@
     </Compile>
     <Compile Include="Controls\SideBar\User\CtrlPanelTaskNew.Designer.cs">
       <DependentUpon>CtrlPanelTaskNew.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelDepartment.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelDepartment.Designer.cs">
-      <DependentUpon>CtrlPanelDepartment.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SideBar\Admin\CtrlPanelProjectPriorityNew.cs">
       <SubType>UserControl</SubType>
@@ -245,18 +245,6 @@
     <Compile Include="Controls\SideBar\Admin\CtrlPanelProjectStatusNew.Designer.cs">
       <DependentUpon>CtrlPanelProjectStatusNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\unused\CtrlPanelProjectPriority.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelProjectPriority.Designer.cs">
-      <DependentUpon>CtrlPanelProjectPriority.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelProjectStatus.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelProjectStatus.Designer.cs">
-      <DependentUpon>CtrlPanelProjectStatus.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SideBar\Admin\CtrlPanelProjectAdminNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -269,59 +257,11 @@
     <Compile Include="Controls\SideBar\Admin\CtrlPanelTaskAdminNew.Designer.cs">
       <DependentUpon>CtrlPanelTaskAdminNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\unused\CtrlPanelTaskPriority.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelTaskPriority.Designer.cs">
-      <DependentUpon>CtrlPanelTaskPriority.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelTaskStatus.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelTaskStatus.Designer.cs">
-      <DependentUpon>CtrlPanelTaskStatus.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SideBar\Admin\CtrlPanelUserAdminNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\SideBar\Admin\CtrlPanelUserAdminNew.Designer.cs">
       <DependentUpon>CtrlPanelUserAdminNew.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelUserRole.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelUserRole.Designer.cs">
-      <DependentUpon>CtrlPanelUserRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlProjectAdmin.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlProjectAdmin.Designer.cs">
-      <DependentUpon>CtrlProjectAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelProjectAdmin.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelProjectAdmin.Designer.cs">
-      <DependentUpon>CtrlPanelProjectAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelUserAdmin.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelUserAdmin.Designer.cs">
-      <DependentUpon>CtrlPanelUserAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelProject.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelProject.Designer.cs">
-      <DependentUpon>CtrlPanelProject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlProject.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlProject.Designer.cs">
-      <DependentUpon>CtrlProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SideBar\User\CtrlPanelHomeUser.cs">
       <SubType>UserControl</SubType>
@@ -329,47 +269,11 @@
     <Compile Include="Controls\SideBar\User\CtrlPanelHomeUser.Designer.cs">
       <DependentUpon>CtrlPanelHomeUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\unused\CtrlPanelTaskAdmin.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelTaskAdmin.Designer.cs">
-      <DependentUpon>CtrlPanelTaskAdmin.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Task\Admin\CtrlTaskAdmin.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\Task\Admin\CtrlTaskAdmin.Designer.cs">
       <DependentUpon>CtrlTaskAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlProjectDetail.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlProjectDetail.Designer.cs">
-      <DependentUpon>CtrlProjectDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\ctrl_OverViewTask.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\ctrl_OverViewTask.Designer.cs">
-      <DependentUpon>ctrl_OverViewTask.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\ctrl_TaskPopUp.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\ctrl_TaskPopUp.Designer.cs">
-      <DependentUpon>ctrl_TaskPopUp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\ctrl_Task_Kaban_board.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\ctrl_Task_Kaban_board.Designer.cs">
-      <DependentUpon>ctrl_Task_Kaban_board.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\ctrlCreateUser.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\ctrlCreateUser.Designer.cs">
-      <DependentUpon>ctrlCreateUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Project\Admin\CtrlCreateProject.cs">
       <SubType>UserControl</SubType>
@@ -388,12 +292,6 @@
     </Compile>
     <Compile Include="Controls\User\ctrlSignUpForm.Designer.cs">
       <DependentUpon>ctrlSignUpForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlTaskCreate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlTaskCreate.Designer.cs">
-      <DependentUpon>CtrlTaskCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\User\CtrlUserAdmin.cs">
       <SubType>UserControl</SubType>
@@ -499,12 +397,6 @@
     <Compile Include="Controls\SideBar\User\CtrlPanelGant.Designer.cs">
       <DependentUpon>CtrlPanelGant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\unused\CtrlPanelHome.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelHome.Designer.cs">
-      <DependentUpon>CtrlPanelHome.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SideBar\User\CtrlPanelOverview.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -517,12 +409,6 @@
     <Compile Include="Controls\Project\User\CtrlListMyProjects.Designer.cs">
       <DependentUpon>CtrlListMyProjects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\unused\CtrlPanelTask.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\unused\CtrlPanelTask.Designer.cs">
-      <DependentUpon>CtrlPanelTask.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utils\Utils.cs" />
     <EmbeddedResource Include="Controls\Others\ControlComment.resx">
       <DependentUpon>ControlComment.cs</DependentUpon>
@@ -530,14 +416,14 @@
     <EmbeddedResource Include="Controls\Others\LabelWithImage.resx">
       <DependentUpon>LabelWithImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SideBar\Admin\CtrlPanelProjectMember.resx">
+      <DependentUpon>CtrlPanelProjectMember.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelProjectNew.resx">
       <DependentUpon>CtrlPanelProjectNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelTaskNew.resx">
       <DependentUpon>CtrlPanelTaskNew.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelDepartment.resx">
-      <DependentUpon>CtrlPanelDepartment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\Admin\CtrlPanelProjectPriorityNew.resx">
       <DependentUpon>CtrlPanelProjectPriorityNew.cs</DependentUpon>
@@ -557,68 +443,20 @@
     <EmbeddedResource Include="Controls\SideBar\Admin\CtrlPanelProjectStatusNew.resx">
       <DependentUpon>CtrlPanelProjectStatusNew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelProjectPriority.resx">
-      <DependentUpon>CtrlPanelProjectPriority.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelProjectStatus.resx">
-      <DependentUpon>CtrlPanelProjectStatus.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\Admin\CtrlPanelProjectAdminNew.resx">
       <DependentUpon>CtrlPanelProjectAdminNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\Admin\CtrlPanelTaskAdminNew.resx">
       <DependentUpon>CtrlPanelTaskAdminNew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelTaskPriority.resx">
-      <DependentUpon>CtrlPanelTaskPriority.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelTaskStatus.resx">
-      <DependentUpon>CtrlPanelTaskStatus.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\Admin\CtrlPanelUserAdminNew.resx">
       <DependentUpon>CtrlPanelUserAdminNew.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelUserRole.resx">
-      <DependentUpon>CtrlPanelUserRole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlProjectAdmin.resx">
-      <DependentUpon>CtrlProjectAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelProjectAdmin.resx">
-      <DependentUpon>CtrlPanelProjectAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelUserAdmin.resx">
-      <DependentUpon>CtrlPanelUserAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelProject.resx">
-      <DependentUpon>CtrlPanelProject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlProject.resx">
-      <DependentUpon>CtrlProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelHomeUser.resx">
       <DependentUpon>CtrlPanelHomeUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelTaskAdmin.resx">
-      <DependentUpon>CtrlPanelTaskAdmin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Task\Admin\CtrlTaskAdmin.resx">
       <DependentUpon>CtrlTaskAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlProjectDetail.resx">
-      <DependentUpon>CtrlProjectDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\ctrl_OverViewTask.resx">
-      <DependentUpon>ctrl_OverViewTask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\ctrl_TaskPopUp.resx">
-      <DependentUpon>ctrl_TaskPopUp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\ctrl_Task_Kaban_board.resx">
-      <DependentUpon>ctrl_Task_Kaban_board.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\ctrlCreateUser.resx">
-      <DependentUpon>ctrlCreateUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Project\Admin\CtrlCreateProject.resx">
       <DependentUpon>CtrlCreateProject.cs</DependentUpon>
@@ -628,9 +466,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\User\ctrlSignUpForm.resx">
       <DependentUpon>ctrlSignUpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlTaskCreate.resx">
-      <DependentUpon>CtrlTaskCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\User\CtrlUserAdmin.resx">
       <DependentUpon>CtrlUserAdmin.cs</DependentUpon>
@@ -694,17 +529,11 @@
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelGant.resx">
       <DependentUpon>CtrlPanelGant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelHome.resx">
-      <DependentUpon>CtrlPanelHome.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelOverview.resx">
       <DependentUpon>CtrlPanelOverview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Project\User\CtrlListMyProjects.resx">
       <DependentUpon>CtrlListMyProjects.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\unused\CtrlPanelTask.resx">
-      <DependentUpon>CtrlPanelTask.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <EmbeddedResource Include="PresentationLayer.gclicx" />
@@ -815,6 +644,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\startDate1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-button %283%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

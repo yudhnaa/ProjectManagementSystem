@@ -2,6 +2,7 @@
 using BusinessLayer.Services;
 using C1.GanttView;
 using C1.Win.Localization.Design;
+using DataLayer.EnumObjects;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
@@ -28,6 +29,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private TaskDTO currentTask;
         private ProjectForListDTO currentTaskProject = new ProjectForListDTO();
+        private bool isCreating = false;
 
         private readonly IUserServices userServices = new UserServices();
         private readonly ITaskStatusServices taskStatusServices = new TaskStatusServices();
@@ -47,7 +49,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
         {
             this.user = UserSession.Instance.User;
             InitializeComponent();
-
         }
 
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
@@ -79,50 +80,85 @@ namespace PresentationLayer.Controls.SideBar.Admin
             cbProject.DisplayMember = "ProjectCode";
             cbProject.ValueMember = "Id";
 
-            cbProject.Enabled = false;
-
             debounceTimer = new Timer();
             debounceTimer.Interval = 1000;
             debounceTimer.Tick += DebounceTimer_Tick;
+
+            dgvItems.CellFormatting += DgvItemsCellFormatting;
+
         }
 
-        
+
         private void LoadTasks()
         {
-            // Load data into controls here
             try
             {
-                tasks = taskServices.GetAllTaskForListInlcudeInActive("");
+                tasks = taskServices.GetAllTaskForListInlcudeInActive("") ?? new List<TaskForListDTO>();
 
-                if (tasks != null && tasks.Count > 0)
+                dgvItems.DataSource = null;
+                dgvItems.Columns.Clear();
+
+                if (tasks.Count > 0)
                 {
-                    dgvItems.DataSource = tasks;
-                    dgvItems.Columns.Clear();
+                    // Manual column setup
+                    dgvItems.AutoGenerateColumns = false;
+
                     dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Id", HeaderText = "Id", Width = 50, Name = "Id" });
                     dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Code", HeaderText = "Code", Width = 200 });
                     dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Name", HeaderText = "Name", Width = 100 });
-                    dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "StatusId", HeaderText = "Status Id", Width = 100 });
+                    dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "StatusId", HeaderText = "Status", Width = 100, Name = "StatusId" });
                     dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "StartDate", HeaderText = "Start Date", Width = 100 });
-                    dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "CreatedBy", HeaderText = "Created By", Width = 100 });
+                    dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "CreatedBy", HeaderText = "Created By", Width = 100, Name = "CreatedBy" });
+
+                    dgvItems.DataSource = new BindingList<TaskForListDTO>(tasks);
 
                     dgvItems.Rows[0].Selected = true;
-
                 }
                 else
                 {
-                    MessageBox.Show("No users found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No tasks found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                MessageBox.Show("Database error occurred while retrieving users.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Database error occurred while retrieving tasks.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("An error occurred while retrieving users.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while retrieving tasks.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void DgvItemsCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvItems.Columns[e.ColumnIndex].Name == "StatusId" && e.Value is int statusId)
+            {
+                e.Value = TaskStatusEnumExtensions.ToString(statusId);
+                e.FormattingApplied = true;
+            }
+
+            if (dgvItems.Columns[e.ColumnIndex].Name == "CreatedBy" && e.Value is int userID)
+            {
+                e.Value = userServices.GetUserById(userID).Username;
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void DgvItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvItems.Columns[e.ColumnIndex].Name == "StatusId" && e.Value is int statusId)
+            {
+                e.Value = TaskStatusEnumExtensions.ToString(statusId);
+                e.FormattingApplied = true;
+            }
+
+            if (dgvItems.Columns[e.ColumnIndex].Name == "CreatedBy" && e.Value is int userID)
+            {
+                e.Value = userServices.GetUserById(userID).Username;
+                e.FormattingApplied = true;
+            }
+        }
+
         private void SetTaskInfo()
         {
             if (currentTask == null)
@@ -230,13 +266,13 @@ namespace PresentationLayer.Controls.SideBar.Admin
             try
             {
 
-                if (currentSearchBox == CbUser)
+                if (currentSearchBox == CbUser && cbProject.SelectedValue != null)
                 {
                     string searchText = CbUser.Text;
                     int selectionStart = CbUser.SelectionStart;
 
                     // Fetch users
-                    var users = userServices.GetAllUsers(searchText);
+                    var users = userServices.GetUsersInProject(searchText, (int)cbProject.SelectedValue);
 
                     // Update DataSource
                     CbUser.BeginUpdate();
@@ -250,28 +286,28 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 }
                 else if (currentSearchBox == cbParentTask)
                 {
-                    string kw = cbParentTask.Text;
-                    var tasks = taskServices.GetAllTask(kw);
-
-                    if (tasks == null)
+                    if (cbProject.SelectedValue != null)
                     {
-                        MessageBox.Show("No projects found.");
-                        return;
+                        string kw = cbParentTask.Text;
+                        var tasks = taskServices.GetTaskForlistByProjectId((int)cbProject.SelectedValue);
+                        cbParentTask.DisplayMember = "Code";
+                        cbParentTask.ValueMember = "Id";
+                        cbParentTask.DataSource = tasks;
+                        cbParentTask.SelectedIndex = -1;
                     }
-                    cbParentTask.DataSource = tasks;
-                    cbParentTask.SelectedIndex = -1;
+                   
                 }
-                //else if (currentSearchBox == cbProject)
-                //{
-                //    string kw = cbProject.Text;
-                //    currentProjects = projectServices.GetProjectsForListByKw(kw, 10);
+                else if (currentSearchBox == cbProject)
+                {
+                    string kw = cbProject.Text;
+                    List<ProjectForListDTO> projectDTOs = projectServices.GetAllProjectsForList(kw);
 
-                //    if (currentProjects == null)
-                //        return;
+                    if (projectDTOs == null)
+                        return;
 
-                //    cbProject.DataSource = currentProjects;
-                //    cbProject.SelectedIndex = -1;
-                //}
+                    cbProject.DataSource = projectDTOs;
+                    cbProject.SelectedIndex = -1;
+                }
             }
             catch (SqlException ex)
             {
@@ -285,6 +321,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
+            isCreating = false;
             if (dgvItems.SelectedRows.Count == 1 && dgvItems.SelectedRows[0].Cells["Id"].Value != null)
             {
                 DataGridViewRow item = dgvItems.SelectedRows[0];
@@ -320,6 +357,13 @@ namespace PresentationLayer.Controls.SideBar.Admin
             debounceTimer.Start();
         }
 
+        private void cbProject_KeyUp(object sender, KeyEventArgs e)
+        {
+            currentSearchBox = cbProject;
+            debounceTimer.Stop();
+            debounceTimer.Start();
+        }
+
         private bool ValidateInputs()
         {
             // Check if required fields are empty
@@ -342,7 +386,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
 
             // Validate date fields
-            if (datepickerStart.Value > datepickerEnd.Value)
+            if (datepickerStart.Value >= datepickerEnd.Value)
             {
                 MessageBox.Show("Start Date cannot be later than Due Date.");
                 return false;
@@ -378,27 +422,41 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 return;
             }
 
-            TaskDTO newTask = new TaskDTO
-            {
-                Id = currentTask.Id,
-                Code = tbCode.Text,
-                Name = tbTitle.Text,
-                Description = tbDescription.Text,
-                ProjectId = currentTask.ProjectId,
-                AssignedUserId = (int)CbUser.SelectedValue,
-                StatusId = (int)cbStatus.SelectedValue,
-                PriorityId = (int)cbPriority.SelectedValue,
-                StartDate = datepickerStart.Value,
-                DueDate = datepickerEnd.Value,
-                EstimatedHours = int.Parse(tbEstimate.Text),
-                ParentTaskId = cbParentTask.Text == "" ? 0 : (int)cbParentTask.SelectedValue,
-                UpdatedDate = DateTime.Now,
-            };
-
             try
             {
-                taskServices.UpdateTask(newTask);
-                MessageBox.Show("Task update successfully.");
+                if (isCreating)
+                {
+                    bool res = CreateTask();
+                    if (res)
+                    {
+                        isCreating = false;
+                        LoadTasks();
+                    }
+                }
+                else
+                {
+                    TaskDTO newTask = new TaskDTO
+                    {
+                        Id = currentTask.Id,
+                        Code = tbCode.Text,
+                        Name = tbTitle.Text,
+                        Description = tbDescription.Text,
+                        ProjectId = currentTask.ProjectId,
+                        AssignedUserId = (int)CbUser.SelectedValue,
+                        StatusId = (int)cbStatus.SelectedValue,
+                        PriorityId = (int)cbPriority.SelectedValue,
+                        StartDate = datepickerStart.Value,
+                        DueDate = datepickerEnd.Value,
+                        EstimatedHours = int.Parse(tbEstimate.Text),
+                        ParentTaskId = cbParentTask.Text == "" ? 0 : (int)cbParentTask.SelectedValue,
+                        UpdatedDate = DateTime.Now,
+                    };
+
+                    taskServices.UpdateTask(newTask);
+                    LoadTasks();
+                    MessageBox.Show("Task update successfully.");
+                }
+
             }
             catch (SqlException sqlEx)
             {
@@ -410,12 +468,12 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
         }
 
-        private void btCreate_Click(object sender, EventArgs e)
+        private bool CreateTask()
         {
             // Validate inputs before proceeding
             if (!ValidateInputs())
             {
-                return;
+                return false;
             }
 
             TaskDTO newTask = new TaskDTO
@@ -430,24 +488,51 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 StartDate = datepickerStart.Value,
                 DueDate = datepickerEnd.Value,
                 EstimatedHours = int.Parse(tbEstimate.Text),
-                ParentTaskId = parentTask == null ? -1 : parentTask.Id,
+                ParentTaskId = (int?)cbParentTask.SelectedValue,
                 CreatedDate = DateTime.Now
             };
 
             try
             {
-                taskServices.CreateTask(newTask, this.user.Id);
-                MessageBox.Show("Task created successfully.");
+                var res = taskServices.CreateTask(newTask, this.user.Id);
+                if (res)
+                {
+                    MessageBox.Show("Task created successfully.");
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error creating newTask: " + ex.Message);
+                MessageBox.Show("Error creating new Task: " + ex.Message);
             }
+            return false;
         }
 
-        private void btCancel_Click(object sender, EventArgs e)
+        private void ResetInput()
         {
-            this.Dispose();
+            tbCode.Clear();
+            tbTitle.Clear();
+            tbDescription.Clear();
+            tbEstimate.Clear();
+
+            cbProject.SelectedIndex = -1;
+            CbUser.SelectedIndex = -1;
+            cbStatus.SelectedIndex = -1;
+            cbPriority.SelectedIndex = -1;
+            cbParentTask.DataSource = null;
+
+            datepickerStart.Value = DateTime.Today;
+            datepickerEnd.Value = DateTime.Today;
+        }
+
+        private void btCreate_Click(object sender, EventArgs e)
+        {
+            if (isCreating == false)
+            {
+                isCreating = true;
+                ResetInput();
+            }
         }
 
         private void tbSearch_KeyDown(object sender, KeyEventArgs e)
@@ -497,5 +582,12 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
             }
         }
+
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            LoadTasks();
+        }
+
+       
     }
 }

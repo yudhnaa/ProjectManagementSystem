@@ -11,6 +11,7 @@ namespace DTOLayer.Mappers
                 Id = projectstatus.Id,
                 Name = projectstatus.Name,
                 Description = projectstatus.Description,
+                IsActive = projectstatus.IsActive,
             };
         }
 
@@ -21,6 +22,7 @@ namespace DTOLayer.Mappers
                 Id = model.Id,
                 Name = model.Name,
                 Description = model.Description,
+                IsActive = model.IsActive,
             };
         }
 

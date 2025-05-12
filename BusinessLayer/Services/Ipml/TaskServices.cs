@@ -81,52 +81,89 @@ namespace BusinessLayer.Services
             return grouped;
         }
 
-        public bool CreateTask(TaskDTO taskDTO, int createdByUserId)
+        private bool TaskConstraintCheck(TaskDTO task)
         {
             try
             {
-                
+                // check user in project?
+                IProjectMemberServices projectMemberServices = new ProjectMemberServices();
+                var user = projectMemberServices.GetProjectMembersByProjectId(task.ProjectId).FirstOrDefault(x => x.UserId == task.AssignedUserId);
+                if (user == null)
+                    throw new Exception("User not found in project.");
 
-                var task = taskDTO.ToTaskEntity();
-
-                task.CreatedBy = createdByUserId;
-                task.IsDeleted = false;
-                task.CreatedDate = DateTime.Now;
-
-                if (task.StatusId == 3)
-                    task.PercentComplete = 100;
-                else
-                    task.PercentComplete = 0;
-
-                var res = taskDAL.CreateTask(task);
-
-                if (res > 0)
+                //check parent task in project?
+                if (task.ParentTaskId != null)
                 {
-                    ////// Add task history record
-                    TaskHistoryDTO taskHistoryDTO = new TaskHistoryDTO
-                    {
-                        TaskId = task.Id,
-                        FieldChanged = "Created",
-                        OldValue = null,
-                        NewValue = task.ToString(),
-                        ChangedBy = createdByUserId
-                    };
+                    ITaskServices taskServices = new TaskServices();
+                    var parentTask = taskServices.GetTaskById((int)task.ParentTaskId);
 
-                    TaskHistoryServices taskHistoryServices = new TaskHistoryServices();
-                    var res1 = taskHistoryServices.CreateTaskHistory(taskHistoryDTO);
-                    return res1 > 0;
+                    if (parentTask == null)
+                        throw new Exception("Parent task not found.");
+
+                    if (parentTask.ProjectId != task.ProjectId)
+                        throw new Exception("Parent task is not in the same project.");
                 }
-                else
-                    return false;
+                return true;
             }
             catch (SqlException sqlEx)
             {
                 // Log the SQL exception
-                throw new Exception("Database error occurred while creating task.", sqlEx);
+                throw ;
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while creating task.", ex);
+                throw ;
+            }
+        }
+
+        public bool CreateTask(TaskDTO taskDTO, int createdByUserId)
+        {
+            try
+            {
+                bool isConstraintCheck = TaskConstraintCheck(taskDTO);
+
+                if (isConstraintCheck)
+                {
+                    var task = taskDTO.ToTaskEntity();
+
+                    task.CreatedBy = createdByUserId;
+                    task.IsDeleted = false;
+                    task.CreatedDate = DateTime.Now;
+
+                    if (task.StatusId == 3)
+                        task.PercentComplete = 100;
+                    else
+                        task.PercentComplete = 0;
+
+                    var res = taskDAL.CreateTask(task);
+
+                    if (res > 0)
+                    {
+                        ////// Add task history record
+                        TaskHistoryDTO taskHistoryDTO = new TaskHistoryDTO
+                        {
+                            TaskId = task.Id,
+                            FieldChanged = "Created",
+                            OldValue = null,
+                            NewValue = task.ToString(),
+                            ChangedBy = createdByUserId
+                        };
+
+                        TaskHistoryServices taskHistoryServices = new TaskHistoryServices();
+                        var res1 = taskHistoryServices.CreateTaskHistory(taskHistoryDTO);
+                        return res1 > 0;
+                    }
+                }
+                return false;
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
