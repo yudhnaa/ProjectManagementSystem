@@ -1,6 +1,7 @@
 ﻿using Bunifu.UI.WinForms.Helpers.Transitions;
 using BusinessLayer.Services;
 using DataLayer.Domain;
+using DataLayer.EnumObjects;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
@@ -21,10 +22,12 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private readonly IProjectMemberServices projectMemberServices = new ProjectMemberServices();
         private readonly IUserServices userSerices = new UserServices();
+        private readonly IProjectServices projectServices = new ProjectServices();
 
         private BindingList<ProjectMemberDTO> projectMemberList = new BindingList<ProjectMemberDTO>();
 
         Dictionary<int, UserDTO> userCache = new();
+        Dictionary<int, ProjectForListDTO> projectCache = new();
 
         public CtrlPanelProjectMember()
         {
@@ -58,6 +61,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
             dgvItems.AutoGenerateColumns = false;
             dgvItems.MultiSelect = false;
+            dgvItems.AllowUserToAddRows = false;
             dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvItems.Columns.Clear();
 
@@ -69,6 +73,41 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 new DataGridViewCheckBoxColumn() { DataPropertyName = "IsConfirmed", HeaderText = "Is Confirmed", Name = "IsConfirmed", Width = 100 }
             );
 
+            dgvItems.CellFormatting += DgvItemsCellFormatting;
+
+        }
+
+        private void DgvItemsCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvItems.Columns[e.ColumnIndex].Name == "ProjectId" && e.Value is int projectId && projectId != 0)
+            {
+                if (!projectCache.ContainsKey(projectId))
+                {
+                    var curProject = projectServices.GetProjectForListById(projectId);
+                    projectCache.Add(projectId, curProject);
+                }
+
+                e.Value = projectCache[projectId].Name;
+                e.FormattingApplied = true;
+            }
+
+            if (dgvItems.Columns[e.ColumnIndex].Name == "UserId" && e.Value is int userId && userId != 0)
+            {
+                if (!userCache.ContainsKey(userId))
+                {
+                    var curUser = userSerices.GetUserById(userId);
+                    userCache.Add(userId, curUser);
+                }
+
+                e.Value = userCache[userId].Username;
+                e.FormattingApplied = true;
+            }
+
+            if (dgvItems.Columns[e.ColumnIndex].Name == "RoleInProject" && e.Value is int roleId)
+            {
+                e.Value = ProjectMemberRoleEnumExtensions.FromId(roleId).ToString();
+                e.FormattingApplied = true;
+            }
         }
 
         private void LoadProjectMemberList(string keyword = "")

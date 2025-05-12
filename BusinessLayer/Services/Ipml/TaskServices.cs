@@ -151,8 +151,26 @@ namespace BusinessLayer.Services
 
                         TaskHistoryServices taskHistoryServices = new TaskHistoryServices();
                         var res1 = taskHistoryServices.CreateTaskHistory(taskHistoryDTO);
+
+                        //create dependency for task
+                        //ITaskDependencyService taskDependencyService = new TaskDependencyService();
+                        //if (task.ParentTaskId != null)
+                        //{
+                        //    TaskDependencyDTO taskDependencyDTO = new TaskDependencyDTO
+                        //    {
+                        //        TaskId = task.Id,
+                        //        DependsOnTaskId = (int)task.ParentTaskId,
+                        //        DependencyType = TaskDependency.FinishToStart
+                        //    };
+                        //    var res2 = taskDependencyService.CreateTaskDependency(taskDependencyDTO);
+                        //}
+
                         return res1 > 0;
                     }
+
+
+
+
                 }
                 return false;
             }
@@ -509,16 +527,24 @@ namespace BusinessLayer.Services
         {
             try
             {
+                bool isContrainCheck = TaskConstraintCheck(newTaskDTO);
                 
-                var task = newTaskDTO.ToTaskEntity();
-                task.UpdatedDate = DateTime.Now;
+                if (isContrainCheck)
+                {
+                    var task = newTaskDTO.ToTaskEntity();
+                    task.UpdatedDate = DateTime.Now;
 
-                var res = taskDAL.UpdateTask(task);
+                    var res = taskDAL.UpdateTask(task);
 
-                if (res > 0)
-                    return true;
+                    if (res > 0)
+                        return true;
+                    else
+                        throw new Exception("Task not found or update failed.");
+                }
                 else
-                    throw new Exception("Task not found or update failed.");
+                {
+                    return false;
+                }
             }
             catch (SqlException sqlEx)
             {

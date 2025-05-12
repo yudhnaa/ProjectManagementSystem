@@ -32,8 +32,8 @@ namespace PresentationLayer
             UserDTO user = userServices.CheckLoginUser(
                 new UserDTO
                 {
-                    Username = "admin",
-                    //Username = "awhite",
+                    //Username = "admin",
+                    Username = "awhite",
                     Password = "1"
                 });
 
