@@ -155,26 +155,26 @@ namespace PresentationLayer.Controls.SideBar
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            TableLayoutPanel panel = sender as TableLayoutPanel;
-            if (panel == null) return;
+            //TableLayoutPanel panel = sender as TableLayoutPanel;
+            //if (panel == null) return;
 
-            Pen pen = new Pen(Color.Gray, 1); // Màu và độ dày của đường chia
+            //Pen pen = new Pen(Color.Gray, 1); // Màu và độ dày của đường chia
 
-            // Tính vị trí dòng (horizontal lines)
-            int y = 0;
-            for (int row = 0; row < panel.RowCount - 1; row++)
-            {
-                y += panel.GetRowHeights()[row];
-                e.Graphics.DrawLine(pen, 0, y, panel.Width, y); // Vẽ đường ngang
-            }
+            //// Tính vị trí dòng (horizontal lines)
+            //int y = 0;
+            //for (int row = 0; row < panel.RowCount - 1; row++)
+            //{
+            //    y += panel.GetRowHeights()[row];
+            //    e.Graphics.DrawLine(pen, 0, y, panel.Width, y); // Vẽ đường ngang
+            //}
 
-            // Tính vị trí cột (vertical lines)
-            int x = 0;
-            for (int col = 0; col < panel.ColumnCount - 1; col++)
-            {
-                x += panel.GetColumnWidths()[col];
-                e.Graphics.DrawLine(pen, x, 0, x, panel.Height); // Vẽ đường dọc
-            }
+            //// Tính vị trí cột (vertical lines)
+            //int x = 0;
+            //for (int col = 0; col < panel.ColumnCount - 1; col++)
+            //{
+            //    x += panel.GetColumnWidths()[col];
+            //    e.Graphics.DrawLine(pen, x, 0, x, panel.Height); // Vẽ đường dọc
+            //}
         }
     }
 }

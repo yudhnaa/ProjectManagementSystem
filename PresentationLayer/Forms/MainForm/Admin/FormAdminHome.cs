@@ -200,6 +200,27 @@ namespace PresentationLayer
             Application.Exit();
         }
 
-       
+        private void LogOut()
+        {
+            // Dispose of all controls to free up resources
+            ctrlPanelProjectAdminNew?.Dispose();
+            ctrlPanelProjectMember?.Dispose();
+            ctrlPanelTaskAdminNew?.Dispose();
+            ctrlPanelUserAdminNew?.Dispose();
+            ctrlPanelProjectStatus?.Dispose();
+            ctrlPanelTaskStatusNew?.Dispose();
+            ctrlPanelProjectPriorityNew?.Dispose();
+            ctrlPanelTaskPriorityNew?.Dispose();
+            ctrlPanelUserRoleNew?.Dispose();
+            ctrlPanelDepartmentAdminNew?.Dispose();
+            FormContext.Instance.Logout();
+
+            this?.Dispose();
+        }
+
+        private void bunifuIconButton1_Click(object sender, EventArgs e)
+        {
+            LogOut();
+        }
     }
 }

@@ -155,7 +155,7 @@ namespace PresentationLayer
             panelCenterContent.Controls.Clear();
             panelCenterContent.Controls.Add(control);
         }
-        
+
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -201,6 +201,19 @@ namespace PresentationLayer
                 using SolidBrush brush = new(Color.LightGray);
                 e.Graphics.FillRectangle(brush, rect);
             }
+        }
+
+        private void bunifuIconButton1_Click(object sender, EventArgs e)
+        {
+            ucTask?.Dispose();
+            ucHome?.Dispose();
+            ucProject?.Dispose();
+            ucGant?.Dispose();
+            ucMyProjects?.Dispose();
+            FormContext.Instance.Logout();
+
+            this?.Dispose();
+
         }
     }
 }

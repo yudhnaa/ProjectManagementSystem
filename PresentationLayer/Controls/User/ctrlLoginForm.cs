@@ -85,7 +85,9 @@ namespace PresentationLayer.CustomControls
 
                 if (homeForm != null)
                 {
+                    ResetFields();
                     frmLogin.Hide();
+                    FormContext.Instance.SetHomeForms(homeForm);
                     homeForm.Show();
                 }
             }
@@ -93,13 +95,18 @@ namespace PresentationLayer.CustomControls
             {
                 if (MessageBox.Show("Try Again?", "Login Failed", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning) == DialogResult.Retry)
                 {
-                    tbUsername.Clear();
-                    tbPassword.Clear();
-                    tbUsername.Focus();
+                    ResetFields();
                 }
             }
         }
-      
+
+        private void ResetFields()
+        {
+            tbUsername.Clear();
+            tbPassword.Clear();
+            tbUsername.Focus();
+        }
+
         private void btnShowPassword_Click(object sender, EventArgs e)
         {
             isPasswordVisible = !isPasswordVisible;

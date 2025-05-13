@@ -23,30 +23,36 @@ namespace PresentationLayer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FormLogin());
+            Form loginForm = new FormLogin();
+            if (!FormContext.Instance.HasLoginForms)
+            {
+                FormContext.Instance.SetLoginForms(loginForm);
+            }
+
+            Application.Run(loginForm);
 
             //Mock login user
 
             UserServices userServices = new UserServices();
             UserRoleServices userRoleServices = new UserRoleServices();
 
-            //    UserDTO user = userServices.CheckLoginUser(
-            //        new UserDTO
-            //        {
-            //            Username = "admin",
-            //            //Username = "awhite",
-            //            Password = "1"
-            //        });
+            UserDTO user = userServices.CheckLoginUser(
+                new UserDTO
+                {
+                    Username = "admin",
+                    //Username = "awhite",
+                    Password = "1"
+                });
 
-            //    Color.FromArgb(159, 179, 223);
+            Color.FromArgb(159, 179, 223);
 
-            //    UserSession.Instance.SetUser(user, userRoleServices.GetUserRoleById(user.UserRoleId));
+            //UserSession.Instance.SetUser(user, userRoleServices.GetUserRoleById(user.UserRoleId));
 
-            //    if (user.UserRoleId == 1)
-            //        Application.Run(new FormAdminHome());
+            //if (user.UserRoleId == 1)
+            //    Application.Run(new FormAdminHome());
 
-            //    else
-            //        Application.Run(new FormUserHome());
+            //else
+            //    Application.Run(new FormUserHome());
         }
     }
 }

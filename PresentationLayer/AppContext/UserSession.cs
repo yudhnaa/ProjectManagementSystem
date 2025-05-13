@@ -24,9 +24,10 @@ namespace PresentationLayer.AppContext
             UserRole = userRole;
         }
 
-        public void Clear()
+        public void Logout()
         {
             User = null;
+            UserRole = null;
         }
 
         public bool IsLoggedIn => User != null;

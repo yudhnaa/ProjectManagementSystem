@@ -27,38 +27,6 @@ namespace PresentationLayer
             ctrlLoginForm1.ctrlSignUp = ctrlSignUpForm1;
             ctrlLoginForm1.frmLogin = this;
             ctrlSignUpForm1.ctrlLogin = ctrlLoginForm1;
-            
-
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void bunifuLabel3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ctrlSignUpForm1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void ctrlLoginForm1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

@@ -67,7 +67,7 @@
             this.bunifuLabel4.Name = "bunifuLabel4";
             this.bunifuLabel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel4.Size = new System.Drawing.Size(94, 36);
-            this.bunifuLabel4.TabIndex = 12;
+            this.bunifuLabel4.TabIndex = 0;
             this.bunifuLabel4.Text = "Login";
             this.bunifuLabel4.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.bunifuLabel4.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
@@ -83,11 +83,11 @@
             this.bunifuLabel3.CursorType = null;
             this.bunifuLabel3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bunifuLabel3.Location = new System.Drawing.Point(144, 192);
-            this.bunifuLabel3.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.bunifuLabel3.Margin = new System.Windows.Forms.Padding(10);
             this.bunifuLabel3.Name = "bunifuLabel3";
             this.bunifuLabel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel3.Size = new System.Drawing.Size(135, 15);
-            this.bunifuLabel3.TabIndex = 13;
+            this.bunifuLabel3.TabIndex = 4;
             this.bunifuLabel3.Text = "Forgot Your Password?";
             this.bunifuLabel3.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.bunifuLabel3.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
@@ -123,7 +123,7 @@
             this.btnShowPassword.ShowBorders = true;
             this.btnShowPassword.Size = new System.Drawing.Size(35, 35);
             this.btnShowPassword.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
-            this.btnShowPassword.TabIndex = 11;
+            this.btnShowPassword.TabIndex = 0;
             this.btnShowPassword.Click += new System.EventHandler(this.btnShowPassword_Click);
             // 
             // btnSignUpp
@@ -177,7 +177,7 @@
             this.btnSignUpp.IdleIconRightImage = null;
             this.btnSignUpp.IndicateFocus = false;
             this.btnSignUpp.Location = new System.Drawing.Point(222, 143);
-            this.btnSignUpp.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.btnSignUpp.Margin = new System.Windows.Forms.Padding(10);
             this.btnSignUpp.Name = "btnSignUpp";
             this.btnSignUpp.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSignUpp.OnDisabledState.BorderRadius = 20;
@@ -212,7 +212,7 @@
             this.btnSignUpp.OnPressedState.IconLeftImage = null;
             this.btnSignUpp.OnPressedState.IconRightImage = null;
             this.btnSignUpp.Size = new System.Drawing.Size(103, 29);
-            this.btnSignUpp.TabIndex = 9;
+            this.btnSignUpp.TabIndex = 3;
             this.btnSignUpp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSignUpp.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnSignUpp.TextMarginLeft = 0;
@@ -277,7 +277,7 @@
             stateProperties4.ForeColor = System.Drawing.Color.Empty;
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbUsername.OnIdleState = stateProperties4;
-            this.tbUsername.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbUsername.Padding = new System.Windows.Forms.Padding(3);
             this.tbUsername.PasswordChar = '\0';
             this.tbUsername.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbUsername.PlaceholderText = "Enter username...";
@@ -289,7 +289,7 @@
             this.tbUsername.ShortcutsEnabled = true;
             this.tbUsername.Size = new System.Drawing.Size(329, 39);
             this.tbUsername.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
-            this.tbUsername.TabIndex = 7;
+            this.tbUsername.TabIndex = 1;
             this.tbUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tbUsername.TextMarginBottom = 0;
             this.tbUsername.TextMarginLeft = 3;
@@ -355,7 +355,7 @@
             stateProperties8.ForeColor = System.Drawing.Color.Empty;
             stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbPassword.OnIdleState = stateProperties8;
-            this.tbPassword.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbPassword.Padding = new System.Windows.Forms.Padding(3);
             this.tbPassword.PasswordChar = '\0';
             this.tbPassword.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbPassword.PlaceholderText = "Enter password...";
@@ -367,7 +367,7 @@
             this.tbPassword.ShortcutsEnabled = true;
             this.tbPassword.Size = new System.Drawing.Size(280, 39);
             this.tbPassword.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
-            this.tbPassword.TabIndex = 8;
+            this.tbPassword.TabIndex = 1;
             this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tbPassword.TextMarginBottom = 0;
             this.tbPassword.TextMarginLeft = 3;
@@ -427,7 +427,7 @@
             this.btnLogin.IdleIconRightImage = null;
             this.btnLogin.IndicateFocus = false;
             this.btnLogin.Location = new System.Drawing.Point(99, 143);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(10);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnLogin.OnDisabledState.BorderRadius = 20;
@@ -462,7 +462,7 @@
             this.btnLogin.OnPressedState.IconLeftImage = null;
             this.btnLogin.OnPressedState.IconRightImage = null;
             this.btnLogin.Size = new System.Drawing.Size(103, 29);
-            this.btnLogin.TabIndex = 10;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLogin.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnLogin.TextMarginLeft = 0;
@@ -495,7 +495,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(430, 390);
-            this.tableLayoutPanel1.TabIndex = 14;
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
