@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -79,23 +80,29 @@ namespace PresentationLayer.Controls.SideBar
             // Generate sample data
             foreach(var item in data)
             {
-                series.Points.AddXY(item.Key, item.Value);
+                int pointIndex = series.Points.AddXY(item.Key, item.Value);
+                var point = series.Points[pointIndex];
+                point.Label = item.Value.ToString();
+
             }
 
             // Add series to chart
             chart2.Series.Add(series);
-
+            
             // Set chart titles (optional)
             chart2.Titles.Add("Task Count per Project");
             chart2.ChartAreas[0].AxisX.Title = "Project";
             chart2.ChartAreas[0].AxisY.Title = "Task";
             chart2.ChartAreas[0].AxisY.MajorGrid.LineWidth = 1;
+            
         }
 
         private void SetDataChartStatusOfTask(int userId)
         {
             var taskServices = new TaskServices();
             var data = taskServices.CountTaskByStatusAndUserId(userId);
+            // Calculate total count for percentage calculation
+            int total = data.Sum(item => item.Value);
 
             // Clear existing series
             ResetChartData(chart3);
@@ -110,9 +117,23 @@ namespace PresentationLayer.Controls.SideBar
 
             // Generate sample data
             foreach (var item in data)
-            { 
-                 series.Points.AddXY(item.Key, item.Value);
+            {
+                int pointIndex = series.Points.AddXY(item.Key, item.Value);
+                double percentage = total == 0 ? 0 : ((double)item.Value / total) * 100;
+                // Format label thành phần trăm nếu > 0
+                if (percentage > 0)
+                {
+                    series.Points[pointIndex].Label = $"{percentage:F1}%";
+                }
+                else
+                {
+                    // Ẩn label nếu 0%
+                    series.Points[pointIndex].Label = "";
+                }
+                // Luôn hiện chú thích trạng thái
+                series.Points[pointIndex].LegendText = item.Key;
             }
+
             series.LabelFormat = "#";
             // Add series to chart
             chart3.Series.Add(series);
