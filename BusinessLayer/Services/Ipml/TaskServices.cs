@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 
 namespace BusinessLayer.Services
@@ -80,52 +81,107 @@ namespace BusinessLayer.Services
             return grouped;
         }
 
-        public bool CreateTask(TaskDTO taskDTO, int createdByUserId)
+        private bool TaskConstraintCheck(TaskDTO task)
         {
             try
             {
-                
+                // check user in project?
+                IProjectMemberServices projectMemberServices = new ProjectMemberServices();
+                var user = projectMemberServices.GetProjectMembersByProjectId(task.ProjectId).FirstOrDefault(x => x.UserId == task.AssignedUserId);
+                if (user == null)
+                    throw new Exception("User not found in project.");
 
-                var task = taskDTO.ToTaskEntity();
-
-                task.CreatedBy = createdByUserId;
-                task.IsDeleted = false;
-                task.CreatedDate = DateTime.Now;
-
-                if (task.StatusId == 3)
-                    task.PercentComplete = 100;
-                else
-                    task.PercentComplete = 0;
-
-                var res = taskDAL.CreateTask(task);
-
-                if (res > 0)
+                //check parent task in project?
+                if (task.ParentTaskId != null && task.ParentTaskId != 0)
                 {
-                    ////// Add task history record
-                    TaskHistoryDTO taskHistoryDTO = new TaskHistoryDTO
-                    {
-                        TaskId = task.Id,
-                        FieldChanged = "Created",
-                        OldValue = null,
-                        NewValue = task.ToString(),
-                        ChangedBy = createdByUserId
-                    };
+                    ITaskServices taskServices = new TaskServices();
+                    var parentTask = taskServices.GetTaskById((int)task.ParentTaskId);
 
-                    TaskHistoryServices taskHistoryServices = new TaskHistoryServices();
-                    var res1 = taskHistoryServices.CreateTaskHistory(taskHistoryDTO);
-                    return res1 > 0;
+                    if (parentTask == null)
+                        throw new Exception("Parent task not found.");
+
+                    if (parentTask.ProjectId != task.ProjectId)
+                        throw new Exception("Parent task is not in the same project.");
                 }
-                else
-                    return false;
+                return true;
             }
             catch (SqlException sqlEx)
             {
                 // Log the SQL exception
-                throw new Exception("Database error occurred while creating task.", sqlEx);
+                throw ;
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while creating task.", ex);
+                throw ;
+            }
+        }
+
+        public bool CreateTask(TaskDTO taskDTO, int createdByUserId)
+        {
+            try
+            {
+                bool isConstraintCheck = TaskConstraintCheck(taskDTO);
+
+                if (isConstraintCheck)
+                {
+                    var task = taskDTO.ToTaskEntity();
+
+                    task.CreatedBy = createdByUserId;
+                    task.IsDeleted = false;
+                    task.CreatedDate = DateTime.Now;
+
+                    if (task.StatusId == 3)
+                        task.PercentComplete = 100;
+                    else
+                        task.PercentComplete = 0;
+
+                    var res = taskDAL.CreateTask(task);
+
+                    if (res > 0)
+                    {
+                        ////// Add task history record
+                        TaskHistoryDTO taskHistoryDTO = new TaskHistoryDTO
+                        {
+                            TaskId = task.Id,
+                            FieldChanged = "Created",
+                            OldValue = null,
+                            NewValue = task.ToString(),
+                            ChangedBy = createdByUserId
+                        };
+
+                        TaskHistoryServices taskHistoryServices = new TaskHistoryServices();
+                        var res1 = taskHistoryServices.CreateTaskHistory(taskHistoryDTO);
+
+                        //create dependency for task
+                        //ITaskDependencyService taskDependencyService = new TaskDependencyService();
+                        //if (task.ParentTaskId != null)
+                        //{
+                        //    TaskDependencyDTO taskDependencyDTO = new TaskDependencyDTO
+                        //    {
+                        //        TaskId = task.Id,
+                        //        DependsOnTaskId = (int)task.ParentTaskId,
+                        //        DependencyType = TaskDependency.FinishToStart
+                        //    };
+                        //    var res2 = taskDependencyService.CreateTaskDependency(taskDependencyDTO);
+                        //}
+
+                        return res1 > 0;
+                    }
+
+
+
+
+                }
+                return false;
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
@@ -471,16 +527,24 @@ namespace BusinessLayer.Services
         {
             try
             {
+                bool isContrainCheck = TaskConstraintCheck(newTaskDTO);
                 
-                var task = newTaskDTO.ToTaskEntity();
-                task.UpdatedDate = DateTime.Now;
+                if (isContrainCheck)
+                {
+                    var task = newTaskDTO.ToTaskEntity();
+                    task.UpdatedDate = DateTime.Now;
 
-                var res = taskDAL.UpdateTask(task);
+                    var res = taskDAL.UpdateTask(task);
 
-                if (res > 0)
-                    return true;
+                    if (res > 0)
+                        return true;
+                    else
+                        throw new Exception("Task not found or update failed.");
+                }
                 else
-                    throw new Exception("Task not found or update failed.");
+                {
+                    return false;
+                }
             }
             catch (SqlException sqlEx)
             {
@@ -522,6 +586,101 @@ namespace BusinessLayer.Services
             catch (Exception ex)
             {
                 throw new Exception("An error occurred while updating task.", ex);
+            }
+        }
+
+        public List<TaskForGanttChartDTO> GetTaskByProjectIdWithDependencies(int projectId, int userId)
+        {
+            try
+            {
+                IUserServices userServices = new UserServices();
+                ITaskDependencyService taskDependencyService = new TaskDependencyService();
+
+                UserDTO user = userServices.GetUserById(userId);
+                //List<TaskDependencyDTO> taskDependencyDTOs = 
+
+                var tasks = taskDAL.GetTaskByProjectIdAndUserId(projectId, userId, isIncludeInActive: false)
+                    .Select(t => new TaskForGanttChartDTO
+                    {
+                        Id = t.Id,
+                        Code = t.Code,
+                        Name = t.Name,
+                        Description = t.Description,
+                        ProjectId = t.ProjectId,
+                        AssignedUserId = t.AssignedUserId,
+                        AssignedUserName = user.FirstName + " " + user.LastName,
+                        StatusId = t.StatusId,
+                        PriorityId = t.PriorityId,
+                        StartDate = t.StartDate,
+                        DueDate = t.DueDate,
+                        EstimatedHours = t.EstimatedHours,
+                        ActualHours = t.ActualHours,
+                        PercentComplete = t.PercentComplete,
+                        ParentTaskId = t.ParentTaskId,
+                        //TaskDependencies = new List<TaskDependencyDTO>(),
+                        TaskDependencies = taskDependencyService.GetDependentByTaskIds(t.Id).Select(d => new TaskDependencyDTO
+                        {
+                            TaskId = d.TaskId,
+                            DependsOnTaskId = d.DependsOnTaskId,
+                            DependencyType = d.DependencyType
+                        }).ToList(),
+                        IsDeleted = t.IsDeleted
+                    }).ToList();
+
+                return tasks;
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while updating task.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while updating task.", ex);
+            }
+
+            
+        }
+
+        public List<TaskForListDTO> GetTasksForlistByProjectIdAndKw(int projectId, string kw)
+        {
+            try
+            {
+                List<Task> tasks = taskDAL.GetTaskByProjectIdAndKw(projectId, kw, isIncludeInActive: false);
+                if (tasks == null)
+                    return null;
+
+                return tasks.Select(t => TaskForListDTOMapper.ToDto(t)).ToList();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while fetching tasks.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching tasks.", ex);
+            }
+        }
+
+        public List<TaskForListDTO> GetTaskAllForlistByProjectIdAndUserIdAndKwInlcudeInActive(int projectId, string kw)
+        {
+            try
+            {
+                List<Task> tasks = taskDAL.GetTaskByProjectIdAndKw(projectId, kw, isIncludeInActive: true);
+                if (tasks == null)
+                    return null;
+
+                return tasks.Select(t => TaskForListDTOMapper.ToDto(t)).ToList();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while fetching tasks.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching tasks.", ex);
             }
         }
     }

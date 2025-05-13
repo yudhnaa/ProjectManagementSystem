@@ -4,7 +4,6 @@ using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
 using PresentationLayer.Config;
-using PresentationLayer.Controls.Project;
 using PresentationLayer.Controls.SideBar;
 using PresentationLayer.Controls.SideBar.User;
 using PresentationLayer.CustomControls;
@@ -26,14 +25,13 @@ namespace PresentationLayer
         private CtrlPanelTaskNew ucTask;
         private CtrlPanelHomeUser ucHome;
         private CtrlPanelProjectNew ucProject;
-        private UserControl ucOverview;
-        private UserControl ucGant;
+        private CtrlPanelGant ucGant;
         private CtrlListMyProjects ucMyProjects;
 
         // target-typed new expressions. c# >= 9.0
-        private readonly UserRoleServices roleServices = new();
-        private readonly ProjectServices projectServices = new();
-        private readonly TaskServices taskServices = new();
+        private readonly IUserRoleServices roleServices = new UserRoleServices();
+        private readonly IProjectServices projectServices = new ProjectServices();
+        private readonly ITaskServices taskServices = new TaskServices();
 
         private List<ProjectForListDTO> projects = new();
 
@@ -81,11 +79,6 @@ namespace PresentationLayer
                 InitButton(btn);
 
             btnHome_Click(btnHome, null); // Default screen  
-        }
-
-        public void ucHome_Selected()
-        {
-
         }
 
         private void LoadProjects()
@@ -145,6 +138,9 @@ namespace PresentationLayer
         {
             ucTask ??= new CtrlPanelTaskNew();
             ucTask.CurrentProject = selectedProject;
+
+            ucGant ??= new CtrlPanelGant();
+            ucGant.CurrentProject = selectedProject;
         }
 
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
@@ -165,7 +161,6 @@ namespace PresentationLayer
             LoadControl(ucHome);
             ucHome.LoadAllCharts();
         }
-
         private void btnTask_Click(object sender, EventArgs e)
         {
             currentButton = sender as BunifuButton;

@@ -34,6 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C1.Win.C1GanttView.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Schedule.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -65,7 +67,9 @@
     <Compile Include="Mappers\ProjectPriorityDTOMapper.cs" />
     <Compile Include="Mappers\ProjectStatusDTOMapper.cs" />
     <Compile Include="Mappers\TaskCommentDTOMapper.cs" />
+    <Compile Include="Mappers\TaskDependencyDTOMapper.cs" />
     <Compile Include="Mappers\TaskDTOMapper.cs" />
+    <Compile Include="Mappers\TaskForGanttChartDTOMapper.cs" />
     <Compile Include="Mappers\TaskForListDTOMapper.cs" />
     <Compile Include="Mappers\TaskHistoryDTOMapper.cs" />
     <Compile Include="Mappers\TaskPriorityDTOMapper.cs" />
@@ -85,7 +89,9 @@
     <Compile Include="Models\ProjectPriorityDTO.cs" />
     <Compile Include="Models\ProjectStatusDTO.cs" />
     <Compile Include="Models\TaskCommentDTO.cs" />
+    <Compile Include="Models\TaskDependencyDTO.cs" />
     <Compile Include="Models\TaskDTO.cs" />
+    <Compile Include="Models\TaskForGanttChartDTO.cs" />
     <Compile Include="Models\TaskForListDTO.cs" />
     <Compile Include="Models\TaskHistoryDTO.cs" />
     <Compile Include="Models\TaskPriorityDTO.cs" />

@@ -14,5 +14,6 @@ namespace BusinessLayer.Services
         UserDTO GetUserByIdInlcudeInActive(int userId);
         bool HardDeleteUserById(int id);
         bool UpdateUser(UserDTO userDTO);
+        List<UserDTO> GetUsersInProject(string kw, int ProjectId);
     }
 }

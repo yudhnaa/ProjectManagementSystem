@@ -56,8 +56,6 @@ namespace PresentationLayer.Controls.SideBar.User
             ConfigureDataGridView();
         }
 
-
-
         private void ConfigureDataGridView()
         {
             dgvItems.AutoGenerateColumns = false;
@@ -106,18 +104,18 @@ namespace PresentationLayer.Controls.SideBar.User
         {
             try
             {
-                projects = projectServices.GetAllProjectsForList("");
+                projects = projectServices.GetProjectsForListByUserId(user.Id);
                 dgvItems.DataSource = projects;
                 dgvItems.Rows[0].Selected = true;
           
             }
             catch (SqlException)
             {
-                MessageBox.Show("Database error occurred while retrieving projects.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred while retrieving projects.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
             }
         }
 
@@ -159,7 +157,7 @@ namespace PresentationLayer.Controls.SideBar.User
             lbStatus.Text = TaskStatusEnumExtensions.ToString(currentProject.StatusId);
             lbStatus._BackColor = Utils.Utils.GetStatusColor(lbStatus.Text);
 
-            currentProjectMembers = projectMemberServices.GetProjectMembersById(currentProject.Id);
+            currentProjectMembers = projectMemberServices.GetProjectMembersByProjectId(currentProject.Id);
             listviewMembers.BeginUpdate();
             listviewMembers.Items.Clear();
 

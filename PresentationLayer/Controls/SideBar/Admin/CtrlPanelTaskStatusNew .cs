@@ -152,6 +152,43 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
         }
 
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    string keyword = tbSearch.Text.Trim();
+
+                    if (string.IsNullOrEmpty(keyword))
+                    {
+                        taskStatuses = taskStatusServices.GetAllTaskStatuses("");
+                    }
+                    else
+                    {
+                        taskStatuses = taskStatusServices.GetAllTaskStatuses(keyword);
+                    }
+
+                    if (taskStatuses == null || taskStatuses.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy task status nào với từ khóa này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    dgvItems.DataSource = taskStatuses;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show($"Lỗi cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
         private void splitContainer1_Paint(object sender, PaintEventArgs e)
         {
             SplitContainer s = sender as SplitContainer;

@@ -332,7 +332,7 @@
             // 
             this.tbName.AcceptsReturn = false;
             this.tbName.AcceptsTab = false;
-            this.tbName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tbName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbName.AnimationSpeed = 200;
             this.tbName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.tbName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -358,7 +358,7 @@
             this.tbName.IconRight = null;
             this.tbName.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbName.Lines = new string[0];
-            this.tbName.Location = new System.Drawing.Point(238, 50);
+            this.tbName.Location = new System.Drawing.Point(271, 50);
             this.tbName.Margin = new System.Windows.Forms.Padding(10);
             this.tbName.MaxLength = 32767;
             this.tbName.MinimumSize = new System.Drawing.Size(1, 1);
@@ -410,7 +410,7 @@
             // 
             this.tbId.AcceptsReturn = false;
             this.tbId.AcceptsTab = false;
-            this.tbId.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tbId.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbId.AnimationSpeed = 200;
             this.tbId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.tbId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -520,6 +520,7 @@
             this.tbDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbDescription.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
             this.tbDescription.DefaultText = "";
+            this.tbDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbDescription.FillColor = System.Drawing.Color.White;
             this.tbDescription.HideSelection = true;
             this.tbDescription.IconLeft = null;
@@ -565,7 +566,7 @@
             this.tbDescription.SelectionLength = 0;
             this.tbDescription.SelectionStart = 0;
             this.tbDescription.ShortcutsEnabled = true;
-            this.tbDescription.Size = new System.Drawing.Size(422, 196);
+            this.tbDescription.Size = new System.Drawing.Size(472, 112);
             this.tbDescription.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbDescription.TabIndex = 16;
             this.tbDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -651,7 +652,7 @@
             this.btCreateProject.IdleIconLeftImage = null;
             this.btCreateProject.IdleIconRightImage = null;
             this.btCreateProject.IndicateFocus = false;
-            this.btCreateProject.Location = new System.Drawing.Point(109, 460);
+            this.btCreateProject.Location = new System.Drawing.Point(109, 376);
             this.btCreateProject.Margin = new System.Windows.Forms.Padding(10);
             this.btCreateProject.Name = "btCreateProject";
             this.btCreateProject.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -703,7 +704,7 @@
             this.cbIsActive.AllowCheckBoxAnimation = false;
             this.cbIsActive.AllowCheckmarkAnimation = true;
             this.cbIsActive.AllowOnHoverStates = true;
-            this.cbIsActive.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbIsActive.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbIsActive.AutoCheck = true;
             this.cbIsActive.BackColor = System.Drawing.Color.Transparent;
             this.cbIsActive.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbIsActive.BackgroundImage")));
@@ -714,7 +715,7 @@
             this.cbIsActive.CheckState = Bunifu.UI.WinForms.BunifuCheckBox.CheckStates.Checked;
             this.cbIsActive.Cursor = System.Windows.Forms.Cursors.Default;
             this.cbIsActive.CustomCheckmarkImage = null;
-            this.cbIsActive.Location = new System.Drawing.Point(231, 142);
+            this.cbIsActive.Location = new System.Drawing.Point(343, 142);
             this.cbIsActive.MinimumSize = new System.Drawing.Size(17, 17);
             this.cbIsActive.Name = "cbIsActive";
             this.cbIsActive.OnCheck.BorderColor = System.Drawing.Color.DodgerBlue;
@@ -752,10 +753,11 @@
             // cbManagerUser
             // 
             this.cbManagerUser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbManagerUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbManagerUser.FormattingEnabled = true;
-            this.cbManagerUser.Location = new System.Drawing.Point(10, 148);
+            this.cbManagerUser.Location = new System.Drawing.Point(10, 144);
             this.cbManagerUser.Name = "cbManagerUser";
-            this.cbManagerUser.Size = new System.Drawing.Size(207, 21);
+            this.cbManagerUser.Size = new System.Drawing.Size(207, 28);
             this.cbManagerUser.TabIndex = 21;
             this.cbManagerUser.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbManagerUser_KeyUp);
             // 
@@ -764,7 +766,7 @@
             this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel2.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel2.Controls.Add(this.btCancelProject);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(231, 451);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(231, 367);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(258, 57);
             this.flowLayoutPanel2.TabIndex = 33;

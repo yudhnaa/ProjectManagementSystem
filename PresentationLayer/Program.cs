@@ -33,7 +33,7 @@ namespace PresentationLayer
                 new UserDTO
                 {
                     //Username = "admin",
-                    Username = "awhite",
+                    Username = "mwang",
                     Password = "1"
                 });
 

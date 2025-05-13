@@ -98,11 +98,17 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         }
 
-        private void btCreateProject_Click(object sender, EventArgs e)
+        private void ResetControls()
         {
             tbId.Text = "0";
             tbName.Text = string.Empty;
             tbDescription.Text = string.Empty;
+        }
+
+        private void btCreateProject_Click(object sender, EventArgs e)
+        {
+            dgvItems.Rows[0].Selected = false;
+            ResetControls();
         }
 
         private bool ValidateInput()
@@ -130,7 +136,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 UserRoleDTO newUserRole = new UserRoleDTO()
                 {
-                    Name = tbId.Text,
+                    Name = tbName.Text,
                     Description = tbDescription.Text,
                 };
 
@@ -161,6 +167,42 @@ namespace PresentationLayer.Controls.SideBar.Admin
             if (s != null)
             {
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
+            }
+        }
+
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            dgvItems.Rows[0].Selected = true;
+        }
+
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    string keyword = string.IsNullOrEmpty(tbSearch.Text.Trim()) == true ? "" : tbSearch.Text.Trim();
+
+                    userRolees = userRoleServices.GetAllUserRolesInlcudeInActive(keyword);
+
+                    if (userRolees == null || userRolees.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy task nào với từ khóa này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    dgvItems.DataSource = userRolees;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show($"Lỗi cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }

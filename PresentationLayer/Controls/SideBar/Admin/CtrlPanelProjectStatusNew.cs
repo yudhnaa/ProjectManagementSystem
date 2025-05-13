@@ -82,6 +82,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             tbId.Text = currentItem.Id.ToString();
             tbName.Text = currentItem.Name;
             tbDescription.Text = currentItem.Description;
+            cbIsActive.Checked = currentItem.IsActive ?? false;
         }
 
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
@@ -99,6 +100,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             tbId.Text = "0";
             tbName.Text = string.Empty;
             tbDescription.Text = string.Empty;
+            cbIsActive.Checked = false;
         }
 
         private bool ValidateInput()
@@ -126,8 +128,9 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 ProjectStatusDTO newProjectStatus = new ProjectStatusDTO()
                 {
-                    Name = tbId.Text,
+                    Name = tbName.Text,
                     Description = tbDescription.Text,
+                    IsActive = cbIsActive.Checked,
                 };
 
                 isRefresh = projectStatusServices.CreateProjectStatus(newProjectStatus);
@@ -136,6 +139,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 currentItem.Name = tbName.Text;
                 currentItem.Description = tbDescription.Text;
+                currentItem.IsActive = cbIsActive.Checked;
 
                 isRefresh = projectStatusServices.UpdateProjectStatus(currentItem);
             }
@@ -158,6 +162,32 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
             }
+        }
+
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    string kw = tbSearch.Text.ToString() ?? "";
+                    var projectStatuses = projectStatusServices.GetAllProjectStatusesInlcudeInActive(kw);
+                    dgvItems.DataSource = projectStatuses;
+                }
+                catch (SqlException ex)
+                {
+                    ShowError("Database error during search", ex);
+                }
+                catch (Exception ex)
+                {
+                    ShowError("Unexpected error during search", ex);
+                }
+            }
+        }
+
+        private void ShowError(string message, Exception ex)
+        {
+            MessageBox.Show($"{message}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

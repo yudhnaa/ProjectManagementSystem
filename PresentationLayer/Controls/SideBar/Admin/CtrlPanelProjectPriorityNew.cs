@@ -227,5 +227,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
             MessageBox.Show(message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+            LoadProjectPriorities();
+        }
     }
 }

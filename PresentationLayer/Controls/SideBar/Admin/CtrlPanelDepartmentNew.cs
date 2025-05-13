@@ -25,8 +25,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private List<DepartmentDTO> departmentes;
         private DepartmentDTO currentItem;
 
-        Dictionary<int, UserDTO> userCache = new();
-        BindingList<UserDTO> managerUser = new();
+        private Dictionary<int, UserDTO> userCache = new();
+        private BindingList<UserDTO> managerUser = new();
 
         public CtrlPanelDepartmentNew()
         {
@@ -140,6 +140,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void btCreateProject_Click(object sender, EventArgs e)
         {
+            dgvItems.ClearSelection();
+
             tbId.Text = "0";
             tbName.Clear();
             tbDescription.Clear();

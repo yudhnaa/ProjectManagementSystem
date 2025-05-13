@@ -15,12 +15,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using DTOLayer;
+using DataLayer.EnumObjects;
 
 namespace PresentationLayer.Controls.SideBar.Admin
 {
     public partial class CtrlPanelUserAdminNew : UserControl
     {
-        private UserDTO user;
+        private readonly UserDTO user;
 
         private List<UserDTO> users;
 
@@ -35,6 +36,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private List<UserRoleDTO> userRoleDTOs;
 
         private bool isShowPassword;
+        private bool isCreating = false;
+
         public CtrlPanelUserAdminNew()
         {
             this.user = UserSession.Instance.User;
@@ -77,6 +80,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             dgvItems.MultiSelect = false;
             dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvItems.CellFormatting += DgvItemsCellFormatting;
 
             cbRole.DisplayMember = "Name";
             cbRole.ValueMember = "Id";
@@ -117,12 +121,21 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Id", HeaderText = "Id", Width = 50, Name = "Id" });
                 dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Username", HeaderText = "Username", Width = 200 });
                 dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "FirstName", HeaderText = "FirstName", Width = 100 });
-                dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "UserRoleId", HeaderText = "UserRoleId", Width = 100 });
+                dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "UserRoleId", HeaderText = "UserRoleId", Name = "UserRoleId", Width = 100 });
                 dgvItems.Columns.Add(new DataGridViewTextBoxColumn() { DataPropertyName = "Email", HeaderText = "Email", Width = 100 });
 
                 dgvItems.Rows[0].Selected = true;
             }
 
+        }
+
+        private void DgvItemsCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvItems.Columns[e.ColumnIndex].Name == "UserRoleId" && e.Value is int userRoleId)
+            {
+                e.Value = UserRoleEnumExtensions.ToString(userRoleId);
+                e.FormattingApplied = true;
+            }
         }
 
         private void SetUserData()
@@ -228,12 +241,12 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
         }
 
-        private void UpdateUserInfo()
+        private bool UpdateUserInfo()
         {
             // Validate user input first
             if (!ValidateUserInput())
             {
-                return;
+                return false;
             }
 
             // Update the user object with form data
@@ -251,34 +264,118 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 var res = userExtraInfoServices.UpdateUser(currentUser);
                 if (res)
+                {
                     MessageBox.Show("User information updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
                 else
+                {
                     MessageBox.Show("Failed to update user information.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return false;
         }
 
-        private void btUpdate_Click(object sender, EventArgs e)
+        private bool CreateUser()
         {
-            UpdateUserInfo();
+            UserExtraInfoDTO newUser = new UserExtraInfoDTO()
+            {
+                // Update the user object with form data
+                Username = tbUsername.Text.Trim(),
+                FirstName = tbFirstname.Text.Trim(),
+                LastName = tbLastname.Text.Trim(),
+                Address = tbAddress.Text.Trim(),
+                Email = tbEmail.Text.Trim(),
+                PhoneNumber = tbPhone.Text.Trim(),
+                Password = tbPassword.Text,
+                DepartmentId = (int?)cbDepartment.SelectedValue,
+                UserRoleId = (int)cbRole.SelectedValue,
+                IsActive = cbIsActive.Checked
+
+            };
+
+            try
+            {
+                var res = userExtraInfoServices.Createuser(newUser);
+                if (res != null)
+                {
+                    MessageBox.Show("User created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (isCreating)
+            {
+                bool res = CreateUser();
+
+                if (res)
+                {
+                    isCreating = false;
+                    tbUsername.Enabled = false;
+                    LoadUsers();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                bool res = UpdateUserInfo();
+
+                if (res)
+                {
+                    isCreating = false;
+                    LoadUsers();
+                    tbUsername.Enabled = false;
+                }
+            }
 
         }
 
-        private void pbAvatar_Click(object sender, EventArgs e)
+        private void ResetControl()
         {
+            tbUsername.Text = string.Empty;
+            tbPassword.Text = string.Empty;
+            tbEmail.Text = string.Empty;
+            tbFirstname.Text = string.Empty;
+            tbLastname.Text = string.Empty;
+            tbPhone.Text = string.Empty;
+            tbAddress.Text = string.Empty;
 
+            cbDepartment.SelectedIndex = -1; 
+            cbRole.SelectedIndex = -1;
+
+            cbIsActive.Checked = false;
         }
 
         private void btCancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            if (isCreating)
+            {
+                isCreating = false;
+                tbUsername.Enabled = false;
+                ResetControl();
+                LoadUsers();
+            }
+            else
+            {
+                dgvItems.Rows[0].Selected = true;
+            }
         }
 
         private void splitContainer1_Paint(object sender, PaintEventArgs e)
@@ -287,6 +384,65 @@ namespace PresentationLayer.Controls.SideBar.Admin
             if (s != null)
             {
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
+            }
+        }
+
+       
+
+        private void btCreate_Click(object sender, EventArgs e)
+        {
+            if (!isCreating)
+            {
+                isCreating = true;
+                tbUsername.Enabled = true;
+                ResetControl();
+            }
+        }
+
+        private void btnShowPassword_Click(object sender, EventArgs e)
+        {
+            if (isShowPassword)
+            {
+                tbPassword.PasswordChar = '*';
+                btnShowPassword.Text = "Show Password";
+                isShowPassword = false;
+            }
+            else
+            {
+                tbPassword.PasswordChar = '\0';
+                btnShowPassword.Text = "Hide Password";
+                isShowPassword = true;
+            }
+        }
+
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    string keyword = string.IsNullOrEmpty(tbSearch.Text.Trim()) ==  true ? "" : tbSearch.Text.Trim();
+                    
+                    users = userServices.GetAllUsersInlcudeInActive(keyword);
+
+                    if (users == null || users.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy task nào với từ khóa này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    dgvItems.DataSource = users;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show($"Lỗi cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }

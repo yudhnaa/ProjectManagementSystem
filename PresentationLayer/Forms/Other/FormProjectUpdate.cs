@@ -101,7 +101,7 @@ namespace PresentationLayer
             cbStatus.SelectedValue = projectDTO.StatusId;
             cbPriority.SelectedValue = projectDTO.PriorityId;
 
-            projectMembers = projectMemberServices.GetProjectMembersById(projectDTO.Id);
+            projectMembers = projectMemberServices.GetProjectMembersByProjectId(projectDTO.Id);
             listviewMembers.Items.Clear();
             listviewMembers.BeginUpdate();
             foreach (ProjectMemberDTO member in projectMembers)

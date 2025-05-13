@@ -101,7 +101,7 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(1535, 899);
-            this.splitContainer1.SplitterDistance = 1008;
+            this.splitContainer1.SplitterDistance = 902;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Paint);
             // 
@@ -163,7 +163,7 @@
             this.dgvItems.RowHeadersWidth = 62;
             this.dgvItems.RowTemplate.Height = 40;
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItems.Size = new System.Drawing.Size(988, 790);
+            this.dgvItems.Size = new System.Drawing.Size(882, 790);
             this.dgvItems.TabIndex = 6;
             this.dgvItems.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.dgvItems.SelectionChanged += new System.EventHandler(this.dgvItems_SelectionChanged);
@@ -176,7 +176,7 @@
             this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(988, 89);
+            this.panel1.Size = new System.Drawing.Size(882, 89);
             this.panel1.TabIndex = 5;
             // 
             // tbSearch
@@ -245,7 +245,7 @@
             this.tbSearch.SelectionLength = 0;
             this.tbSearch.SelectionStart = 0;
             this.tbSearch.ShortcutsEnabled = true;
-            this.tbSearch.Size = new System.Drawing.Size(968, 35);
+            this.tbSearch.Size = new System.Drawing.Size(862, 35);
             this.tbSearch.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSearch.TabIndex = 4;
             this.tbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -313,7 +313,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(523, 899);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(629, 899);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // lbShortDescription
@@ -332,7 +332,7 @@
             this.lbShortDescription.Margin = new System.Windows.Forms.Padding(10);
             this.lbShortDescription.Name = "lbShortDescription";
             this.lbShortDescription.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbShortDescription.Size = new System.Drawing.Size(503, 20);
+            this.lbShortDescription.Size = new System.Drawing.Size(592, 20);
             this.lbShortDescription.TabIndex = 26;
             this.lbShortDescription.Text = "Project P001";
             this.lbShortDescription.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -344,7 +344,7 @@
             this.lbPriority._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPriority.Location = new System.Drawing.Point(271, 309);
+            this.lbPriority.Location = new System.Drawing.Point(316, 309);
             this.lbPriority.Margin = new System.Windows.Forms.Padding(10);
             this.lbPriority.Name = "lbPriority";
             this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
@@ -359,7 +359,7 @@
             this.lbStatus._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(271, 250);
+            this.lbStatus.Location = new System.Drawing.Point(316, 250);
             this.lbStatus.Margin = new System.Windows.Forms.Padding(10);
             this.lbStatus.Name = "lbStatus";
             this.lbStatus.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
@@ -436,7 +436,7 @@
             this.tbProjectDesrciption.SelectionLength = 0;
             this.tbProjectDesrciption.SelectionStart = 0;
             this.tbProjectDesrciption.ShortcutsEnabled = true;
-            this.tbProjectDesrciption.Size = new System.Drawing.Size(503, 86);
+            this.tbProjectDesrciption.Size = new System.Drawing.Size(592, 86);
             this.tbProjectDesrciption.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbProjectDesrciption.TabIndex = 16;
             this.tbProjectDesrciption.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -455,7 +455,7 @@
             this.bunifuCustomLabel6.Location = new System.Drawing.Point(10, 752);
             this.bunifuCustomLabel6.Margin = new System.Windows.Forms.Padding(10);
             this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
-            this.bunifuCustomLabel6.Size = new System.Drawing.Size(241, 34);
+            this.bunifuCustomLabel6.Size = new System.Drawing.Size(286, 34);
             this.bunifuCustomLabel6.TabIndex = 17;
             this.bunifuCustomLabel6.Text = "Project Description";
             this.bunifuCustomLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -473,7 +473,7 @@
             this.listviewMembers.Location = new System.Drawing.Point(10, 532);
             this.listviewMembers.Margin = new System.Windows.Forms.Padding(10);
             this.listviewMembers.Name = "listviewMembers";
-            this.listviewMembers.Size = new System.Drawing.Size(503, 200);
+            this.listviewMembers.Size = new System.Drawing.Size(592, 200);
             this.listviewMembers.TabIndex = 22;
             this.listviewMembers.UseCompatibleStateImageBehavior = false;
             this.listviewMembers.View = System.Windows.Forms.View.Details;
@@ -502,7 +502,7 @@
             this.bunifuCustomLabel11.Location = new System.Drawing.Point(10, 482);
             this.bunifuCustomLabel11.Margin = new System.Windows.Forms.Padding(10);
             this.bunifuCustomLabel11.Name = "bunifuCustomLabel11";
-            this.bunifuCustomLabel11.Size = new System.Drawing.Size(241, 30);
+            this.bunifuCustomLabel11.Size = new System.Drawing.Size(286, 30);
             this.bunifuCustomLabel11.TabIndex = 2;
             this.bunifuCustomLabel11.Text = "Members List";
             this.bunifuCustomLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -532,7 +532,7 @@
             this.datePickerEnd.IconColor = System.Drawing.Color.Gray;
             this.datePickerEnd.IconLocation = Bunifu.UI.WinForms.BunifuDatePicker.Indicator.Right;
             this.datePickerEnd.LeftTextMargin = 0;
-            this.datePickerEnd.Location = new System.Drawing.Point(271, 426);
+            this.datePickerEnd.Location = new System.Drawing.Point(316, 426);
             this.datePickerEnd.Margin = new System.Windows.Forms.Padding(10);
             this.datePickerEnd.MinimumSize = new System.Drawing.Size(4, 32);
             this.datePickerEnd.Name = "datePickerEnd";
@@ -563,7 +563,7 @@
             this.datePickerStart.IconColor = System.Drawing.Color.Gray;
             this.datePickerStart.IconLocation = Bunifu.UI.WinForms.BunifuDatePicker.Indicator.Right;
             this.datePickerStart.LeftTextMargin = 0;
-            this.datePickerStart.Location = new System.Drawing.Point(271, 367);
+            this.datePickerStart.Location = new System.Drawing.Point(316, 367);
             this.datePickerStart.Margin = new System.Windows.Forms.Padding(10);
             this.datePickerStart.MinimumSize = new System.Drawing.Size(4, 32);
             this.datePickerStart.Name = "datePickerStart";
@@ -601,7 +601,7 @@
             this.tbProjectCode.IconRight = null;
             this.tbProjectCode.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbProjectCode.Lines = new string[0];
-            this.tbProjectCode.Location = new System.Drawing.Point(271, 126);
+            this.tbProjectCode.Location = new System.Drawing.Point(316, 126);
             this.tbProjectCode.Margin = new System.Windows.Forms.Padding(10);
             this.tbProjectCode.MaxLength = 32767;
             this.tbProjectCode.MinimumSize = new System.Drawing.Size(1, 1);
@@ -679,7 +679,7 @@
             this.tbBudget.IconRight = null;
             this.tbBudget.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbBudget.Lines = new string[0];
-            this.tbBudget.Location = new System.Drawing.Point(271, 186);
+            this.tbBudget.Location = new System.Drawing.Point(316, 186);
             this.tbBudget.Margin = new System.Windows.Forms.Padding(10);
             this.tbBudget.MaxLength = 32767;
             this.tbBudget.MinimumSize = new System.Drawing.Size(1, 1);
