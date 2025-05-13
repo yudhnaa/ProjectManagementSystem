@@ -197,5 +197,10 @@ namespace PresentationLayer
         {
             Application.Exit();
         }
+
+        private void panelCenterContent_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

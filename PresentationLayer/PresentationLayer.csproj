@@ -69,6 +69,7 @@
     </Reference>
     <Reference Include="C1.Win.2, Version=2.0.20202.438, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Chart.2, Version=2.0.20202.438, Culture=neutral, PublicKeyToken=a22e16972c085838, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Command.2, Version=2.0.20202.438, Culture=neutral, PublicKeyToken=e808566f358766d8" />
     <Reference Include="C1.Win.C1FlexGrid.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1GanttView.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
@@ -105,6 +106,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>

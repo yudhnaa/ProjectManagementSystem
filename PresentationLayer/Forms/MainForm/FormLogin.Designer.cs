@@ -78,9 +78,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.ctrlSignUpForm1);
             this.panel1.Controls.Add(this.ctrlLoginForm1);
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.ctrlSignUpForm1);
             this.panel1.Location = new System.Drawing.Point(722, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(433, 647);
@@ -103,10 +103,10 @@
             this.ctrlSignUpForm1.BackColor = System.Drawing.Color.Transparent;
             this.ctrlSignUpForm1.ctrlLogin = null;
             this.ctrlSignUpForm1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlSignUpForm1.Location = new System.Drawing.Point(0, 269);
+            this.ctrlSignUpForm1.Location = new System.Drawing.Point(0, 0);
             this.ctrlSignUpForm1.Margin = new System.Windows.Forms.Padding(4);
             this.ctrlSignUpForm1.Name = "ctrlSignUpForm1";
-            this.ctrlSignUpForm1.Size = new System.Drawing.Size(433, 378);
+            this.ctrlSignUpForm1.Size = new System.Drawing.Size(433, 647);
             this.ctrlSignUpForm1.TabIndex = 7;
             this.ctrlSignUpForm1.Visible = false;
             // 

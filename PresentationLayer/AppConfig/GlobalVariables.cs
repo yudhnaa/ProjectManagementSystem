@@ -10,16 +10,16 @@ namespace PresentationLayer.Config
     public static class GlobalVariables
     {
         // Priority Color
-        public static Color CriticalPriorityColor { get; set; } = Color.FromArgb(245, 12, 77);
-        public static Color HighPriorityColor { get; set; } = Color.FromArgb(246, 57, 110);
-        public static Color MediumPriorityColor { get; set; } = Color.FromArgb(255, 246, 133);
-        public static Color LowPriorityColor { get; set; } = Color.FromArgb(111, 151, 92);
+        public static Color CriticalPriorityColor { get; set; } = Color.FromArgb(248, 187, 208);
+        public static Color HighPriorityColor { get; set; } = Color.FromArgb(255, 224, 178);
+        public static Color MediumPriorityColor { get; set; } = Color.FromArgb(255, 249, 196);
+        public static Color LowPriorityColor { get; set; } = Color.FromArgb(213, 245, 227);
 
         // Status Color
         public static Color NotStartedStatusColor { get; set; } = Color.LightGray;
-        public static Color InProgressStatusColor { get; set; } = Color.Yellow;
-        public static Color CompletedStatusColor { get; set; } = Color.FromArgb(128, 255, 128);
-        public static Color CancelledStatusColor { get; set; } = Color.Red;
+        public static Color InProgressStatusColor { get; set; } = Color.FromArgb(225, 190, 231);
+        public static Color CompletedStatusColor { get; set; } = Color.FromArgb(200, 230, 201);
+        public static Color CancelledStatusColor { get; set; } = Color.FromArgb(174, 223, 247);
 
         // User Status Color
         public static Color ActiveStatusColor { get; set; } = Color.FromArgb(128, 255, 128);

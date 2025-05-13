@@ -166,7 +166,7 @@
             this.dgvItems.HeaderBgColor = System.Drawing.Color.Empty;
             this.dgvItems.HeaderForeColor = System.Drawing.Color.White;
             this.dgvItems.Location = new System.Drawing.Point(13, 122);
-            this.dgvItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvItems.Margin = new System.Windows.Forms.Padding(4);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowHeadersWidth = 62;
@@ -183,7 +183,7 @@
             this.panel1.Controls.Add(this.lbProjects);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(13, 12);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.panel1.Size = new System.Drawing.Size(1155, 110);
@@ -220,7 +220,7 @@
             this.tbSearch.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSearch.Lines = new string[0];
             this.tbSearch.Location = new System.Drawing.Point(0, 41);
-            this.tbSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbSearch.MaxLength = 32767;
             this.tbSearch.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSearch.Modified = false;
@@ -246,7 +246,7 @@
             stateProperties4.ForeColor = System.Drawing.Color.Empty;
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbSearch.OnIdleState = stateProperties4;
-            this.tbSearch.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSearch.Padding = new System.Windows.Forms.Padding(4);
             this.tbSearch.PasswordChar = '\0';
             this.tbSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbSearch.PlaceholderText = "Enter text";
@@ -286,7 +286,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -338,7 +338,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btCreate, 1, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -393,7 +393,7 @@
             this.cbDepartment.ItemHighLightForeColor = System.Drawing.Color.White;
             this.cbDepartment.ItemTopMargin = 3;
             this.cbDepartment.Location = new System.Drawing.Point(344, 264);
-            this.cbDepartment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbDepartment.Margin = new System.Windows.Forms.Padding(4);
             this.cbDepartment.Name = "cbDepartment";
             this.cbDepartment.Size = new System.Drawing.Size(269, 32);
             this.cbDepartment.TabIndex = 25;
@@ -406,7 +406,7 @@
             this.flowLayoutPanel2.Controls.Add(this.tbPassword);
             this.flowLayoutPanel2.Controls.Add(this.btnShowPassword);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(291, 39);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(376, 74);
             this.flowLayoutPanel2.TabIndex = 17;
@@ -1273,7 +1273,7 @@
             this.cbRole.ItemHighLightForeColor = System.Drawing.Color.White;
             this.cbRole.ItemTopMargin = 3;
             this.cbRole.Location = new System.Drawing.Point(704, 264);
-            this.cbRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbRole.Margin = new System.Windows.Forms.Padding(4);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(269, 32);
             this.cbRole.TabIndex = 25;
@@ -1304,7 +1304,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel1.Controls.Add(this.btCancel);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(675, 560);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(327, 60);
             this.flowLayoutPanel1.TabIndex = 26;
@@ -1589,7 +1589,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CtrlPanelUserAdminNew";
             this.Size = new System.Drawing.Size(2261, 1233);
             this.Load += new System.EventHandler(this.CtrlPanelUserAdminNew_Load);

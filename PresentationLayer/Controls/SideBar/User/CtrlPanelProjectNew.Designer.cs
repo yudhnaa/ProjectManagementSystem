@@ -88,22 +88,20 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dgvItems);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(2047, 1106);
-            this.splitContainer1.SplitterDistance = 1344;
-            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.Size = new System.Drawing.Size(1535, 899);
+            this.splitContainer1.SplitterDistance = 1007;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Paint);
             // 
@@ -159,14 +157,13 @@
             this.dgvItems.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.dgvItems.HeaderBgColor = System.Drawing.Color.Empty;
             this.dgvItems.HeaderForeColor = System.Drawing.Color.White;
-            this.dgvItems.Location = new System.Drawing.Point(13, 122);
-            this.dgvItems.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvItems.Location = new System.Drawing.Point(10, 99);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowHeadersWidth = 62;
             this.dgvItems.RowTemplate.Height = 40;
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItems.Size = new System.Drawing.Size(1318, 972);
+            this.dgvItems.Size = new System.Drawing.Size(987, 790);
             this.dgvItems.TabIndex = 6;
             this.dgvItems.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.dgvItems.SelectionChanged += new System.EventHandler(this.dgvItems_SelectionChanged);
@@ -176,11 +173,10 @@
             this.panel1.Controls.Add(this.tbSearch);
             this.panel1.Controls.Add(this.lbProjects);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(13, 12);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.panel1.Size = new System.Drawing.Size(1318, 110);
+            this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.panel1.Size = new System.Drawing.Size(987, 89);
             this.panel1.TabIndex = 5;
             // 
             // tbSearch
@@ -213,8 +209,7 @@
             this.tbSearch.IconRight = null;
             this.tbSearch.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSearch.Lines = new string[0];
-            this.tbSearch.Location = new System.Drawing.Point(0, 41);
-            this.tbSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.tbSearch.Location = new System.Drawing.Point(0, 34);
             this.tbSearch.MaxLength = 32767;
             this.tbSearch.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSearch.Modified = false;
@@ -240,7 +235,7 @@
             stateProperties4.ForeColor = System.Drawing.Color.Empty;
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbSearch.OnIdleState = stateProperties4;
-            this.tbSearch.Padding = new System.Windows.Forms.Padding(4);
+            this.tbSearch.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tbSearch.PasswordChar = '\0';
             this.tbSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbSearch.PlaceholderText = "Enter text";
@@ -250,7 +245,7 @@
             this.tbSearch.SelectionLength = 0;
             this.tbSearch.SelectionStart = 0;
             this.tbSearch.ShortcutsEnabled = true;
-            this.tbSearch.Size = new System.Drawing.Size(1318, 59);
+            this.tbSearch.Size = new System.Drawing.Size(987, 47);
             this.tbSearch.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSearch.TabIndex = 4;
             this.tbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -270,10 +265,9 @@
             this.lbProjects.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbProjects.Location = new System.Drawing.Point(0, 0);
-            this.lbProjects.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
-            this.lbProjects.Size = new System.Drawing.Size(144, 41);
+            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.lbProjects.Size = new System.Drawing.Size(112, 34);
             this.lbProjects.TabIndex = 3;
             this.lbProjects.Text = "Project List";
             // 
@@ -303,7 +297,6 @@
             this.tableLayoutPanel1.Controls.Add(this.labelWithImage6, 0, 7);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 13;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -319,8 +312,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(698, 1106);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(524, 899);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // lbShortDescription
@@ -335,11 +328,11 @@
             this.lbShortDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbShortDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lbShortDescription.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lbShortDescription.Location = new System.Drawing.Point(13, 12);
-            this.lbShortDescription.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.lbShortDescription.Location = new System.Drawing.Point(10, 10);
+            this.lbShortDescription.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.lbShortDescription.Name = "lbShortDescription";
             this.lbShortDescription.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbShortDescription.Size = new System.Drawing.Size(672, 25);
+            this.lbShortDescription.Size = new System.Drawing.Size(504, 20);
             this.lbShortDescription.TabIndex = 26;
             this.lbShortDescription.Text = "Project P001";
             this.lbShortDescription.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -351,11 +344,11 @@
             this.lbPriority._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPriority.Location = new System.Drawing.Point(362, 377);
-            this.lbPriority.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.lbPriority.Location = new System.Drawing.Point(272, 309);
+            this.lbPriority.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.lbPriority.Name = "lbPriority";
-            this.lbPriority.Padding = new System.Windows.Forms.Padding(13, 6, 13, 6);
-            this.lbPriority.Size = new System.Drawing.Size(275, 37);
+            this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.lbPriority.Size = new System.Drawing.Size(206, 30);
             this.lbPriority.TabIndex = 25;
             this.lbPriority.Text = "Priority";
             this.lbPriority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -366,11 +359,11 @@
             this.lbStatus._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(362, 305);
-            this.lbStatus.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.lbStatus.Location = new System.Drawing.Point(272, 250);
+            this.lbStatus.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Padding = new System.Windows.Forms.Padding(13, 6, 13, 6);
-            this.lbStatus.Size = new System.Drawing.Size(275, 37);
+            this.lbStatus.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.lbStatus.Size = new System.Drawing.Size(206, 30);
             this.lbStatus.TabIndex = 24;
             this.lbStatus.Text = "Status";
             this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -406,8 +399,8 @@
             this.tbProjectDesrciption.IconRight = null;
             this.tbProjectDesrciption.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbProjectDesrciption.Lines = new string[0];
-            this.tbProjectDesrciption.Location = new System.Drawing.Point(13, 984);
-            this.tbProjectDesrciption.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.tbProjectDesrciption.Location = new System.Drawing.Point(10, 806);
+            this.tbProjectDesrciption.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.tbProjectDesrciption.MaxLength = 32767;
             this.tbProjectDesrciption.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbProjectDesrciption.Modified = false;
@@ -433,7 +426,7 @@
             stateProperties8.ForeColor = System.Drawing.Color.Empty;
             stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbProjectDesrciption.OnIdleState = stateProperties8;
-            this.tbProjectDesrciption.Padding = new System.Windows.Forms.Padding(4);
+            this.tbProjectDesrciption.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tbProjectDesrciption.PasswordChar = '\0';
             this.tbProjectDesrciption.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbProjectDesrciption.PlaceholderText = "";
@@ -443,7 +436,7 @@
             this.tbProjectDesrciption.SelectionLength = 0;
             this.tbProjectDesrciption.SelectionStart = 0;
             this.tbProjectDesrciption.ShortcutsEnabled = true;
-            this.tbProjectDesrciption.Size = new System.Drawing.Size(672, 106);
+            this.tbProjectDesrciption.Size = new System.Drawing.Size(504, 86);
             this.tbProjectDesrciption.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbProjectDesrciption.TabIndex = 16;
             this.tbProjectDesrciption.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -459,10 +452,10 @@
             this.bunifuCustomLabel6.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCustomLabel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCustomLabel6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.bunifuCustomLabel6.Location = new System.Drawing.Point(13, 918);
-            this.bunifuCustomLabel6.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.bunifuCustomLabel6.Location = new System.Drawing.Point(10, 752);
+            this.bunifuCustomLabel6.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
-            this.bunifuCustomLabel6.Size = new System.Drawing.Size(323, 42);
+            this.bunifuCustomLabel6.Size = new System.Drawing.Size(242, 34);
             this.bunifuCustomLabel6.TabIndex = 17;
             this.bunifuCustomLabel6.Text = "Project Description";
             this.bunifuCustomLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -477,10 +470,10 @@
             this.listviewMembers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listviewMembers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listviewMembers.HideSelection = false;
-            this.listviewMembers.Location = new System.Drawing.Point(13, 649);
-            this.listviewMembers.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.listviewMembers.Location = new System.Drawing.Point(10, 532);
+            this.listviewMembers.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.listviewMembers.Name = "listviewMembers";
-            this.listviewMembers.Size = new System.Drawing.Size(672, 245);
+            this.listviewMembers.Size = new System.Drawing.Size(504, 200);
             this.listviewMembers.TabIndex = 22;
             this.listviewMembers.UseCompatibleStateImageBehavior = false;
             this.listviewMembers.View = System.Windows.Forms.View.Details;
@@ -506,10 +499,10 @@
             this.bunifuCustomLabel11.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCustomLabel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCustomLabel11.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel11.Location = new System.Drawing.Point(13, 588);
-            this.bunifuCustomLabel11.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.bunifuCustomLabel11.Location = new System.Drawing.Point(10, 482);
+            this.bunifuCustomLabel11.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.bunifuCustomLabel11.Name = "bunifuCustomLabel11";
-            this.bunifuCustomLabel11.Size = new System.Drawing.Size(323, 37);
+            this.bunifuCustomLabel11.Size = new System.Drawing.Size(242, 30);
             this.bunifuCustomLabel11.TabIndex = 2;
             this.bunifuCustomLabel11.Text = "Members List";
             this.bunifuCustomLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -539,11 +532,11 @@
             this.datePickerEnd.IconColor = System.Drawing.Color.Gray;
             this.datePickerEnd.IconLocation = Bunifu.UI.WinForms.BunifuDatePicker.Indicator.Right;
             this.datePickerEnd.LeftTextMargin = 0;
-            this.datePickerEnd.Location = new System.Drawing.Point(362, 523);
-            this.datePickerEnd.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.datePickerEnd.Location = new System.Drawing.Point(272, 426);
+            this.datePickerEnd.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.datePickerEnd.MinimumSize = new System.Drawing.Size(4, 32);
             this.datePickerEnd.Name = "datePickerEnd";
-            this.datePickerEnd.Size = new System.Drawing.Size(275, 34);
+            this.datePickerEnd.Size = new System.Drawing.Size(207, 32);
             this.datePickerEnd.TabIndex = 3;
             this.datePickerEnd.Value = new System.DateTime(2025, 4, 27, 0, 0, 0, 0);
             // 
@@ -570,11 +563,11 @@
             this.datePickerStart.IconColor = System.Drawing.Color.Gray;
             this.datePickerStart.IconLocation = Bunifu.UI.WinForms.BunifuDatePicker.Indicator.Right;
             this.datePickerStart.LeftTextMargin = 0;
-            this.datePickerStart.Location = new System.Drawing.Point(362, 451);
-            this.datePickerStart.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.datePickerStart.Location = new System.Drawing.Point(272, 367);
+            this.datePickerStart.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.datePickerStart.MinimumSize = new System.Drawing.Size(4, 32);
             this.datePickerStart.Name = "datePickerStart";
-            this.datePickerStart.Size = new System.Drawing.Size(273, 34);
+            this.datePickerStart.Size = new System.Drawing.Size(206, 32);
             this.datePickerStart.TabIndex = 3;
             this.datePickerStart.Value = new System.DateTime(2025, 4, 9, 21, 27, 0, 0);
             // 
@@ -608,8 +601,8 @@
             this.tbProjectCode.IconRight = null;
             this.tbProjectCode.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbProjectCode.Lines = new string[0];
-            this.tbProjectCode.Location = new System.Drawing.Point(362, 154);
-            this.tbProjectCode.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.tbProjectCode.Location = new System.Drawing.Point(272, 126);
+            this.tbProjectCode.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.tbProjectCode.MaxLength = 32767;
             this.tbProjectCode.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbProjectCode.Modified = false;
@@ -635,7 +628,7 @@
             stateProperties12.ForeColor = System.Drawing.Color.Empty;
             stateProperties12.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbProjectCode.OnIdleState = stateProperties12;
-            this.tbProjectCode.Padding = new System.Windows.Forms.Padding(4);
+            this.tbProjectCode.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tbProjectCode.PasswordChar = '\0';
             this.tbProjectCode.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbProjectCode.PlaceholderText = "";
@@ -645,7 +638,7 @@
             this.tbProjectCode.SelectionLength = 0;
             this.tbProjectCode.SelectionStart = 0;
             this.tbProjectCode.ShortcutsEnabled = true;
-            this.tbProjectCode.Size = new System.Drawing.Size(275, 49);
+            this.tbProjectCode.Size = new System.Drawing.Size(206, 40);
             this.tbProjectCode.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbProjectCode.TabIndex = 4;
             this.tbProjectCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -686,8 +679,8 @@
             this.tbBudget.IconRight = null;
             this.tbBudget.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbBudget.Lines = new string[0];
-            this.tbBudget.Location = new System.Drawing.Point(362, 227);
-            this.tbBudget.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.tbBudget.Location = new System.Drawing.Point(272, 186);
+            this.tbBudget.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.tbBudget.MaxLength = 32767;
             this.tbBudget.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbBudget.Modified = false;
@@ -713,7 +706,7 @@
             stateProperties16.ForeColor = System.Drawing.Color.Empty;
             stateProperties16.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbBudget.OnIdleState = stateProperties16;
-            this.tbBudget.Padding = new System.Windows.Forms.Padding(4);
+            this.tbBudget.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tbBudget.PasswordChar = '\0';
             this.tbBudget.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbBudget.PlaceholderText = "";
@@ -723,7 +716,7 @@
             this.tbBudget.SelectionLength = 0;
             this.tbBudget.SelectionStart = 0;
             this.tbBudget.ShortcutsEnabled = true;
-            this.tbBudget.Size = new System.Drawing.Size(275, 49);
+            this.tbBudget.Size = new System.Drawing.Size(206, 40);
             this.tbBudget.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbBudget.TabIndex = 8;
             this.tbBudget.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -739,10 +732,10 @@
             this.lbName.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.SetColumnSpan(this.lbName, 2);
             this.lbName.Font = new System.Drawing.Font("Segoe UI Semibold", 25F, System.Drawing.FontStyle.Bold);
-            this.lbName.Location = new System.Drawing.Point(13, 61);
-            this.lbName.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.lbName.Location = new System.Drawing.Point(10, 50);
+            this.lbName.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(648, 69);
+            this.lbName.Size = new System.Drawing.Size(486, 56);
             this.lbName.TabIndex = 28;
             this.lbName.Text = "Make a Suitable form";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -750,73 +743,72 @@
             // labelWithImage1
             // 
             this.labelWithImage1.Image = global::PresentationLayer.Properties.Resources.hashtag;
-            this.labelWithImage1.Location = new System.Drawing.Point(13, 154);
-            this.labelWithImage1.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.labelWithImage1.Location = new System.Drawing.Point(10, 126);
+            this.labelWithImage1.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.labelWithImage1.Name = "labelWithImage1";
-            this.labelWithImage1.Size = new System.Drawing.Size(221, 48);
+            this.labelWithImage1.Size = new System.Drawing.Size(166, 39);
             this.labelWithImage1.TabIndex = 36;
             this.labelWithImage1.TextLabel = "Code";
             // 
             // labelWithImage2
             // 
             this.labelWithImage2.Image = global::PresentationLayer.Properties.Resources.budget;
-            this.labelWithImage2.Location = new System.Drawing.Point(13, 227);
-            this.labelWithImage2.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.labelWithImage2.Location = new System.Drawing.Point(10, 186);
+            this.labelWithImage2.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.labelWithImage2.Name = "labelWithImage2";
-            this.labelWithImage2.Size = new System.Drawing.Size(221, 48);
+            this.labelWithImage2.Size = new System.Drawing.Size(166, 39);
             this.labelWithImage2.TabIndex = 36;
             this.labelWithImage2.TextLabel = "Budget";
             // 
             // labelWithImage3
             // 
             this.labelWithImage3.Image = global::PresentationLayer.Properties.Resources.status;
-            this.labelWithImage3.Location = new System.Drawing.Point(13, 300);
-            this.labelWithImage3.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.labelWithImage3.Location = new System.Drawing.Point(10, 246);
+            this.labelWithImage3.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.labelWithImage3.Name = "labelWithImage3";
-            this.labelWithImage3.Size = new System.Drawing.Size(221, 48);
+            this.labelWithImage3.Size = new System.Drawing.Size(166, 39);
             this.labelWithImage3.TabIndex = 36;
             this.labelWithImage3.TextLabel = "Status";
             // 
             // labelWithImage4
             // 
             this.labelWithImage4.Image = global::PresentationLayer.Properties.Resources.priority;
-            this.labelWithImage4.Location = new System.Drawing.Point(13, 372);
-            this.labelWithImage4.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.labelWithImage4.Location = new System.Drawing.Point(10, 305);
+            this.labelWithImage4.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.labelWithImage4.Name = "labelWithImage4";
-            this.labelWithImage4.Size = new System.Drawing.Size(221, 48);
+            this.labelWithImage4.Size = new System.Drawing.Size(166, 39);
             this.labelWithImage4.TabIndex = 36;
             this.labelWithImage4.TextLabel = "Priority";
             // 
             // labelWithImage5
             // 
             this.labelWithImage5.Image = global::PresentationLayer.Properties.Resources.startDate;
-            this.labelWithImage5.Location = new System.Drawing.Point(13, 444);
-            this.labelWithImage5.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.labelWithImage5.Location = new System.Drawing.Point(10, 364);
+            this.labelWithImage5.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.labelWithImage5.Name = "labelWithImage5";
-            this.labelWithImage5.Size = new System.Drawing.Size(221, 48);
+            this.labelWithImage5.Size = new System.Drawing.Size(166, 39);
             this.labelWithImage5.TabIndex = 36;
             this.labelWithImage5.TextLabel = "Start";
             // 
             // labelWithImage6
             // 
             this.labelWithImage6.Image = global::PresentationLayer.Properties.Resources.endDate;
-            this.labelWithImage6.Location = new System.Drawing.Point(13, 516);
-            this.labelWithImage6.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.labelWithImage6.Location = new System.Drawing.Point(10, 423);
+            this.labelWithImage6.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.labelWithImage6.Name = "labelWithImage6";
-            this.labelWithImage6.Size = new System.Drawing.Size(221, 48);
+            this.labelWithImage6.Size = new System.Drawing.Size(166, 39);
             this.labelWithImage6.TabIndex = 36;
             this.labelWithImage6.TextLabel = "End";
             // 
             // CtrlPanelProjectNew
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CtrlPanelProjectNew";
-            this.Size = new System.Drawing.Size(2047, 1106);
+            this.Size = new System.Drawing.Size(1535, 899);
             this.Load += new System.EventHandler(this.CtrlPanelTaskAdminNew_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
