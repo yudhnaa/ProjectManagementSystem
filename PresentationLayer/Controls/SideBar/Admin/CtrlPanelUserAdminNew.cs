@@ -388,24 +388,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
         }
 
-        private void LoadUser(string kw)
-        {
-            try
-            {
-                ủe
-            }
-            catch (SqlException ex)
-            {
-                ShowMessage("Database error occurred while retrieving projects.", "Error", MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                ShowMessage("An error occurred while retrieving projects.", "Error", MessageBoxIcon.Error);
-            }
-        }
-
-       
-
         private void btCreate_Click(object sender, EventArgs e)
         {
             if (!isCreating)

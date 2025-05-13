@@ -1197,7 +1197,6 @@
             this.panelCenterContent.Padding = new System.Windows.Forms.Padding(0, 12, 13, 12);
             this.panelCenterContent.Size = new System.Drawing.Size(1269, 752);
             this.panelCenterContent.TabIndex = 29;
-            this.panelCenterContent.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCenterContent_Paint);
             // 
             // panel1
             // 
