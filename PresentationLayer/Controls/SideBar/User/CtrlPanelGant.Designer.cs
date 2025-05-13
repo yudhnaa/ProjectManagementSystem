@@ -117,7 +117,7 @@ namespace PresentationLayer.UC_SideBar
             // 
             this.c1GanttView1.BackColor = System.Drawing.SystemColors.Window;
             this.c1GanttView1.BarStyles.Add(barStyle1);
-            this.c1GanttView1.ChartViewZoomFactor = 7F;
+            this.c1GanttView1.ChartViewZoomFactor = 6.846154F;
             taskPropertyColumn1.Caption = "Task Mode";
             taskPropertyColumn1.ID = 1317065904;
             taskPropertyColumn1.Property = C1.Win.C1GanttView.TaskProperty.Mode;
@@ -200,13 +200,14 @@ namespace PresentationLayer.UC_SideBar
             this.c1GanttView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1GanttView1.GroupColumn = null;
             this.c1GanttView1.Location = new System.Drawing.Point(0, 0);
+            this.c1GanttView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.c1GanttView1.Name = "c1GanttView1";
             task1.ID = 2121818334;
             task1.Mode = C1.Win.C1GanttView.TaskMode.Automatic;
             task1.Name = "Project Summary Task";
             task1.NextID = 0;
             this.c1GanttView1.ProjectSummary = task1;
-            this.c1GanttView1.Size = new System.Drawing.Size(1171, 466);
+            this.c1GanttView1.Size = new System.Drawing.Size(1187, 466);
             this.c1GanttView1.StartDate = new System.DateTime(2025, 5, 3, 0, 0, 0, 0);
             this.c1GanttView1.TabIndex = 0;
             task2.ID = 1958198445;
@@ -401,7 +402,7 @@ namespace PresentationLayer.UC_SideBar
             // 
             this.Controls.Add(this.c1GanttView1);
             this.Name = "CtrlPanelGant";
-            this.Size = new System.Drawing.Size(1171, 466);
+            this.Size = new System.Drawing.Size(1187, 466);
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.CalendarStorage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.PropertyStorage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.ResourceStorage)).EndInit();

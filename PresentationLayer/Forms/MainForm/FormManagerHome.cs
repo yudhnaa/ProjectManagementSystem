@@ -16,5 +16,10 @@ namespace PresentationLayer.Forms.MainForm
         {
             InitializeComponent();
         }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

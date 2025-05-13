@@ -159,5 +159,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

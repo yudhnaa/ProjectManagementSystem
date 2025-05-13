@@ -70,11 +70,11 @@ namespace PresentationLayer.Controls.SideBar.User
             this.user = UserSession.Instance.User;
             InitializeComponent();
             InitConTrols();
+            LoadTaskStatuses();
         }
 
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
         {
-            LoadTaskStatuses();
         }
 
         private void InitConTrols()
@@ -199,7 +199,7 @@ namespace PresentationLayer.Controls.SideBar.User
 
                 lbStatus.Text = TaskStatusEnumExtensions.ToString(currentTask.StatusId);
                 lbStatus._BackColor = Utils.Utils.GetStatusColor(lbStatus.Text);
-                cbStatus.SelectedIndex = currentTask.StatusId - 1;
+                cbStatus.SelectedValue = currentTask.StatusId;
 
                 lbPriority.Text = TaskPriorityEnumExtensions.ToString(currentTask.PriorityId);
                 lbPriority._BackColor = Utils.Utils.GetPriorityColor(lbPriority.Text);
@@ -400,6 +400,11 @@ namespace PresentationLayer.Controls.SideBar.User
         private void panel2_SizeChanged(object sender, EventArgs e)
         {
             bunifuSeparator1.Width = panel2.Width;
+        }
+
+        private void lbName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

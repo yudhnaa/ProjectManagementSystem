@@ -62,8 +62,8 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.85591F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.14409F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1325, 694);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -76,7 +76,7 @@
             this.chart3.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chart3.Legends.Add(legend1);
-            this.chart3.Location = new System.Drawing.Point(40, 384);
+            this.chart3.Location = new System.Drawing.Point(40, 383);
             this.chart3.Margin = new System.Windows.Forms.Padding(40, 37, 40, 37);
             this.chart3.Name = "chart3";
             series1.ChartArea = "ChartArea1";
@@ -86,7 +86,7 @@
             series1.XValueMember = "1";
             series1.YValueMembers = "4";
             this.chart3.Series.Add(series1);
-            this.chart3.Size = new System.Drawing.Size(582, 273);
+            this.chart3.Size = new System.Drawing.Size(582, 274);
             this.chart3.TabIndex = 0;
             this.chart3.Text = "chart3";
             // 
@@ -97,7 +97,7 @@
             this.chartCompletedTasks.Dock = System.Windows.Forms.DockStyle.Fill;
             legend2.Name = "Legend1";
             this.chartCompletedTasks.Legends.Add(legend2);
-            this.chartCompletedTasks.Location = new System.Drawing.Point(702, 384);
+            this.chartCompletedTasks.Location = new System.Drawing.Point(702, 383);
             this.chartCompletedTasks.Margin = new System.Windows.Forms.Padding(40, 37, 40, 37);
             this.chartCompletedTasks.Name = "chartCompletedTasks";
             series2.ChartArea = "ChartArea1";
@@ -107,7 +107,7 @@
             series2.XValueMember = "1";
             series2.YValueMembers = "4";
             this.chartCompletedTasks.Series.Add(series2);
-            this.chartCompletedTasks.Size = new System.Drawing.Size(583, 273);
+            this.chartCompletedTasks.Size = new System.Drawing.Size(583, 274);
             this.chartCompletedTasks.TabIndex = 0;
             this.chartCompletedTasks.Text = "chart3";
             // 
@@ -139,7 +139,7 @@
             this.chart2.Series.Add(series3);
             this.chart2.Series.Add(series4);
             this.chart2.Series.Add(series5);
-            this.chart2.Size = new System.Drawing.Size(583, 273);
+            this.chart2.Size = new System.Drawing.Size(583, 272);
             this.chart2.TabIndex = 0;
             this.chart2.Text = "chart2";
             // 

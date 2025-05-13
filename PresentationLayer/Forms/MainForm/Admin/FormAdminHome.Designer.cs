@@ -82,7 +82,7 @@
             this.bunifuCircleProgress1.LineProgressThickness = 10;
             this.bunifuCircleProgress1.LineThickness = 10;
             this.bunifuCircleProgress1.Location = new System.Drawing.Point(0, 0);
-            this.bunifuCircleProgress1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuCircleProgress1.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuCircleProgress1.Name = "bunifuCircleProgress1";
             this.bunifuCircleProgress1.ProgressAnimationSpeed = 200;
             this.bunifuCircleProgress1.ProgressBackColor = System.Drawing.Color.Gainsboro;
@@ -121,7 +121,7 @@
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelLeft.Location = new System.Drawing.Point(0, 89);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(4);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(248, 757);
             this.panelLeft.TabIndex = 0;
@@ -177,7 +177,7 @@
             this.btnProject.IdleIconRightImage = null;
             this.btnProject.IndicateFocus = false;
             this.btnProject.Location = new System.Drawing.Point(4, 4);
-            this.btnProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnProject.Margin = new System.Windows.Forms.Padding(4);
             this.btnProject.Name = "btnProject";
             this.btnProject.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnProject.OnDisabledState.BorderRadius = 45;
@@ -209,7 +209,7 @@
             this.btnProject.OnPressedState.BorderThickness = 1;
             this.btnProject.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnProject.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnProject.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnProject.OnPressedState.IconLeftImage")));
+            this.btnProject.OnPressedState.IconLeftImage = null;
             this.btnProject.OnPressedState.IconRightImage = null;
             this.btnProject.Size = new System.Drawing.Size(213, 55);
             this.btnProject.TabIndex = 21;
@@ -270,7 +270,7 @@
             this.btnDepartment.IdleIconRightImage = null;
             this.btnDepartment.IndicateFocus = false;
             this.btnDepartment.Location = new System.Drawing.Point(4, 67);
-            this.btnDepartment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDepartment.Margin = new System.Windows.Forms.Padding(4);
             this.btnDepartment.Name = "btnDepartment";
             this.btnDepartment.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnDepartment.OnDisabledState.BorderRadius = 1;
@@ -302,7 +302,7 @@
             this.btnDepartment.OnPressedState.BorderThickness = 1;
             this.btnDepartment.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnDepartment.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnDepartment.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnDepartment.OnPressedState.IconLeftImage")));
+            this.btnDepartment.OnPressedState.IconLeftImage = null;
             this.btnDepartment.OnPressedState.IconRightImage = null;
             this.btnDepartment.Size = new System.Drawing.Size(213, 55);
             this.btnDepartment.TabIndex = 21;
@@ -363,7 +363,7 @@
             this.btnProjectPriority.IdleIconRightImage = null;
             this.btnProjectPriority.IndicateFocus = false;
             this.btnProjectPriority.Location = new System.Drawing.Point(4, 130);
-            this.btnProjectPriority.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnProjectPriority.Margin = new System.Windows.Forms.Padding(4);
             this.btnProjectPriority.Name = "btnProjectPriority";
             this.btnProjectPriority.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnProjectPriority.OnDisabledState.BorderRadius = 1;
@@ -395,7 +395,7 @@
             this.btnProjectPriority.OnPressedState.BorderThickness = 1;
             this.btnProjectPriority.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnProjectPriority.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnProjectPriority.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnProjectPriority.OnPressedState.IconLeftImage")));
+            this.btnProjectPriority.OnPressedState.IconLeftImage = null;
             this.btnProjectPriority.OnPressedState.IconRightImage = null;
             this.btnProjectPriority.Size = new System.Drawing.Size(213, 55);
             this.btnProjectPriority.TabIndex = 21;
@@ -456,7 +456,7 @@
             this.btnProjectStatus.IdleIconRightImage = null;
             this.btnProjectStatus.IndicateFocus = false;
             this.btnProjectStatus.Location = new System.Drawing.Point(4, 193);
-            this.btnProjectStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnProjectStatus.Margin = new System.Windows.Forms.Padding(4);
             this.btnProjectStatus.Name = "btnProjectStatus";
             this.btnProjectStatus.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnProjectStatus.OnDisabledState.BorderRadius = 1;
@@ -488,7 +488,7 @@
             this.btnProjectStatus.OnPressedState.BorderThickness = 1;
             this.btnProjectStatus.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnProjectStatus.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnProjectStatus.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnProjectStatus.OnPressedState.IconLeftImage")));
+            this.btnProjectStatus.OnPressedState.IconLeftImage = null;
             this.btnProjectStatus.OnPressedState.IconRightImage = null;
             this.btnProjectStatus.Size = new System.Drawing.Size(213, 55);
             this.btnProjectStatus.TabIndex = 21;
@@ -549,7 +549,7 @@
             this.btnUsers.IdleIconRightImage = null;
             this.btnUsers.IndicateFocus = false;
             this.btnUsers.Location = new System.Drawing.Point(4, 256);
-            this.btnUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUsers.Margin = new System.Windows.Forms.Padding(4);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnUsers.OnDisabledState.BorderRadius = 1;
@@ -581,7 +581,7 @@
             this.btnUsers.OnPressedState.BorderThickness = 1;
             this.btnUsers.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnUsers.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnUsers.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnUsers.OnPressedState.IconLeftImage")));
+            this.btnUsers.OnPressedState.IconLeftImage = null;
             this.btnUsers.OnPressedState.IconRightImage = null;
             this.btnUsers.Size = new System.Drawing.Size(213, 55);
             this.btnUsers.TabIndex = 21;
@@ -642,7 +642,7 @@
             this.btnTask.IdleIconRightImage = null;
             this.btnTask.IndicateFocus = false;
             this.btnTask.Location = new System.Drawing.Point(4, 319);
-            this.btnTask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTask.Margin = new System.Windows.Forms.Padding(4);
             this.btnTask.Name = "btnTask";
             this.btnTask.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnTask.OnDisabledState.BorderRadius = 1;
@@ -674,7 +674,7 @@
             this.btnTask.OnPressedState.BorderThickness = 1;
             this.btnTask.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnTask.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnTask.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnTask.OnPressedState.IconLeftImage")));
+            this.btnTask.OnPressedState.IconLeftImage = null;
             this.btnTask.OnPressedState.IconRightImage = null;
             this.btnTask.Size = new System.Drawing.Size(213, 55);
             this.btnTask.TabIndex = 21;
@@ -735,7 +735,7 @@
             this.btnTaskPriority.IdleIconRightImage = null;
             this.btnTaskPriority.IndicateFocus = false;
             this.btnTaskPriority.Location = new System.Drawing.Point(4, 382);
-            this.btnTaskPriority.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTaskPriority.Margin = new System.Windows.Forms.Padding(4);
             this.btnTaskPriority.Name = "btnTaskPriority";
             this.btnTaskPriority.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnTaskPriority.OnDisabledState.BorderRadius = 1;
@@ -767,7 +767,7 @@
             this.btnTaskPriority.OnPressedState.BorderThickness = 1;
             this.btnTaskPriority.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnTaskPriority.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnTaskPriority.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnTaskPriority.OnPressedState.IconLeftImage")));
+            this.btnTaskPriority.OnPressedState.IconLeftImage = null;
             this.btnTaskPriority.OnPressedState.IconRightImage = null;
             this.btnTaskPriority.Size = new System.Drawing.Size(213, 55);
             this.btnTaskPriority.TabIndex = 21;
@@ -828,7 +828,7 @@
             this.btnTaskStatus.IdleIconRightImage = null;
             this.btnTaskStatus.IndicateFocus = false;
             this.btnTaskStatus.Location = new System.Drawing.Point(4, 445);
-            this.btnTaskStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTaskStatus.Margin = new System.Windows.Forms.Padding(4);
             this.btnTaskStatus.Name = "btnTaskStatus";
             this.btnTaskStatus.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnTaskStatus.OnDisabledState.BorderRadius = 1;
@@ -860,7 +860,7 @@
             this.btnTaskStatus.OnPressedState.BorderThickness = 1;
             this.btnTaskStatus.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnTaskStatus.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnTaskStatus.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnTaskStatus.OnPressedState.IconLeftImage")));
+            this.btnTaskStatus.OnPressedState.IconLeftImage = null;
             this.btnTaskStatus.OnPressedState.IconRightImage = null;
             this.btnTaskStatus.Size = new System.Drawing.Size(213, 55);
             this.btnTaskStatus.TabIndex = 21;
@@ -921,7 +921,7 @@
             this.btnUserRole.IdleIconRightImage = null;
             this.btnUserRole.IndicateFocus = false;
             this.btnUserRole.Location = new System.Drawing.Point(4, 508);
-            this.btnUserRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUserRole.Margin = new System.Windows.Forms.Padding(4);
             this.btnUserRole.Name = "btnUserRole";
             this.btnUserRole.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnUserRole.OnDisabledState.BorderRadius = 1;
@@ -953,7 +953,7 @@
             this.btnUserRole.OnPressedState.BorderThickness = 1;
             this.btnUserRole.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnUserRole.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnUserRole.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnUserRole.OnPressedState.IconLeftImage")));
+            this.btnUserRole.OnPressedState.IconLeftImage = null;
             this.btnUserRole.OnPressedState.IconRightImage = null;
             this.btnUserRole.Size = new System.Drawing.Size(213, 55);
             this.btnUserRole.TabIndex = 21;
@@ -1014,7 +1014,7 @@
             this.btnRequest.IdleIconRightImage = null;
             this.btnRequest.IndicateFocus = false;
             this.btnRequest.Location = new System.Drawing.Point(4, 571);
-            this.btnRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRequest.Margin = new System.Windows.Forms.Padding(4);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnRequest.OnDisabledState.BorderRadius = 1;
@@ -1046,7 +1046,7 @@
             this.btnRequest.OnPressedState.BorderThickness = 1;
             this.btnRequest.OnPressedState.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnRequest.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(116)))), ((int)(((byte)(134)))));
-            this.btnRequest.OnPressedState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnRequest.OnPressedState.IconLeftImage")));
+            this.btnRequest.OnPressedState.IconLeftImage = null;
             this.btnRequest.OnPressedState.IconRightImage = null;
             this.btnRequest.Size = new System.Drawing.Size(213, 55);
             this.btnRequest.TabIndex = 21;
@@ -1063,7 +1063,7 @@
             this.panel3.Controls.Add(this.btnAvatar);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(1432, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(267, 77);
             this.panel3.TabIndex = 26;
@@ -1114,7 +1114,7 @@
             this.btnAvatar.Image = ((System.Drawing.Image)(resources.GetObject("btnAvatar.Image")));
             this.btnAvatar.ImageMargin = new System.Windows.Forms.Padding(0);
             this.btnAvatar.Location = new System.Drawing.Point(196, 14);
-            this.btnAvatar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAvatar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAvatar.Name = "btnAvatar";
             this.btnAvatar.RoundBorders = true;
             this.btnAvatar.ShowBorders = true;
@@ -1128,7 +1128,7 @@
             this.panel2.Controls.Add(this.bunifuPictureBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(248, 77);
             this.panel2.TabIndex = 25;
@@ -1160,7 +1160,7 @@
             this.bunifuPictureBox2.Image = global::PresentationLayer.Properties.Resources.logo_100x115;
             this.bunifuPictureBox2.IsCircle = false;
             this.bunifuPictureBox2.Location = new System.Drawing.Point(27, 9);
-            this.bunifuPictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuPictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuPictureBox2.Name = "bunifuPictureBox2";
             this.bunifuPictureBox2.Size = new System.Drawing.Size(91, 60);
             this.bunifuPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1190,7 +1190,7 @@
             this.panelCenterContent.AutoScroll = true;
             this.panelCenterContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCenterContent.Location = new System.Drawing.Point(248, 89);
-            this.panelCenterContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelCenterContent.Margin = new System.Windows.Forms.Padding(4);
             this.panelCenterContent.Name = "panelCenterContent";
             this.panelCenterContent.Padding = new System.Windows.Forms.Padding(0, 12, 13, 12);
             this.panelCenterContent.Size = new System.Drawing.Size(1451, 757);
@@ -1203,7 +1203,7 @@
             this.panel1.Controls.Add(this.bunifuSeparator2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1699, 89);
             this.panel1.TabIndex = 27;
@@ -1220,7 +1220,7 @@
             this.Controls.Add(this.bunifuCircleProgress1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormAdminHome";
             this.Text = "frmAdminHome";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormAdminHome_FormClosed);

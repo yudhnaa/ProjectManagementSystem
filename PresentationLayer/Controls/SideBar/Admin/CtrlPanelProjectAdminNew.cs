@@ -572,5 +572,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
         {
             MessageBox.Show(message, title, MessageBoxButtons.OK, icon);
         }
+
+        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

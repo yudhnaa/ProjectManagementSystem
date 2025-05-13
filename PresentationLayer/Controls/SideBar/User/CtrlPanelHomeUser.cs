@@ -129,7 +129,7 @@ namespace PresentationLayer.Controls.SideBar
 
             Series series1 = new Series
             {
-                Name = "Số Task đã hoàn thành",
+                Name = "Task Completed",
                 ChartType = SeriesChartType.Spline,
                 BorderWidth = 2,
                 Color = Color.Blue,
@@ -144,9 +144,9 @@ namespace PresentationLayer.Controls.SideBar
             chartCompletedTasks.Series.Add(series1);
 
             // SetDataChartCompletedOfDay chart titles (optional)
-            chartCompletedTasks.Titles.Add("Task Hoàn thành theo ngày");
-            chartCompletedTasks.ChartAreas[0].AxisX.Title = "Ngày";
-            chartCompletedTasks.ChartAreas[0].AxisY.Title = "Số Task hoàn thành";
+            chartCompletedTasks.Titles.Add("Task Completed per Day");
+            chartCompletedTasks.ChartAreas[0].AxisX.Title = "Day, Month, Year";
+            chartCompletedTasks.ChartAreas[0].AxisY.Title = "Number of Task";
         }
 
 
