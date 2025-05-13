@@ -26,12 +26,14 @@ namespace PresentationLayer.Config
         public static Color InactiveStatusColor { get;  } = Color.Red;
 
         // Button Colors
-        public static Color ButtonHoverFillColor { get;  } = Color.WhiteSmoke;
-        public static Color ButtonPressedFillColor { get;  } = Color.WhiteSmoke;
+        public static Color ButtonHoverFillColor { get; } = Color.FromArgb(176, 196, 222);
+        public static Color ButtonPressedFillColor { get; } = Color.FromArgb(30, 144, 255);
         public static Color ButtonIdleFillColor { get;  } = Color.White;
         public static Color ButtonBorderColor { get;  } = Color.White;
 
         //Font color
+        public static Color FontColorLightBackground { get; set; } = Color.White;//
+        public static Color FontColorLightBackground2 { get; set; } = Color.DarkGray;
         public static Color FontColorLightBackground { get;  } = Color.Black;
         public static Color FontColorLightBackground2 { get;  } = Color.DarkGray;
 
@@ -40,6 +42,10 @@ namespace PresentationLayer.Config
 
 
         //Pagination
-        public static int PageSize { get;  } = 10;
+        public static int PageSize { get; set; } = 10;
+
+        //button color change
+        public static Color ButtonActiveFillColor = Color.FromArgb(0, 122, 204); // Xanh dương
+        public static Color ButtonActiveBorderColor = Color.FromArgb(0, 100, 180);
     }
 }

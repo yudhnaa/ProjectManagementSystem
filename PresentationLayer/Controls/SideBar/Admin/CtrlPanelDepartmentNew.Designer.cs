@@ -85,21 +85,24 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dgvItems);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(4);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1535, 899);
-            this.splitContainer1.SplitterDistance = 1022;
+            this.splitContainer1.Size = new System.Drawing.Size(2047, 1106);
+            this.splitContainer1.SplitterDistance = 1332;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             this.splitContainer1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Paint);
             // 
             // dgvItems
@@ -154,15 +157,17 @@
             this.dgvItems.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.dgvItems.HeaderBgColor = System.Drawing.Color.Empty;
             this.dgvItems.HeaderForeColor = System.Drawing.Color.White;
-            this.dgvItems.Location = new System.Drawing.Point(10, 99);
+            this.dgvItems.Location = new System.Drawing.Point(0, 110);
+            this.dgvItems.Margin = new System.Windows.Forms.Padding(4);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowHeadersWidth = 62;
             this.dgvItems.RowTemplate.Height = 40;
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItems.Size = new System.Drawing.Size(1002, 790);
+            this.dgvItems.Size = new System.Drawing.Size(1332, 996);
             this.dgvItems.TabIndex = 6;
             this.dgvItems.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
+            this.dgvItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItems_CellContentClick);
             this.dgvItems.SelectionChanged += new System.EventHandler(this.dgvItems_SelectionChanged);
             // 
             // panel1
@@ -170,11 +175,13 @@
             this.panel1.Controls.Add(this.tbSearch);
             this.panel1.Controls.Add(this.lbProjects);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(10, 10);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(1002, 89);
+            this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.panel1.Size = new System.Drawing.Size(1332, 110);
             this.panel1.TabIndex = 5;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tbSearch
             // 
@@ -206,7 +213,8 @@
             this.tbSearch.IconRight = null;
             this.tbSearch.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSearch.Lines = new string[0];
-            this.tbSearch.Location = new System.Drawing.Point(10, 44);
+            this.tbSearch.Location = new System.Drawing.Point(0, 41);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbSearch.MaxLength = 32767;
             this.tbSearch.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSearch.Modified = false;
@@ -232,7 +240,7 @@
             stateProperties4.ForeColor = System.Drawing.Color.Empty;
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbSearch.OnIdleState = stateProperties4;
-            this.tbSearch.Padding = new System.Windows.Forms.Padding(3);
+            this.tbSearch.Padding = new System.Windows.Forms.Padding(4);
             this.tbSearch.PasswordChar = '\0';
             this.tbSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbSearch.PlaceholderText = "Enter text";
@@ -241,8 +249,8 @@
             this.tbSearch.SelectedText = "";
             this.tbSearch.SelectionLength = 0;
             this.tbSearch.SelectionStart = 0;
-            this.tbSearch.ShortcutsEnabled = true;
-            this.tbSearch.Size = new System.Drawing.Size(982, 35);
+            this.tbSearch.ShortcutsEnabled = false;
+            this.tbSearch.Size = new System.Drawing.Size(1332, 59);
             this.tbSearch.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSearch.TabIndex = 4;
             this.tbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -261,10 +269,11 @@
             this.lbProjects.AutoSize = true;
             this.lbProjects.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbProjects.Location = new System.Drawing.Point(10, 10);
+            this.lbProjects.Location = new System.Drawing.Point(0, 0);
+            this.lbProjects.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.lbProjects.Size = new System.Drawing.Size(154, 34);
+            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.lbProjects.Size = new System.Drawing.Size(196, 41);
             this.lbProjects.TabIndex = 3;
             this.lbProjects.Text = "Department List";
             // 
@@ -288,6 +297,7 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -298,7 +308,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(509, 899);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(710, 1106);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // bunifuCustomLabel5
@@ -307,10 +317,10 @@
             this.bunifuCustomLabel5.AutoSize = true;
             this.bunifuCustomLabel5.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCustomLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel5.Location = new System.Drawing.Point(238, 10);
-            this.bunifuCustomLabel5.Margin = new System.Windows.Forms.Padding(10);
+            this.bunifuCustomLabel5.Location = new System.Drawing.Point(316, 12);
+            this.bunifuCustomLabel5.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.bunifuCustomLabel5.Name = "bunifuCustomLabel5";
-            this.bunifuCustomLabel5.Size = new System.Drawing.Size(55, 20);
+            this.bunifuCustomLabel5.Size = new System.Drawing.Size(68, 25);
             this.bunifuCustomLabel5.TabIndex = 7;
             this.bunifuCustomLabel5.Text = "Name";
             this.bunifuCustomLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -320,10 +330,10 @@
             this.bunifuCustomLabel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.bunifuCustomLabel1.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(10, 10);
-            this.bunifuCustomLabel1.Margin = new System.Windows.Forms.Padding(10);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(13, 12);
+            this.bunifuCustomLabel1.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
-            this.bunifuCustomLabel1.Size = new System.Drawing.Size(51, 20);
+            this.bunifuCustomLabel1.Size = new System.Drawing.Size(68, 25);
             this.bunifuCustomLabel1.TabIndex = 2;
             this.bunifuCustomLabel1.Text = "Id";
             this.bunifuCustomLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -358,8 +368,8 @@
             this.tbName.IconRight = null;
             this.tbName.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbName.Lines = new string[0];
-            this.tbName.Location = new System.Drawing.Point(271, 50);
-            this.tbName.Margin = new System.Windows.Forms.Padding(10);
+            this.tbName.Location = new System.Drawing.Point(316, 61);
+            this.tbName.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.tbName.MaxLength = 32767;
             this.tbName.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbName.Modified = false;
@@ -385,7 +395,7 @@
             stateProperties8.ForeColor = System.Drawing.Color.Empty;
             stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbName.OnIdleState = stateProperties8;
-            this.tbName.Padding = new System.Windows.Forms.Padding(3);
+            this.tbName.Padding = new System.Windows.Forms.Padding(4);
             this.tbName.PasswordChar = '\0';
             this.tbName.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbName.PlaceholderText = "";
@@ -395,7 +405,7 @@
             this.tbName.SelectionLength = 0;
             this.tbName.SelectionStart = 0;
             this.tbName.ShortcutsEnabled = true;
-            this.tbName.Size = new System.Drawing.Size(178, 39);
+            this.tbName.Size = new System.Drawing.Size(237, 48);
             this.tbName.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbName.TabIndex = 3;
             this.tbName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -436,8 +446,8 @@
             this.tbId.IconRight = null;
             this.tbId.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbId.Lines = new string[0];
-            this.tbId.Location = new System.Drawing.Point(10, 50);
-            this.tbId.Margin = new System.Windows.Forms.Padding(10);
+            this.tbId.Location = new System.Drawing.Point(13, 61);
+            this.tbId.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.tbId.MaxLength = 32767;
             this.tbId.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbId.Modified = false;
@@ -463,7 +473,7 @@
             stateProperties12.ForeColor = System.Drawing.Color.Empty;
             stateProperties12.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbId.OnIdleState = stateProperties12;
-            this.tbId.Padding = new System.Windows.Forms.Padding(3);
+            this.tbId.Padding = new System.Windows.Forms.Padding(4);
             this.tbId.PasswordChar = '\0';
             this.tbId.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbId.PlaceholderText = "";
@@ -473,7 +483,7 @@
             this.tbId.SelectionLength = 0;
             this.tbId.SelectionStart = 0;
             this.tbId.ShortcutsEnabled = true;
-            this.tbId.Size = new System.Drawing.Size(208, 39);
+            this.tbId.Size = new System.Drawing.Size(277, 48);
             this.tbId.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbId.TabIndex = 4;
             this.tbId.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -490,10 +500,10 @@
             this.bunifuCustomLabel2.AutoSize = true;
             this.bunifuCustomLabel2.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCustomLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel2.Location = new System.Drawing.Point(10, 109);
-            this.bunifuCustomLabel2.Margin = new System.Windows.Forms.Padding(10);
+            this.bunifuCustomLabel2.Location = new System.Drawing.Point(13, 133);
+            this.bunifuCustomLabel2.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
-            this.bunifuCustomLabel2.Size = new System.Drawing.Size(122, 20);
+            this.bunifuCustomLabel2.Size = new System.Drawing.Size(148, 25);
             this.bunifuCustomLabel2.TabIndex = 7;
             this.bunifuCustomLabel2.Text = "Manager User";
             this.bunifuCustomLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -529,8 +539,8 @@
             this.tbDescription.IconRight = null;
             this.tbDescription.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbDescription.Lines = new string[0];
-            this.tbDescription.Location = new System.Drawing.Point(10, 242);
-            this.tbDescription.Margin = new System.Windows.Forms.Padding(10);
+            this.tbDescription.Location = new System.Drawing.Point(13, 300);
+            this.tbDescription.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.tbDescription.MaxLength = 32767;
             this.tbDescription.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbDescription.Modified = false;
@@ -556,7 +566,7 @@
             stateProperties16.ForeColor = System.Drawing.Color.Empty;
             stateProperties16.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbDescription.OnIdleState = stateProperties16;
-            this.tbDescription.Padding = new System.Windows.Forms.Padding(3);
+            this.tbDescription.Padding = new System.Windows.Forms.Padding(4);
             this.tbDescription.PasswordChar = '\0';
             this.tbDescription.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbDescription.PlaceholderText = "";
@@ -566,7 +576,7 @@
             this.tbDescription.SelectionLength = 0;
             this.tbDescription.SelectionStart = 0;
             this.tbDescription.ShortcutsEnabled = true;
-            this.tbDescription.Size = new System.Drawing.Size(472, 112);
+            this.tbDescription.Size = new System.Drawing.Size(563, 241);
             this.tbDescription.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbDescription.TabIndex = 16;
             this.tbDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -582,10 +592,10 @@
             this.bunifuCustomLabel6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.bunifuCustomLabel6.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCustomLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel6.Location = new System.Drawing.Point(10, 188);
-            this.bunifuCustomLabel6.Margin = new System.Windows.Forms.Padding(10);
+            this.bunifuCustomLabel6.Location = new System.Drawing.Point(13, 234);
+            this.bunifuCustomLabel6.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
-            this.bunifuCustomLabel6.Size = new System.Drawing.Size(208, 34);
+            this.bunifuCustomLabel6.Size = new System.Drawing.Size(277, 42);
             this.bunifuCustomLabel6.TabIndex = 17;
             this.bunifuCustomLabel6.Text = "Department Description";
             this.bunifuCustomLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -596,10 +606,10 @@
             this.bunifuCustomLabel3.AutoSize = true;
             this.bunifuCustomLabel3.BackColor = System.Drawing.Color.Transparent;
             this.bunifuCustomLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel3.Location = new System.Drawing.Point(238, 109);
-            this.bunifuCustomLabel3.Margin = new System.Windows.Forms.Padding(10);
+            this.bunifuCustomLabel3.Location = new System.Drawing.Point(316, 133);
+            this.bunifuCustomLabel3.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
-            this.bunifuCustomLabel3.Size = new System.Drawing.Size(78, 20);
+            this.bunifuCustomLabel3.Size = new System.Drawing.Size(95, 25);
             this.bunifuCustomLabel3.TabIndex = 7;
             this.bunifuCustomLabel3.Text = "Is Active";
             this.bunifuCustomLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -652,8 +662,8 @@
             this.btCreateProject.IdleIconLeftImage = null;
             this.btCreateProject.IdleIconRightImage = null;
             this.btCreateProject.IndicateFocus = false;
-            this.btCreateProject.Location = new System.Drawing.Point(109, 376);
-            this.btCreateProject.Margin = new System.Windows.Forms.Padding(10);
+            this.btCreateProject.Location = new System.Drawing.Point(145, 568);
+            this.btCreateProject.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.btCreateProject.Name = "btCreateProject";
             this.btCreateProject.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btCreateProject.OnDisabledState.BorderRadius = 40;
@@ -687,7 +697,7 @@
             this.btCreateProject.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btCreateProject.OnPressedState.IconLeftImage = null;
             this.btCreateProject.OnPressedState.IconRightImage = null;
-            this.btCreateProject.Size = new System.Drawing.Size(109, 38);
+            this.btCreateProject.Size = new System.Drawing.Size(145, 47);
             this.btCreateProject.TabIndex = 19;
             this.btCreateProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btCreateProject.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -715,8 +725,9 @@
             this.cbIsActive.CheckState = Bunifu.UI.WinForms.BunifuCheckBox.CheckStates.Checked;
             this.cbIsActive.Cursor = System.Windows.Forms.Cursors.Default;
             this.cbIsActive.CustomCheckmarkImage = null;
-            this.cbIsActive.Location = new System.Drawing.Point(343, 142);
-            this.cbIsActive.MinimumSize = new System.Drawing.Size(17, 17);
+            this.cbIsActive.Location = new System.Drawing.Point(307, 174);
+            this.cbIsActive.Margin = new System.Windows.Forms.Padding(4);
+            this.cbIsActive.MinimumSize = new System.Drawing.Size(23, 21);
             this.cbIsActive.Name = "cbIsActive";
             this.cbIsActive.OnCheck.BorderColor = System.Drawing.Color.DodgerBlue;
             this.cbIsActive.OnCheck.BorderRadius = 12;
@@ -744,7 +755,7 @@
             this.cbIsActive.OnUncheck.BorderRadius = 12;
             this.cbIsActive.OnUncheck.BorderThickness = 1;
             this.cbIsActive.OnUncheck.CheckBoxColor = System.Drawing.Color.Transparent;
-            this.cbIsActive.Size = new System.Drawing.Size(33, 33);
+            this.cbIsActive.Size = new System.Drawing.Size(44, 44);
             this.cbIsActive.Style = Bunifu.UI.WinForms.BunifuCheckBox.CheckBoxStyles.Bunifu;
             this.cbIsActive.TabIndex = 20;
             this.cbIsActive.ThreeState = false;
@@ -755,9 +766,10 @@
             this.cbManagerUser.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbManagerUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbManagerUser.FormattingEnabled = true;
-            this.cbManagerUser.Location = new System.Drawing.Point(10, 144);
+            this.cbManagerUser.Location = new System.Drawing.Point(14, 184);
+            this.cbManagerUser.Margin = new System.Windows.Forms.Padding(4);
             this.cbManagerUser.Name = "cbManagerUser";
-            this.cbManagerUser.Size = new System.Drawing.Size(207, 28);
+            this.cbManagerUser.Size = new System.Drawing.Size(275, 24);
             this.cbManagerUser.TabIndex = 21;
             this.cbManagerUser.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbManagerUser_KeyUp);
             // 
@@ -766,9 +778,10 @@
             this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel2.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel2.Controls.Add(this.btCancelProject);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(231, 367);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(307, 557);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(258, 57);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(344, 70);
             this.flowLayoutPanel2.TabIndex = 33;
             // 
             // btnUpdate
@@ -818,8 +831,8 @@
             this.btnUpdate.IdleIconLeftImage = null;
             this.btnUpdate.IdleIconRightImage = null;
             this.btnUpdate.IndicateFocus = false;
-            this.btnUpdate.Location = new System.Drawing.Point(10, 10);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(10);
+            this.btnUpdate.Location = new System.Drawing.Point(13, 12);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnUpdate.OnDisabledState.BorderRadius = 40;
@@ -853,7 +866,7 @@
             this.btnUpdate.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.OnPressedState.IconLeftImage = null;
             this.btnUpdate.OnPressedState.IconRightImage = null;
-            this.btnUpdate.Size = new System.Drawing.Size(109, 38);
+            this.btnUpdate.Size = new System.Drawing.Size(145, 47);
             this.btnUpdate.TabIndex = 19;
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnUpdate.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -910,8 +923,8 @@
             this.btCancelProject.IdleIconLeftImage = null;
             this.btCancelProject.IdleIconRightImage = null;
             this.btCancelProject.IndicateFocus = false;
-            this.btCancelProject.Location = new System.Drawing.Point(139, 10);
-            this.btCancelProject.Margin = new System.Windows.Forms.Padding(10);
+            this.btCancelProject.Location = new System.Drawing.Point(184, 12);
+            this.btCancelProject.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.btCancelProject.Name = "btCancelProject";
             this.btCancelProject.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btCancelProject.OnDisabledState.BorderRadius = 40;
@@ -945,7 +958,7 @@
             this.btCancelProject.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btCancelProject.OnPressedState.IconLeftImage = null;
             this.btCancelProject.OnPressedState.IconRightImage = null;
-            this.btCancelProject.Size = new System.Drawing.Size(109, 38);
+            this.btCancelProject.Size = new System.Drawing.Size(145, 47);
             this.btCancelProject.TabIndex = 21;
             this.btCancelProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btCancelProject.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -955,13 +968,14 @@
             // 
             // CtrlPanelDepartmentNew
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CtrlPanelDepartmentNew";
-            this.Size = new System.Drawing.Size(1535, 899);
+            this.Size = new System.Drawing.Size(2047, 1106);
             this.Load += new System.EventHandler(this.CtrlPanelDepartmentNew_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

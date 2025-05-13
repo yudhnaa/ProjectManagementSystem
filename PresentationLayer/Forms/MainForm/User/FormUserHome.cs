@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Web.UI.HtmlControls;
 using System.Windows.Forms;
 
 namespace PresentationLayer
@@ -37,7 +38,7 @@ namespace PresentationLayer
 
         private BunifuButton _currentButton;
         private BunifuButton _previousButton;
-        
+
 
         private BunifuButton currentButton
         {
@@ -49,6 +50,7 @@ namespace PresentationLayer
                 SetButtonStyle(_previousButton, GlobalVariables.ButtonIdleFillColor, GlobalVariables.FontColorLightBackground2);
                 _currentButton = value;
                 SetButtonStyle(_currentButton, GlobalVariables.ButtonPressedFillColor, GlobalVariables.FontColorLightBackground);
+
             }
         }
 
@@ -153,6 +155,7 @@ namespace PresentationLayer
             panelCenterContent.Controls.Clear();
             panelCenterContent.Controls.Add(control);
         }
+        
 
         private void btnHome_Click(object sender, EventArgs e)
         {

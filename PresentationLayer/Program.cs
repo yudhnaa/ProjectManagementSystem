@@ -5,6 +5,7 @@ using DTOLayer.Models;
 using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,28 +23,30 @@ namespace PresentationLayer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new FormLogin());
+            Application.Run(new FormLogin());
 
             //Mock login user
 
             UserServices userServices = new UserServices();
             UserRoleServices userRoleServices = new UserRoleServices();
 
-            UserDTO user = userServices.CheckLoginUser(
-                new UserDTO
-                {
-                    //Username = "admin",
-                    Username = "mwang",
-                    Password = "1"
-                });
+            //UserDTO user = userServices.CheckLoginUser(
+            //    new UserDTO
+            //    {
+            //        //Username = "admin",
+            //        Username = "awhite",
+            //        Password = "1"
+            //    });
 
-            UserSession.Instance.SetUser(user, userRoleServices.GetUserRoleById(user.UserRoleId));
+            //Color.FromArgb(159, 179, 223);
 
-            if (user.UserRoleId == 1)
-                Application.Run(new FormAdminHome());
+            //UserSession.Instance.SetUser(user, userRoleServices.GetUserRoleById(user.UserRoleId));
 
-            else
-                Application.Run(new FormUserHome());
+            //if (user.UserRoleId == 1)
+            //    Application.Run(new FormAdminHome());
+
+            //else
+            //    Application.Run(new FormUserHome());
         }
     }
 }

@@ -78,12 +78,15 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void LoadDepartments(string keyword = "")
         {
+            
             departmentes = departmentServices.GetAllDepartmentsInlcudeInactive(keyword);
             dgvItems.DataSource = departmentes;
+            
         }
 
         private void SetSelectedItemData()
         {
+            
             if (currentItem == null)
             {
                 managerUser.Clear();
@@ -131,6 +134,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
+            
             if (dgvItems.SelectedRows.Count > 0 && currentItem != dgvItems.SelectedRows[0].DataBoundItem as DepartmentDTO)
             {
                 currentItem = dgvItems.SelectedRows[0].DataBoundItem as DepartmentDTO;
@@ -147,6 +151,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             tbDescription.Clear();
             managerUser.Clear();
             cbIsActive.Checked = false;
+            
         }
 
         private bool ValidateInput()
@@ -270,7 +275,27 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 e.SuppressKeyPress = true;
             }
         }
-
         
+         private void LoadLocation(int x, int y)
+        {
+            dgvItems.Location = new Point(x, y); // Thay x, y bằng giá trị bạn muốn
+            dgvItems.Left = x; // Hoặc chỉnh riêng lẻ
+            dgvItems.Top = y;
+        }
+        
+        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

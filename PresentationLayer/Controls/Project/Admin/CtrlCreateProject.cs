@@ -266,7 +266,7 @@ namespace PresentationLayer.CustomControls
                     int pageSize = 10;
                     List<UserDTO> users = userServices.GetAllUsers(kw);
 
-                    // Set the data source of the combo box to the list of users
+                    // SetDataChartCompletedOfDay the data source of the combo box to the list of users
                     cbMember.DataSource = users;
                 };
             }

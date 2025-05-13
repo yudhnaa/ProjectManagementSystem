@@ -1,6 +1,5 @@
 ﻿using BusinessLayer;
 using BusinessLayer.Services;
-using C1.Win.Localization.Design;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.Controls;
