@@ -139,9 +139,8 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -155,7 +154,7 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(2141, 1106);
-            this.splitContainer1.SplitterDistance = 957;
+            this.splitContainer1.SplitterDistance = 955;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Paint);
@@ -213,13 +212,13 @@
             this.dgvItems.HeaderBgColor = System.Drawing.Color.Empty;
             this.dgvItems.HeaderForeColor = System.Drawing.Color.White;
             this.dgvItems.Location = new System.Drawing.Point(13, 122);
-            this.dgvItems.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowHeadersWidth = 62;
             this.dgvItems.RowTemplate.Height = 40;
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItems.Size = new System.Drawing.Size(931, 972);
+            this.dgvItems.Size = new System.Drawing.Size(929, 972);
             this.dgvItems.TabIndex = 6;
             this.dgvItems.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.dgvItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItems_CellContentClick);
@@ -230,10 +229,10 @@
             this.panel1.Controls.Add(this.tbSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(13, 12);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.panel1.Size = new System.Drawing.Size(931, 110);
+            this.panel1.Size = new System.Drawing.Size(929, 110);
             this.panel1.TabIndex = 5;
             // 
             // tbSearch
@@ -267,7 +266,7 @@
             this.tbSearch.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSearch.Lines = new string[0];
             this.tbSearch.Location = new System.Drawing.Point(0, 41);
-            this.tbSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSearch.MaxLength = 32767;
             this.tbSearch.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSearch.Modified = false;
@@ -293,7 +292,7 @@
             stateProperties4.ForeColor = System.Drawing.Color.Empty;
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbSearch.OnIdleState = stateProperties4;
-            this.tbSearch.Padding = new System.Windows.Forms.Padding(4);
+            this.tbSearch.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSearch.PasswordChar = '\0';
             this.tbSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbSearch.PlaceholderText = "Enter text";
@@ -303,7 +302,7 @@
             this.tbSearch.SelectionLength = 0;
             this.tbSearch.SelectionStart = 0;
             this.tbSearch.ShortcutsEnabled = true;
-            this.tbSearch.Size = new System.Drawing.Size(931, 59);
+            this.tbSearch.Size = new System.Drawing.Size(929, 59);
             this.tbSearch.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSearch.TabIndex = 4;
             this.tbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -367,7 +366,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tbPercentComplete, 1, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 12;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -382,7 +381,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1179, 1106);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1181, 1106);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // btnUpdate
@@ -492,7 +491,7 @@
             this.listviewMembers.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.listviewMembers.Name = "listviewMembers";
             this.tableLayoutPanel1.SetRowSpan(this.listviewMembers, 3);
-            this.listviewMembers.Size = new System.Drawing.Size(611, 354);
+            this.listviewMembers.Size = new System.Drawing.Size(611, 361);
             this.listviewMembers.TabIndex = 12;
             this.listviewMembers.UseCompatibleStateImageBehavior = false;
             this.listviewMembers.View = System.Windows.Forms.View.Details;
@@ -718,7 +717,7 @@
             stateProperties8.ForeColor = System.Drawing.Color.Empty;
             stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbProjectName.OnIdleState = stateProperties8;
-            this.tbProjectName.Padding = new System.Windows.Forms.Padding(4);
+            this.tbProjectName.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbProjectName.PasswordChar = '\0';
             this.tbProjectName.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbProjectName.PlaceholderText = "";
@@ -796,7 +795,7 @@
             stateProperties12.ForeColor = System.Drawing.Color.Empty;
             stateProperties12.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbProjectCode.OnIdleState = stateProperties12;
-            this.tbProjectCode.Padding = new System.Windows.Forms.Padding(4);
+            this.tbProjectCode.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbProjectCode.PasswordChar = '\0';
             this.tbProjectCode.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbProjectCode.PlaceholderText = "";
@@ -902,7 +901,7 @@
             stateProperties16.ForeColor = System.Drawing.Color.Empty;
             stateProperties16.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbBudget.OnIdleState = stateProperties16;
-            this.tbBudget.Padding = new System.Windows.Forms.Padding(4);
+            this.tbBudget.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbBudget.PasswordChar = '\0';
             this.tbBudget.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbBudget.PlaceholderText = "";
@@ -1098,7 +1097,7 @@
             stateProperties20.ForeColor = System.Drawing.Color.Empty;
             stateProperties20.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbProjectDesrciption.OnIdleState = stateProperties20;
-            this.tbProjectDesrciption.Padding = new System.Windows.Forms.Padding(4);
+            this.tbProjectDesrciption.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbProjectDesrciption.PasswordChar = '\0';
             this.tbProjectDesrciption.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbProjectDesrciption.PlaceholderText = "";
@@ -1108,7 +1107,7 @@
             this.tbProjectDesrciption.SelectionLength = 0;
             this.tbProjectDesrciption.SelectionStart = 0;
             this.tbProjectDesrciption.ShortcutsEnabled = true;
-            this.tbProjectDesrciption.Size = new System.Drawing.Size(517, 248);
+            this.tbProjectDesrciption.Size = new System.Drawing.Size(517, 255);
             this.tbProjectDesrciption.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbProjectDesrciption.TabIndex = 16;
             this.tbProjectDesrciption.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1153,7 +1152,8 @@
             this.flowLayoutPanel1.Controls.Add(this.bunifuButton21);
             this.flowLayoutPanel1.Controls.Add(this.btnAddMember);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(653, 549);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(868, 680);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(203, 54);
             this.flowLayoutPanel1.TabIndex = 20;
@@ -1380,7 +1380,7 @@
             this.cbStatus.ItemHighLightForeColor = System.Drawing.Color.White;
             this.cbStatus.ItemTopMargin = 3;
             this.cbStatus.Location = new System.Drawing.Point(257, 190);
-            this.cbStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.cbStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(271, 32);
             this.cbStatus.TabIndex = 23;
@@ -1425,8 +1425,8 @@
             this.cbRole.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.cbRole.ItemHighLightForeColor = System.Drawing.Color.White;
             this.cbRole.ItemTopMargin = 3;
-            this.cbRole.Location = new System.Drawing.Point(868, 190);
-            this.cbRole.Margin = new System.Windows.Forms.Padding(4);
+            this.cbRole.Location = new System.Drawing.Point(832, 190);
+            this.cbRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(271, 32);
             this.cbRole.TabIndex = 23;
@@ -1472,7 +1472,7 @@
             this.cbPriority.ItemHighLightForeColor = System.Drawing.Color.White;
             this.cbPriority.ItemTopMargin = 3;
             this.cbPriority.Location = new System.Drawing.Point(16, 295);
-            this.cbPriority.Margin = new System.Windows.Forms.Padding(4);
+            this.cbPriority.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(209, 32);
             this.cbPriority.TabIndex = 23;
@@ -1482,10 +1482,11 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel2.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel2.Controls.Add(this.btCancelProject);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(626, 609);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(832, 754);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(258, 57);
             this.flowLayoutPanel2.TabIndex = 32;
@@ -1721,7 +1722,7 @@
             this.btCreateProject.IdleIconLeftImage = null;
             this.btCreateProject.IdleIconRightImage = null;
             this.btCreateProject.IndicateFocus = false;
-            this.btCreateProject.Location = new System.Drawing.Point(670, 758);
+            this.btCreateProject.Location = new System.Drawing.Point(670, 765);
             this.btCreateProject.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.btCreateProject.Name = "btCreateProject";
             this.btCreateProject.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -2058,7 +2059,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CtrlPanelProjectAdminNew";
             this.Size = new System.Drawing.Size(2141, 1106);
             this.Load += new System.EventHandler(this.CtrlPanelTaskAdminNew_Load);

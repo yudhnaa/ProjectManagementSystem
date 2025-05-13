@@ -81,7 +81,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -95,7 +95,7 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(2047, 1106);
-            this.splitContainer1.SplitterDistance = 1052;
+            this.splitContainer1.SplitterDistance = 1050;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Paint);
@@ -153,13 +153,13 @@
             this.dgvItems.HeaderBgColor = System.Drawing.Color.Empty;
             this.dgvItems.HeaderForeColor = System.Drawing.Color.White;
             this.dgvItems.Location = new System.Drawing.Point(13, 122);
-            this.dgvItems.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowHeadersWidth = 62;
             this.dgvItems.RowTemplate.Height = 40;
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItems.Size = new System.Drawing.Size(1026, 972);
+            this.dgvItems.Size = new System.Drawing.Size(1024, 972);
             this.dgvItems.TabIndex = 6;
             this.dgvItems.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.dgvItems.SelectionChanged += new System.EventHandler(this.dgvItems_SelectionChanged);
@@ -169,10 +169,10 @@
             this.panel1.Controls.Add(this.tbSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(13, 12);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.panel1.Size = new System.Drawing.Size(1026, 110);
+            this.panel1.Size = new System.Drawing.Size(1024, 110);
             this.panel1.TabIndex = 5;
             // 
             // tbSearch
@@ -206,7 +206,7 @@
             this.tbSearch.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSearch.Lines = new string[0];
             this.tbSearch.Location = new System.Drawing.Point(0, 41);
-            this.tbSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSearch.MaxLength = 32767;
             this.tbSearch.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbSearch.Modified = false;
@@ -232,7 +232,7 @@
             stateProperties4.ForeColor = System.Drawing.Color.Empty;
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbSearch.OnIdleState = stateProperties4;
-            this.tbSearch.Padding = new System.Windows.Forms.Padding(4);
+            this.tbSearch.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSearch.PasswordChar = '\0';
             this.tbSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbSearch.PlaceholderText = "Enter text";
@@ -242,7 +242,7 @@
             this.tbSearch.SelectionLength = 0;
             this.tbSearch.SelectionStart = 0;
             this.tbSearch.ShortcutsEnabled = true;
-            this.tbSearch.Size = new System.Drawing.Size(1026, 59);
+            this.tbSearch.Size = new System.Drawing.Size(1024, 59);
             this.tbSearch.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbSearch.TabIndex = 4;
             this.tbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -284,7 +284,7 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -299,7 +299,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(990, 1106);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(992, 1106);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // bunifuCustomLabel5
@@ -386,7 +386,7 @@
             stateProperties8.ForeColor = System.Drawing.Color.Empty;
             stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbName.OnIdleState = stateProperties8;
-            this.tbName.Padding = new System.Windows.Forms.Padding(4);
+            this.tbName.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbName.PasswordChar = '\0';
             this.tbName.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbName.PlaceholderText = "";
@@ -464,7 +464,7 @@
             stateProperties12.ForeColor = System.Drawing.Color.Empty;
             stateProperties12.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbId.OnIdleState = stateProperties12;
-            this.tbId.Padding = new System.Windows.Forms.Padding(4);
+            this.tbId.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbId.PasswordChar = '\0';
             this.tbId.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbId.PlaceholderText = "";
@@ -556,7 +556,7 @@
             stateProperties16.ForeColor = System.Drawing.Color.Empty;
             stateProperties16.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbDescription.OnIdleState = stateProperties16;
-            this.tbDescription.Padding = new System.Windows.Forms.Padding(4);
+            this.tbDescription.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbDescription.PasswordChar = '\0';
             this.tbDescription.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbDescription.PlaceholderText = "";
@@ -566,7 +566,7 @@
             this.tbDescription.SelectionLength = 0;
             this.tbDescription.SelectionStart = 0;
             this.tbDescription.ShortcutsEnabled = true;
-            this.tbDescription.Size = new System.Drawing.Size(964, 241);
+            this.tbDescription.Size = new System.Drawing.Size(966, 241);
             this.tbDescription.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.tbDescription.TabIndex = 16;
             this.tbDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -675,7 +675,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel1.Controls.Add(this.btCancel);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(351, 456);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(336, 70);
             this.flowLayoutPanel1.TabIndex = 31;
@@ -870,7 +870,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CtrlPanelProjectPriorityNew";
             this.Size = new System.Drawing.Size(2047, 1106);
             this.Load += new System.EventHandler(this.CtrlPanelProjectPriorityNew_Load);

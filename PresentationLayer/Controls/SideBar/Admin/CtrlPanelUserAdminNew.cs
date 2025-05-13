@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using DTOLayer;
+using Bunifu.UI.WinForms.Helpers.Transitions;
 using DataLayer.EnumObjects;
 
 namespace PresentationLayer.Controls.SideBar.Admin
@@ -384,6 +385,22 @@ namespace PresentationLayer.Controls.SideBar.Admin
             if (s != null)
             {
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
+            }
+        }
+
+        private void LoadUser(string kw)
+        {
+            try
+            {
+                ủe
+            }
+            catch (SqlException ex)
+            {
+                ShowMessage("Database error occurred while retrieving projects.", "Error", MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage("An error occurred while retrieving projects.", "Error", MessageBoxIcon.Error);
             }
         }
 
