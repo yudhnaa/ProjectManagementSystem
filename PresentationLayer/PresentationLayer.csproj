@@ -413,6 +413,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\Admin\CtrlPanelProjectMember.resx">
       <DependentUpon>CtrlPanelProjectMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelProjectNew.resx">
       <DependentUpon>CtrlPanelProjectNew.cs</DependentUpon>

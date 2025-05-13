@@ -190,7 +190,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.tbSearch);
-            this.panel1.Controls.Add(this.lbProjects);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(13, 12);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

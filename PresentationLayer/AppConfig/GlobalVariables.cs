@@ -32,8 +32,8 @@ namespace PresentationLayer.Config
         public static Color ButtonBorderColor { get;  } = Color.White;
 
         //Font color
-        public static Color FontColorLightBackground { get; set; } = Color.White;//
-        public static Color FontColorLightBackground2 { get; set; } = Color.DarkGray;
+        //public static Color FontColorLightBackground { get; set; } = Color.White;//
+        //public static Color FontColorLightBackground2 { get; set; } = Color.DarkGray;
         public static Color FontColorLightBackground { get;  } = Color.Black;
         public static Color FontColorLightBackground2 { get;  } = Color.DarkGray;
 

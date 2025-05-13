@@ -128,7 +128,7 @@ namespace PresentationLayer.Controls.SideBar
             var taskServices = new TaskServices();
             var data = taskServices.GetCompletedTaskByDate(userId);
             // Clear existing series
-            ResetChartData(chart4);
+            ResetChartData(chartCompletedTasks);
 
             Series series1 = new Series
             {
