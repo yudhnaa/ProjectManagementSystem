@@ -181,7 +181,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
                     if (taskPriorities == null || taskPriorities.Count == 0)
                     {
-                        MessageBox.Show("Không tìm thấy task nào với từ khóa này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Không tìm thấy task priority nào với từ khóa này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
                     dgvItems.DataSource = taskPriorities;

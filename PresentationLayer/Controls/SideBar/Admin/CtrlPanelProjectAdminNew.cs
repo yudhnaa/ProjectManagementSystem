@@ -406,6 +406,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
         {
             listviewMembers.BeginUpdate();
             listviewMembers.Items.Clear();
+            
+
 
             // add manager
             var user = _userServices.GetUserById(_currentProject.ManagerId);
@@ -435,8 +437,14 @@ namespace PresentationLayer.Controls.SideBar.Admin
             }
 
             listviewMembers.EndUpdate();
-            listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            int totalWidth = listviewMembers.ClientSize.Width;
+
+            listviewMembers.Columns[0].Width = (int)(totalWidth * 0.3);
+            listviewMembers.Columns[1].Width = (int)(totalWidth * 0.4);
+            listviewMembers.Columns[2].Width = (int)(totalWidth * 0.3);
+
+            //listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //listviewMembers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void SearchProjects(string keyword)

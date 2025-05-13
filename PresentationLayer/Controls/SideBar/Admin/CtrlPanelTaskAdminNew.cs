@@ -65,6 +65,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
             dgvItems.AutoGenerateColumns = false;
             dgvItems.ReadOnly = true;
+            dgvItems.AllowUserToAddRows = false;
             dgvItems.MultiSelect = false;
             dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

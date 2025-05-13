@@ -46,7 +46,6 @@ namespace BusinessLayer.Services
             {
                 try
                 {
-
                     var members = projectMemberDAL.GetAllProjectMembers(kw, isIncludeInActive: false);
                     if (members == null)
                         return null;

@@ -92,7 +92,7 @@ namespace BusinessLayer.Services
                     throw new Exception("User not found in project.");
 
                 //check parent task in project?
-                if (task.ParentTaskId != null)
+                if (task.ParentTaskId != null && task.ParentTaskId != 0)
                 {
                     ITaskServices taskServices = new TaskServices();
                     var parentTask = taskServices.GetTaskById((int)task.ParentTaskId);

@@ -100,7 +100,7 @@ namespace DataLayer.DataAccess
                 try
                 {
                     return dbContext.ProjectMembers
-                        .Where(pm => (pm.User.FirstName.Contains(kw) || pm.User.LastName.Contains(kw)) && (isIncludeInActive || (pm.IsActive == true && pm.IsDeleted == false)))
+                        .Where(pm => (pm.User.Username.Contains(kw) || pm.User.LastName.Contains(kw)) && (isIncludeInActive || (pm.IsActive == true && pm.IsDeleted == false)))
                         .ToList();
                 }
                 catch (Exception ex) when (ex is SqlException || ex is Exception)

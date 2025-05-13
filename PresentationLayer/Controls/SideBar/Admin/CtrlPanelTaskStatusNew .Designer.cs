@@ -248,6 +248,7 @@
             this.tbSearch.TextPlaceholder = "Enter text";
             this.tbSearch.UseSystemPasswordChar = false;
             this.tbSearch.WordWrap = true;
+            this.tbSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyUp);
             // 
             // lbProjects
             // 
@@ -259,9 +260,9 @@
             this.lbProjects.Location = new System.Drawing.Point(10, 10);
             this.lbProjects.Name = "lbProjects";
             this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.lbProjects.Size = new System.Drawing.Size(91, 34);
+            this.lbProjects.Size = new System.Drawing.Size(153, 34);
             this.lbProjects.TabIndex = 3;
-            this.lbProjects.Text = "Task List";
+            this.lbProjects.Text = "Task Status List";
             // 
             // tableLayoutPanel1
             // 
