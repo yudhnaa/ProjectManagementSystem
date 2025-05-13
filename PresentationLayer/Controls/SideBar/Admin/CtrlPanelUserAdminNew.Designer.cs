@@ -71,7 +71,6 @@
             this.dgvItems = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbSearch = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.lbProjects = new PresentationLayer.CustomControls.RoundedLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cbDepartment = new Bunifu.UI.WinForms.BunifuDropdown();
@@ -102,6 +101,7 @@
             this.btCancel = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.btCreate = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.roundedLabel1 = new PresentationLayer.CustomControls.RoundedLabel();
+            this.lbProjects = new PresentationLayer.CustomControls.RoundedLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -244,7 +244,7 @@
             stateProperties4.ForeColor = System.Drawing.Color.Empty;
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.tbSearch.OnIdleState = stateProperties4;
-            this.tbSearch.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbSearch.Padding = new System.Windows.Forms.Padding(3);
             this.tbSearch.PasswordChar = '\0';
             this.tbSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.tbSearch.PlaceholderText = "Enter text";
@@ -264,21 +264,7 @@
             this.tbSearch.TextPlaceholder = "Enter text";
             this.tbSearch.UseSystemPasswordChar = false;
             this.tbSearch.WordWrap = true;
-            // 
-            // lbProjects
-            // 
-            this.lbProjects._BackColor = System.Drawing.Color.Empty;
-            this.lbProjects._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbProjects.AutoSize = true;
-            this.lbProjects.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbProjects.Location = new System.Drawing.Point(0, 0);
-            this.lbProjects.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
-            this.lbProjects.Size = new System.Drawing.Size(116, 41);
-            this.lbProjects.TabIndex = 3;
-            this.lbProjects.Text = "User List";
+            this.tbSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyUp);
             // 
             // splitContainer1
             // 
@@ -291,7 +277,7 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Panel1.Controls.Add(this.dgvItems);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(10);
             // 
             // splitContainer1.Panel2
             // 
@@ -308,7 +294,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.Controls.Add(this.cbDepartment, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.bunifuLabel3, 1, 2);
@@ -435,7 +421,7 @@
             this.tbPassword.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbPassword.Lines = new string[0];
             this.tbPassword.Location = new System.Drawing.Point(10, 10);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(10);
             this.tbPassword.MaxLength = 32767;
             this.tbPassword.MinimumSize = new System.Drawing.Size(1, 1);
             this.tbPassword.Modified = false;
@@ -507,13 +493,14 @@
             this.btnShowPassword.Image = global::PresentationLayer.Properties.Resources.eye;
             this.btnShowPassword.ImageMargin = new System.Windows.Forms.Padding(0);
             this.btnShowPassword.Location = new System.Drawing.Point(233, 13);
-            this.btnShowPassword.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.btnShowPassword.Margin = new System.Windows.Forms.Padding(10);
             this.btnShowPassword.Name = "btnShowPassword";
             this.btnShowPassword.RoundBorders = true;
             this.btnShowPassword.ShowBorders = true;
             this.btnShowPassword.Size = new System.Drawing.Size(35, 35);
             this.btnShowPassword.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
             this.btnShowPassword.TabIndex = 14;
+            this.btnShowPassword.Click += new System.EventHandler(this.btnShowPassword_Click);
             // 
             // bunifuLabel3
             // 
@@ -1390,6 +1377,7 @@
             this.btnUpdate.TextMarginLeft = 0;
             this.btnUpdate.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnUpdate.UseDefaultRadiusAndThickness = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btCancel
             // 
@@ -1573,6 +1561,7 @@
             this.btCreate.TextMarginLeft = 0;
             this.btCreate.TextPadding = new System.Windows.Forms.Padding(0);
             this.btCreate.UseDefaultRadiusAndThickness = true;
+            this.btCreate.Click += new System.EventHandler(this.btCreate_Click);
             // 
             // roundedLabel1
             // 
@@ -1587,6 +1576,21 @@
             this.roundedLabel1.Size = new System.Drawing.Size(90, 34);
             this.roundedLabel1.TabIndex = 36;
             this.roundedLabel1.Text = "User List";
+            // 
+            // lbProjects
+            // 
+            this.lbProjects._BackColor = System.Drawing.Color.Empty;
+            this.lbProjects._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbProjects.AutoSize = true;
+            this.lbProjects.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProjects.Location = new System.Drawing.Point(0, 0);
+            this.lbProjects.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbProjects.Name = "lbProjects";
+            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.lbProjects.Size = new System.Drawing.Size(116, 41);
+            this.lbProjects.TabIndex = 3;
+            this.lbProjects.Text = "User List";
             // 
             // CtrlPanelUserAdminNew
             // 
