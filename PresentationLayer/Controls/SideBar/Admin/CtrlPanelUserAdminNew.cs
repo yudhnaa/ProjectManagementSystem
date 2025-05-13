@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using DTOLayer;
+using Bunifu.UI.WinForms.Helpers.Transitions;
 using DataLayer.EnumObjects;
 
 namespace PresentationLayer.Controls.SideBar.Admin
@@ -386,8 +387,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
             }
         }
-
-       
 
         private void btCreate_Click(object sender, EventArgs e)
         {

@@ -143,6 +143,14 @@ namespace PresentationLayer
             control.BringToFront();
         }
 
+        private void SetButtonStyle(BunifuButton btn, Color fillColor, Color foreColor)
+        {
+            if (btn == null) return;
+            btn.OnIdleState.FillColor = fillColor;
+            btn.OnIdleState.ForeColor = foreColor;
+            btn.Refresh();
+        }
+
         private void btnProject_Click(object sender, EventArgs e) =>
             LoadControl(sender as BunifuButton, ref ctrlPanelProjectAdminNew, () => new CtrlPanelProjectAdminNew());
 

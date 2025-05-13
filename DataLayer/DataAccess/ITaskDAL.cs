@@ -1,4 +1,5 @@
 ﻿using DataLayer.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace DataLayer.DataAccess
@@ -18,5 +19,8 @@ namespace DataLayer.DataAccess
         List<Task> GetTasksByKeywordAndStatus(string keyword, int statusId, bool isIncludeInActive);
         bool UpdateTask(int taskId, string key, string value, int updatedByUserId);
         int UpdateTask(Task task);
+
+       
+
     }
 }
