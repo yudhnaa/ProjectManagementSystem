@@ -44,13 +44,6 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges13 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
             this.bunifuCircleProgress1 = new Bunifu.UI.WinForms.BunifuCircleProgress();
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lbUsername = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.lbUserRole = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.bunifuLabel2 = new Bunifu.UI.WinForms.BunifuLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panelCenterContent = new System.Windows.Forms.Panel();
             this.btnProject = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuButton1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnDepartment = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -62,15 +55,22 @@
             this.btnTaskStatus = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnUserRole = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnRequest = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.bunifuIconButton1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
+            this.lbUsername = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.lbUserRole = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.btnAvatar = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.bunifuLabel2 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuPictureBox2 = new Bunifu.UI.WinForms.BunifuPictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.bunifuSeparator2 = new Bunifu.UI.WinForms.BunifuSeparator();
+            this.panelCenterContent = new System.Windows.Forms.Panel();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuCircleProgress1
@@ -127,90 +127,9 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 72);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.panelLeft.Size = new System.Drawing.Size(227, 611);
+            this.panelLeft.Size = new System.Drawing.Size(227, 506);
             this.panelLeft.TabIndex = 0;
             this.panelLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLeft_Paint);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.bunifuIconButton1);
-            this.panel3.Controls.Add(this.lbUsername);
-            this.panel3.Controls.Add(this.lbUserRole);
-            this.panel3.Controls.Add(this.btnAvatar);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(847, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(305, 62);
-            this.panel3.TabIndex = 26;
-            // 
-            // lbUsername
-            // 
-            this.lbUsername.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUsername.Location = new System.Drawing.Point(11, 9);
-            this.lbUsername.Name = "lbUsername";
-            this.lbUsername.Size = new System.Drawing.Size(130, 24);
-            this.lbUsername.TabIndex = 27;
-            this.lbUsername.Text = "User Name";
-            this.lbUsername.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lbUserRole
-            // 
-            this.lbUserRole.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUserRole.Location = new System.Drawing.Point(15, 33);
-            this.lbUserRole.Name = "lbUserRole";
-            this.lbUserRole.Size = new System.Drawing.Size(126, 18);
-            this.lbUserRole.TabIndex = 27;
-            this.lbUserRole.Text = "User Role";
-            this.lbUserRole.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.bunifuLabel2);
-            this.panel2.Controls.Add(this.bunifuPictureBox2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(227, 62);
-            this.panel2.TabIndex = 25;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // bunifuLabel2
-            // 
-            this.bunifuLabel2.AllowParentOverrides = false;
-            this.bunifuLabel2.AutoEllipsis = false;
-            this.bunifuLabel2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bunifuLabel2.CursorType = System.Windows.Forms.Cursors.Default;
-            this.bunifuLabel2.Font = new System.Drawing.Font("Sylfaen", 20.25F, System.Drawing.FontStyle.Bold);
-            this.bunifuLabel2.Location = new System.Drawing.Point(101, 13);
-            this.bunifuLabel2.Margin = new System.Windows.Forms.Padding(0);
-            this.bunifuLabel2.Name = "bunifuLabel2";
-            this.bunifuLabel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel2.Size = new System.Drawing.Size(56, 35);
-            this.bunifuLabel2.TabIndex = 0;
-            this.bunifuLabel2.Text = "PMS";
-            this.bunifuLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuLabel2.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.bunifuSeparator2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1152, 72);
-            this.panel1.TabIndex = 27;
-            // 
-            // panelCenterContent
-            // 
-            this.panelCenterContent.AutoScroll = true;
-            this.panelCenterContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenterContent.Location = new System.Drawing.Point(227, 72);
-            this.panelCenterContent.Name = "panelCenterContent";
-            this.panelCenterContent.Padding = new System.Windows.Forms.Padding(10);
-            this.panelCenterContent.Size = new System.Drawing.Size(925, 611);
-            this.panelCenterContent.TabIndex = 28;
             // 
             // btnProject
             // 
@@ -871,7 +790,7 @@
             this.btnTaskPriority.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
             this.btnTaskPriority.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTaskPriority.BackgroundImage")));
             this.btnTaskPriority.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnTaskPriority.ButtonText = "Task Prority";
+            this.btnTaskPriority.ButtonText = "Task Priority";
             this.btnTaskPriority.ButtonTextMarginLeft = 0;
             this.btnTaskPriority.ColorContrastOnClick = 45;
             this.btnTaskPriority.ColorContrastOnHover = 45;
@@ -1090,7 +1009,7 @@
             this.btnUserRole.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnUserRole.IdleIconLeftImage")));
             this.btnUserRole.IdleIconRightImage = null;
             this.btnUserRole.IndicateFocus = false;
-            this.btnUserRole.Location = new System.Drawing.Point(3, 480);
+            this.btnUserRole.Location = new System.Drawing.Point(215, 13);
             this.btnUserRole.Name = "btnUserRole";
             this.btnUserRole.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnUserRole.OnDisabledState.BorderRadius = 1;
@@ -1182,7 +1101,7 @@
             this.btnRequest.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnRequest.IdleIconLeftImage")));
             this.btnRequest.IdleIconRightImage = null;
             this.btnRequest.IndicateFocus = true;
-            this.btnRequest.Location = new System.Drawing.Point(3, 530);
+            this.btnRequest.Location = new System.Drawing.Point(215, 63);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.OnDisabledState.BorderColor = System.Drawing.Color.White;
             this.btnRequest.OnDisabledState.BorderRadius = 1;
@@ -1224,6 +1143,18 @@
             this.btnRequest.TextPadding = new System.Windows.Forms.Padding(50, 0, 0, 0);
             this.btnRequest.UseDefaultRadiusAndThickness = true;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.bunifuIconButton1);
+            this.panel3.Controls.Add(this.lbUsername);
+            this.panel3.Controls.Add(this.lbUserRole);
+            this.panel3.Controls.Add(this.btnAvatar);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(810, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(305, 62);
+            this.panel3.TabIndex = 26;
+            // 
             // bunifuIconButton1
             // 
             this.bunifuIconButton1.AllowAnimations = true;
@@ -1256,6 +1187,26 @@
             this.bunifuIconButton1.TabIndex = 29;
             this.bunifuIconButton1.Click += new System.EventHandler(this.bunifuIconButton1_Click);
             // 
+            // lbUsername
+            // 
+            this.lbUsername.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUsername.Location = new System.Drawing.Point(11, 9);
+            this.lbUsername.Name = "lbUsername";
+            this.lbUsername.Size = new System.Drawing.Size(130, 24);
+            this.lbUsername.TabIndex = 27;
+            this.lbUsername.Text = "User Name";
+            this.lbUsername.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbUserRole
+            // 
+            this.lbUserRole.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserRole.Location = new System.Drawing.Point(15, 33);
+            this.lbUserRole.Name = "lbUserRole";
+            this.lbUserRole.Size = new System.Drawing.Size(126, 18);
+            this.lbUserRole.TabIndex = 27;
+            this.lbUserRole.Text = "User Role";
+            this.lbUserRole.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // btnAvatar
             // 
             this.btnAvatar.AllowAnimations = true;
@@ -1287,6 +1238,34 @@
             this.btnAvatar.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
             this.btnAvatar.TabIndex = 25;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.bunifuLabel2);
+            this.panel2.Controls.Add(this.bunifuPictureBox2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(227, 62);
+            this.panel2.TabIndex = 25;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // bunifuLabel2
+            // 
+            this.bunifuLabel2.AllowParentOverrides = false;
+            this.bunifuLabel2.AutoEllipsis = false;
+            this.bunifuLabel2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel2.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel2.Font = new System.Drawing.Font("Sylfaen", 20.25F, System.Drawing.FontStyle.Bold);
+            this.bunifuLabel2.Location = new System.Drawing.Point(101, 13);
+            this.bunifuLabel2.Margin = new System.Windows.Forms.Padding(0);
+            this.bunifuLabel2.Name = "bunifuLabel2";
+            this.bunifuLabel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel2.Size = new System.Drawing.Size(56, 35);
+            this.bunifuLabel2.TabIndex = 0;
+            this.bunifuLabel2.Text = "PMS";
+            this.bunifuLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bunifuLabel2.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
             // bunifuPictureBox2
             // 
             this.bunifuPictureBox2.AllowFocused = false;
@@ -1303,6 +1282,17 @@
             this.bunifuPictureBox2.TabStop = false;
             this.bunifuPictureBox2.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Custom;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.bunifuSeparator2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1115, 72);
+            this.panel1.TabIndex = 27;
+            // 
             // bunifuSeparator2
             // 
             this.bunifuSeparator2.BackColor = System.Drawing.Color.Transparent;
@@ -1317,15 +1307,25 @@
             this.bunifuSeparator2.Margin = new System.Windows.Forms.Padding(6);
             this.bunifuSeparator2.Name = "bunifuSeparator2";
             this.bunifuSeparator2.Orientation = Bunifu.UI.WinForms.BunifuSeparator.LineOrientation.Horizontal;
-            this.bunifuSeparator2.Size = new System.Drawing.Size(1152, 10);
+            this.bunifuSeparator2.Size = new System.Drawing.Size(1115, 10);
             this.bunifuSeparator2.TabIndex = 19;
+            // 
+            // panelCenterContent
+            // 
+            this.panelCenterContent.AutoScroll = true;
+            this.panelCenterContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCenterContent.Location = new System.Drawing.Point(227, 72);
+            this.panelCenterContent.Name = "panelCenterContent";
+            this.panelCenterContent.Padding = new System.Windows.Forms.Padding(10);
+            this.panelCenterContent.Size = new System.Drawing.Size(888, 506);
+            this.panelCenterContent.TabIndex = 28;
             // 
             // FormAdminHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1152, 683);
+            this.ClientSize = new System.Drawing.Size(1115, 578);
             this.Controls.Add(this.panelCenterContent);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panel1);
@@ -1340,8 +1340,8 @@
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bunifuPictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

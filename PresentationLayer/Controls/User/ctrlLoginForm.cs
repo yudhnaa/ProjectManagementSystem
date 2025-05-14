@@ -17,14 +17,14 @@ namespace PresentationLayer.CustomControls
 {
     public partial class ctrlLoginForm : UserControl
     {
-        public UserControl ctrlSignUp { get; set; }
+        public ctrlSignUpForm ctrlSignUp { get; set; }
         public Form frmLogin { get; set; }
 
         private bool isPasswordVisible = false;
 
         public ctrlLoginForm() : this(null) { }
 
-        public ctrlLoginForm(UserControl ctrlSignUp)
+        public ctrlLoginForm(ctrlSignUpForm ctrlSignUp)
         {
             InitializeComponent();
             this.ctrlSignUp = ctrlSignUp;
@@ -118,6 +118,36 @@ namespace PresentationLayer.CustomControls
         {
             this.Hide();
             ctrlSignUp?.Show();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void bunifuLabel4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuLabel3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

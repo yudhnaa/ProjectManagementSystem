@@ -15,12 +15,12 @@ namespace PresentationLayer.CustomControls
 {
     public partial class ctrlSignUpForm : UserControl
     {
-        public UserControl ctrlLogin { get; set; }
+        public ctrlLoginForm ctrlLogin { get; set; }
         private bool isPasswordVisible = false;
 
         public ctrlSignUpForm() : this(null) { }
 
-        public ctrlSignUpForm(UserControl ctrlLogin)
+        public ctrlSignUpForm(ctrlLoginForm ctrlLogin)
         {
             InitializeComponent();
             this.ctrlLogin = ctrlLogin;

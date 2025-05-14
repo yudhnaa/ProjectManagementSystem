@@ -33,5 +33,20 @@ namespace PresentationLayer
         {
 
         }
+
+        private void ctrlLoginForm1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ctrlSignUpForm1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

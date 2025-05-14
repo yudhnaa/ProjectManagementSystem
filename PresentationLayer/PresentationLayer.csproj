@@ -173,6 +173,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppContext\FormContext.cs" />
     <Compile Include="AppContext\UserSession.cs" />
     <Compile Include="AppConfig\GlobalVariables.cs" />
     <Compile Include="Controls\Others\ControlComment.cs">
