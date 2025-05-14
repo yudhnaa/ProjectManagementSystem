@@ -40,7 +40,7 @@ namespace PresentationLayer
                 new UserDTO
                 {
                     Username = "admin",
-                    //Username = "bbrown",
+                    //Username = "jsmith",
                     Password = "1"
                 });
 

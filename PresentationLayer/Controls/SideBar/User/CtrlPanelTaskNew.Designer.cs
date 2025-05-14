@@ -1165,6 +1165,7 @@
             this.btnSendComment.TextMarginLeft = 0;
             this.btnSendComment.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnSendComment.UseDefaultRadiusAndThickness = true;
+            this.btnSendComment.Click += new System.EventHandler(this.btnSendComment_Click);
             // 
             // flowLayoutPanel1
             // 

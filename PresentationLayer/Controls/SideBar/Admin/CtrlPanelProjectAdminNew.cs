@@ -353,10 +353,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
                     dgvItems.DataSource = _projects;
                     dgvItems.Rows[0].Selected = true;
                 }
-                else
-                {
-                    ShowMessage("No projects found.", "Information", MessageBoxIcon.Information);
-                }
+                //else
+                //{
+                //    ShowMessage("No projects found.", "Information", MessageBoxIcon.Information);
+                //}
             }
             catch (SqlException ex)
             {

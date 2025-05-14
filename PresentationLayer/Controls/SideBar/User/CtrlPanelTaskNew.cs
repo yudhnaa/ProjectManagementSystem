@@ -10,6 +10,7 @@ using DataLayer.EnumObjects;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
+using PresentationLayer.Config;
 using PresentationLayer.Controls.Others;
 using PresentationLayer.CustomControls;
 using PresentationLayer.Forms.MainForm.User;
@@ -145,7 +146,7 @@ namespace PresentationLayer.Controls.SideBar.User
             };
         }
 
-        
+
 
         private void LoadTasks()
         {
@@ -322,7 +323,7 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private void tbSearch_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             if (e.KeyCode == Keys.Enter)
             {
                 try
@@ -444,6 +445,48 @@ namespace PresentationLayer.Controls.SideBar.User
 
             formRequestHelp.ShowDialog();
 
+        }
+
+        private void btnSendComment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbComment.Text))
+                {
+                    MessageBox.Show("Please enter a comment.");
+                    return;
+                }
+
+                NotificationDTO noti = new NotificationDTO
+                {
+                    UserId = currentTask.AssignedUserId,
+                    Title = GlobalVariables.CommentAddedTitle,
+                    Message = string.Format(GlobalVariables.CommentAddedMSG, user.Username, currentTask.Name),
+                    NotificationTypeId = (int)NotificationTypeEnum.CommentAdded,
+                    IsRead = false,
+                    CreatedDate = DateTime.Now
+                };
+
+                TaskCommentDTO taskComment = new TaskCommentDTO
+                {
+                    TaskId = currentTask.Id,
+                    UserId = user.Id,
+                    CommentText = tbComment.Text,
+                    CreatedDate = DateTime.Now,
+                };
+
+                taskCommentServices.CreateTaskComment(taskComment, noti);
+                tbComment.Clear();
+                LoadTaskComments();
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error: " + sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

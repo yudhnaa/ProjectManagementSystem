@@ -19,25 +19,29 @@ namespace BusinessLayer.Services.Ipml
             this.taskCommentDAL = new TaskCommentDAL();
         }
 
-        public TaskCommentDTO CreateTaskComment(TaskCommentDTO taskCommentDTO)
+        public bool CreateTaskComment(TaskCommentDTO taskCommentDTO, NotificationDTO notification)
         {
-            throw new NotImplementedException();
-            //try
-            //{
-            //    TaskComment taskComment = new TaskComment()
-            //    {
-            //        Comment = taskCommentDTO.Comment,
-            //        CreatedDate = DateTime.Now,
-            //        IsDeleted = false,
-            //        TaskId = taskCommentDTO.TaskId,
-            //        UserId = taskCommentDTO.UserId
-            //    };
-            //    return taskCommentDAL.CreateTaskComment(taskComment);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+            try
+            {
+                INotificationServices notificationServices = new NotificationServices();    
+
+                var taskComment = taskCommentDTO.ToTaskCommentEntity();
+                taskComment.IsEdited = false;
+                taskComment.CreatedDate = DateTime.Now;
+                taskComment.UpdatedDate = null;
+
+                var res = taskCommentDAL.CreateTaskComment(taskComment);
+                var res1 = false;
+                    
+                if (res > 0 && notification != null)
+                     res1 = notificationServices.CreateNotification(notification);
+
+                return res1;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<TaskCommentDTO> GetAllTaskCommentsById(int taskId)

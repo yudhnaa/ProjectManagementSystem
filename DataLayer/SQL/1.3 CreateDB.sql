@@ -423,7 +423,6 @@ CREATE TABLE [dbo].[Notifications](
 	[Title] [nvarchar](100) NOT NULL,
 	[Message] [nvarchar](500) NULL,
 	[NotificationTypeId] [int] NOT NULL,
-	[RelatedId] [int] NULL,
 	[IsRead] [bit] NULL,
 	[CreatedDate] [datetime] NULL,
 PRIMARY KEY CLUSTERED 

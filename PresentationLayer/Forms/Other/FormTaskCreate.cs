@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PresentationLayer.Config;
+using DataLayer.EnumObjects;
 
 namespace PresentationLayer.Forms.Other
 {
@@ -240,9 +241,19 @@ namespace PresentationLayer.Forms.Other
                 CreatedDate = DateTime.Now
             };
 
+            NotificationDTO noti = new NotificationDTO
+            {
+                UserId = (int)CbUser.SelectedValue,
+                Title = GlobalVariables.TaskAssignmentTitle,
+                Message = string.Format(GlobalVariables.TaskAssignmentTitle, newTask.Name),
+                NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                IsRead = false,
+                CreatedDate = DateTime.Now
+            };
+
             try
             {
-                taskServices.CreateTask(newTask, this.user.Id);
+                taskServices.CreateTask(newTask, this.user.Id, noti);
                 MessageBox.Show("Task created successfully.");
             }
             catch (Exception ex)

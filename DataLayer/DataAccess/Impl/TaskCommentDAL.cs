@@ -10,26 +10,27 @@ namespace DataLayer.DataAccess.Impl
 {
     public class TaskCommentDAL : ITaskCommentDAL
     {
-        public TaskComment CreateTaskComment(TaskComment taskComment)
+        public int CreateTaskComment(TaskComment taskComment)
         {
-            throw new NotImplementedException();
-            //using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
-            //{
-            //    try
-            //    {
-            //        dbContext.TaskComments.Add(taskComment);
-            //        dbContext.SaveChanges();
-            //        return taskComment;
-            //    }
-            //    catch (SqlException ex)
-            //    {
-            //        throw ex;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        throw ex;
-            //    }
-            //}
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    dbContext.TaskComments.Add(taskComment);
+
+                    var res = dbContext.SaveChanges();
+
+                    return res;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
         public List<TaskComment> GetAllTaskComments(int taskId, bool isIncludeInActive)
         {

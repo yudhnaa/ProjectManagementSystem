@@ -57,7 +57,7 @@ namespace PresentationLayer.Config
         public static string TaskExpiringTitle = "Task Approaching Due Date";
         public static string TaskExpiringMSG = "Task {0} is due in {1} days";
         
-        public static string TaskAssignmentTitle = "Help Requested";
+        public static string TaskAssignmentTitle = "Task Assignment";
         public static string TaskAssignmentMSG = "You have been assigned to task {0}";
         
         public static string CommentAddedTitle = "New Comment";

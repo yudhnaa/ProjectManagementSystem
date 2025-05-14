@@ -6,6 +6,7 @@ using DataLayer.EnumObjects;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
+using PresentationLayer.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -493,9 +494,19 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 CreatedDate = DateTime.Now
             };
 
+            NotificationDTO noti = new NotificationDTO
+            {
+                UserId = (int)CbUser.SelectedValue,
+                Title = GlobalVariables.TaskAssignmentTitle,
+                Message = string.Format(GlobalVariables.TaskAssignmentMSG, newTask.Name),
+                NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                IsRead = false,
+                CreatedDate = DateTime.Now
+            };
+
             try
             {
-                var res = taskServices.CreateTask(newTask, this.user.Id);
+                var res = taskServices.CreateTask(newTask, this.user.Id, noti);
                 if (res)
                 {
                     MessageBox.Show("Task created successfully.");
