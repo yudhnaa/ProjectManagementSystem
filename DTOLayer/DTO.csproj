@@ -59,13 +59,10 @@
     <Compile Include="Mappers\DepartmentDTOMapper.cs" />
     <Compile Include="Mappers\NotificationDTOMapper.cs" />
     <Compile Include="Mappers\NotificationTypeDTOMapper.cs" />
-    <Compile Include="Mappers\PermissionDTOMapper.cs" />
-    <Compile Include="Mappers\PermissionTypeDTOMapper.cs" />
     <Compile Include="Mappers\ProjectDTOMapper.cs" />
     <Compile Include="Mappers\ProjectForListDTOMapper.cs" />
     <Compile Include="Mappers\ProjectMemberDTOMapper.cs" />
     <Compile Include="Mappers\ProjectMemberRoleDTOMapper.cs" />
-    <Compile Include="Mappers\ProjectMemberRolePermissionDTOMapper.cs" />
     <Compile Include="Mappers\ProjectPriorityDTOMapper.cs" />
     <Compile Include="Mappers\ProjectStatusDTOMapper.cs" />
     <Compile Include="Mappers\TaskCommentDTOMapper.cs" />
@@ -80,7 +77,6 @@
     <Compile Include="Mappers\UserDTOMapper.cs" />
     <Compile Include="Mappers\UserExtraInfoDTOMapper.cs" />
     <Compile Include="Mappers\UserRoleDTOMapper.cs" />
-    <Compile Include="Mappers\UserRolePermissionDTOMapper.cs" />
     <Compile Include="Models\DepartmentDTO.cs" />
     <Compile Include="Models\NotificationDTO.cs" />
     <Compile Include="Models\NotificationTypeDTO.cs" />
@@ -90,7 +86,6 @@
     <Compile Include="Models\ProjectForListDTO.cs" />
     <Compile Include="Models\ProjectMemberDTO.cs" />
     <Compile Include="Models\ProjectMemberRoleDTO.cs" />
-    <Compile Include="Models\ProjectMemberRolePermissionDTO.cs" />
     <Compile Include="Models\ProjectPriorityDTO.cs" />
     <Compile Include="Models\ProjectStatusDTO.cs" />
     <Compile Include="Models\TaskCommentDTO.cs" />
@@ -105,7 +100,6 @@
     <Compile Include="Models\UserDTO.cs" />
     <Compile Include="Models\UserExtraInfoDTO.cs" />
     <Compile Include="Models\UserRoleDTO.cs" />
-    <Compile Include="Models\UserRolePermissionDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -197,5 +197,15 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 e.Graphics.FillRectangle(Brushes.LightGray, s.SplitterRectangle);
             }
         }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadTaskStatuses();
+            }
+        }
     }
 }

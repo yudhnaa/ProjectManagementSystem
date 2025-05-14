@@ -29,9 +29,9 @@ namespace PresentationLayer
         private CtrlPanelProjectNew ucProject;
         private CtrlPanelGant ucGant;
         private CtrlListMyProjects ucMyProjects;
-        private FormNotification ucNotification;
+        private FormNotification formNotification;
 
-        // target-typed new expressions. c# >= 9.0
+        // new expressions - target-typed. c# >= 9.0
         private readonly IUserRoleServices roleServices = new UserRoleServices();
         private readonly IProjectServices projectServices = new ProjectServices();
         private readonly ITaskServices taskServices = new TaskServices();
@@ -73,9 +73,6 @@ namespace PresentationLayer
             MaximizeBox = false;
             MinimizeBox = true;
 
-            ucMyProjects = new CtrlListMyProjects();
-            ucMyProjects.ProjectSelected += MyProjectsControl_ProjectSelected;
-
             lbUsername.Text = user.Username;
             lbUserRole.Text = UserSession.Instance.UserRole.Name;
 
@@ -83,6 +80,19 @@ namespace PresentationLayer
                 InitButton(btn);
 
             btnHome_Click(btnHome, null); // Default screen  
+
+            formNotification = new FormNotification();
+            formNotification.RefreshEvent += RefreshAfterConfirmProject;
+
+            ucMyProjects = new CtrlListMyProjects();
+            ucMyProjects.ProjectSelected += MyProjectsControl_ProjectSelected;
+        }
+
+
+        private void RefreshAfterConfirmProject()
+        {
+            LoadProjects();
+            ucMyProjects.Projects = projects;
         }
 
         private void LoadProjects()
@@ -90,7 +100,7 @@ namespace PresentationLayer
             try
             {
                 projects = projectServices.GetProjectsForListByUserId(user.Id);
-                ucMyProjects.projects = projects;
+                ucMyProjects.Projects = projects;
                 splitContainer1.Panel2.Controls.Add(ucMyProjects);
             }
             catch (SqlException ex)
@@ -193,6 +203,12 @@ namespace PresentationLayer
             LoadControl(new ctrlUserInfo { Dock = DockStyle.Fill });
         }
 
+        private void btnRequest_Click(object sender, EventArgs e)
+        {
+            currentButton = sender as BunifuButton;
+            LoadControl(new CtrlPanelTaskRequestHelp { Dock = DockStyle.Fill });
+        }
+
         private void splitContainer1_Paint(object sender, PaintEventArgs e)
         {
             if (sender is SplitContainer s)
@@ -220,14 +236,14 @@ namespace PresentationLayer
 
         private void btnNotification_Click(object sender, EventArgs e)
         {
-            if (ucNotification == null || ucNotification.IsDisposed)
-                ucNotification = new FormNotification();
+            if (formNotification == null || formNotification.IsDisposed)
+                formNotification = new FormNotification();
 
             // Lấy tọa độ nút theo màn hình
             Point btnScreenLocation = btnNotification.PointToScreen(Point.Empty);
 
             // Tính X: căn giữa theo nút
-            int desiredX = btnScreenLocation.X + (btnNotification.Width - ucNotification.Width) / 2;
+            int desiredX = btnScreenLocation.X + (btnNotification.Width - formNotification.Width) / 2;
             int desiredY = btnScreenLocation.Y + btnNotification.Height;
 
             // Lấy biên của form cha theo màn hình
@@ -240,15 +256,15 @@ namespace PresentationLayer
             }
 
             // Điều chỉnh nếu form bị tràn phải
-            int maxRight = parentBounds.Right - ucNotification.Width-20;
+            int maxRight = parentBounds.Right - formNotification.Width-20;
             if (desiredX > maxRight)
             {
                 desiredX = maxRight;
             }
 
-            ucNotification.StartPosition = FormStartPosition.Manual;
-            ucNotification.Location = new Point(desiredX, desiredY);
-            ucNotification.ShowDialog();
+            formNotification.StartPosition = FormStartPosition.Manual;
+            formNotification.Location = new Point(desiredX, desiredY);
+            formNotification.ShowDialog();
         }
     }
 }

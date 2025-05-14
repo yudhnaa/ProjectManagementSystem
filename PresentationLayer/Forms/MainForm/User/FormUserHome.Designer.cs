@@ -401,6 +401,7 @@
             this.btnRequest.TextMarginLeft = 0;
             this.btnRequest.TextPadding = new System.Windows.Forms.Padding(50, 0, 0, 0);
             this.btnRequest.UseDefaultRadiusAndThickness = true;
+            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
             // 
             // bunifuSeparator1
             // 

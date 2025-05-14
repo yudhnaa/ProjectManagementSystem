@@ -13,7 +13,6 @@ namespace DTOLayer.Mappers
                 Title = notification.Title,
                 Message = notification.Message,
                 NotificationTypeId = notification.NotificationTypeId,
-                RelatedId = notification.RelatedId,
                 IsRead = notification.IsRead,
                 CreatedDate = notification.CreatedDate,
             };
@@ -28,7 +27,6 @@ namespace DTOLayer.Mappers
                 Title = model.Title,
                 Message = model.Message,
                 NotificationTypeId = model.NotificationTypeId,
-                RelatedId = model.RelatedId,
                 IsRead = model.IsRead,
                 CreatedDate = model.CreatedDate,
             };

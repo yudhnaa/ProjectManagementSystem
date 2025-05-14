@@ -212,6 +212,12 @@
     <Compile Include="Controls\SideBar\User\CtrlPanelProjectNew.Designer.cs">
       <DependentUpon>CtrlPanelProjectNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SideBar\User\CtrlTaskHelpRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBar\User\CtrlTaskHelpRequest.Designer.cs">
+      <DependentUpon>CtrlTaskHelpRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SideBar\User\CtrlPanelTaskNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -434,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelProjectNew.resx">
       <DependentUpon>CtrlPanelProjectNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SideBar\User\CtrlTaskHelpRequest.resx">
+      <DependentUpon>CtrlTaskHelpRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideBar\User\CtrlPanelTaskNew.resx">
       <DependentUpon>CtrlPanelTaskNew.cs</DependentUpon>

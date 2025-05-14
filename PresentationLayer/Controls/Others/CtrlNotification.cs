@@ -1,4 +1,5 @@
-﻿using DTOLayer.Models;
+﻿using DataLayer.EnumObjects;
+using DTOLayer.Models;
 using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace PresentationLayer.Controls.SideBar.User
     public partial class CtrlNotification : UserControl
     {
         private readonly UserDTO user = UserSession.Instance.User;
+        private readonly NotificationTypeEnum type;
 
         [Category("Action")]
         [Description("Occur when user click Accept button.")]
@@ -25,12 +27,36 @@ namespace PresentationLayer.Controls.SideBar.User
             InitializeComponent();
         }
 
-        public CtrlNotification(string title, string content)
+        public CtrlNotification(string title, string content, NotificationTypeEnum type)
         {
             InitializeComponent();
 
             Title = title;
             Content = content;
+            this.type = type;
+
+            switch (this.type)
+            {
+                case NotificationTypeEnum.ProjectInvitation:
+                    btnAccept.Visible = true;
+                    break;
+                case NotificationTypeEnum.TaskAssignment:
+                    btnAccept.Visible = true;
+                    break;
+                case NotificationTypeEnum.TaskHelpRequest:
+                    btnAccept.Visible = true;
+                    break;
+                case NotificationTypeEnum.CommentAdded:
+                    btnAccept.Visible = true;
+                    break;
+                case NotificationTypeEnum.TaskExpiring:
+                    btnAccept.Visible = true;
+                    break;
+                default:
+                    btnAccept.Visible = false;
+                    break;
+            }
+
         }
 
         private void btnAccept_Click(object sender, EventArgs e)

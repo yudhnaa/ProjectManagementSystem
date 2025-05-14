@@ -39,13 +39,34 @@ namespace DataLayer.DataAccess.Impl
 
         public List<TaskHelpRequest> GetTaskHelpRequestById(int taskId, int userId)
         {
-            // get a task help request by id
             try
             {
                 using (var context = new ProjectManagementSystemDBContext())
                 {
                     var query = context.TaskHelpRequests
                         .Where(n => n.TaskId == taskId && (n.RequestedBy == userId || n.RequestedTo == userId));
+
+                    return query.ToList();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<TaskHelpRequest> GetTaskHelpRequestByUserId(int userId)
+        {
+            try
+            {
+                using (var context = new ProjectManagementSystemDBContext())
+                {
+                    var query = context.TaskHelpRequests
+                        .Where(n => n.RequestedTo == userId);
 
                     return query.ToList();
                 }

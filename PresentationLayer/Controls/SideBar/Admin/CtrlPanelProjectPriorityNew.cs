@@ -232,5 +232,15 @@ namespace PresentationLayer.Controls.SideBar.Admin
             ClearForm();
             LoadProjectPriorities();
         }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadProjectPriorities();
+            }
+        }
     }
 }

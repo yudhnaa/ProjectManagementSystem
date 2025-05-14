@@ -253,12 +253,12 @@ namespace PresentationLayer
                         };
 
                         // Add project member to the database
-                        var updateRes = projectMemberServices.UpdateProjectMember(projectMemberDTO, userIdsNotInListView);
-                        if (updateRes == false)
-                        {
-                            MessageBox.Show("Failed to update project member.");
-                            return;
-                        }
+                        //var updateRes = projectMemberServices.UpdateProjectMember(projectMemberDTO, userIdsNotInListView);
+                        //if (updateRes == false)
+                        //{
+                        //    MessageBox.Show("Failed to update project member.");
+                        //    return;
+                        //}
                     }
                 }
 

@@ -23,7 +23,18 @@ namespace PresentationLayer.Forms.MainForm.User
     {
 
         private readonly UserDTO user = UserSession.Instance.User;
-        private readonly TaskDTO task;
+        private TaskDTO _task;
+
+        public TaskDTO task
+        {
+            get => _task;
+            set
+            {
+                _task = value;
+                LoadUsers();
+                SetUsers();
+            }
+        }
 
         private readonly IUserServices userServices = new UserServices();
         private readonly ITaskHelpRequestServices taskHelpRequestServices = new TaskHelpRequestServices();
@@ -32,25 +43,34 @@ namespace PresentationLayer.Forms.MainForm.User
 
         public FormRequestHelp(TaskDTO task)
         {
-            this.task = task;
 
             InitializeComponent();
             InitControls();
+
+            this.task = task;
+
         }
 
         private void InitControls()
         {
             this.HorizontalScroll.Enabled = false;
             this.ShowInTaskbar = false;
-
-            cbUsers.DisplayMember = "username";
+            
+            cbUsers.DisplayMember = "Username";
             cbUsers.ValueMember = "Id";
         }
 
         private void FormNotification_Load(object sender, EventArgs e)
         {
-            LoadUsers();
-            SetUsers();
+            if (task == null)
+                return;
+
+            else
+            {
+                LoadUsers();
+                SetUsers();
+            }
+                
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -88,6 +108,8 @@ namespace PresentationLayer.Forms.MainForm.User
 
         private void btnSent_Click(object sender, EventArgs e)
         {
+            if (cbUsers.SelectedValue == null)
+                return;
             try
             {
                 var noti = new NotificationDTO

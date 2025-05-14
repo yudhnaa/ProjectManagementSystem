@@ -62,5 +62,22 @@ namespace BusinessLayer.Services.Ipml
                 throw;
             }
         }
+
+        public List<TaskHelpRequestDTO> GetTaskHelpRequestByUserId(int userId)
+        {
+            try
+            {
+                var requests = taskHelpRequestDAL.GetTaskHelpRequestByUserId(userId);
+                return requests.Select(r => r.ToDto()).ToList();
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

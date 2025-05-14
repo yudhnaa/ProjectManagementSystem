@@ -7,5 +7,7 @@ namespace BusinessLayer.Services.Ipml
     {
         bool CreateTaskHelpRequest(TaskHelpRequestDTO request, NotificationDTO notification);
         List<TaskHelpRequestDTO> GetTaskHelpRequestById(int taskId, int userId);
+        List<TaskHelpRequestDTO> GetTaskHelpRequestByUserId(int userId);
+
     }
 }

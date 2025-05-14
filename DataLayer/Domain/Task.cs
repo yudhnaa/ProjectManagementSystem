@@ -18,7 +18,6 @@ namespace DataLayer.Domain
             TaskHelpRequests = new HashSet<TaskHelpRequest>();
             TaskHistories = new HashSet<TaskHistory>();
             Tasks1 = new HashSet<Task>();
-            TimeEntries = new HashSet<TimeEntry>();
         }
 
         public int Id { get; set; }
@@ -100,8 +99,5 @@ namespace DataLayer.Domain
         public virtual Task Task1 { get; set; }
 
         public virtual TaskStatus TaskStatus { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TimeEntry> TimeEntries { get; set; }
     }
 }

@@ -40,6 +40,16 @@ namespace PresentationLayer.UC_SideBar
             }
         }
 
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadTasksList();
+                LoadProjectTasks(tasks);
+            }
+        }
 
         public CtrlPanelGant()
         {

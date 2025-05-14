@@ -26,11 +26,19 @@ namespace PresentationLayer.Controls.SideBar
             InitializeComponent();
         }
 
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadAllCharts();
+            }
+        }
 
         private void CtrlPanelHomeUser_Load(object sender, EventArgs e)
         {
             InitControl();
-            //LoadAllCharts();
         }
 
         public void LoadAllCharts()

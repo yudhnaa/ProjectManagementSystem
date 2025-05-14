@@ -208,7 +208,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 selectedUser.Id.ToString(),
                 selectedUser.LastName,
-                selectedRole.Name
+                selectedRole.Name,
+                false.ToString()
             }));
         }
 
@@ -582,7 +583,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
                     RoleInProject = _projectMemberRoles.First(r => r.Name == item.SubItems[2].Text).Id,
                     ProjectId = projectId,
                     CreatedDate = DateTime.Today,
-                    IsConfirmed = bool.TryParse(item.SubItems[2].Text, out bool res) && res
+                    IsConfirmed = bool.TryParse(item.SubItems[3].Text, out bool res) && res
                 };
 
                 NotificationDTO noti = new NotificationDTO
@@ -675,6 +676,17 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadInitialData();
+                LoadProjects("");
+            }
         }
     }
 }

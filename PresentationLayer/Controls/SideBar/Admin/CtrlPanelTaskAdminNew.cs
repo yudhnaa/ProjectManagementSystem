@@ -116,10 +116,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
                     dgvItems.Rows[0].Selected = true;
                 }
-                else
-                {
-                    MessageBox.Show("No tasks found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                //else
+                //{
+                //    MessageBox.Show("No tasks found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
             }
             catch (SqlException)
             {
@@ -600,6 +600,18 @@ namespace PresentationLayer.Controls.SideBar.Admin
             LoadTasks();
         }
 
-       
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadTaskPriorities();
+                LoadTaskProject();
+                LoadTaskStatuses();
+                LoadTasks();
+            }
+        }
+
     }
 }

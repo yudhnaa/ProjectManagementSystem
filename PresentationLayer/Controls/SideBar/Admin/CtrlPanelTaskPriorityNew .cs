@@ -199,5 +199,15 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 e.SuppressKeyPress = true;
             }
         }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadTaskPriorityes();
+            }
+        }
     }
 }

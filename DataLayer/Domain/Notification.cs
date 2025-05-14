@@ -21,8 +21,6 @@ namespace DataLayer.Domain
 
         public int NotificationTypeId { get; set; }
 
-        public int? RelatedId { get; set; }
-
         public bool? IsRead { get; set; }
 
         public DateTime? CreatedDate { get; set; }

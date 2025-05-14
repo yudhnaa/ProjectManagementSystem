@@ -76,10 +76,10 @@ INSERT INTO [NotificationTypes] (Name, Description) VALUES
 -- Insert sample data into Users
 INSERT INTO [Users] (Username, Password, Email, FirstName, LastName, PhoneNumber, Address, Avatar, UserRoleId, PositionId, DepartmentId, LastLogin, IsActive, IsDeleted, CreatedDate, UpdatedDate) VALUES
 ('admin', '$2a$11$iOWBeF/3TD9rifgLeDDDBO6CRAmMJrCZAr2Uc9Ko3IpUIU4FZjYpO', 'admin@pms.com', 'System', 'Administrator', '555-0100', '123 Admin St, Admin City', '/avatars/admin.jpg', 1, 1, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('jsmith', '$2a$11$ev2iDZh8fybFMp5oe0736u0LlzU4zeZi0lSVhjOVZaDXMTwYIKq8a', 'john.smith@pms.com', 'John', 'Smith', '555-0101', '456 Manager Ave, Business City', '/avatars/jsmith.jpg', 2, 2, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('jsmith', '$2a$11$ev2iDZh8fybFMp5oe0736u0LlzU4zeZi0lSVhjOVZaDXMTwYIKq8a', 'john.smith@pms.com', 'John', 'Smith', '555-0101', '456 Manager Ave, Business City', '/avatars/jsmith.jpg', 3, 2, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
 ('awhite', '$2a$11$x29nVzo9EFE7dVWDBiqeRukVGNf9sd0SzIBZryE1X2z.vRObbjx.K', 'alice.white@pms.com', 'Alice', 'White', '555-0102', '789 Developer Ln, Tech Town', '/avatars/awhite.jpg', 3, 3, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('bbrown', '$2a$11$qPxRR4d2hRe2PqkANNHi7uwAYCVnvUrhbgH98JHdHyLCwuIUQCk8m', 'bob.brown@pms.com', 'Bob', 'Brown', '555-0103', '101 Tester Rd, QA City', '/avatars/bbrown.jpg', 3, 3, 1, GETDATE(), 1, 0, GETDATE(), GETDATE()),
-('cjones', '$2a$11$WTzKBSYdQKOhDd5vd7/vFeVL9Ud0Wzx6D.sYfHBxPgkWUwo/d95BG', 'carol.jones@pms.com', 'Carol', 'Jones', '555-0104', '102 Designer Blvd, UX Town', '/avatars/cjones.jpg', 2, 2, 2, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('bbrown', '$2a$11$qPxRR4d2hRe2PqkANNHi7uwAYCVnvUrhbgH98JHdHyLCwuIUQCk8m', 'bob.brown@pms.com', 'Bob', 'Brown', '555-0103', '101 Tester Rd, QA City', '/avatars/bbrown.jpg', 3, 3, 3, GETDATE(), 1, 0, GETDATE(), GETDATE()),
+('cjones', '$2a$11$WTzKBSYdQKOhDd5vd7/vFeVL9Ud0Wzx6D.sYfHBxPgkWUwo/d95BG', 'carol.jones@pms.com', 'Carol', 'Jones', '555-0104', '102 Designer Blvd, UX Town', '/avatars/cjones.jpg', 3, 2, 2, GETDATE(), 1, 0, GETDATE(), GETDATE()),
 ('dgreen', '$2a$11$fTlY1zINdtul.6l94ucTYOS3k23tkgohvs4ca0wRWGBVFJwLnb0ZO', 'david.green@pms.com', 'David', 'Green', '555-0105', '103 DevOps Ave, Cloud City', '/avatars/dgreen.jpg', 3, 3, 2, GETDATE(), 1, 0, GETDATE(), GETDATE()),
 ('eblack', '$2a$11$tWDkNTwJSYylO/7SES15juRA1cYb9m.7tYhp641B7IOcUmtxmNDWK', 'emma.black@pms.com', 'Emma', 'Black', '555-0106', '104 Analyst St, Data Town', '/avatars/eblack.jpg', 3, 3, 2, GETDATE(), 1, 0, GETDATE(), GETDATE());
 

@@ -1,4 +1,5 @@
-﻿using DTOLayer.Models;
+﻿using DataLayer.EnumObjects;
+using DTOLayer.Models;
 using System.Collections.Generic;
 
 namespace BusinessLayer.Services
@@ -13,6 +14,7 @@ namespace BusinessLayer.Services
         bool UpdateProjectMember(ProjectMemberDTO projectMemberDTO, NotificationDTO notification);
         bool UpdateProjectMember(List<ProjectMemberDTO> projectMemberDTO);
         bool RemoveProjectMember(int projectId, int userId);
+        bool ConfirmProjectMemberByNotification(int userId, NotificationTypeEnum type, string kw);
 
     }
 }

@@ -189,5 +189,15 @@ namespace PresentationLayer.Controls.SideBar.Admin
         {
             MessageBox.Show($"{message}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadProjectStatuses();
+            }
+        }
     }
 }
