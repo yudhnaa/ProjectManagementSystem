@@ -7,6 +7,7 @@ using PresentationLayer.Config;
 using PresentationLayer.Controls.SideBar;
 using PresentationLayer.Controls.SideBar.User;
 using PresentationLayer.CustomControls;
+using PresentationLayer.Forms.MainForm.User;
 using PresentationLayer.UC_SideBar;
 using PresentationLayer.UC_SideBar.UC_Project;
 using System;
@@ -28,6 +29,7 @@ namespace PresentationLayer
         private CtrlPanelProjectNew ucProject;
         private CtrlPanelGant ucGant;
         private CtrlListMyProjects ucMyProjects;
+        private FormNotification ucNotification;
 
         // target-typed new expressions. c# >= 9.0
         private readonly IUserRoleServices roleServices = new UserRoleServices();
@@ -214,6 +216,39 @@ namespace PresentationLayer
 
             this?.Dispose();
 
+        }
+
+        private void btnNotification_Click(object sender, EventArgs e)
+        {
+            if (ucNotification == null || ucNotification.IsDisposed)
+                ucNotification = new FormNotification();
+
+            // Lấy tọa độ nút theo màn hình
+            Point btnScreenLocation = btnNotification.PointToScreen(Point.Empty);
+
+            // Tính X: căn giữa theo nút
+            int desiredX = btnScreenLocation.X + (btnNotification.Width - ucNotification.Width) / 2;
+            int desiredY = btnScreenLocation.Y + btnNotification.Height;
+
+            // Lấy biên của form cha theo màn hình
+            Rectangle parentBounds = this.RectangleToScreen(this.ClientRectangle);
+
+            // Điều chỉnh nếu form bị tràn trái
+            if (desiredX < parentBounds.Left)
+            {
+                desiredX = parentBounds.Left;
+            }
+
+            // Điều chỉnh nếu form bị tràn phải
+            int maxRight = parentBounds.Right - ucNotification.Width-20;
+            if (desiredX > maxRight)
+            {
+                desiredX = maxRight;
+            }
+
+            ucNotification.StartPosition = FormStartPosition.Manual;
+            ucNotification.Location = new Point(desiredX, desiredY);
+            ucNotification.ShowDialog();
         }
     }
 }

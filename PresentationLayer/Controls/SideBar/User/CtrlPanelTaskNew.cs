@@ -12,6 +12,7 @@ using DTOLayer.Models;
 using PresentationLayer.AppContext;
 using PresentationLayer.Controls.Others;
 using PresentationLayer.CustomControls;
+using PresentationLayer.Forms.MainForm.User;
 using PresentationLayer.Utils;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace PresentationLayer.Controls.SideBar.User
     {
         private readonly UserDTO user;
         private readonly TaskDTO parentTask;
+        private FormRequestHelp formRequestHelp;
 
         private ProjectForListDTO _currentProject;
         public ProjectForListDTO CurrentProject
@@ -265,6 +267,7 @@ namespace PresentationLayer.Controls.SideBar.User
                 currentTask = taskServices.GetTaskById((int)dgvItems.SelectedRows[0].Cells["Id"].Value);
 
                 toggleMode.Visible = user.Id == currentTask.AssignedUserId;
+                btnHelp.Visible = user.Id == currentTask.AssignedUserId;
 
                 SetTaskInfo();
                 LoadTaskComments();
@@ -404,6 +407,42 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private void lbName_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            if (formRequestHelp == null || formRequestHelp.IsDisposed)
+                formRequestHelp = new FormRequestHelp(currentTask);
+
+
+            // Lấy tọa độ nút theo màn hình
+            Point btnScreenLocation = btnHelp.PointToScreen(Point.Empty);
+
+            // Tính X: căn giữa theo nút
+            int desiredX = btnScreenLocation.X + (btnHelp.Width - formRequestHelp.Width) / 2;
+            int desiredY = btnScreenLocation.Y + btnHelp.Height;
+
+            // Lấy biên của form cha theo màn hình
+            Rectangle parentBounds = this.RectangleToScreen(this.ClientRectangle);
+
+            // Điều chỉnh nếu form bị tràn trái
+            if (desiredX < parentBounds.Left)
+            {
+                desiredX = parentBounds.Left;
+            }
+
+            // Điều chỉnh nếu form bị tràn phải
+            int maxRight = parentBounds.Right - formRequestHelp.Width - 20;
+            if (desiredX > maxRight)
+            {
+                desiredX = maxRight;
+            }
+
+            formRequestHelp.StartPosition = FormStartPosition.Manual;
+            formRequestHelp.Location = new Point(desiredX, desiredY);
+
+            formRequestHelp.ShowDialog();
 
         }
     }

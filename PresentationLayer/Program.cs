@@ -29,7 +29,7 @@ namespace PresentationLayer
                 FormContext.Instance.SetLoginForms(loginForm);
             }
 
-            Application.Run(loginForm);
+            //Application.Run(loginForm);
 
             //Mock login user
 
@@ -40,19 +40,25 @@ namespace PresentationLayer
                 new UserDTO
                 {
                     Username = "admin",
-                    //Username = "awhite",
+                    //Username = "bbrown",
                     Password = "1"
                 });
 
             Color.FromArgb(159, 179, 223);
 
-            //UserSession.Instance.SetUser(user, userRoleServices.GetUserRoleById(user.UserRoleId));
+            UserSession.Instance.SetUser(user, userRoleServices.GetUserRoleById(user.UserRoleId));
 
-            //if (user.UserRoleId == 1)
-            //    Application.Run(new FormAdminHome());
+            Form FormHome;
 
-            //else
-            //    Application.Run(new FormUserHome());
+            if (user.UserRoleId == 1)
+                FormHome = new FormAdminHome();
+            else
+                FormHome = new FormUserHome();
+
+            FormContext.Instance.SetHomeForms(FormHome);
+
+            Application.Run(FormHome);
+
         }
     }
 }

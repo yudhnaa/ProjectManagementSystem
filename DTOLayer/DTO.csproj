@@ -57,6 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappers\DepartmentDTOMapper.cs" />
+    <Compile Include="Mappers\NotificationDTOMapper.cs" />
+    <Compile Include="Mappers\NotificationTypeDTOMapper.cs" />
     <Compile Include="Mappers\PermissionDTOMapper.cs" />
     <Compile Include="Mappers\PermissionTypeDTOMapper.cs" />
     <Compile Include="Mappers\ProjectDTOMapper.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Mappers\TaskDTOMapper.cs" />
     <Compile Include="Mappers\TaskForGanttChartDTOMapper.cs" />
     <Compile Include="Mappers\TaskForListDTOMapper.cs" />
+    <Compile Include="Mappers\TaskHelpRequestDTOMapper.cs" />
     <Compile Include="Mappers\TaskHistoryDTOMapper.cs" />
     <Compile Include="Mappers\TaskPriorityDTOMapper.cs" />
     <Compile Include="Mappers\TaskStatusDTOMapper.cs" />
@@ -79,6 +82,8 @@
     <Compile Include="Mappers\UserRoleDTOMapper.cs" />
     <Compile Include="Mappers\UserRolePermissionDTOMapper.cs" />
     <Compile Include="Models\DepartmentDTO.cs" />
+    <Compile Include="Models\NotificationDTO.cs" />
+    <Compile Include="Models\NotificationTypeDTO.cs" />
     <Compile Include="Models\PermissionDTO.cs" />
     <Compile Include="Models\PermissionTypeDTO.cs" />
     <Compile Include="Models\ProjectDTO.cs" />
@@ -93,6 +98,7 @@
     <Compile Include="Models\TaskDTO.cs" />
     <Compile Include="Models\TaskForGanttChartDTO.cs" />
     <Compile Include="Models\TaskForListDTO.cs" />
+    <Compile Include="Models\TaskHelpRequestDTO.cs" />
     <Compile Include="Models\TaskHistoryDTO.cs" />
     <Compile Include="Models\TaskPriorityDTO.cs" />
     <Compile Include="Models\TaskStatusDTO.cs" />

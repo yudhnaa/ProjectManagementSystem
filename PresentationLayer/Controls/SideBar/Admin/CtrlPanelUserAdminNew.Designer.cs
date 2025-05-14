@@ -71,6 +71,7 @@
             this.dgvItems = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbSearch = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.roundedLabel1 = new PresentationLayer.CustomControls.RoundedLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cbDepartment = new Bunifu.UI.WinForms.BunifuDropdown();
@@ -100,7 +101,6 @@
             this.btnUpdate = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.btCancel = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.btCreate = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
-            this.roundedLabel1 = new PresentationLayer.CustomControls.RoundedLabel();
             this.lbProjects = new PresentationLayer.CustomControls.RoundedLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             this.panel1.SuspendLayout();
@@ -265,6 +265,20 @@
             this.tbSearch.UseSystemPasswordChar = false;
             this.tbSearch.WordWrap = true;
             this.tbSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyUp);
+            // 
+            // roundedLabel1
+            // 
+            this.roundedLabel1._BackColor = System.Drawing.Color.Empty;
+            this.roundedLabel1._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.roundedLabel1.AutoSize = true;
+            this.roundedLabel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.roundedLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roundedLabel1.Location = new System.Drawing.Point(0, 0);
+            this.roundedLabel1.Name = "roundedLabel1";
+            this.roundedLabel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.roundedLabel1.Size = new System.Drawing.Size(90, 34);
+            this.roundedLabel1.TabIndex = 36;
+            this.roundedLabel1.Text = "User List";
             // 
             // splitContainer1
             // 
@@ -1562,20 +1576,6 @@
             this.btCreate.TextPadding = new System.Windows.Forms.Padding(0);
             this.btCreate.UseDefaultRadiusAndThickness = true;
             this.btCreate.Click += new System.EventHandler(this.btCreate_Click);
-            // 
-            // roundedLabel1
-            // 
-            this.roundedLabel1._BackColor = System.Drawing.Color.Empty;
-            this.roundedLabel1._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.roundedLabel1.AutoSize = true;
-            this.roundedLabel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.roundedLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundedLabel1.Location = new System.Drawing.Point(0, 0);
-            this.roundedLabel1.Name = "roundedLabel1";
-            this.roundedLabel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.roundedLabel1.Size = new System.Drawing.Size(90, 34);
-            this.roundedLabel1.TabIndex = 36;
-            this.roundedLabel1.Text = "User List";
             // 
             // lbProjects
             // 

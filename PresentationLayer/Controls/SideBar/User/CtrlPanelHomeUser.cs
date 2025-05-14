@@ -20,7 +20,6 @@ namespace PresentationLayer.Controls.SideBar
         private readonly UserDTO user;
         private readonly IUserServices userServices = new UserServices();
         private readonly ITaskServices taskServices = new TaskServices();
-        private readonly Chart chart = new Chart();
         public CtrlPanelHomeUser()
         {
             user = UserSession.Instance.User;
@@ -50,7 +49,6 @@ namespace PresentationLayer.Controls.SideBar
             chart2.Margin = new Padding(marginH, marginV, marginH, marginV);
             chart3.Margin = new Padding(marginH, marginV, marginH, marginV);
             chartCompletedTasks.Margin = new Padding(marginH, marginV, marginH, marginV);
-
         }
 
         private void ResetChartData(Chart chart)

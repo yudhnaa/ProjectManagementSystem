@@ -1,9 +1,11 @@
 ﻿using BusinessLayer;
 using BusinessLayer.Services;
+using BusinessLayer.Services.Ipml;
 using DataLayer.Domain;
 using DataLayer.EnumObjects;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
+using PresentationLayer.Config;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -583,7 +585,17 @@ namespace PresentationLayer.Controls.SideBar.Admin
                     IsConfirmed = bool.TryParse(item.SubItems[2].Text, out bool res) && res
                 };
 
-                if (!_projectMemberServices.UpdateProjectMember(projectMember))
+                NotificationDTO noti = new NotificationDTO
+                {
+                    UserId = int.Parse(item.SubItems[0].Text),
+                    Title = GlobalVariables.ProjectInvitationTitle,
+                    Message = string.Format(GlobalVariables.ProjectInvitationMSG, tbProjectName.Text),
+                    NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                    IsRead = false,
+                    CreatedDate = DateTime.Now
+                };
+
+                if (!_projectMemberServices.UpdateProjectMember(projectMember, noti))
                 {
                     ShowMessage("Failed to update project member.");
                     return;
@@ -602,6 +614,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void AddProjectMembers(int projectId)
         {
+            INotificationServices notificationServices = new NotificationServices();
+            
             foreach (ListViewItem item in listviewMembers.Items)
             {
                 if (item.SubItems[2].Text == "Manager") continue;
@@ -614,10 +628,21 @@ namespace PresentationLayer.Controls.SideBar.Admin
                     CreatedDate = DateTime.Today,
                 };
 
-                if (!_projectMemberServices.CreateMemberToProject(projectMember))
+                NotificationDTO noti = new NotificationDTO
+                {
+                    UserId = int.Parse(item.SubItems[0].Text),
+                    Title = GlobalVariables.ProjectInvitationTitle,
+                    Message = string.Format(GlobalVariables.ProjectInvitationMSG, tbProjectName.Text),
+                    NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                    IsRead = false,
+                    CreatedDate = DateTime.Now
+                };
+
+                if (!_projectMemberServices.CreateMemberToProject(projectMember, noti))
                 {
                     ShowMessage("Member is already in this project");
                 }
+
             }
         }
 

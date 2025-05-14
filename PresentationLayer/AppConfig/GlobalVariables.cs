@@ -47,5 +47,23 @@ namespace PresentationLayer.Config
         //button color change
         public static Color ButtonActiveFillColor = Color.FromArgb(0, 122, 204); // Xanh dương
         public static Color ButtonActiveBorderColor = Color.FromArgb(0, 100, 180);
+
+        public static string TaskHelpRequestTitle = "Help Requested";
+        public static string TaskHelpRequestMSG = "{0} has requested your help with task {1}";
+        
+        public static string ProjectInvitationTitle = "Project Invitation";
+        public static string ProjectInvitationMSG = "You have been invited to join {0}";
+        
+        public static string TaskExpiringTitle = "Task Approaching Due Date";
+        public static string TaskExpiringMSG = "Task {0} is due in {1} days";
+        
+        public static string TaskAssignmentTitle = "Help Requested";
+        public static string TaskAssignmentMSG = "You have been assigned to task {0}";
+        
+        public static string CommentAddedTitle = "New Comment";
+        public static string CommentAddedMSG = "{0} commented on task {1}";
+
+
+
     }
 }

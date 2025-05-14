@@ -72,7 +72,11 @@
   <ItemGroup>
     <Compile Include="Services\Ipml\DepartmentServices.cs" />
     <Compile Include="Services\IDepartmentServices.cs" />
+    <Compile Include="Services\INotificationServices.cs" />
+    <Compile Include="Services\ITaskHelpRequestServices.cs" />
+    <Compile Include="Services\Ipml\NotificationServices.cs" />
     <Compile Include="Services\Ipml\TaskGanttServiceImpl.cs" />
+    <Compile Include="Services\Ipml\TaskHelpRequestServices.cs" />
     <Compile Include="Services\ITaskDependencyService.cs" />
     <Compile Include="Services\IUserServices.cs" />
     <Compile Include="Services\ITaskCommentServices.cs" />
