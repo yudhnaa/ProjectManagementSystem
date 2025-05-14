@@ -18,7 +18,18 @@ namespace PresentationLayer.UC_SideBar.UC_Project
         public delegate void ProjectSelectedEventHandler(object sender, ProjectForListDTO selectedProject);
         public event ProjectSelectedEventHandler ProjectSelected;
 
-        public List<ProjectForListDTO> projects { get; set; }
+
+        private List<ProjectForListDTO> _projects;
+
+        public List<ProjectForListDTO> Projects
+        {
+            get => _projects;
+            set
+            {
+                _projects = value;
+                UC_MyProjects_Load(this, EventArgs.Empty);
+            }
+        }
 
         public ProjectForListDTO selectedItem { get; set; }
 
@@ -33,14 +44,14 @@ namespace PresentationLayer.UC_SideBar.UC_Project
 
         private void UC_MyProjects_Load(object sender, EventArgs e)
         {
-            if (projects != null && projects.Count != 0)
+            if (_projects != null && _projects.Count != 0)
             {
                 this.Dock = DockStyle.Fill;
                 listbxMyProjects.Items.Clear();
                 this.BringToFront();
 
                 // Populate the ListBox with project names
-                foreach (var project in projects)
+                foreach (var project in _projects)
                 {
                     listbxMyProjects.Items.Add(project);
                 }

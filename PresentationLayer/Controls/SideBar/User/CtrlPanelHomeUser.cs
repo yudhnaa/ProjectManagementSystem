@@ -21,18 +21,25 @@ namespace PresentationLayer.Controls.SideBar
         private readonly UserDTO user;
         private readonly IUserServices userServices = new UserServices();
         private readonly ITaskServices taskServices = new TaskServices();
-        private readonly Chart chart = new Chart();
         public CtrlPanelHomeUser()
         {
             user = UserSession.Instance.User;
             InitializeComponent();
         }
 
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadAllCharts();
+            }
+        }
 
         private void CtrlPanelHomeUser_Load(object sender, EventArgs e)
         {
             InitControl();
-            //LoadAllCharts();
         }
 
         public void LoadAllCharts()
@@ -51,7 +58,6 @@ namespace PresentationLayer.Controls.SideBar
             chart2.Margin = new Padding(marginH, marginV, marginH, marginV);
             chart3.Margin = new Padding(marginH, marginV, marginH, marginV);
             chartCompletedTasks.Margin = new Padding(marginH, marginV, marginH, marginV);
-
         }
 
         private void ResetChartData(Chart chart)

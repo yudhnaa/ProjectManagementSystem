@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataLayer.EnumObjects;
+using PresentationLayer.Config;
 
 namespace PresentationLayer.Forms.Other
 {
@@ -202,8 +204,18 @@ namespace PresentationLayer.Forms.Other
                         CreatedDate = System.DateTime.Today,
                     };
 
+                    NotificationDTO noti = new NotificationDTO
+                    {
+                        UserId = int.Parse(item.SubItems[0].Text),
+                        Title = GlobalVariables.ProjectInvitationTitle,
+                        Message = string.Format(GlobalVariables.ProjectInvitationMSG, tbProjectName.Text),
+                        NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                        IsRead = false,
+                        CreatedDate = DateTime.Now
+                    };
+
                     // Add project member to the database
-                    bool isAddedToProject = projectMemberServices.CreateMemberToProject(projectMemberDTO);
+                    bool isAddedToProject = projectMemberServices.CreateMemberToProject(projectMemberDTO, noti);
                     if (!isAddedToProject)
                     {
                         MessageBox.Show("Member is already in this project");

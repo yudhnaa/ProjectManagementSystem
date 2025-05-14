@@ -13,7 +13,7 @@ namespace BusinessLayer.Services
         Dictionary<string, int> CountTaskByStatusAndUserId(int userId);
         Dictionary<string, int> CountTaskByProjectAndUserId(int userId);
 
-        bool CreateTask(TaskDTO taskDTO, int createdByUserId);
+        bool CreateTask(TaskDTO taskDTO, int createdByUserId, NotificationDTO notification);
         bool DeleteTask(TaskDTO taskDTO);
         List<TaskDTO> GetAllTask(string kw);
         List<TaskForListDTO> GetAllTaskForList(string kw);

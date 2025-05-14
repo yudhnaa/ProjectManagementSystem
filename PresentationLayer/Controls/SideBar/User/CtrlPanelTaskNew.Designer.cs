@@ -43,14 +43,15 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties6 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState1 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState2 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState3 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties9 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties10 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties11 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties12 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState1 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState2 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState3 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvItems = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -71,7 +72,6 @@
             this.lbOwner = new System.Windows.Forms.Label();
             this.lbCreatedBy = new System.Windows.Forms.Label();
             this.lbDueDate = new System.Windows.Forms.Label();
-            this.toggleMode = new Bunifu.UI.WinForms.BunifuToggleSwitch();
             this.labelWithImage1 = new PresentationLayer.Controls.Others.LabelWithImage();
             this.labelWithImage2 = new PresentationLayer.Controls.Others.LabelWithImage();
             this.labelWithImage3 = new PresentationLayer.Controls.Others.LabelWithImage();
@@ -83,6 +83,9 @@
             this.bunifuSeparator1 = new Bunifu.UI.WinForms.BunifuSeparator();
             this.bunifuSeparator2 = new Bunifu.UI.WinForms.BunifuSeparator();
             this.btnSendComment = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.toggleMode = new Bunifu.UI.WinForms.BunifuToggleSwitch();
+            this.btnHelp = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -92,6 +95,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelComments.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -310,7 +314,7 @@
             this.tableLayoutPanel1.Controls.Add(this.labelWithImage5, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 13);
             this.tableLayoutPanel1.Controls.Add(this.btnSendComment, 1, 14);
-            this.tableLayoutPanel1.Controls.Add(this.toggleMode, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -383,7 +387,7 @@
             this.btnUpdate.IdleIconLeftImage = null;
             this.btnUpdate.IdleIconRightImage = null;
             this.btnUpdate.IndicateFocus = false;
-            this.btnUpdate.Location = new System.Drawing.Point(263, 757);
+            this.btnUpdate.Location = new System.Drawing.Point(263, 761);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(10);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -433,7 +437,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.lbName, 2);
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbName.Font = new System.Drawing.Font("Segoe UI Semibold", 25F, System.Drawing.FontStyle.Bold);
-            this.lbName.Location = new System.Drawing.Point(10, 50);
+            this.lbName.Location = new System.Drawing.Point(10, 54);
             this.lbName.Margin = new System.Windows.Forms.Padding(10);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(593, 49);
@@ -448,7 +452,7 @@
             this.lbPriority._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPriority.Location = new System.Drawing.Point(263, 123);
+            this.lbPriority.Location = new System.Drawing.Point(263, 127);
             this.lbPriority.Margin = new System.Windows.Forms.Padding(10);
             this.lbPriority.Name = "lbPriority";
             this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
@@ -494,7 +498,7 @@
             this.cbStatus.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.cbStatus.ItemHighLightForeColor = System.Drawing.Color.White;
             this.cbStatus.ItemTopMargin = 3;
-            this.cbStatus.Location = new System.Drawing.Point(256, 181);
+            this.cbStatus.Location = new System.Drawing.Point(256, 185);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(180, 32);
             this.cbStatus.TabIndex = 33;
@@ -533,7 +537,7 @@
             this.bunifuLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.bunifuLabel4.Location = new System.Drawing.Point(10, 590);
+            this.bunifuLabel4.Location = new System.Drawing.Point(10, 594);
             this.bunifuLabel4.Margin = new System.Windows.Forms.Padding(10);
             this.bunifuLabel4.Name = "bunifuLabel4";
             this.bunifuLabel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -553,7 +557,7 @@
             this.bunifuLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.bunifuLabel3.Location = new System.Drawing.Point(10, 414);
+            this.bunifuLabel3.Location = new System.Drawing.Point(10, 418);
             this.bunifuLabel3.Margin = new System.Windows.Forms.Padding(10);
             this.bunifuLabel3.Name = "bunifuLabel3";
             this.bunifuLabel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -613,7 +617,7 @@
             this.btnDocLink.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnDocLink.IdleIconLeftImage")));
             this.btnDocLink.IdleIconRightImage = null;
             this.btnDocLink.IndicateFocus = false;
-            this.btnDocLink.Location = new System.Drawing.Point(10, 472);
+            this.btnDocLink.Location = new System.Drawing.Point(10, 476);
             this.btnDocLink.Margin = new System.Windows.Forms.Padding(10);
             this.btnDocLink.Name = "btnDocLink";
             this.btnDocLink.OnDisabledState.BorderColor = System.Drawing.Color.Transparent;
@@ -706,7 +710,7 @@
             this.btnAttachment.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnAttachment.IdleIconLeftImage")));
             this.btnAttachment.IdleIconRightImage = null;
             this.btnAttachment.IndicateFocus = false;
-            this.btnAttachment.Location = new System.Drawing.Point(10, 531);
+            this.btnAttachment.Location = new System.Drawing.Point(10, 535);
             this.btnAttachment.Margin = new System.Windows.Forms.Padding(10);
             this.btnAttachment.Name = "btnAttachment";
             this.btnAttachment.OnDisabledState.BorderColor = System.Drawing.Color.Transparent;
@@ -780,7 +784,7 @@
             this.tbDescription.IconRight = null;
             this.tbDescription.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.tbDescription.Lines = new string[0];
-            this.tbDescription.Location = new System.Drawing.Point(10, 648);
+            this.tbDescription.Location = new System.Drawing.Point(10, 652);
             this.tbDescription.Margin = new System.Windows.Forms.Padding(10);
             this.tbDescription.MaxLength = 32767;
             this.tbDescription.MinimumSize = new System.Drawing.Size(1, 1);
@@ -837,7 +841,7 @@
             this.lbComment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbComment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.lbComment.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbComment.Location = new System.Drawing.Point(10, 757);
+            this.lbComment.Location = new System.Drawing.Point(10, 761);
             this.lbComment.Margin = new System.Windows.Forms.Padding(10);
             this.lbComment.Name = "lbComment";
             this.lbComment.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -852,7 +856,7 @@
             this.lbOwner.AutoSize = true;
             this.lbOwner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOwner.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOwner.Location = new System.Drawing.Point(256, 227);
+            this.lbOwner.Location = new System.Drawing.Point(256, 231);
             this.lbOwner.Name = "lbOwner";
             this.lbOwner.Size = new System.Drawing.Size(354, 59);
             this.lbOwner.TabIndex = 20;
@@ -864,7 +868,7 @@
             this.lbCreatedBy.AutoSize = true;
             this.lbCreatedBy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbCreatedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCreatedBy.Location = new System.Drawing.Point(256, 286);
+            this.lbCreatedBy.Location = new System.Drawing.Point(256, 290);
             this.lbCreatedBy.Name = "lbCreatedBy";
             this.lbCreatedBy.Size = new System.Drawing.Size(354, 59);
             this.lbCreatedBy.TabIndex = 19;
@@ -876,63 +880,17 @@
             this.lbDueDate.AutoSize = true;
             this.lbDueDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDueDate.Location = new System.Drawing.Point(256, 345);
+            this.lbDueDate.Location = new System.Drawing.Point(256, 349);
             this.lbDueDate.Name = "lbDueDate";
             this.lbDueDate.Size = new System.Drawing.Size(354, 59);
             this.lbDueDate.TabIndex = 21;
             this.lbDueDate.Text = "label3";
             this.lbDueDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // toggleMode
-            // 
-            this.toggleMode.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.toggleMode.Animation = 5;
-            this.toggleMode.AnimationSpeed = 5;
-            this.toggleMode.BackColor = System.Drawing.Color.Transparent;
-            this.toggleMode.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toggleMode.BackgroundImage")));
-            this.toggleMode.Checked = false;
-            this.toggleMode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.toggleMode.InnerCirclePadding = 3;
-            this.toggleMode.Location = new System.Drawing.Point(579, 12);
-            this.toggleMode.Margin = new System.Windows.Forms.Padding(4);
-            this.toggleMode.Name = "toggleMode";
-            this.toggleMode.Size = new System.Drawing.Size(30, 16);
-            this.toggleMode.TabIndex = 31;
-            this.toggleMode.ThumbMargin = 3;
-            toggleState1.BackColor = System.Drawing.Color.DarkGray;
-            toggleState1.BackColorInner = System.Drawing.Color.White;
-            toggleState1.BorderColor = System.Drawing.Color.DarkGray;
-            toggleState1.BorderColorInner = System.Drawing.Color.White;
-            toggleState1.BorderRadius = 17;
-            toggleState1.BorderRadiusInner = 11;
-            toggleState1.BorderThickness = 1;
-            toggleState1.BorderThicknessInner = 1;
-            this.toggleMode.ToggleStateDisabled = toggleState1;
-            toggleState2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState2.BackColorInner = System.Drawing.Color.White;
-            toggleState2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState2.BorderColorInner = System.Drawing.Color.White;
-            toggleState2.BorderRadius = 15;
-            toggleState2.BorderRadiusInner = 9;
-            toggleState2.BorderThickness = 1;
-            toggleState2.BorderThicknessInner = 1;
-            this.toggleMode.ToggleStateOff = toggleState2;
-            toggleState3.BackColor = System.Drawing.Color.DodgerBlue;
-            toggleState3.BackColorInner = System.Drawing.Color.White;
-            toggleState3.BorderColor = System.Drawing.Color.DodgerBlue;
-            toggleState3.BorderColorInner = System.Drawing.Color.White;
-            toggleState3.BorderRadius = 15;
-            toggleState3.BorderRadiusInner = 9;
-            toggleState3.BorderThickness = 1;
-            toggleState3.BorderThicknessInner = 1;
-            this.toggleMode.ToggleStateOn = toggleState3;
-            this.toggleMode.Value = false;
-            this.toggleMode.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.toggleMode_CheckedChanged);
-            // 
             // labelWithImage1
             // 
             this.labelWithImage1.Image = global::PresentationLayer.Properties.Resources.priority;
-            this.labelWithImage1.Location = new System.Drawing.Point(10, 119);
+            this.labelWithImage1.Location = new System.Drawing.Point(10, 123);
             this.labelWithImage1.Margin = new System.Windows.Forms.Padding(10);
             this.labelWithImage1.Name = "labelWithImage1";
             this.labelWithImage1.Size = new System.Drawing.Size(166, 39);
@@ -942,7 +900,7 @@
             // labelWithImage2
             // 
             this.labelWithImage2.Image = global::PresentationLayer.Properties.Resources.status;
-            this.labelWithImage2.Location = new System.Drawing.Point(10, 178);
+            this.labelWithImage2.Location = new System.Drawing.Point(10, 182);
             this.labelWithImage2.Margin = new System.Windows.Forms.Padding(10);
             this.labelWithImage2.Name = "labelWithImage2";
             this.labelWithImage2.Size = new System.Drawing.Size(166, 39);
@@ -952,7 +910,7 @@
             // labelWithImage3
             // 
             this.labelWithImage3.Image = global::PresentationLayer.Properties.Resources.owner;
-            this.labelWithImage3.Location = new System.Drawing.Point(10, 237);
+            this.labelWithImage3.Location = new System.Drawing.Point(10, 241);
             this.labelWithImage3.Margin = new System.Windows.Forms.Padding(10);
             this.labelWithImage3.Name = "labelWithImage3";
             this.labelWithImage3.Size = new System.Drawing.Size(166, 39);
@@ -962,7 +920,7 @@
             // labelWithImage4
             // 
             this.labelWithImage4.Image = global::PresentationLayer.Properties.Resources.createBy;
-            this.labelWithImage4.Location = new System.Drawing.Point(10, 296);
+            this.labelWithImage4.Location = new System.Drawing.Point(10, 300);
             this.labelWithImage4.Margin = new System.Windows.Forms.Padding(10);
             this.labelWithImage4.Name = "labelWithImage4";
             this.labelWithImage4.Size = new System.Drawing.Size(166, 39);
@@ -972,7 +930,7 @@
             // labelWithImage5
             // 
             this.labelWithImage5.Image = global::PresentationLayer.Properties.Resources.dueDate;
-            this.labelWithImage5.Location = new System.Drawing.Point(10, 355);
+            this.labelWithImage5.Location = new System.Drawing.Point(10, 359);
             this.labelWithImage5.Margin = new System.Windows.Forms.Padding(10);
             this.labelWithImage5.Name = "labelWithImage5";
             this.labelWithImage5.Size = new System.Drawing.Size(166, 39);
@@ -985,7 +943,7 @@
             this.panel2.Controls.Add(this.tbComment);
             this.panel2.Controls.Add(this.panelComments);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 812);
+            this.panel2.Location = new System.Drawing.Point(3, 816);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(607, 300);
             this.panel2.TabIndex = 37;
@@ -1165,7 +1123,7 @@
             this.btnSendComment.IdleIconLeftImage = null;
             this.btnSendComment.IdleIconRightImage = null;
             this.btnSendComment.IndicateFocus = false;
-            this.btnSendComment.Location = new System.Drawing.Point(263, 1125);
+            this.btnSendComment.Location = new System.Drawing.Point(263, 1129);
             this.btnSendComment.Margin = new System.Windows.Forms.Padding(10);
             this.btnSendComment.Name = "btnSendComment";
             this.btnSendComment.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -1207,6 +1165,96 @@
             this.btnSendComment.TextMarginLeft = 0;
             this.btnSendComment.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnSendComment.UseDefaultRadiusAndThickness = true;
+            this.btnSendComment.Click += new System.EventHandler(this.btnSendComment_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.toggleMode);
+            this.flowLayoutPanel1.Controls.Add(this.btnHelp);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(256, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(354, 38);
+            this.flowLayoutPanel1.TabIndex = 39;
+            // 
+            // toggleMode
+            // 
+            this.toggleMode.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.toggleMode.Animation = 5;
+            this.toggleMode.AnimationSpeed = 5;
+            this.toggleMode.BackColor = System.Drawing.Color.Transparent;
+            this.toggleMode.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toggleMode.BackgroundImage")));
+            this.toggleMode.Checked = false;
+            this.toggleMode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.toggleMode.InnerCirclePadding = 3;
+            this.toggleMode.Location = new System.Drawing.Point(320, 12);
+            this.toggleMode.Margin = new System.Windows.Forms.Padding(20, 4, 4, 4);
+            this.toggleMode.Name = "toggleMode";
+            this.toggleMode.Size = new System.Drawing.Size(30, 16);
+            this.toggleMode.TabIndex = 31;
+            this.toggleMode.ThumbMargin = 3;
+            toggleState1.BackColor = System.Drawing.Color.DarkGray;
+            toggleState1.BackColorInner = System.Drawing.Color.White;
+            toggleState1.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState1.BorderColorInner = System.Drawing.Color.White;
+            toggleState1.BorderRadius = 17;
+            toggleState1.BorderRadiusInner = 11;
+            toggleState1.BorderThickness = 1;
+            toggleState1.BorderThicknessInner = 1;
+            this.toggleMode.ToggleStateDisabled = toggleState1;
+            toggleState2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState2.BackColorInner = System.Drawing.Color.White;
+            toggleState2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState2.BorderColorInner = System.Drawing.Color.White;
+            toggleState2.BorderRadius = 15;
+            toggleState2.BorderRadiusInner = 9;
+            toggleState2.BorderThickness = 1;
+            toggleState2.BorderThicknessInner = 1;
+            this.toggleMode.ToggleStateOff = toggleState2;
+            toggleState3.BackColor = System.Drawing.Color.DodgerBlue;
+            toggleState3.BackColorInner = System.Drawing.Color.White;
+            toggleState3.BorderColor = System.Drawing.Color.DodgerBlue;
+            toggleState3.BorderColorInner = System.Drawing.Color.White;
+            toggleState3.BorderRadius = 15;
+            toggleState3.BorderRadiusInner = 9;
+            toggleState3.BorderThickness = 1;
+            toggleState3.BorderThicknessInner = 1;
+            this.toggleMode.ToggleStateOn = toggleState3;
+            this.toggleMode.Value = false;
+            this.toggleMode.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.toggleMode_CheckedChanged);
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.AllowAnimations = true;
+            this.btnHelp.AllowBorderColorChanges = true;
+            this.btnHelp.AllowMouseEffects = true;
+            this.btnHelp.AnimationSpeed = 200;
+            this.btnHelp.BackColor = System.Drawing.Color.Transparent;
+            this.btnHelp.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnHelp.BorderColor = System.Drawing.Color.Transparent;
+            this.btnHelp.BorderRadius = 1;
+            this.btnHelp.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderStyles.Solid;
+            this.btnHelp.BorderThickness = 1;
+            this.btnHelp.ColorContrastOnClick = 30;
+            this.btnHelp.ColorContrastOnHover = 30;
+            this.btnHelp.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.btnHelp.CustomizableEdges = borderEdges5;
+            this.btnHelp.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnHelp.Image = ((System.Drawing.Image)(resources.GetObject("btnHelp.Image")));
+            this.btnHelp.ImageMargin = new System.Windows.Forms.Padding(0);
+            this.btnHelp.Location = new System.Drawing.Point(263, 3);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.RoundBorders = true;
+            this.btnHelp.ShowBorders = true;
+            this.btnHelp.Size = new System.Drawing.Size(34, 34);
+            this.btnHelp.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
+            this.btnHelp.TabIndex = 38;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // CtrlPanelTaskNew
             // 
@@ -1227,6 +1275,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panelComments.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1266,5 +1315,7 @@
         private System.Windows.Forms.FlowLayoutPanel panelComments;
         private Bunifu.UI.WinForms.BunifuSeparator bunifuSeparator1;
         private Bunifu.UI.WinForms.BunifuSeparator bunifuSeparator2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuIconButton btnHelp;
     }
 }

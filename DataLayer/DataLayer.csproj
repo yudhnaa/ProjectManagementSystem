@@ -52,6 +52,10 @@
   <ItemGroup>
     <Compile Include="DataAccess\Impl\DepartmentDAL.cs" />
     <Compile Include="DataAccess\IDepartmentDAL.cs" />
+    <Compile Include="DataAccess\ITaskHelpRequestDAL.cs" />
+    <Compile Include="DataAccess\Impl\TaskHelpRequestDAL.cs" />
+    <Compile Include="DataAccess\INotificationDAL.cs" />
+    <Compile Include="DataAccess\Impl\NotificationDAL.cs" />
     <Compile Include="DataAccess\Impl\TaskDependencyDAL.cs" />
     <Compile Include="DataAccess\ITaskCommentDAL.cs" />
     <Compile Include="DataAccess\Impl\TaskCommentDAL.cs" />
@@ -78,35 +82,27 @@
     <Compile Include="DataAccess\Impl\TaskStatusDAL.cs" />
     <Compile Include="DataAccess\Impl\UserRoleDAL.cs" />
     <Compile Include="DataAccess\Impl\UserDAL.cs" />
-    <Compile Include="Domain\AuditLog.cs" />
     <Compile Include="Domain\Department.cs" />
-    <Compile Include="Domain\EmailNotification.cs" />
     <Compile Include="Domain\File.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\NotificationType.cs" />
-    <Compile Include="Domain\Permission.cs" />
-    <Compile Include="Domain\PermissionType.cs" />
-    <Compile Include="Domain\Position.cs" />
     <Compile Include="Domain\Project.cs" />
     <Compile Include="Domain\ProjectManagementSystemDBContext.cs" />
     <Compile Include="Domain\ProjectMember.cs" />
     <Compile Include="Domain\ProjectMemberRole.cs" />
-    <Compile Include="Domain\ProjectMemberRolePermission.cs" />
     <Compile Include="Domain\ProjectPriority.cs" />
     <Compile Include="Domain\ProjectStatus.cs" />
-    <Compile Include="Domain\Report.cs" />
-    <Compile Include="Domain\ReportType.cs" />
     <Compile Include="Domain\Task.cs" />
     <Compile Include="Domain\TaskComment.cs" />
     <Compile Include="Domain\TaskDependency.cs" />
+    <Compile Include="Domain\TaskDependencyType.cs" />
     <Compile Include="Domain\TaskHelpRequest.cs" />
     <Compile Include="Domain\TaskHistory.cs" />
     <Compile Include="Domain\TaskPriority.cs" />
     <Compile Include="Domain\TaskStatus.cs" />
-    <Compile Include="Domain\TimeEntry.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\UserRole.cs" />
-    <Compile Include="Domain\UserRolePermission.cs" />
+    <Compile Include="EnumObjects\NotificationTypeEnum.cs" />
     <Compile Include="EnumObjects\ProjectMemberRoleEnum.cs" />
     <Compile Include="EnumObjects\ProjectPriorityEnum.cs" />
     <Compile Include="EnumObjects\ProjectStatusEnum.cs" />
@@ -119,6 +115,18 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SQL\0.ProjectManagementSystem_SQL_example.sql" />
+    <Content Include="SQL\1. CreateDB.sql" />
+    <Content Include="SQL\1.1 CreateDB.sql" />
+    <Content Include="SQL\1.2 CreateDB.sql" />
+    <Content Include="SQL\1.3 CreateDB.sql" />
+    <Content Include="SQL\2. InsertSampleData.sql" />
+    <Content Include="SQL\2.1 InsertSampleData.sql" />
+    <Content Include="SQL\3. CreateIndex.sql" />
+    <Content Include="SQL\3. CreateStoredProcedure.sql" />
+    <Content Include="SQL\4. CreateView.sql" />
+    <Content Include="SQL\5. CreateTrigger.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

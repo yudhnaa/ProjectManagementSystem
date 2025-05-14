@@ -5,7 +5,7 @@ namespace BusinessLayer.Services
 {
     public interface ITaskCommentServices
     {
-        TaskCommentDTO CreateTaskComment(TaskCommentDTO taskCommentDTO);
+        bool CreateTaskComment(TaskCommentDTO taskCommentDTO, NotificationDTO notification);
         void DeleteTaskComment(int commentId);
         List<TaskCommentDTO> GetAllTaskCommentsById(int taskId);
         List<TaskCommentDTO> GetAllTaskCommentsByIdIncludeInActive(int taskId);

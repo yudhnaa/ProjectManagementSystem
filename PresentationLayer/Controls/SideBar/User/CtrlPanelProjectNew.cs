@@ -43,6 +43,16 @@ namespace PresentationLayer.Controls.SideBar.User
             InitializeComponent();
         }
 
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadProjects();
+            }
+        }
+
         private void CtrlPanelTaskAdminNew_Load(object sender, EventArgs e)
         {
             InitControls();
@@ -106,7 +116,8 @@ namespace PresentationLayer.Controls.SideBar.User
             {
                 projects = projectServices.GetProjectsForListByUserId(user.Id);
                 dgvItems.DataSource = projects;
-                dgvItems.Rows[0].Selected = true;
+                if (dgvItems.Rows.Count > 0)
+                    dgvItems.Rows[0].Selected = true;
           
             }
             catch (SqlException)

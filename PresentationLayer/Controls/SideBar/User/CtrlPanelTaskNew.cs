@@ -10,8 +10,10 @@ using DataLayer.EnumObjects;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
+using PresentationLayer.Config;
 using PresentationLayer.Controls.Others;
 using PresentationLayer.CustomControls;
+using PresentationLayer.Forms.MainForm.User;
 using PresentationLayer.Utils;
 using System;
 using System.Collections.Generic;
@@ -34,6 +36,7 @@ namespace PresentationLayer.Controls.SideBar.User
     {
         private readonly UserDTO user;
         private readonly TaskDTO parentTask;
+        private FormRequestHelp formRequestHelp;
 
         private ProjectForListDTO _currentProject;
         public ProjectForListDTO CurrentProject
@@ -143,7 +146,7 @@ namespace PresentationLayer.Controls.SideBar.User
             };
         }
 
-        
+
 
         private void LoadTasks()
         {
@@ -159,10 +162,10 @@ namespace PresentationLayer.Controls.SideBar.User
                     dgvItems.DataSource = tasks;
                     dgvItems.Rows[0].Selected = true;
                 }
-                else
-                {
-                    MessageBox.Show("No tasks found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                //else
+                //{
+                //    MessageBox.Show("No tasks found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
             }
             catch (Exception ex)
             {
@@ -214,6 +217,9 @@ namespace PresentationLayer.Controls.SideBar.User
         {
             try
             {
+                if (currentTask == null)
+                    return;
+
                 taskComments = await Task.Run(() => taskCommentServices.GetAllTaskCommentsById(currentTask.Id));
 
                 panelComments.Controls
@@ -265,6 +271,7 @@ namespace PresentationLayer.Controls.SideBar.User
                 currentTask = taskServices.GetTaskById((int)dgvItems.SelectedRows[0].Cells["Id"].Value);
 
                 toggleMode.Visible = user.Id == currentTask.AssignedUserId;
+                btnHelp.Visible = user.Id == currentTask.AssignedUserId;
 
                 SetTaskInfo();
                 LoadTaskComments();
@@ -319,7 +326,7 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private void tbSearch_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             if (e.KeyCode == Keys.Enter)
             {
                 try
@@ -405,6 +412,97 @@ namespace PresentationLayer.Controls.SideBar.User
         private void lbName_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            if (formRequestHelp == null || formRequestHelp.IsDisposed)
+                formRequestHelp = new FormRequestHelp(currentTask);
+
+
+            // Lấy tọa độ nút theo màn hình
+            Point btnScreenLocation = btnHelp.PointToScreen(Point.Empty);
+
+            // Tính X: căn giữa theo nút
+            int desiredX = btnScreenLocation.X + (btnHelp.Width - formRequestHelp.Width) / 2;
+            int desiredY = btnScreenLocation.Y + btnHelp.Height;
+
+            // Lấy biên của form cha theo màn hình
+            Rectangle parentBounds = this.RectangleToScreen(this.ClientRectangle);
+
+            // Điều chỉnh nếu form bị tràn trái
+            if (desiredX < parentBounds.Left)
+            {
+                desiredX = parentBounds.Left;
+            }
+
+            // Điều chỉnh nếu form bị tràn phải
+            int maxRight = parentBounds.Right - formRequestHelp.Width - 20;
+            if (desiredX > maxRight)
+            {
+                desiredX = maxRight;
+            }
+
+            formRequestHelp.StartPosition = FormStartPosition.Manual;
+            formRequestHelp.Location = new Point(desiredX, desiredY);
+
+            formRequestHelp.task = currentTask;
+            formRequestHelp.ShowDialog();
+
+        }
+
+        private void btnSendComment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbComment.Text))
+                {
+                    MessageBox.Show("Please enter a comment.");
+                    return;
+                }
+
+                NotificationDTO noti = new NotificationDTO
+                {
+                    UserId = currentTask.AssignedUserId,
+                    Title = GlobalVariables.CommentAddedTitle,
+                    Message = string.Format(GlobalVariables.CommentAddedMSG, user.Username, currentTask.Name),
+                    NotificationTypeId = (int)NotificationTypeEnum.CommentAdded,
+                    IsRead = false,
+                    CreatedDate = DateTime.Now
+                };
+
+                TaskCommentDTO taskComment = new TaskCommentDTO
+                {
+                    TaskId = currentTask.Id,
+                    UserId = user.Id,
+                    CommentText = tbComment.Text,
+                    CreatedDate = DateTime.Now,
+                };
+
+                taskCommentServices.CreateTaskComment(taskComment, noti);
+                tbComment.Clear();
+                LoadTaskComments();
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error: " + sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadTasks();
+                LoadTaskComments();
+                SetTaskComments();
+            }
         }
     }
 }

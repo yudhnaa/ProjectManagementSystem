@@ -257,7 +257,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             currentUser.Email = tbEmail.Text.Trim();
             currentUser.PhoneNumber = tbPhone.Text.Trim();
             currentUser.Password = tbPassword.Text;
-            currentUser.DepartmentId = (int?)cbDepartment.SelectedValue;
+            currentUser.DepartmentId = (int)cbDepartment.SelectedValue;
             currentUser.UserRoleId = (int)cbRole.SelectedValue;
             currentUser.IsActive = cbIsActive.Checked;
 
@@ -294,7 +294,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 Email = tbEmail.Text.Trim(),
                 PhoneNumber = tbPhone.Text.Trim(),
                 Password = tbPassword.Text,
-                DepartmentId = (int?)cbDepartment.SelectedValue,
+                DepartmentId = (int)cbDepartment.SelectedValue,
                 UserRoleId = (int)cbRole.SelectedValue,
                 IsActive = cbIsActive.Checked
 
@@ -442,6 +442,18 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+            }
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadUserRoles();
+                LoadDepartments();
+                LoadUsers();
             }
         }
     }

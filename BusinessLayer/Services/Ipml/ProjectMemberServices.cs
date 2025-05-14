@@ -1,5 +1,7 @@
-﻿using DataLayer.DataAccess;
+﻿using BusinessLayer.Services.Ipml;
+using DataLayer.DataAccess;
 using DataLayer.Domain;
+using DataLayer.EnumObjects;
 using DTOLayer.Mappers;
 using DTOLayer.Models;
 using System;
@@ -15,7 +17,7 @@ namespace BusinessLayer.Services
     {
         private readonly IProjectMemberDAL projectMemberDAL = new ProjectMemberDAL();
 
-        public bool CreateMemberToProject(ProjectMemberDTO projectMemberDTO)
+        public bool CreateMemberToProject(ProjectMemberDTO projectMemberDTO, NotificationDTO notification)
         {
             using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
             {
@@ -31,7 +33,10 @@ namespace BusinessLayer.Services
 
                     bool res = projectMemberDAL.CreateProjectMember(projectMember);
 
-                    return res;
+                    INotificationServices notificationServices = new NotificationServices();
+                    bool res1 = notificationServices.CreateNotification(notification);
+
+                    return res && res1;
                 }
                 catch (Exception ex)
                 {
@@ -137,20 +142,21 @@ namespace BusinessLayer.Services
             }
         }
 
-        public bool UpdateProjectMember(ProjectMemberDTO projectMemberDTO)
+        public bool UpdateProjectMember(ProjectMemberDTO projectMemberDTO, NotificationDTO notification)
         {
             try
             {
                 var curProjectMember = projectMemberDAL
-                    .GetProjectMembersByProjectId(projectMemberDTO.Id, true)
+                    .GetProjectMembersByProjectId(projectMemberDTO.ProjectId, true)
                     .FirstOrDefault(t => t.UserId == projectMemberDTO.UserId);
 
+                var res = false;
                 if (curProjectMember != null)
                 {
                     curProjectMember.RoleInProject = projectMemberDTO.RoleInProject;
                     curProjectMember.IsConfirmed = projectMemberDTO.IsConfirmed;
                     curProjectMember.UpdatedDate = DateTime.Now;
-                    var res = projectMemberDAL.UpdateProjectMember(curProjectMember);
+                    res = projectMemberDAL.UpdateProjectMember(curProjectMember);
                 }
                 else
                 {
@@ -162,8 +168,11 @@ namespace BusinessLayer.Services
                     newProjectMember.UpdatedDate = DateTime.Now;
                     projectMemberDAL.CreateProjectMember(newProjectMember);
 
+                    INotificationServices notificationServices = new NotificationServices();
+                    res = notificationServices.CreateNotification(notification);
                 }
-                return true;
+
+                return res;
             }
             catch (SqlException ex)
             {
@@ -207,9 +216,33 @@ namespace BusinessLayer.Services
             }
         }
 
-        public bool UpdateProjectMember(ProjectMemberDTO projectMemberDTO, int[] deleteUserId)
+        //public bool UpdateProjectMember(ProjectMemberDTO projectMemberDTO, int[] deleteUserId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public bool ConfirmProjectMemberByNotification(int userId, NotificationTypeEnum type, string kw)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var res = projectMemberDAL.GetProjectMemberByNotification(userId, type, kw);
+
+                if (res == null)
+                    return false;
+
+                res.IsConfirmed = true;
+                res.ConfirmationDate = DateTime.Now;
+                res.UpdatedDate = DateTime.Now;
+                res.JoinDate = DateTime.Now;
+
+                var res1 = projectMemberDAL.UpdateProjectMember(res);
+
+                return res1;
+            }
+            catch (Exception ex) when (ex is SqlException || ex is Exception)
+            {
+                throw new Exception("An error occurred while retrieving project member by ID.", ex);
+            }
         }
     }
 }

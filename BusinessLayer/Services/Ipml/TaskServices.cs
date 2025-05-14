@@ -1,4 +1,5 @@
-﻿using DataLayer.DataAccess;
+﻿using BusinessLayer.Services.Ipml;
+using DataLayer.DataAccess;
 using DataLayer.Domain;
 using DataLayer.EnumObjects;
 using DTOLayer;
@@ -116,11 +117,12 @@ namespace BusinessLayer.Services
             }
         }
 
-        public bool CreateTask(TaskDTO taskDTO, int createdByUserId)
+        public bool CreateTask(TaskDTO taskDTO, int createdByUserId, NotificationDTO notification)
         {
             try
             {
                 bool isConstraintCheck = TaskConstraintCheck(taskDTO);
+                INotificationServices notificationServices = new NotificationServices();
 
                 if (isConstraintCheck)
                 {
@@ -165,7 +167,9 @@ namespace BusinessLayer.Services
                         //    var res2 = taskDependencyService.CreateTaskDependency(taskDependencyDTO);
                         //}
 
-                        return res1 > 0;
+                        var res2 = notificationServices.CreateNotification(notification);
+
+                        return res1 > 0 && res2;
                     }
 
 

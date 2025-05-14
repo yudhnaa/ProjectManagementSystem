@@ -7,6 +7,7 @@ using PresentationLayer.Config;
 using PresentationLayer.Controls.SideBar;
 using PresentationLayer.Controls.SideBar.User;
 using PresentationLayer.CustomControls;
+using PresentationLayer.Forms.MainForm.User;
 using PresentationLayer.UC_SideBar;
 using PresentationLayer.UC_SideBar.UC_Project;
 using System;
@@ -28,8 +29,9 @@ namespace PresentationLayer
         private CtrlPanelProjectNew ucProject;
         private CtrlPanelGant ucGant;
         private CtrlListMyProjects ucMyProjects;
+        private FormNotification formNotification;
 
-        // target-typed new expressions. c# >= 9.0
+        // new expressions - target-typed. c# >= 9.0
         private readonly IUserRoleServices roleServices = new UserRoleServices();
         private readonly IProjectServices projectServices = new ProjectServices();
         private readonly ITaskServices taskServices = new TaskServices();
@@ -71,9 +73,6 @@ namespace PresentationLayer
             MaximizeBox = false;
             MinimizeBox = true;
 
-            ucMyProjects = new CtrlListMyProjects();
-            ucMyProjects.ProjectSelected += MyProjectsControl_ProjectSelected;
-
             lbUsername.Text = user.Username;
             lbUserRole.Text = UserSession.Instance.UserRole.Name;
 
@@ -81,6 +80,19 @@ namespace PresentationLayer
                 InitButton(btn);
 
             btnHome_Click(btnHome, null); // Default screen  
+
+            formNotification = new FormNotification();
+            formNotification.RefreshEvent += RefreshAfterConfirmProject;
+
+            ucMyProjects = new CtrlListMyProjects();
+            ucMyProjects.ProjectSelected += MyProjectsControl_ProjectSelected;
+        }
+
+
+        private void RefreshAfterConfirmProject()
+        {
+            LoadProjects();
+            ucMyProjects.Projects = projects;
         }
 
         private void LoadProjects()
@@ -88,7 +100,7 @@ namespace PresentationLayer
             try
             {
                 projects = projectServices.GetProjectsForListByUserId(user.Id);
-                ucMyProjects.projects = projects;
+                ucMyProjects.Projects = projects;
                 splitContainer1.Panel2.Controls.Add(ucMyProjects);
             }
             catch (SqlException ex)
@@ -191,6 +203,12 @@ namespace PresentationLayer
             LoadControl(new ctrlUserInfo { Dock = DockStyle.Fill });
         }
 
+        private void btnRequest_Click(object sender, EventArgs e)
+        {
+            currentButton = sender as BunifuButton;
+            LoadControl(new CtrlPanelTaskRequestHelp { Dock = DockStyle.Fill });
+        }
+
         private void splitContainer1_Paint(object sender, PaintEventArgs e)
         {
             if (sender is SplitContainer s)
@@ -214,6 +232,39 @@ namespace PresentationLayer
 
             this?.Dispose();
 
+        }
+
+        private void btnNotification_Click(object sender, EventArgs e)
+        {
+            if (formNotification == null || formNotification.IsDisposed)
+                formNotification = new FormNotification();
+
+            // Lấy tọa độ nút theo màn hình
+            Point btnScreenLocation = btnNotification.PointToScreen(Point.Empty);
+
+            // Tính X: căn giữa theo nút
+            int desiredX = btnScreenLocation.X + (btnNotification.Width - formNotification.Width) / 2;
+            int desiredY = btnScreenLocation.Y + btnNotification.Height;
+
+            // Lấy biên của form cha theo màn hình
+            Rectangle parentBounds = this.RectangleToScreen(this.ClientRectangle);
+
+            // Điều chỉnh nếu form bị tràn trái
+            if (desiredX < parentBounds.Left)
+            {
+                desiredX = parentBounds.Left;
+            }
+
+            // Điều chỉnh nếu form bị tràn phải
+            int maxRight = parentBounds.Right - formNotification.Width-20;
+            if (desiredX > maxRight)
+            {
+                desiredX = maxRight;
+            }
+
+            formNotification.StartPosition = FormStartPosition.Manual;
+            formNotification.Location = new Point(desiredX, desiredY);
+            formNotification.ShowDialog();
         }
     }
 }

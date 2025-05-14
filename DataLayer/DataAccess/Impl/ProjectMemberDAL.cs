@@ -1,4 +1,5 @@
 ﻿using DataLayer.Domain;
+using DataLayer.EnumObjects;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -109,5 +110,37 @@ namespace DataLayer.DataAccess
                 }
             }
         }
+
+        public ProjectMember GetProjectMemberByNotification(int userId, NotificationTypeEnum type, string kw)
+        {
+            using (var dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var query = dbContext.ProjectMembers
+                        .Join(dbContext.Notifications,
+                            pm => pm.UserId,
+                            noti => noti.UserId,
+                            (pm, noti) => new { pm, noti })
+                        .Join(dbContext.Projects,
+                            temp => temp.pm.ProjectId,
+                            p => p.Id,
+                            (temp, p) => new { temp.pm, temp.noti, Project = p })
+                        .Where(x =>
+                            x.pm.UserId == userId &&
+                            x.noti.NotificationTypeId == (int)type &&
+                            kw.Contains(x.Project.Name))                     
+                        .Select(x => x.pm)
+                        .FirstOrDefault();
+
+                    return query; 
+                }
+                catch (Exception ex) when (ex is SqlException || ex is Exception)
+                {
+                    throw new Exception("An error occurred while retrieving project member by ID.", ex);
+                }
+            }
+        }
+
     }
 }

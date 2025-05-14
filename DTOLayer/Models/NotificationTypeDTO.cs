@@ -6,10 +6,12 @@ using System.Data.Entity.Spatial;
 
 namespace DTOLayer.Models
 {
-    public class UserRolePermissionDTO
+    public class NotificationTypeDTO
     {
         public int Id {get; set;}
-        public int UserRoleId {get; set;}
-        public int PermissionId {get; set;}
+        public string Name {get; set;}
+        public string Description {get; set;}
+        public DateTime? CreatedDate {get; set;}
+        public DateTime? UpdatedDate {get; set;}
     }
 }

@@ -12,32 +12,23 @@ namespace DataLayer.Domain
         {
         }
 
-        public virtual DbSet<AuditLog> AuditLogs { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<EmailNotification> EmailNotifications { get; set; }
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<NotificationType> NotificationTypes { get; set; }
-        public virtual DbSet<Permission> Permissions { get; set; }
-        public virtual DbSet<PermissionType> PermissionTypes { get; set; }
-        public virtual DbSet<Position> Positions { get; set; }
-        public virtual DbSet<ProjectMemberRolePermission> ProjectMemberRolePermissions { get; set; }
         public virtual DbSet<ProjectMemberRole> ProjectMemberRoles { get; set; }
         public virtual DbSet<ProjectMember> ProjectMembers { get; set; }
         public virtual DbSet<ProjectPriority> ProjectPriorities { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectStatus> ProjectStatuses { get; set; }
-        public virtual DbSet<Report> Reports { get; set; }
-        public virtual DbSet<ReportType> ReportTypes { get; set; }
         public virtual DbSet<TaskComment> TaskComments { get; set; }
         public virtual DbSet<TaskDependency> TaskDependencies { get; set; }
+        public virtual DbSet<TaskDependencyType> TaskDependencyTypes { get; set; }
         public virtual DbSet<TaskHelpRequest> TaskHelpRequests { get; set; }
         public virtual DbSet<TaskHistory> TaskHistories { get; set; }
         public virtual DbSet<TaskPriority> TaskPriorities { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TaskStatus> TaskStatuses { get; set; }
-        public virtual DbSet<TimeEntry> TimeEntries { get; set; }
-        public virtual DbSet<UserRolePermission> UserRolePermissions { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -45,27 +36,13 @@ namespace DataLayer.Domain
         {
             modelBuilder.Entity<Department>()
                 .HasMany(e => e.Users)
-                .WithOptional(e => e.Department)
-                .HasForeignKey(e => e.DepartmentId);
+                .WithRequired(e => e.Department)
+                .HasForeignKey(e => e.DepartmentId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<NotificationType>()
                 .HasMany(e => e.Notifications)
                 .WithRequired(e => e.NotificationType)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Permission>()
-                .HasMany(e => e.ProjectMemberRolePermissions)
-                .WithRequired(e => e.Permission)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Permission>()
-                .HasMany(e => e.UserRolePermissions)
-                .WithRequired(e => e.Permission)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<ProjectMemberRole>()
-                .HasMany(e => e.ProjectMemberRolePermissions)
-                .WithRequired(e => e.ProjectMemberRole)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ProjectMemberRole>()
@@ -100,9 +77,10 @@ namespace DataLayer.Domain
                 .HasForeignKey(e => e.StatusId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ReportType>()
-                .HasMany(e => e.Reports)
-                .WithRequired(e => e.ReportType)
+            modelBuilder.Entity<TaskDependencyType>()
+                .HasMany(e => e.TaskDependencies)
+                .WithRequired(e => e.TaskDependencyType)
+                .HasForeignKey(e => e.DependencyType)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TaskPriority>()
@@ -155,20 +133,10 @@ namespace DataLayer.Domain
                 .WithOptional(e => e.Task1)
                 .HasForeignKey(e => e.ParentTaskId);
 
-            modelBuilder.Entity<Task>()
-                .HasMany(e => e.TimeEntries)
-                .WithRequired(e => e.Task)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<TaskStatus>()
                 .HasMany(e => e.Tasks)
                 .WithRequired(e => e.TaskStatus)
                 .HasForeignKey(e => e.StatusId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<UserRole>()
-                .HasMany(e => e.UserRolePermissions)
-                .WithRequired(e => e.UserRole)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserRole>()
@@ -180,11 +148,6 @@ namespace DataLayer.Domain
                 .HasMany(e => e.Departments)
                 .WithOptional(e => e.User)
                 .HasForeignKey(e => e.ManagerId);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.EmailNotifications)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Files)
@@ -212,12 +175,6 @@ namespace DataLayer.Domain
                 .HasMany(e => e.Projects1)
                 .WithRequired(e => e.User1)
                 .HasForeignKey(e => e.ManagerId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Reports)
-                .WithRequired(e => e.User)
-                .HasForeignKey(e => e.CreatedBy)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
@@ -253,11 +210,6 @@ namespace DataLayer.Domain
                 .HasMany(e => e.Tasks1)
                 .WithRequired(e => e.User1)
                 .HasForeignKey(e => e.CreatedBy)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.TimeEntries)
-                .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
         }
     }

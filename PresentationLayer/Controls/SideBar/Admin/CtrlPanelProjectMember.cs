@@ -198,5 +198,15 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 }
             }
         }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadProjectMemberList();
+            }
+        }
     }
 }

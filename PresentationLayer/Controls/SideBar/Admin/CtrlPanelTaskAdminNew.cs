@@ -6,6 +6,7 @@ using DataLayer.EnumObjects;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
+using PresentationLayer.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,10 +116,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
                     dgvItems.Rows[0].Selected = true;
                 }
-                else
-                {
-                    MessageBox.Show("No tasks found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                //else
+                //{
+                //    MessageBox.Show("No tasks found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
             }
             catch (SqlException)
             {
@@ -493,9 +494,19 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 CreatedDate = DateTime.Now
             };
 
+            NotificationDTO noti = new NotificationDTO
+            {
+                UserId = (int)CbUser.SelectedValue,
+                Title = GlobalVariables.TaskAssignmentTitle,
+                Message = string.Format(GlobalVariables.TaskAssignmentMSG, newTask.Name),
+                NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                IsRead = false,
+                CreatedDate = DateTime.Now
+            };
+
             try
             {
-                var res = taskServices.CreateTask(newTask, this.user.Id);
+                var res = taskServices.CreateTask(newTask, this.user.Id, noti);
                 if (res)
                 {
                     MessageBox.Show("Task created successfully.");
@@ -589,6 +600,18 @@ namespace PresentationLayer.Controls.SideBar.Admin
             LoadTasks();
         }
 
-       
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadTaskPriorities();
+                LoadTaskProject();
+                LoadTaskStatuses();
+                LoadTasks();
+            }
+        }
+
     }
 }

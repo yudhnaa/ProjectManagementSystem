@@ -1,9 +1,11 @@
 ﻿using BusinessLayer;
 using BusinessLayer.Services;
+using BusinessLayer.Services.Ipml;
 using DataLayer.Domain;
 using DataLayer.EnumObjects;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
+using PresentationLayer.Config;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -206,7 +208,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 selectedUser.Id.ToString(),
                 selectedUser.LastName,
-                selectedRole.Name
+                selectedRole.Name,
+                false.ToString()
             }));
         }
 
@@ -351,10 +354,10 @@ namespace PresentationLayer.Controls.SideBar.Admin
                     dgvItems.DataSource = _projects;
                     dgvItems.Rows[0].Selected = true;
                 }
-                else
-                {
-                    ShowMessage("No projects found.", "Information", MessageBoxIcon.Information);
-                }
+                //else
+                //{
+                //    ShowMessage("No projects found.", "Information", MessageBoxIcon.Information);
+                //}
             }
             catch (SqlException ex)
             {
@@ -580,10 +583,20 @@ namespace PresentationLayer.Controls.SideBar.Admin
                     RoleInProject = _projectMemberRoles.First(r => r.Name == item.SubItems[2].Text).Id,
                     ProjectId = projectId,
                     CreatedDate = DateTime.Today,
-                    IsConfirmed = bool.TryParse(item.SubItems[2].Text, out bool res) && res
+                    IsConfirmed = bool.TryParse(item.SubItems[3].Text, out bool res) && res
                 };
 
-                if (!_projectMemberServices.UpdateProjectMember(projectMember))
+                NotificationDTO noti = new NotificationDTO
+                {
+                    UserId = int.Parse(item.SubItems[0].Text),
+                    Title = GlobalVariables.ProjectInvitationTitle,
+                    Message = string.Format(GlobalVariables.ProjectInvitationMSG, tbProjectName.Text),
+                    NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                    IsRead = false,
+                    CreatedDate = DateTime.Now
+                };
+
+                if (!_projectMemberServices.UpdateProjectMember(projectMember, noti))
                 {
                     ShowMessage("Failed to update project member.");
                     return;
@@ -602,6 +615,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
         private void AddProjectMembers(int projectId)
         {
+            INotificationServices notificationServices = new NotificationServices();
+            
             foreach (ListViewItem item in listviewMembers.Items)
             {
                 if (item.SubItems[2].Text == "Manager") continue;
@@ -614,10 +629,21 @@ namespace PresentationLayer.Controls.SideBar.Admin
                     CreatedDate = DateTime.Today,
                 };
 
-                if (!_projectMemberServices.CreateMemberToProject(projectMember))
+                NotificationDTO noti = new NotificationDTO
+                {
+                    UserId = int.Parse(item.SubItems[0].Text),
+                    Title = GlobalVariables.ProjectInvitationTitle,
+                    Message = string.Format(GlobalVariables.ProjectInvitationMSG, tbProjectName.Text),
+                    NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                    IsRead = false,
+                    CreatedDate = DateTime.Now
+                };
+
+                if (!_projectMemberServices.CreateMemberToProject(projectMember, noti))
                 {
                     ShowMessage("Member is already in this project");
                 }
+
             }
         }
 
@@ -650,6 +676,17 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (this.Visible)
+            {
+                LoadInitialData();
+                LoadProjects("");
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace DTOLayer.Models
         public int UserRoleId {get; set;}
         public int? PositionId {get; set;}
         public DateTime? HireDate {get; set;}
-        public int? DepartmentId {get; set;}
+        public int DepartmentId {get; set;}
         public int? ReportTo {get; set;}
         public decimal? Salary {get; set;}
         public DateTime? LastLogin {get; set;}

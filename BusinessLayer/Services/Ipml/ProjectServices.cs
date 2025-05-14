@@ -315,7 +315,12 @@ namespace BusinessLayer.Services
             try
             {
                 ProjectDAL projectDAL = new ProjectDAL();
-                var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: false);
+                IProjectMemberServices projectMemberServices = new ProjectMemberServices();
+
+                var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: false)
+                    .Where(p => projectMemberServices.GetProjectMembersByProjectId(p.Id)
+                                .Any(pm => pm.IsConfirmed == true));
+
                 if (projects == null)
                     return null;
 

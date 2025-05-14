@@ -1,4 +1,5 @@
 ﻿using DataLayer.Domain;
+using DataLayer.EnumObjects;
 using System.Collections.Generic;
 
 namespace DataLayer.DataAccess
@@ -10,5 +11,6 @@ namespace DataLayer.DataAccess
         List<ProjectMember> GetProjectMembersByProjectId(int projectId, bool isIncludeInActive);
         bool RemoveMemberFromProject(int projectId, int userId);
         bool UpdateProjectMember(ProjectMember projectMember);
+        ProjectMember GetProjectMemberByNotification(int userId, NotificationTypeEnum type, string kw);
     }
 }

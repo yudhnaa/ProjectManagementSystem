@@ -73,13 +73,13 @@ namespace PresentationLayer.CustomControls
 
             if (user != null)
             {
-                var role = new UserRoleServices().GetUserRoleById(user.Id);
+                var role = new UserRoleServices().GetUserRoleById(user.UserRoleId);
                 UserSession.Instance.SetUser(user, role);
 
                 Form homeForm = role.Name switch
                 {
-                    "Admin" or "Manager" => new FormAdminHome(),
-                    "Employee" => new FormUserHome(),
+                    "Admin" => new FormAdminHome(),
+                    "Employee" or "Manager" => new FormUserHome(),
                     _ => null
                 };
 

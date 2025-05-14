@@ -1,9 +1,11 @@
 ﻿using BusinessLayer;
 using BusinessLayer.Services;
 using DataLayer.Domain;
+using DataLayer.EnumObjects;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
+using PresentationLayer.Config;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -199,8 +201,18 @@ namespace PresentationLayer.CustomControls
                         CreatedDate = System.DateTime.Today,
                     };
 
+                    NotificationDTO noti = new NotificationDTO
+                    {
+                        UserId = int.Parse(item.SubItems[0].Text),
+                        Title = GlobalVariables.ProjectInvitationTitle,
+                        Message = string.Format(GlobalVariables.ProjectInvitationMSG, tbProjectName.Text),
+                        NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                        IsRead = false,
+                        CreatedDate = DateTime.Now
+                    };
+
                     // Add project member to the database
-                    bool isAddedToProject = projectMemberServices.CreateMemberToProject(projectMemberDTO);
+                    bool isAddedToProject = projectMemberServices.CreateMemberToProject(projectMemberDTO, noti);
                     if (!isAddedToProject)
                     {
                         MessageBox.Show("Member is already in this project");

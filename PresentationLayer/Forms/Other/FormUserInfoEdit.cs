@@ -110,7 +110,7 @@ namespace PresentationLayer.Forms.Other
             user.Email = tbEmail.Text.Trim();
             user.PhoneNumber = tbPhone.Text.Trim();
             user.Password = tbPassword.Text;
-            user.DepartmentId = (int?)cbDepartment.SelectedValue;
+            user.DepartmentId = (int)cbDepartment.SelectedValue;
             user.UserRoleId = (int)cbRole.SelectedValue;
             user.IsActive = cbIsActive.Checked;
 

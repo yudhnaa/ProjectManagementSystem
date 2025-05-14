@@ -158,3 +158,44 @@ VALUES
     (8, 1, 'Task is ready for review by the QA team.', 0, GETDATE(), GETDATE()),
     (8, 2, 'Need to finalize the task details before submission.', 0, GETDATE(), GETDATE()),
     (8, 3, 'Awaiting feedback from the QA team.', 0, GETDATE(), GETDATE());
+
+
+-- Insert sample data into NotificationTypes
+INSERT INTO [NotificationTypes] (Name, Description) VALUES
+('Task Help Request', 'Notification when someone requests help with a task'),
+('Project Invitation', 'Notification when a user is invited to join a project'),
+('Task Expiring', 'Notification for tasks that are nearing their due date'),
+('Task Assignment', 'Notification when a task is assigned to a user'),
+('Comment Added', 'Notification when a comment is added to a task');
+
+-- Insert sample data into Notifications
+INSERT INTO [Notifications] (UserId, Title, Message, NotificationTypeId, RelatedId, IsRead, CreatedDate) VALUES
+-- Task Help Request notifications
+(2, 'Help Requested', 'Bob Brown has requested your help with task "Task 2"', 1, 2, 0, DATEADD(day, -2, GETDATE())),
+(1, 'Help Requested', 'John Smith needs assistance with task "Task 1"', 1, 1, 1, DATEADD(day, -5, GETDATE())),
+(4, 'Help Requested', 'Alice White has requested your help with task "Task 3"', 1, 3, 0, DATEADD(day, -1, GETDATE())),
+(3, 'Help Requested', 'David Green needs assistance with task "Task 8"', 1, 8, 0, DATEADD(day, -3, GETDATE())),
+
+-- Project Invitation notifications
+(4, 'Project Invitation', 'You have been invited to join Project Alpha', 2, 1, 0, DATEADD(day, -10, '2025-01-01')),
+(6, 'Project Invitation', 'You have been invited to join Project Beta', 2, 2, 1, DATEADD(day, -5, '2025-02-01')),
+(3, 'Project Invitation', 'You have been invited to join Project Alpha', 2, 1, 1, DATEADD(day, -12, '2025-01-03')),
+(3, 'Project Invitation', 'You have been invited to join Project Beta', 2, 2, 1, DATEADD(day, -7, '2025-02-03')),
+
+-- Task Expiring notifications
+(2, 'Task Approaching Due Date', 'Task "Task 1" is due in 3 days', 3, 1, 0, DATEADD(day, -3, '2025-02-15')),
+(3, 'Task Approaching Due Date', 'Task "Task 3" is due tomorrow', 3, 3, 0, DATEADD(day, -1, '2025-02-15')),
+(3, 'Task Overdue', 'Task "Task 4" is now overdue by 2 days', 3, 4, 1, DATEADD(day, 2, '2025-03-15')),
+(2, 'Task Approaching Due Date', 'Task "Task 7" is due in 5 days', 3, 7, 0, DATEADD(day, -5, '2025-03-15')),
+
+-- Task Assignment notifications
+(2, 'Task Assigned', 'You have been assigned to task "Task 1"', 4, 1, 1, DATEADD(day, -2, '2025-01-15')),
+(3, 'Task Assigned', 'You have been assigned to task "Task 3"', 4, 3, 1, DATEADD(day, -2, '2025-01-15')),
+(2, 'Task Assigned', 'You have been assigned to task "Task 7"', 4, 7, 0, DATEADD(day, -2, '2025-02-16')),
+(3, 'Task Assigned', 'You have been assigned to task "Task 9"', 4, 9, 0, DATEADD(day, -2, '2025-02-16')),
+
+-- Comment Added comment notifications
+(2, 'New Comment', 'System Administrator commented on task "Task 1"', 5, 1, 0, DATEADD(day, -4, GETDATE())),
+(1, 'New Comment', 'John Smith commented on task "Task 3"', 5, 3, 1, DATEADD(day, -2, GETDATE())),
+(3, 'New Comment', 'Alice White commented on task "Task 4"', 5, 4, 0, DATEADD(day, -1, GETDATE())),
+(2, 'New Comment', 'Bob Brown commented on task "Task 7"', 5, 7, 0, DATEADD(hour, -12, GETDATE()));

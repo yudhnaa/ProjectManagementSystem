@@ -51,24 +51,24 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvItems = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbSearch = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.lbProjects = new PresentationLayer.CustomControls.RoundedLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbShortDescription = new Bunifu.UI.WinForms.BunifuLabel();
+            this.lbPriority = new PresentationLayer.CustomControls.RoundedLabel();
+            this.lbStatus = new PresentationLayer.CustomControls.RoundedLabel();
+            this.tbProjectDesrciption = new Bunifu.UI.WinForms.BunifuTextBox();
             this.bunifuCustomLabel6 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.listviewMembers = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.role = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bunifuCustomLabel11 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.lbName = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.tbSearch = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.tbProjectDesrciption = new Bunifu.UI.WinForms.BunifuTextBox();
             this.datePickerEnd = new Bunifu.UI.WinForms.BunifuDatePicker();
             this.datePickerStart = new Bunifu.UI.WinForms.BunifuDatePicker();
             this.tbProjectCode = new Bunifu.UI.WinForms.BunifuTextBox();
             this.tbBudget = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.lbProjects = new PresentationLayer.CustomControls.RoundedLabel();
-            this.lbPriority = new PresentationLayer.CustomControls.RoundedLabel();
-            this.lbStatus = new PresentationLayer.CustomControls.RoundedLabel();
+            this.lbName = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.labelWithImage1 = new PresentationLayer.Controls.Others.LabelWithImage();
             this.labelWithImage2 = new PresentationLayer.Controls.Others.LabelWithImage();
             this.labelWithImage3 = new PresentationLayer.Controls.Others.LabelWithImage();
@@ -179,146 +179,6 @@
             this.panel1.Size = new System.Drawing.Size(987, 89);
             this.panel1.TabIndex = 5;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.lbShortDescription, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lbPriority, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.lbStatus, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.tbProjectDesrciption, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.bunifuCustomLabel6, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.listviewMembers, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.bunifuCustomLabel11, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.datePickerEnd, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.datePickerStart, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.tbProjectCode, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tbBudget, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lbName, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelWithImage1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.labelWithImage2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labelWithImage3, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.labelWithImage4, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.labelWithImage5, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.labelWithImage6, 0, 7);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 13;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(524, 899);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // lbShortDescription
-            // 
-            this.lbShortDescription.AllowParentOverrides = false;
-            this.lbShortDescription.AutoEllipsis = false;
-            this.lbShortDescription.AutoSize = false;
-            this.lbShortDescription.AutoSizeHeightOnly = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lbShortDescription, 2);
-            this.lbShortDescription.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lbShortDescription.CursorType = System.Windows.Forms.Cursors.Default;
-            this.lbShortDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbShortDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lbShortDescription.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lbShortDescription.Location = new System.Drawing.Point(10, 10);
-            this.lbShortDescription.Margin = new System.Windows.Forms.Padding(10);
-            this.lbShortDescription.Name = "lbShortDescription";
-            this.lbShortDescription.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbShortDescription.Size = new System.Drawing.Size(504, 20);
-            this.lbShortDescription.TabIndex = 26;
-            this.lbShortDescription.Text = "Project P001";
-            this.lbShortDescription.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.lbShortDescription.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
-            // 
-            // bunifuCustomLabel6
-            // 
-            this.bunifuCustomLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuCustomLabel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bunifuCustomLabel6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.bunifuCustomLabel6.Location = new System.Drawing.Point(10, 752);
-            this.bunifuCustomLabel6.Margin = new System.Windows.Forms.Padding(10);
-            this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
-            this.bunifuCustomLabel6.Size = new System.Drawing.Size(242, 34);
-            this.bunifuCustomLabel6.TabIndex = 17;
-            this.bunifuCustomLabel6.Text = "Project Description";
-            this.bunifuCustomLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // listviewMembers
-            // 
-            this.listviewMembers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.name,
-            this.role});
-            this.tableLayoutPanel1.SetColumnSpan(this.listviewMembers, 2);
-            this.listviewMembers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listviewMembers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listviewMembers.HideSelection = false;
-            this.listviewMembers.Location = new System.Drawing.Point(10, 532);
-            this.listviewMembers.Margin = new System.Windows.Forms.Padding(10);
-            this.listviewMembers.Name = "listviewMembers";
-            this.listviewMembers.Size = new System.Drawing.Size(504, 200);
-            this.listviewMembers.TabIndex = 22;
-            this.listviewMembers.UseCompatibleStateImageBehavior = false;
-            this.listviewMembers.View = System.Windows.Forms.View.Details;
-            // 
-            // id
-            // 
-            this.id.Text = "ID";
-            this.id.Width = 123;
-            // 
-            // name
-            // 
-            this.name.Text = "Name";
-            this.name.Width = 137;
-            // 
-            // role
-            // 
-            this.role.Text = "Role";
-            this.role.Width = 136;
-            // 
-            // bunifuCustomLabel11
-            // 
-            this.bunifuCustomLabel11.AutoSize = true;
-            this.bunifuCustomLabel11.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuCustomLabel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bunifuCustomLabel11.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel11.Location = new System.Drawing.Point(10, 482);
-            this.bunifuCustomLabel11.Margin = new System.Windows.Forms.Padding(10);
-            this.bunifuCustomLabel11.Name = "bunifuCustomLabel11";
-            this.bunifuCustomLabel11.Size = new System.Drawing.Size(242, 30);
-            this.bunifuCustomLabel11.TabIndex = 2;
-            this.bunifuCustomLabel11.Text = "Members List";
-            this.bunifuCustomLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbName
-            // 
-            this.lbName.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.SetColumnSpan(this.lbName, 2);
-            this.lbName.Font = new System.Drawing.Font("Segoe UI Semibold", 25F, System.Drawing.FontStyle.Bold);
-            this.lbName.Location = new System.Drawing.Point(10, 50);
-            this.lbName.Margin = new System.Windows.Forms.Padding(10);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(486, 56);
-            this.lbName.TabIndex = 28;
-            this.lbName.Text = "Make a Suitable form";
-            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // tbSearch
             // 
             this.tbSearch.AcceptsReturn = false;
@@ -396,6 +256,117 @@
             this.tbSearch.UseSystemPasswordChar = false;
             this.tbSearch.WordWrap = true;
             this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
+            // 
+            // lbProjects
+            // 
+            this.lbProjects._BackColor = System.Drawing.Color.Empty;
+            this.lbProjects._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbProjects.AutoSize = true;
+            this.lbProjects.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProjects.Location = new System.Drawing.Point(0, 0);
+            this.lbProjects.Name = "lbProjects";
+            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.lbProjects.Size = new System.Drawing.Size(112, 34);
+            this.lbProjects.TabIndex = 3;
+            this.lbProjects.Text = "Project List";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoScroll = true;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.lbShortDescription, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbPriority, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbStatus, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tbProjectDesrciption, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.bunifuCustomLabel6, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.listviewMembers, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.bunifuCustomLabel11, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.datePickerEnd, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.datePickerStart, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.tbProjectCode, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbBudget, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lbName, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.labelWithImage1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.labelWithImage2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.labelWithImage3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.labelWithImage4, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.labelWithImage5, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.labelWithImage6, 0, 7);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 13;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(524, 899);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // lbShortDescription
+            // 
+            this.lbShortDescription.AllowParentOverrides = false;
+            this.lbShortDescription.AutoEllipsis = false;
+            this.lbShortDescription.AutoSize = false;
+            this.lbShortDescription.AutoSizeHeightOnly = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lbShortDescription, 2);
+            this.lbShortDescription.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbShortDescription.CursorType = System.Windows.Forms.Cursors.Default;
+            this.lbShortDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbShortDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lbShortDescription.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lbShortDescription.Location = new System.Drawing.Point(10, 10);
+            this.lbShortDescription.Margin = new System.Windows.Forms.Padding(10);
+            this.lbShortDescription.Name = "lbShortDescription";
+            this.lbShortDescription.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbShortDescription.Size = new System.Drawing.Size(504, 20);
+            this.lbShortDescription.TabIndex = 26;
+            this.lbShortDescription.Text = "Project P001";
+            this.lbShortDescription.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.lbShortDescription.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // lbPriority
+            // 
+            this.lbPriority._BackColor = System.Drawing.Color.Empty;
+            this.lbPriority._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPriority.Location = new System.Drawing.Point(272, 309);
+            this.lbPriority.Margin = new System.Windows.Forms.Padding(10);
+            this.lbPriority.Name = "lbPriority";
+            this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.lbPriority.Size = new System.Drawing.Size(206, 30);
+            this.lbPriority.TabIndex = 25;
+            this.lbPriority.Text = "Priority";
+            this.lbPriority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbStatus
+            // 
+            this.lbStatus._BackColor = System.Drawing.Color.Empty;
+            this.lbStatus._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.Location = new System.Drawing.Point(272, 250);
+            this.lbStatus.Margin = new System.Windows.Forms.Padding(10);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.lbStatus.Size = new System.Drawing.Size(206, 30);
+            this.lbStatus.TabIndex = 24;
+            this.lbStatus.Text = "Status";
+            this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbProjectDesrciption
             // 
@@ -475,6 +446,66 @@
             this.tbProjectDesrciption.TextPlaceholder = "";
             this.tbProjectDesrciption.UseSystemPasswordChar = false;
             this.tbProjectDesrciption.WordWrap = true;
+            // 
+            // bunifuCustomLabel6
+            // 
+            this.bunifuCustomLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuCustomLabel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bunifuCustomLabel6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.bunifuCustomLabel6.Location = new System.Drawing.Point(10, 752);
+            this.bunifuCustomLabel6.Margin = new System.Windows.Forms.Padding(10);
+            this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
+            this.bunifuCustomLabel6.Size = new System.Drawing.Size(242, 34);
+            this.bunifuCustomLabel6.TabIndex = 17;
+            this.bunifuCustomLabel6.Text = "Project Description";
+            this.bunifuCustomLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // listviewMembers
+            // 
+            this.listviewMembers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.id,
+            this.name,
+            this.role});
+            this.tableLayoutPanel1.SetColumnSpan(this.listviewMembers, 2);
+            this.listviewMembers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listviewMembers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listviewMembers.HideSelection = false;
+            this.listviewMembers.Location = new System.Drawing.Point(10, 532);
+            this.listviewMembers.Margin = new System.Windows.Forms.Padding(10);
+            this.listviewMembers.Name = "listviewMembers";
+            this.listviewMembers.Size = new System.Drawing.Size(504, 200);
+            this.listviewMembers.TabIndex = 22;
+            this.listviewMembers.UseCompatibleStateImageBehavior = false;
+            this.listviewMembers.View = System.Windows.Forms.View.Details;
+            // 
+            // id
+            // 
+            this.id.Text = "ID";
+            this.id.Width = 123;
+            // 
+            // name
+            // 
+            this.name.Text = "Name";
+            this.name.Width = 137;
+            // 
+            // role
+            // 
+            this.role.Text = "Role";
+            this.role.Width = 136;
+            // 
+            // bunifuCustomLabel11
+            // 
+            this.bunifuCustomLabel11.AutoSize = true;
+            this.bunifuCustomLabel11.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuCustomLabel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bunifuCustomLabel11.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel11.Location = new System.Drawing.Point(10, 482);
+            this.bunifuCustomLabel11.Margin = new System.Windows.Forms.Padding(10);
+            this.bunifuCustomLabel11.Name = "bunifuCustomLabel11";
+            this.bunifuCustomLabel11.Size = new System.Drawing.Size(242, 30);
+            this.bunifuCustomLabel11.TabIndex = 2;
+            this.bunifuCustomLabel11.Text = "Members List";
+            this.bunifuCustomLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // datePickerEnd
             // 
@@ -696,49 +727,18 @@
             this.tbBudget.UseSystemPasswordChar = false;
             this.tbBudget.WordWrap = true;
             // 
-            // lbProjects
+            // lbName
             // 
-            this.lbProjects._BackColor = System.Drawing.Color.Empty;
-            this.lbProjects._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbProjects.AutoSize = true;
-            this.lbProjects.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbProjects.Location = new System.Drawing.Point(0, 0);
-            this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.lbProjects.Size = new System.Drawing.Size(112, 34);
-            this.lbProjects.TabIndex = 3;
-            this.lbProjects.Text = "Project List";
-            // 
-            // lbPriority
-            // 
-            this.lbPriority._BackColor = System.Drawing.Color.Empty;
-            this.lbPriority._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPriority.Location = new System.Drawing.Point(272, 309);
-            this.lbPriority.Margin = new System.Windows.Forms.Padding(10);
-            this.lbPriority.Name = "lbPriority";
-            this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.lbPriority.Size = new System.Drawing.Size(206, 30);
-            this.lbPriority.TabIndex = 25;
-            this.lbPriority.Text = "Priority";
-            this.lbPriority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbStatus
-            // 
-            this.lbStatus._BackColor = System.Drawing.Color.Empty;
-            this.lbStatus._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(272, 250);
-            this.lbStatus.Margin = new System.Windows.Forms.Padding(10);
-            this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.lbStatus.Size = new System.Drawing.Size(206, 30);
-            this.lbStatus.TabIndex = 24;
-            this.lbStatus.Text = "Status";
-            this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbName.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel1.SetColumnSpan(this.lbName, 2);
+            this.lbName.Font = new System.Drawing.Font("Segoe UI Semibold", 25F, System.Drawing.FontStyle.Bold);
+            this.lbName.Location = new System.Drawing.Point(10, 50);
+            this.lbName.Margin = new System.Windows.Forms.Padding(10);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(486, 56);
+            this.lbName.TabIndex = 28;
+            this.lbName.Text = "Make a Suitable form";
+            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelWithImage1
             // 
