@@ -188,5 +188,33 @@ namespace DataLayer.DataAccess
                 }
             }
         }
+
+        public List<Project> GetProjectsByUserWhoConfimedInvitation(int userId)
+        {
+            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            {
+                try
+                {
+                    var projects = dbContext.Projects
+                         .Join(dbContext.ProjectMembers,
+                               p => p.Id,
+                               pm => pm.ProjectId,
+                               (p, pm) => new { Project = p, ProjectMember = pm })
+                         .Where(x => x.ProjectMember.UserId == userId && (x.ProjectMember.IsConfirmed ?? false))
+                         .Select(x => x.Project)
+                         .ToList();
+
+                    return projects;
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

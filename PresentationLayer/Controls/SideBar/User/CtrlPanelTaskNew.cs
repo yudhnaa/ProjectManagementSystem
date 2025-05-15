@@ -310,6 +310,12 @@ namespace PresentationLayer.Controls.SideBar.User
             try
             {
                 taskServices.UpdateTaskStatus(currentTask.Id, TaskStatusEnumExtensions.FromId((int)cbStatus.SelectedValue));
+                if (currentTask.Description != tbDescription.Text)
+                {
+                    var t = taskServices.GetTaskById(currentTask.Id);
+                    t.Description = tbDescription.Text.Trim();
+                    taskServices.UpdateTask(t);
+                }
                 MessageBox.Show("Task update successfully.");
                 CurrentProject = _currentProject;
                 toggleMode.Checked = false;
@@ -382,7 +388,7 @@ namespace PresentationLayer.Controls.SideBar.User
                 // Add a ComboBox to the table layout panel
                 tableLayoutPanel1.Controls.Add(cbStatus, 1, 3);
 
-                tbDescription.ReadOnly = true;
+                tbDescription.ReadOnly = false;
                 lbComment.Visible = false;
                 tbComment.Visible = false;
                 btnUpdate.Visible = true;

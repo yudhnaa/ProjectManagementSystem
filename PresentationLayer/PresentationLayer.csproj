@@ -440,6 +440,9 @@
     <EmbeddedResource Include="Controls\Others\CtrlListMyProjects.resx">
       <DependentUpon>CtrlListMyProjects.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="NewTheme.c1themez">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <EmbeddedResource Include="PresentationLayer.gclicx" />
     <None Include="Properties\Settings.settings">

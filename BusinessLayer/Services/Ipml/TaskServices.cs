@@ -99,10 +99,10 @@ namespace BusinessLayer.Services
                     var parentTask = taskServices.GetTaskById((int)task.ParentTaskId);
 
                     if (parentTask == null)
-                        throw new Exception("Parent task not found.");
+                        throw new Exception("Parent curTask not found.");
 
                     if (parentTask.ProjectId != task.ProjectId)
-                        throw new Exception("Parent task is not in the same project.");
+                        throw new Exception("Parent curTask is not in the same project.");
                 }
                 return true;
             }
@@ -213,11 +213,11 @@ namespace BusinessLayer.Services
             catch (SqlException sqlEx)
             {
                 // Log the SQL exception
-                throw new Exception("Database error occurred while deleting task.", sqlEx);
+                throw new Exception("Database error occurred while deleting curTask.", sqlEx);
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while deleting task.", ex);
+                throw new Exception("An error occurred while deleting curTask.", ex);
             }
         }
 
@@ -346,11 +346,11 @@ namespace BusinessLayer.Services
             catch (SqlException sqlEx)
             {
                 // Log the SQL exception
-                throw new Exception("Database error occurred while fetching task.", sqlEx);
+                throw new Exception("Database error occurred while fetching curTask.", sqlEx);
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while fetching task.", ex);
+                throw new Exception("An error occurred while fetching curTask.", ex);
             }
         }
 
@@ -367,11 +367,11 @@ namespace BusinessLayer.Services
             catch (SqlException sqlEx)
             {
                 // Log the SQL exception
-                throw new Exception("Database error occurred while fetching task.", sqlEx);
+                throw new Exception("Database error occurred while fetching curTask.", sqlEx);
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while fetching task.", ex);
+                throw new Exception("An error occurred while fetching curTask.", ex);
             }
         }
 
@@ -553,11 +553,11 @@ namespace BusinessLayer.Services
             catch (SqlException sqlEx)
             {
                 // Log the SQL exception
-                throw new Exception("Database error occurred while updating task.", sqlEx);
+                throw new Exception("Database error occurred while updating curTask.", sqlEx);
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while updating task.", ex);
+                throw new Exception("An error occurred while updating curTask.", ex);
             }
 
         }
@@ -585,11 +585,41 @@ namespace BusinessLayer.Services
             catch (SqlException sqlEx)
             {
                 // Log the SQL exception
-                throw new Exception("Database error occurred while updating task.", sqlEx);
+                throw new Exception("Database error occurred while updating curTask.", sqlEx);
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while updating task.", ex);
+                throw new Exception("An error occurred while updating curTask.", ex);
+            }
+        }
+
+        public bool UpdateTaskFromGanttStatus(TaskForGanttChartDTO ganttTask)
+        {
+            try
+            {
+                var curTask = taskDAL.GetTaskById(ganttTask.Id, isIncludeInActive: false);
+                curTask.Name = ganttTask.Name;
+                curTask.StartDate = ganttTask.StartDate;
+                curTask.DueDate = ganttTask.DueDate;
+                curTask.PercentComplete = ganttTask.PercentComplete;
+                curTask.EstimatedHours = ganttTask.EstimatedHours;
+                curTask.UpdatedDate = DateTime.Now;
+
+                var res = taskDAL.UpdateTask(curTask);
+
+                if (res > 0)
+                    return true;
+                else
+                    throw new Exception("Task not found or update failed.");
+            }
+            catch (SqlException sqlEx)
+            {
+                // Log the SQL exception
+                throw new Exception("Database error occurred while updating curTask.", sqlEx);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while updating curTask.", ex);
             }
         }
 
@@ -636,11 +666,11 @@ namespace BusinessLayer.Services
             catch (SqlException sqlEx)
             {
                 // Log the SQL exception
-                throw new Exception("Database error occurred while updating task.", sqlEx);
+                throw new Exception("Database error occurred while updating curTask.", sqlEx);
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while updating task.", ex);
+                throw new Exception("An error occurred while updating curTask.", ex);
             }
 
             

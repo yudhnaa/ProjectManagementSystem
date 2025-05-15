@@ -1,12 +1,15 @@
 ﻿using BusinessLayer;
 using BusinessLayer.Services;
+using C1.Win.C1Themes;
 using DataLayer.Domain;
 using DTOLayer.Models;
 using PresentationLayer.AppContext;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,8 +24,7 @@ namespace PresentationLayer
         static void Main()
         {
             try
-            {
-
+            { 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
@@ -70,3 +72,6 @@ namespace PresentationLayer
         }
     }
 }
+
+
+// doi list my prj -> doi gantt

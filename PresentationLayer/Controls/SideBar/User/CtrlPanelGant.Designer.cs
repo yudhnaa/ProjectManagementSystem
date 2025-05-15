@@ -30,6 +30,8 @@ namespace PresentationLayer.UC_SideBar
         private void InitializeComponent()
         {
             C1.Win.C1GanttView.BarStyle barStyle1 = new C1.Win.C1GanttView.BarStyle();
+            C1.Win.C1GanttView.BarStyle barStyle2 = new C1.Win.C1GanttView.BarStyle();
+            C1.Win.C1GanttView.BarStyle barStyle3 = new C1.Win.C1GanttView.BarStyle();
             C1.Win.C1GanttView.TaskPropertyColumn taskPropertyColumn1 = new C1.Win.C1GanttView.TaskPropertyColumn();
             C1.Win.C1GanttView.TaskPropertyColumn taskPropertyColumn2 = new C1.Win.C1GanttView.TaskPropertyColumn();
             C1.Win.C1GanttView.TaskPropertyColumn taskPropertyColumn3 = new C1.Win.C1GanttView.TaskPropertyColumn();
@@ -105,7 +107,12 @@ namespace PresentationLayer.UC_SideBar
             C1.Win.C1GanttView.Task task59 = new C1.Win.C1GanttView.Task();
             C1.Win.C1GanttView.Task task60 = new C1.Win.C1GanttView.Task();
             C1.Win.C1GanttView.Task task61 = new C1.Win.C1GanttView.Task();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlPanelGant));
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.c1GanttView1 = new C1.Win.C1GanttView.C1GanttView();
+            this.btnSave = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.CalendarStorage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.PropertyStorage)).BeginInit();
@@ -113,11 +120,33 @@ namespace PresentationLayer.UC_SideBar
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.TasksStorage)).BeginInit();
             this.SuspendLayout();
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btnSave);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 590);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1187, 55);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
             // c1GanttView1
             // 
             this.c1GanttView1.BackColor = System.Drawing.SystemColors.Window;
+            barStyle1.BarShape = C1.Win.C1GanttView.BarShape.Frame;
+            barStyle1.BarType = C1.Win.C1GanttView.BarType.AutoTask;
+            barStyle1.EndColor = System.Drawing.Color.Brown;
+            barStyle1.EndShape = 20;
+            barStyle1.RightText1_ID = 1231769997;
+            barStyle2.BarShape = C1.Win.C1GanttView.BarShape.Frame;
+            barStyle2.BarType = C1.Win.C1GanttView.BarType.AutoTask;
+            barStyle2.EndColor = System.Drawing.Color.Brown;
+            barStyle2.EndShape = 20;
+            barStyle2.RightText1_ID = 1231769997;
             this.c1GanttView1.BarStyles.Add(barStyle1);
-            this.c1GanttView1.ChartViewZoomFactor = 6.846154F;
+            this.c1GanttView1.BarStyles.Add(barStyle2);
+            this.c1GanttView1.BarStyles.Add(barStyle3);
+            this.c1GanttView1.ChartViewZoomFactor = 7F;
             taskPropertyColumn1.Caption = "Task Mode";
             taskPropertyColumn1.ID = 1317065904;
             taskPropertyColumn1.Property = C1.Win.C1GanttView.TaskProperty.Mode;
@@ -200,16 +229,16 @@ namespace PresentationLayer.UC_SideBar
             this.c1GanttView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1GanttView1.GroupColumn = null;
             this.c1GanttView1.Location = new System.Drawing.Point(0, 0);
-            this.c1GanttView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c1GanttView1.Margin = new System.Windows.Forms.Padding(4);
             this.c1GanttView1.Name = "c1GanttView1";
             task1.ID = 2121818334;
             task1.Mode = C1.Win.C1GanttView.TaskMode.Automatic;
             task1.Name = "Project Summary Task";
             task1.NextID = 0;
             this.c1GanttView1.ProjectSummary = task1;
-            this.c1GanttView1.Size = new System.Drawing.Size(1187, 466);
+            this.c1GanttView1.Size = new System.Drawing.Size(1187, 590);
             this.c1GanttView1.StartDate = new System.DateTime(2025, 5, 3, 0, 0, 0, 0);
-            this.c1GanttView1.TabIndex = 0;
+            this.c1GanttView1.TabIndex = 2;
             task2.ID = 1958198445;
             task2.NextID = 885427011;
             task3.ID = 885427011;
@@ -398,11 +427,106 @@ namespace PresentationLayer.UC_SideBar
             this.c1GanttView1.Timescale.MiddleTier.Units = C1.Win.C1GanttView.TimescaleUnits.Weeks;
             this.c1GanttView1.Timescale.MiddleTier.Visible = true;
             // 
+            // btnSave
+            // 
+            this.btnSave.AllowAnimations = true;
+            this.btnSave.AllowMouseEffects = true;
+            this.btnSave.AllowToggling = false;
+            this.btnSave.AnimationSpeed = 200;
+            this.btnSave.AutoGenerateColors = false;
+            this.btnSave.AutoRoundBorders = true;
+            this.btnSave.AutoSizeLeftIcon = true;
+            this.btnSave.AutoSizeRightIcon = true;
+            this.btnSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnSave.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
+            this.btnSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSave.BackgroundImage")));
+            this.btnSave.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnSave.ButtonText = "Save";
+            this.btnSave.ButtonTextMarginLeft = 0;
+            this.btnSave.ColorContrastOnClick = 45;
+            this.btnSave.ColorContrastOnHover = 45;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.btnSave.CustomizableEdges = borderEdges1;
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnSave.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnSave.DisabledFillColor = System.Drawing.Color.Empty;
+            this.btnSave.DisabledForecolor = System.Drawing.Color.Empty;
+            this.btnSave.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.IconLeft = null;
+            this.btnSave.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.btnSave.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.btnSave.IconMarginLeft = 11;
+            this.btnSave.IconPadding = 10;
+            this.btnSave.IconRight = null;
+            this.btnSave.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.btnSave.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.btnSave.IconSize = 25;
+            this.btnSave.IdleBorderColor = System.Drawing.Color.Empty;
+            this.btnSave.IdleBorderRadius = 0;
+            this.btnSave.IdleBorderThickness = 0;
+            this.btnSave.IdleFillColor = System.Drawing.Color.Empty;
+            this.btnSave.IdleIconLeftImage = null;
+            this.btnSave.IdleIconRightImage = null;
+            this.btnSave.IndicateFocus = false;
+            this.btnSave.Location = new System.Drawing.Point(1027, 10);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(10, 10, 50, 10);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnSave.OnDisabledState.BorderRadius = 35;
+            this.btnSave.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnSave.OnDisabledState.BorderThickness = 1;
+            this.btnSave.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnSave.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnSave.OnDisabledState.IconLeftImage = null;
+            this.btnSave.OnDisabledState.IconRightImage = null;
+            this.btnSave.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.btnSave.onHoverState.BorderRadius = 35;
+            this.btnSave.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnSave.onHoverState.BorderThickness = 1;
+            this.btnSave.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.btnSave.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.btnSave.onHoverState.IconLeftImage = null;
+            this.btnSave.onHoverState.IconRightImage = null;
+            this.btnSave.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnSave.OnIdleState.BorderRadius = 35;
+            this.btnSave.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnSave.OnIdleState.BorderThickness = 1;
+            this.btnSave.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
+            this.btnSave.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.btnSave.OnIdleState.IconLeftImage = null;
+            this.btnSave.OnIdleState.IconRightImage = null;
+            this.btnSave.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btnSave.OnPressedState.BorderRadius = 35;
+            this.btnSave.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnSave.OnPressedState.BorderThickness = 1;
+            this.btnSave.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btnSave.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.btnSave.OnPressedState.IconLeftImage = null;
+            this.btnSave.OnPressedState.IconRightImage = null;
+            this.btnSave.Size = new System.Drawing.Size(110, 35);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnSave.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnSave.TextMarginLeft = 0;
+            this.btnSave.TextPadding = new System.Windows.Forms.Padding(0);
+            this.btnSave.UseDefaultRadiusAndThickness = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // CtrlPanelGant
             // 
             this.Controls.Add(this.c1GanttView1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "CtrlPanelGant";
-            this.Size = new System.Drawing.Size(1187, 466);
+            this.Size = new System.Drawing.Size(1187, 645);
+            this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.CalendarStorage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.PropertyStorage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1GanttView1.DataStorage.ResourceStorage)).EndInit();
@@ -412,10 +536,10 @@ namespace PresentationLayer.UC_SideBar
 
         }
 
+
         #endregion
-
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private C1.Win.C1GanttView.C1GanttView c1GanttView1;
-
-
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnSave;
     }
 }

@@ -12,12 +12,11 @@ namespace BusinessLayer.Services
 {
     public class DepartmentServices : IDepartmentServices
     {
+        private readonly IDepartmentDAL departmentDAL = new DepartmentDAL();
         public bool CreateDepartment(DepartmentDTO departmentDTO)
         {
             try
             {
-                DepartmentDAL departmentDAL = new DepartmentDAL();
-
                 var department = departmentDTO.ToDepartmentEntity();
                 //department.IsDeleted = false;
                 //department.IsActive = true;
@@ -44,7 +43,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                DepartmentDAL departmentDAL = new DepartmentDAL();
+                
 
                 var curDepartment = departmentDAL.GetDepartmentById(item.Id, isIncludeInActive: true);
                 if (curDepartment == null)
@@ -75,7 +74,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                DepartmentDAL departmentDAL = new DepartmentDAL();
+                
                 var departments = departmentDAL.GetAllDepartments(kw, isIncludeInActive: false);
                 if (departments == null)
                     return null;
@@ -98,7 +97,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                DepartmentDAL departmentDAL = new DepartmentDAL();
+                
                 var departments = departmentDAL.GetAllDepartments(kw, isIncludeInActive: true);
                 if (departments == null)
                     return null;
@@ -121,7 +120,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                DepartmentDAL departmentDAL = new DepartmentDAL();
+                
                 var department = departmentDAL.GetDepartmentById(departmentId, isIncludeInActive: false);
 
                 if (department == null)
@@ -147,7 +146,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                DepartmentDAL departmentDAL = new DepartmentDAL();
+                
                 var department = departmentDAL.GetDepartmentById(departmentId, isIncludeInActive: true);
 
                 if (department == null)

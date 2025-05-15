@@ -33,6 +33,7 @@ namespace BusinessLayer.Services
         List<TaskForListDTO> GetTaskAllForlistByProjectIdAndUserIdAndKwInlcudeInActive(int projectId, string kw);
         bool UpdateTask(TaskDTO newTaskDTO);
         bool UpdateTaskStatus(int taskId, TaskStatusEnum? taskStatusEnum);
+        bool UpdateTaskFromGanttStatus(TaskForGanttChartDTO ganttTask);
         List<TaskForGanttChartDTO> GetTaskByProjectIdWithDependencies(int projectId, int userId);
         Dictionary<DateTime, int> GetCompletedTaskByDate(int userId);
     }

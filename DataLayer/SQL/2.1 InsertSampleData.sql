@@ -91,14 +91,10 @@ UPDATE [Departments] SET ManagerId = 5 WHERE Name = 'Marketing';
 UPDATE [Departments] SET ManagerId = 6 WHERE Name = 'Sales';
 
 
-
-
-
-
 -- Insert sample data into Projects
 INSERT INTO [Projects] (Name, ProjectCode, Description, StartDate, EndDate, Budget, StatusId, ManagerId, PriorityId, PercentComplete, CreatedBy) VALUES
-('Project Alpha', 'PA001', 'First project description', '2025-01-01', '2025-06-30', 100000.00, 2, 2, 1, 50.00, 1),
-('Project Beta', 'PB002', 'Second project description', '2025-02-01', '2025-07-31', 200000.00, 1, 2, 2, 0.00, 1);
+('Store Management System', 'PA001', 'First project description', '2025-01-01', '2025-06-30', 100000.00, 2, 2, 1, 50.00, 1),
+('Blood Bank Management System', 'PB002', 'Second project description', '2025-02-01', '2025-07-31', 200000.00, 1, 2, 2, 0.00, 1);
 
 -- Insert sample data into Tasks
 INSERT INTO [Tasks] (Code, Name, Description, ProjectId, AssignedUserId, StatusId, PriorityId, StartDate, DueDate, EstimatedHours, PercentComplete, CreatedBy) VALUES

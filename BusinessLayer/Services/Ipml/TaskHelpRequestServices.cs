@@ -28,7 +28,7 @@ namespace BusinessLayer.Services.Ipml
                 var res = taskHelpRequestDAL.CreateTaskHelpRequest(taskHelpRequest);
 
                 // Create a notification for the user
-                NotificationDAL notificationDAL = new NotificationDAL();
+                INotificationDAL notificationDAL = new NotificationDAL();
                 var noti = notification.ToNotificationEntity();
                 noti.CreatedDate = DateTime.Now;
                 noti.IsRead = false;

@@ -11,5 +11,6 @@ namespace DataLayer.DataAccess
         List<Project> GetProjectsByKeywordAndStatus(string keyword, int statusId, bool isIncludeInActive);
         List<Project> GetProjectsByUserId(int userId, bool isIncludeInActive);
         bool UpdateProject(Project project);
+        List<Project> GetProjectsByUserWhoConfimedInvitation(int userId);
     }
 }

@@ -69,7 +69,6 @@ namespace PresentationLayer.UC_SideBar.UC_Project
                 // Trigger the event and pass the selected project
                 ProjectSelected?.Invoke(this, (ProjectForListDTO)selectedItem);
             }
-
         }
     }
 }

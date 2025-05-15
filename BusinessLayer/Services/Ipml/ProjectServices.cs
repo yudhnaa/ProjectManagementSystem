@@ -318,9 +318,7 @@ namespace BusinessLayer.Services
 
                 IProjectMemberServices projectMemberServices = new ProjectMemberServices();
 
-                var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: false)
-                    .Where(p => projectMemberServices.GetProjectMembersByProjectId(p.Id)
-                                .Any(pm => pm.IsConfirmed == true));
+                var projects = projectDAL.GetProjectsByUserWhoConfimedInvitation(userId);
 
                 if (projects == null)
                     return null;

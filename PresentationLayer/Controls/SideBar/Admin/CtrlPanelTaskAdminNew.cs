@@ -501,7 +501,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 UserId = (int)CbUser.SelectedValue,
                 Title = GlobalVariables.TaskAssignmentTitle,
                 Message = string.Format(GlobalVariables.TaskAssignmentMSG, newTask.Name),
-                NotificationTypeId = (int)NotificationTypeEnum.ProjectInvitation,
+                NotificationTypeId = (int)NotificationTypeEnum.TaskAssignment,
                 IsRead = false,
                 CreatedDate = DateTime.Now
             };
