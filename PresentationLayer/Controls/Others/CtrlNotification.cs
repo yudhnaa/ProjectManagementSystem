@@ -27,6 +27,8 @@ namespace PresentationLayer.Controls.SideBar.User
             InitializeComponent();
         }
 
+
+
         public CtrlNotification(string title, string content, NotificationTypeEnum type)
         {
             InitializeComponent();
@@ -58,7 +60,7 @@ namespace PresentationLayer.Controls.SideBar.User
             }
 
         }
-
+        
         private void btnAccept_Click(object sender, EventArgs e)
         {
             AcceptClick?.Invoke(this, e);

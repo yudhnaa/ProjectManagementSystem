@@ -177,41 +177,29 @@
         xrtt3flORNfsD6FwQRIqQmliAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="cbIsActive.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEvSURBVEhL7ZevTsRAEMZPIpEnbronkSeRSCSPcLLy5Mlz
-        yJ0lJEgkj4BE8gjIk0jkuW/INGVLZ3sJ0JsE0Ul+qZg/385Om0xns/9o4U4uKMqaoux+DaMOCZe25lEL
-        j3JWJdwS41CxyElIeAr3Mrda2UKUFTHeuoSBIj/F5BLjYxHlxmo2nRJjP5Q0mrae3mKIsuwJVwkPRYIL
-        eLbdnm6mx2g7z13rbIsgR/KsKWJjnZ7o59YKy846PZmEiwAvJuEiwItJuAjwYhIuArzohFm21ulJFl4k
-        XFunC90KVDfCIcr5d4cb3QayaoTVKsZLEeiALpRZtOlal/evvculc0CfOtaesJrefS947AE0v1cD0Wpm
-        098OYrwWRUZAjPfBToesPUCtr/6fYdmGKFe2ttonkCMM8KnTb8AAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="tbDescription.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAqMAAABfCAYAAADcUM4jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASySURBVHhe7d29b1tlFMDhjowdOzIyduzIyIRYkBgZEX8B
-        IwMDEhsDAxsz/wBTX1/f+9pJVPVDlUqFFFdRFRnhRG6IQghWZHSq1iKXfkSt0wPq80hniPTa7fjT8f24
-        dAkAAP4vSinXSilf1lrHtdZbbdvOBoPB0hhjjDHGvF0THRg9GBN9WEr5oN+Oa1FKuVxr/X44HB5sbW3N
-        Hzx4sNzf31/O5/Pl8fHxEgCAt090YPRgTPThzZs3503TLLqu+7GU8m6/KV9J27Zfd10339nZWZycnPT/
-        DwAAsHJ6erqcTqfL0Wg0j2VmKeWdfl+ey5Nt6Ob29vbxYrHo/zsAAPBcEaWxzKy1/lJKudJvzReKtep4
-        PP55b2/PKhQAgFd2eHgYW9JpKeVqvzmfKTaiEaLxQQAAeF1xqed4PP7tXNeRxk/zNqIAAKzT0dFRbEgn
-        sfjs9+dKrfXbyWTi9ngAANZuOp3+NRqNfuo36GNxYWnXdQdxsSkAAFyEjY2NR8+8fjRuvY87nvofAACA
-        dZnNZsta6/UzIRrPfxoOh797hBMAABetbdujM497ilc3xRPz+wcBAGDd7t+/HzH62SpG27b97uHDh/1z
-        AACwdv/6qb7WOo53zQMAwEWLxzy1bbu7itGu6yYecg8AwJsQ9yk1TfPHKkbjDzcvAQDwpgwGg+UqRuMP
-        AAB4U8QoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnE
-        KAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnE
-        KAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnE
-        KAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnE
-        KAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnEKAAAacQoAABpxCgAAGnE
-        KAAAac7EaNM0i9PT0/4ZAAC4EGditG3b3aOjo/4ZAABYu1iCxjJ0FaO11lvz+bx/DgAA1u74+HjZtu1s
-        FaNd1/2wu7vbPwcAAGu3v7+/rLWOVzFaSvn03r17h/2DAACwbpPJZNE0zVf/jNHLw+Hwz/5BAABYt42N
-        jUellKurGA211uuz2ax/FgAA1ubw8HDZdd3kTIiGqNOo1P4HAABgXe7cuRNb0Y/6LfqY7SgAABfluVvR
-        p0opV8bj8U7cbg8AAOuyWCyWm5ubv5ZS3us36BlPfq7f80YmAADW5fbt2/tt237cb89n6rruwwjSk5OT
-        /vcAAMC5xUY0QrTW+nm/OV8oNqSj0WjqzUwAALyKuEY0fpo/90a0L64hjVeF3rhxYx5fBgAALxP3H929
-        e/cgblZ66TWi51FKeT++bDQaHWxvby9iW+qaUgAAnoo+3NnZWW5tbc3jvfOllE/6TfnaomxLKV/EtrRp
-        msVgMFgaY4wxxhgTfTgcDr8ppVzrNyQAAPwn/Q30AxPm0pGtkQAAAABJRU5ErkJggg==
+        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
 </value>
   </data>
   <data name="btnUpdate.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -265,6 +253,17 @@
         GLe1NiPNcbghWa7xYMbi6XUmFuzYqoQfe8ctk/47bLwt8TTrV8407eN7sZSlTh5bZzodk1gVNTmu/oxv
         akwHFVJGhi75cEvP+dxMBq+iJ1K2a6W70yA5OVUyFdqujvtRpGNRVqaRMzbKAnBGSz+YEdP/szclmWqW
         Yvm/vre5I82lMR8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="cbIsActive.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEvSURBVEhL7ZevTsRAEMZPIpEnbronkSeRSCSPcLLy5Mlz
+        yJ0lJEgkj4BE8gjIk0jkuW/INGVLZ3sJ0JsE0Ul+qZg/385Om0xns/9o4U4uKMqaoux+DaMOCZe25lEL
+        j3JWJdwS41CxyElIeAr3Mrda2UKUFTHeuoSBIj/F5BLjYxHlxmo2nRJjP5Q0mrae3mKIsuwJVwkPRYIL
+        eLbdnm6mx2g7z13rbIsgR/KsKWJjnZ7o59YKy846PZmEiwAvJuEiwItJuAjwYhIuArzohFm21ulJFl4k
+        XFunC90KVDfCIcr5d4cb3QayaoTVKsZLEeiALpRZtOlal/evvculc0CfOtaesJrefS947AE0v1cD0Wpm
+        098OYrwWRUZAjPfBToesPUCtr/6fYdmGKFe2ttonkCMM8KnTb8AAAAAASUVORK5CYII=
 </value>
   </data>
 </root>

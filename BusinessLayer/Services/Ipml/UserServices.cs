@@ -199,21 +199,37 @@ namespace BusinessLayer.Services
             throw new NotImplementedException();
         }
 
+        private User GetUserForUpdate(UserDTO updateUser, User curUser)
+        {
+            curUser.Username = string.IsNullOrEmpty(updateUser.Username) || updateUser.Username == curUser.Username ? curUser.Username : updateUser.Username;
+            curUser.Password = string.IsNullOrEmpty(updateUser.Password) || updateUser.Password == curUser.Password ? curUser.Password : HashPassword(updateUser.Password);
+            curUser.Email = string.IsNullOrEmpty(updateUser.Email) || updateUser.Email == curUser.Email ? curUser.Email : updateUser.Email;
+            curUser.FirstName = string.IsNullOrEmpty(updateUser.FirstName) || updateUser.FirstName == curUser.FirstName ? curUser.FirstName : updateUser.FirstName;
+            curUser.LastName = string.IsNullOrEmpty(updateUser.LastName) || updateUser.LastName == curUser.LastName ? curUser.LastName : updateUser.LastName;
+            curUser.PhoneNumber = string.IsNullOrEmpty(updateUser.PhoneNumber) || updateUser.PhoneNumber == curUser.PhoneNumber ? curUser.PhoneNumber : updateUser.PhoneNumber;
+            curUser.Address = string.IsNullOrEmpty(updateUser.Address) || updateUser.Address == curUser.Address ? curUser.Address : updateUser.Address;
+            curUser.Avatar = string.IsNullOrEmpty(updateUser.Avatar) || updateUser.Avatar == curUser.Avatar ? curUser.Avatar : updateUser.Avatar;
+            curUser.UserRoleId = updateUser.UserRoleId == 0 || updateUser.UserRoleId == curUser.UserRoleId ? curUser.UserRoleId : updateUser.UserRoleId;
+            curUser.UpdatedDate = DateTime.Now;
+            return curUser;
+        }
+
         public bool UpdateUser(UserDTO userDTO)
         {
             try
             {
-                var user = userDTO.ToUserEntity();
 
                 var curUser = userDAL.GetUserById(userDTO.Id, true);
                 if (!curUser.Password.Equals(userDTO.Password))
                 {
-                    user.Password = HashPassword(userDTO.Password);
+                    userDTO.Password = HashPassword(userDTO.Password);
                 }
 
-                user.UpdatedDate = DateTime.Now;
+                // this api is used to update user info by user so not accept to update user role by replace original user role
+                userDTO.UserRoleId = curUser.UserRoleId;
 
-                var res = userDAL.UpdateUser(user);
+                var userUpdate = GetUserForUpdate(userDTO, curUser);
+                var res = userDAL.UpdateUser(userUpdate);
 
                 return res;
             }

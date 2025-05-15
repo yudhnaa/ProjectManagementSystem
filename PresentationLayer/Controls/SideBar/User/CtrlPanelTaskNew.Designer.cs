@@ -442,7 +442,7 @@
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(593, 49);
             this.lbName.TabIndex = 29;
-            this.lbName.Text = "Make a Suitable form";
+            this.lbName.Text = "Task Info Is Not Set";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbName.Click += new System.EventHandler(this.lbName_Click);
             // 
@@ -523,7 +523,7 @@
             this.lbTaskProject.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lbTaskProject.Size = new System.Drawing.Size(233, 20);
             this.lbTaskProject.TabIndex = 0;
-            this.lbTaskProject.Text = "Project / TaskID - 1234";
+            this.lbTaskProject.Text = "Project / TaskID - Not Set";
             this.lbTaskProject.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lbTaskProject.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
@@ -860,7 +860,7 @@
             this.lbOwner.Name = "lbOwner";
             this.lbOwner.Size = new System.Drawing.Size(354, 59);
             this.lbOwner.TabIndex = 20;
-            this.lbOwner.Text = "label2";
+            this.lbOwner.Text = "Not Set";
             this.lbOwner.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbCreatedBy
@@ -872,7 +872,7 @@
             this.lbCreatedBy.Name = "lbCreatedBy";
             this.lbCreatedBy.Size = new System.Drawing.Size(354, 59);
             this.lbCreatedBy.TabIndex = 19;
-            this.lbCreatedBy.Text = "lbComment";
+            this.lbCreatedBy.Text = "Not Set";
             this.lbCreatedBy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbDueDate
@@ -884,7 +884,7 @@
             this.lbDueDate.Name = "lbDueDate";
             this.lbDueDate.Size = new System.Drawing.Size(354, 59);
             this.lbDueDate.TabIndex = 21;
-            this.lbDueDate.Text = "label3";
+            this.lbDueDate.Text = "Not Set";
             this.lbDueDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelWithImage1

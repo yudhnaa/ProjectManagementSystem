@@ -20,12 +20,10 @@ namespace DataLayer.DataAccess
             {
                 try
                 {
-                    var u = dbContext.Users.FirstOrDefault(us => us.Username == user.Username);
-
-                    if (u != null)
-                        return u;
-
-                    return null;
+                    var u = dbContext.Users
+                                     .AsNoTracking()
+                                     .FirstOrDefault(us => us.Username == user.Username);
+                    return u;
                 }
                 catch (Exception ex)
                 {

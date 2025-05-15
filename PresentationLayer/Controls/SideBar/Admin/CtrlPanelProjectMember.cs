@@ -67,7 +67,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
             dgvItems.Columns.AddRange(
                 new DataGridViewTextBoxColumn() { DataPropertyName = "Id", HeaderText = "Id", Name = "Id", Width = 20, ReadOnly = true },
-                new DataGridViewTextBoxColumn() { DataPropertyName = "ProjectId", HeaderText = "Project Id", Name = "ProjectId", Width = 30, ReadOnly = true },
+                new DataGridViewTextBoxColumn() { DataPropertyName = "ProjectId", HeaderText = "Project Name", Name = "ProjectId", Width = 30, ReadOnly = true },
                 new DataGridViewTextBoxColumn() { DataPropertyName = "UserId", HeaderText = "User Name", Name = "UserId", Width = 20, ReadOnly = true },
                 new DataGridViewTextBoxColumn() { DataPropertyName = "RoleInProject", HeaderText = "Role In Project", Name = "RoleInProject", Width = 10, ReadOnly = true },
                 new DataGridViewCheckBoxColumn() { DataPropertyName = "IsConfirmed", HeaderText = "Is Confirmed", Name = "IsConfirmed", Width = 100 }

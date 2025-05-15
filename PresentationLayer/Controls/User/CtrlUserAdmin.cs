@@ -3,7 +3,6 @@ using BusinessLayer.Services;
 using DTOLayer;
 using DTOLayer.Models;
 using PresentationLayer.CustomControls;
-using PresentationLayer.Forms.Other;
 using PresentationLayer.Utils;
 using RestSharp;
 using System;
@@ -112,8 +111,8 @@ namespace PresentationLayer.Controls
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            FormUserInfoEdit formUserInfoEdit = new FormUserInfoEdit(user);
-            formUserInfoEdit.ShowDialog();
+            //FormUserInfoEdit formUserInfoEdit = new FormUserInfoEdit(user);
+            //formUserInfoEdit.ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
