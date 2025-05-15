@@ -19,105 +19,91 @@ namespace BusinessLayer.Services
 
         public bool CreateMemberToProject(ProjectMemberDTO projectMemberDTO, NotificationDTO notification)
         {
-            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+
+            try
             {
-                try
-                {
                     
-                    ProjectMember projectMember = projectMemberDTO.ToProjectMemberEntity();
-                    projectMember.IsConfirmed = false;
-                    projectMember.IsActive = true;
-                    projectMember.IsDeleted = false;
-                    projectMember.CreatedDate = DateTime.Now;
-                    projectMember.UpdatedDate = DateTime.Now;
+                ProjectMember projectMember = projectMemberDTO.ToProjectMemberEntity();
+                projectMember.IsConfirmed = false;
+                projectMember.IsActive = true;
+                projectMember.IsDeleted = false;
+                projectMember.CreatedDate = DateTime.Now;
+                projectMember.UpdatedDate = DateTime.Now;
 
-                    bool res = projectMemberDAL.CreateProjectMember(projectMember);
+                bool res = projectMemberDAL.CreateProjectMember(projectMember);
 
-                    INotificationServices notificationServices = new NotificationServices();
-                    bool res1 = notificationServices.CreateNotification(notification);
+                INotificationServices notificationServices = new NotificationServices();
+                bool res1 = notificationServices.CreateNotification(notification);
 
-                    return res && res1;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return res && res1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public List<ProjectMemberDTO> GetAllProjectMembers(string kw)
         {
-            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            try
             {
-                try
-                {
-                    var members = projectMemberDAL.GetAllProjectMembers(kw, isIncludeInActive: false);
-                    if (members == null)
-                        return null;
-                    return members.Select(pm => pm.ToDto()).ToList();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                var members = projectMemberDAL.GetAllProjectMembers(kw, isIncludeInActive: false);
+                if (members == null)
+                    return null;
+                return members.Select(pm => pm.ToDto()).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public List<ProjectMemberDTO> GetAllProjectMembersIncludeInActive(string kw)
         {
-            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            try
             {
-                try
-                {
 
-                    var members = projectMemberDAL.GetAllProjectMembers(kw, isIncludeInActive: true);
-                    if (members == null)
-                        return null;
-                    return members.Select(pm => pm.ToDto()).ToList();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                var members = projectMemberDAL.GetAllProjectMembers(kw, isIncludeInActive: true);
+                if (members == null)
+                    return null;
+                return members.Select(pm => pm.ToDto()).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public List<ProjectMemberDTO> GetProjectMembersByProjectId(int projectId)
         {
-            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            try
             {
-                try
-                {
                     
-                    var members = projectMemberDAL.GetProjectMembersByProjectId(projectId, isIncludeInActive: false);
-                    if (members == null)
-                        return null;
+                var members = projectMemberDAL.GetProjectMembersByProjectId(projectId, isIncludeInActive: false);
+                if (members == null)
+                    return null;
 
-                    return members.Select(pm => pm.ToDto()).ToList();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return members.Select(pm => pm.ToDto()).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         public List<ProjectMemberDTO> GetProjectMembersByProjectIdInlcudeInActive(int projectId)
         {
-            using (ProjectManagementSystemDBContext dbContext = new ProjectManagementSystemDBContext())
+            try
             {
-                try
-                {
                     
-                    var members = projectMemberDAL.GetProjectMembersByProjectId(projectId, isIncludeInActive: true);
-                    if (members == null)
-                        return null;
+                var members = projectMemberDAL.GetProjectMembersByProjectId(projectId, isIncludeInActive: true);
+                if (members == null)
+                    return null;
 
-                    return members.Select(pm => pm.ToDto()).ToList();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return members.Select(pm => pm.ToDto()).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

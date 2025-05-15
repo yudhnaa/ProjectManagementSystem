@@ -1,4 +1,5 @@
 ﻿using DataLayer.Domain;
+using DataLayer.EnumObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,7 +96,7 @@ namespace DataLayer.DataAccess
                     IQueryable<Task> query = dbContext.Tasks.Where(t => t.ProjectId == projectId);
 
                     if (!isIncludeInActive)
-                        query = query.Where(t => t.IsDeleted == false);
+                        query = query.Where(t => t.IsDeleted == false && t.StatusId != (int) TaskStatusEnum.Cancelled);
 
                     return query.ToList();
                 }
@@ -244,8 +245,7 @@ namespace DataLayer.DataAccess
                     existingTask.AssignedUserId = task.AssignedUserId;
                     existingTask.StatusId = task.StatusId;
                     existingTask.PriorityId = task.PriorityId;
-                    if (task.ParentTaskId > 0)
-                        existingTask.ParentTaskId = task.ParentTaskId;
+                    existingTask.ParentTaskId = task.ParentTaskId;
                     existingTask.EstimatedHours = task.EstimatedHours;
                     existingTask.Description = task.Description;
                     existingTask.UpdatedDate = DateTime.Now;

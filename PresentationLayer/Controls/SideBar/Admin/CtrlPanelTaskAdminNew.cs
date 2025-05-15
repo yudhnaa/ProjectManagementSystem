@@ -23,7 +23,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
     public partial class CtrlPanelTaskAdminNew : UserControl
     {
         private UserDTO user;
-        private TaskDTO parentTask;
         private readonly ITaskServices taskServices = new TaskServices();
 
         private List<TaskForListDTO> tasks;
@@ -40,6 +39,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private List<TaskStatusDTO> taskStatusDTOs;
         private List<TaskPriorityDTO> taskPriorityDTOs;
         private List<TaskDTO> taskDTOs;
+        private BindingList<TaskDTO> parentTasks = new();
         private ProjectForListDTO currentProject;
 
         private Timer debounceTimer;
@@ -199,7 +199,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 TaskDTO currentParentTask = taskServices.GetTaskById(currentTask.ParentTaskId.Value);
                 if (currentParentTask != null)
                 {
-                    cbParentTask.DataSource = new List<TaskDTO> { currentParentTask };
+                    parentTasks.Add(currentParentTask);
+                    cbParentTask.DataSource = parentTasks;
                     cbParentTask.SelectedValue = currentTask.ParentTaskId;
                 }
             }
@@ -241,7 +242,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
         {
             try
             {
-                var res = projectServices.GetProjectForListById(currentTask.ProjectId);
+                var res = projectServices.GetProjectForListByIdInlcudeInActive(currentTask.ProjectId);
 
                 if (res != null)
                 {
@@ -301,7 +302,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 }
                 else if (currentSearchBox == cbProject)
                 {
-                    string kw = cbProject.Text;
+                    string kw = string.IsNullOrEmpty(cbProject.Text) == true ? "" : cbProject.Text.Trim();
                     List<ProjectForListDTO> projectDTOs = projectServices.GetAllProjectsForList(kw);
 
                     if (projectDTOs == null)
@@ -330,7 +331,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
 
                 try
                 {
-                    currentTask = taskServices.GetTaskById((int)item.Cells["Id"].Value);
+                    currentTask = taskServices.GetTaskByIdInlcudeInActive((int)item.Cells["Id"].Value);
+                    ResetInput();
                     SetTaskInfo();
                 }
                 catch (SqlException ex)
@@ -450,7 +452,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
                         StartDate = datepickerStart.Value,
                         DueDate = datepickerEnd.Value,
                         EstimatedHours = int.Parse(tbEstimate.Text),
-                        ParentTaskId = cbParentTask.Text == "" ? 0 : (int)cbParentTask.SelectedValue,
+                        ParentTaskId = (int?)cbParentTask.SelectedValue,
                         UpdatedDate = DateTime.Now,
                     };
 
@@ -532,7 +534,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             CbUser.SelectedIndex = -1;
             cbStatus.SelectedIndex = -1;
             cbPriority.SelectedIndex = -1;
-            cbParentTask.DataSource = null;
+            parentTasks.Clear();
 
             datepickerStart.Value = DateTime.Today;
             datepickerEnd.Value = DateTime.Today;
@@ -554,7 +556,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 try
                 {
                     string keyword = tbSearch.Text.Trim();
-                    int pageSize = 10;
 
                     if (string.IsNullOrEmpty(keyword))
                     {

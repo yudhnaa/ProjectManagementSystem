@@ -25,9 +25,8 @@ namespace DataLayer.DataAccess
                                      .FirstOrDefault(us => us.Username == user.Username);
                     return u;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    // Don't re-throw exceptions with no additional info
                     throw;
                 }
             }

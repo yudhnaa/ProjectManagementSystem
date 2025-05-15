@@ -166,6 +166,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
             isCreating = false;
+            cbIsDelete.Enabled = true;
             if (dgvItems.SelectedRows.Count == 1 && dgvItems.SelectedRows[0].Cells["Id"].Value != null)
             {
                 var item = dgvItems.SelectedRows[0];
@@ -257,7 +258,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 else
                 {
                     var project = CreateProjectDTOFromForm();
-                    var result = _projectServices.UpdateProject(project);
+                    var result = _projectServices.UpdateProjectIncludeInActive(project);
 
                     if (result)
                     {
@@ -284,6 +285,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
             if (!isCreating)
             {
                 isCreating = true;
+                cbIsDelete.Enabled = false;
+                cbIsDelete.Checked = false;
                 ClearFields();
             }
 
@@ -373,7 +376,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
         {
             try
             {
-                _currentProject = _projectServices.GetProjectById(projectId);
+                _currentProject = _projectServices.GetProjectByIdInlcudeInActive(projectId);
                 _currentProjectMembers = _projectMemberServices.GetProjectMembersByProjectIdInlcudeInActive(projectId);
 
                 SetProjectInfo();
@@ -401,6 +404,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             datePickerEnd.Value = _currentProject.EndDate ?? DateTime.Today.AddDays(30);
             cbStatus.SelectedValue = _currentProject.StatusId;
             cbPriority.SelectedValue = _currentProject.PriorityId;
+            cbIsDelete.Checked = _currentProject.IsDeleted ?? false;
 
             LoadProjectMembers();
         }
@@ -561,7 +565,8 @@ namespace PresentationLayer.Controls.SideBar.Admin
                 ManagerId = int.Parse(managerId),
                 PriorityId = (int)cbPriority.SelectedValue,
                 CreatedBy = _user.Id,
-                PercentComplete = decimal.Parse(tbPercentComplete.Text)
+                PercentComplete = decimal.Parse(tbPercentComplete.Text),
+                IsDeleted = cbIsDelete.Checked,
             };
         }
 
@@ -661,11 +666,6 @@ namespace PresentationLayer.Controls.SideBar.Admin
         private void ShowMessage(string message, string title = "", MessageBoxIcon icon = MessageBoxIcon.Information)
         {
             MessageBox.Show(message, title, MessageBoxButtons.OK, icon);
-        }
-
-        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btCancelProject_Click(object sender, EventArgs e)

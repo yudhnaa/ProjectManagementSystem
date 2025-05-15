@@ -78,18 +78,18 @@
             this.bunifuLabel7 = new Bunifu.UI.WinForms.BunifuLabel();
             this.cbPriority = new Bunifu.UI.WinForms.BunifuDropdown();
             this.bunifuLabel6 = new Bunifu.UI.WinForms.BunifuLabel();
-            this.cbProject = new System.Windows.Forms.ComboBox();
-            this.bunifuLabel11 = new Bunifu.UI.WinForms.BunifuLabel();
             this.tbEstimate = new Bunifu.UI.WinForms.BunifuTextBox();
             this.bunifuLabel2 = new Bunifu.UI.WinForms.BunifuLabel();
-            this.bunifuLabel8 = new Bunifu.UI.WinForms.BunifuLabel();
-            this.CbUser = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnUpdate = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.btCancel = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
-            this.lbProjects = new PresentationLayer.CustomControls.RoundedLabel();
-            this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.bunifuLabel11 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.cbProject = new System.Windows.Forms.ComboBox();
+            this.bunifuLabel8 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.CbUser = new System.Windows.Forms.ComboBox();
             this.cbIsActive = new Bunifu.UI.WinForms.BunifuCheckBox();
+            this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.lbProjects = new PresentationLayer.CustomControls.RoundedLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -983,36 +983,6 @@
             this.bunifuLabel6.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.bunifuLabel6.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
-            // cbProject
-            // 
-            this.cbProject.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbProject.FormattingEnabled = true;
-            this.cbProject.Location = new System.Drawing.Point(318, 169);
-            this.cbProject.Name = "cbProject";
-            this.cbProject.Size = new System.Drawing.Size(203, 28);
-            this.cbProject.TabIndex = 6;
-            this.cbProject.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbProject_KeyUp);
-            // 
-            // bunifuLabel11
-            // 
-            this.bunifuLabel11.AllowParentOverrides = false;
-            this.bunifuLabel11.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bunifuLabel11.AutoEllipsis = false;
-            this.bunifuLabel11.AutoSize = false;
-            this.bunifuLabel11.AutoSizeHeightOnly = true;
-            this.bunifuLabel11.CursorType = null;
-            this.bunifuLabel11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuLabel11.Location = new System.Drawing.Point(266, 141);
-            this.bunifuLabel11.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuLabel11.Name = "bunifuLabel11";
-            this.bunifuLabel11.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel11.Size = new System.Drawing.Size(251, 20);
-            this.bunifuLabel11.TabIndex = 0;
-            this.bunifuLabel11.Text = "Project";
-            this.bunifuLabel11.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.bunifuLabel11.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
-            // 
             // tbEstimate
             // 
             this.tbEstimate.AcceptsReturn = false;
@@ -1108,36 +1078,6 @@
             this.bunifuLabel2.Text = "Estimate Time (Hour)";
             this.bunifuLabel2.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.bunifuLabel2.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
-            // 
-            // bunifuLabel8
-            // 
-            this.bunifuLabel8.AllowParentOverrides = false;
-            this.bunifuLabel8.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bunifuLabel8.AutoEllipsis = false;
-            this.bunifuLabel8.AutoSize = false;
-            this.bunifuLabel8.AutoSizeHeightOnly = true;
-            this.bunifuLabel8.CursorType = null;
-            this.bunifuLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuLabel8.Location = new System.Drawing.Point(266, 206);
-            this.bunifuLabel8.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuLabel8.Name = "bunifuLabel8";
-            this.bunifuLabel8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel8.Size = new System.Drawing.Size(251, 20);
-            this.bunifuLabel8.TabIndex = 0;
-            this.bunifuLabel8.Text = "Assign To User";
-            this.bunifuLabel8.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.bunifuLabel8.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
-            // 
-            // CbUser
-            // 
-            this.CbUser.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CbUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbUser.FormattingEnabled = true;
-            this.CbUser.Location = new System.Drawing.Point(318, 236);
-            this.CbUser.Name = "CbUser";
-            this.CbUser.Size = new System.Drawing.Size(203, 28);
-            this.CbUser.TabIndex = 5;
-            this.CbUser.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CbUser_KeyUp);
             // 
             // flowLayoutPanel1
             // 
@@ -1330,34 +1270,65 @@
             this.btCancel.TextPadding = new System.Windows.Forms.Padding(0);
             this.btCancel.UseDefaultRadiusAndThickness = true;
             // 
-            // lbProjects
+            // bunifuLabel11
             // 
-            this.lbProjects._BackColor = System.Drawing.Color.Empty;
-            this.lbProjects._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbProjects.AutoSize = true;
-            this.lbProjects.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbProjects.Location = new System.Drawing.Point(0, 0);
-            this.lbProjects.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
-            this.lbProjects.Size = new System.Drawing.Size(118, 41);
-            this.lbProjects.TabIndex = 3;
-            this.lbProjects.Text = "Task List";
+            this.bunifuLabel11.AllowParentOverrides = false;
+            this.bunifuLabel11.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.bunifuLabel11.AutoEllipsis = false;
+            this.bunifuLabel11.AutoSize = false;
+            this.bunifuLabel11.AutoSizeHeightOnly = true;
+            this.bunifuLabel11.CursorType = null;
+            this.bunifuLabel11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuLabel11.Location = new System.Drawing.Point(266, 141);
+            this.bunifuLabel11.Margin = new System.Windows.Forms.Padding(5);
+            this.bunifuLabel11.Name = "bunifuLabel11";
+            this.bunifuLabel11.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel11.Size = new System.Drawing.Size(251, 20);
+            this.bunifuLabel11.TabIndex = 0;
+            this.bunifuLabel11.Text = "Project";
+            this.bunifuLabel11.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel11.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
-            // bunifuCustomLabel3
+            // cbProject
             // 
-            this.bunifuCustomLabel3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bunifuCustomLabel3.AutoSize = true;
-            this.bunifuCustomLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuCustomLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel3.Location = new System.Drawing.Point(10, 347);
-            this.bunifuCustomLabel3.Margin = new System.Windows.Forms.Padding(10);
-            this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
-            this.bunifuCustomLabel3.Size = new System.Drawing.Size(78, 20);
-            this.bunifuCustomLabel3.TabIndex = 30;
-            this.bunifuCustomLabel3.Text = "Is Active";
-            this.bunifuCustomLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbProject.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbProject.FormattingEnabled = true;
+            this.cbProject.Location = new System.Drawing.Point(318, 169);
+            this.cbProject.Name = "cbProject";
+            this.cbProject.Size = new System.Drawing.Size(203, 28);
+            this.cbProject.TabIndex = 6;
+            this.cbProject.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbProject_KeyUp);
+            // 
+            // bunifuLabel8
+            // 
+            this.bunifuLabel8.AllowParentOverrides = false;
+            this.bunifuLabel8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.bunifuLabel8.AutoEllipsis = false;
+            this.bunifuLabel8.AutoSize = false;
+            this.bunifuLabel8.AutoSizeHeightOnly = true;
+            this.bunifuLabel8.CursorType = null;
+            this.bunifuLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuLabel8.Location = new System.Drawing.Point(266, 206);
+            this.bunifuLabel8.Margin = new System.Windows.Forms.Padding(5);
+            this.bunifuLabel8.Name = "bunifuLabel8";
+            this.bunifuLabel8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel8.Size = new System.Drawing.Size(251, 20);
+            this.bunifuLabel8.TabIndex = 0;
+            this.bunifuLabel8.Text = "Assign To User";
+            this.bunifuLabel8.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel8.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // CbUser
+            // 
+            this.CbUser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CbUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbUser.FormattingEnabled = true;
+            this.CbUser.Location = new System.Drawing.Point(318, 236);
+            this.CbUser.Name = "CbUser";
+            this.CbUser.Size = new System.Drawing.Size(203, 28);
+            this.CbUser.TabIndex = 5;
+            this.CbUser.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CbUser_KeyUp);
             // 
             // cbIsActive
             // 
@@ -1412,6 +1383,35 @@
             this.cbIsActive.TabIndex = 31;
             this.cbIsActive.ThreeState = false;
             this.cbIsActive.ToolTipText = null;
+            // 
+            // bunifuCustomLabel3
+            // 
+            this.bunifuCustomLabel3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.bunifuCustomLabel3.AutoSize = true;
+            this.bunifuCustomLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuCustomLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel3.Location = new System.Drawing.Point(10, 347);
+            this.bunifuCustomLabel3.Margin = new System.Windows.Forms.Padding(10);
+            this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
+            this.bunifuCustomLabel3.Size = new System.Drawing.Size(78, 20);
+            this.bunifuCustomLabel3.TabIndex = 30;
+            this.bunifuCustomLabel3.Text = "Is Active";
+            this.bunifuCustomLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbProjects
+            // 
+            this.lbProjects._BackColor = System.Drawing.Color.Empty;
+            this.lbProjects._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbProjects.AutoSize = true;
+            this.lbProjects.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProjects.Location = new System.Drawing.Point(0, 0);
+            this.lbProjects.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbProjects.Name = "lbProjects";
+            this.lbProjects.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.lbProjects.Size = new System.Drawing.Size(118, 41);
+            this.lbProjects.TabIndex = 3;
+            this.lbProjects.Text = "Task List";
             // 
             // CtrlPanelTaskAdminNew
             // 

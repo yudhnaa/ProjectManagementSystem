@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Services;
 using DataLayer.DataAccess;
 using DataLayer.Domain;
+using DataLayer.EnumObjects;
 using DTOLayer.Mappers;
 using DTOLayer.Models;
 using System;
@@ -12,15 +13,18 @@ namespace BusinessLayer.Services
 {
     public class ProjectServices : IProjectServices
     {
+        private readonly IProjectDAL projectDAL = new ProjectDAL();
+
         public ProjectDTO CreateProject(ProjectDTO projectDTO)
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
 
                 Project project = projectDTO.ToProjectEntity();
 
                 project.PercentComplete = 0;
+
                 project.IsDeleted = false;
 
                 Project res = projectDAL.CreateProject(project);
@@ -43,7 +47,6 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
                 ProjectDTO existingProject = this.GetProjectById(project.Id);
 
                 if (existingProject == null)
@@ -76,8 +79,6 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
-
                 var projects = projectDAL.GetAllProjects(kw, isIncludeInActive: false);
                 if (projects == null)
                     return null;
@@ -100,7 +101,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
 
                 var projects = projectDAL.GetAllProjects(kw, isIncludeInActive: true);
                 if (projects == null)
@@ -124,7 +125,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
 
                 var projects = projectDAL.GetAllProjects(kw, isIncludeInActive: false);
                 if (projects == null)
@@ -148,7 +149,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
 
                 var projects = projectDAL.GetAllProjects(kw, isIncludeInActive: true);
                 if (projects == null)
@@ -172,7 +173,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
                 var project = projectDAL.GetProjectById(projectId, isIncludeInActive: false);
 
                 if (project == null)
@@ -196,7 +197,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
                 var project = projectDAL.GetProjectById(projectId, isIncludeInActive: true);
 
                 if (project == null)
@@ -220,7 +221,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
                 var project = projectDAL.GetProjectById(projectId, isIncludeInActive: false);
 
                 if (project == null)
@@ -244,7 +245,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
                 var project = projectDAL.GetProjectById(projectId, isIncludeInActive: true);
 
                 if (project == null)
@@ -268,7 +269,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
                 var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: false);
                 if (projects == null)
                     return null;
@@ -291,7 +292,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
                 var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: false);
                 if (projects == null)
                     return null;
@@ -314,7 +315,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
                 IProjectMemberServices projectMemberServices = new ProjectMemberServices();
 
                 var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: false)
@@ -342,7 +343,7 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
+
                 var projects = projectDAL.GetProjectsByUserId(userId, isIncludeInActive: true);
                 if (projects == null)
                     return null;
@@ -371,8 +372,8 @@ namespace BusinessLayer.Services
         {
             try
             {
-                ProjectDAL projectDAL = new ProjectDAL();
-                ProjectDTO existingProject = this.GetProjectById(project.Id);
+
+                ProjectDTO existingProject =  this.GetProjectById(project.Id);
                 if (existingProject == null)
                     throw new Exception("Project not found.");
 
@@ -387,18 +388,91 @@ namespace BusinessLayer.Services
                 existingProject.PriorityId = project.PriorityId;
                 existingProject.PercentComplete = project.PercentComplete;
                 existingProject.UpdatedDate = DateTime.Now;
+                
+
+                var res1 = true;
+                if (project.IsDeleted == true || project.StatusId == ProjectStatusEnum.Cancelled.ToId())
+                {
+                    existingProject.IsDeleted = true;
+                    existingProject.StatusId = ProjectStatusEnum.Cancelled.ToId();
+                    // Set all task status to cancelled
+
+                    ITaskServices taskServices = new TaskServices();
+                    var tasks = taskServices.GetTasksForlistByProjectIdAndKw(project.Id, "");
+                    if (tasks == null)
+                        return true;
+
+                    foreach (var task in tasks)
+                    {
+                        res1 = taskServices.UpdateTaskStatus(task.Id, TaskStatusEnum.Cancelled);
+                    }
+                }
 
                 var res = projectDAL.UpdateProject(existingProject.ToProjectEntity());
-                return res;
+
+                return res && res1;
             }
             catch (SqlException ex)
             {
-                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
                 throw new Exception("Database error occurred while updating project.", ex);
             }
             catch (Exception ex)
             {
-                // Handle other exceptions
+                throw new Exception("An error occurred while updating project.", ex);
+            }
+        }
+
+        public bool UpdateProjectIncludeInActive(ProjectDTO project)
+        {
+            try
+            {
+
+                ProjectDTO existingProject = this.GetProjectByIdInlcudeInActive(project.Id);
+                if (existingProject == null)
+                    throw new Exception("Project not found.");
+
+                existingProject.Name = project.Name;
+                existingProject.ProjectCode = project.ProjectCode;
+                existingProject.Description = project.Description;
+                existingProject.StartDate = project.StartDate;
+                existingProject.EndDate = project.EndDate;
+                existingProject.Budget = project.Budget;
+                existingProject.StatusId = project.StatusId;
+                existingProject.ManagerId = project.ManagerId;
+                existingProject.PriorityId = project.PriorityId;
+                existingProject.PercentComplete = project.PercentComplete;
+                existingProject.UpdatedDate = DateTime.Now;
+                existingProject.IsDeleted = project.IsDeleted;
+
+
+                var res1 = true;
+                if (project.IsDeleted == true || project.StatusId == ProjectStatusEnum.Cancelled.ToId())
+                {
+                    existingProject.IsDeleted = true;
+                    existingProject.StatusId = ProjectStatusEnum.Cancelled.ToId();
+                    // Set all task status to cancelled
+
+                    ITaskServices taskServices = new TaskServices();
+                    var tasks = taskServices.GetTasksForlistByProjectIdAndKw(project.Id, "");
+                    if (tasks == null)
+                        return true;
+
+                    foreach (var task in tasks)
+                    {
+                        res1 = taskServices.UpdateTaskStatus(task.Id, TaskStatusEnum.Cancelled);
+                    }
+                }
+
+                var res = projectDAL.UpdateProject(existingProject.ToProjectEntity());
+
+                return res && res1;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Database error occurred while updating project.", ex);
+            }
+            catch (Exception ex)
+            {
                 throw new Exception("An error occurred while updating project.", ex);
             }
         }

@@ -173,6 +173,7 @@ namespace DataLayer.DataAccess
                     existingProject.PriorityId = project.PriorityId;
                     existingProject.PercentComplete = project.PercentComplete;
                     existingProject.UpdatedDate = DateTime.Now;
+                    existingProject.IsDeleted = project.IsDeleted;
 
                     var res = dbContext.SaveChanges();
                     return res > 0;

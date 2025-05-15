@@ -46,21 +46,28 @@ namespace BusinessLayer.Services
             {
                 DepartmentDAL departmentDAL = new DepartmentDAL();
 
-                var department = item.ToDepartmentEntity();
-                department.UpdatedDate = DateTime.Now;
+                var curDepartment = departmentDAL.GetDepartmentById(item.Id, isIncludeInActive: true);
+                if (curDepartment == null)
+                {
+                    throw new Exception("Department not found");
+                }
 
-                var res = departmentDAL.UpdateDepartment(department);
+                curDepartment.Name = item.Name;
+                curDepartment.Description = item.Description;
+                curDepartment.ManagerId = item.ManagerId;
+                curDepartment.IsActive = item.IsActive;
+                curDepartment.UpdatedDate = DateTime.Now;
+
+                var res = departmentDAL.UpdateDepartment(curDepartment);
                 return res;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                // Handle SQL exceptions (e.g., log the error, rethrow, etc.)
-                throw new Exception("Database error occurred while updating department.", ex);
+                throw;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Handle other exceptions
-                throw new Exception("An error occurred while updating department.", ex);
+                throw;
             }
         }
 
