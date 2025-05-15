@@ -453,6 +453,9 @@ namespace PresentationLayer.Controls.SideBar.User
 
         private void btnSendComment_Click(object sender, EventArgs e)
         {
+            if (currentTask == null)
+                return;
+
             try
             {
                 if (string.IsNullOrEmpty(tbComment.Text))

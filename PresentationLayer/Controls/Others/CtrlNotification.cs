@@ -43,16 +43,16 @@ namespace PresentationLayer.Controls.SideBar.User
                     btnAccept.Visible = true;
                     break;
                 case NotificationTypeEnum.TaskAssignment:
-                    btnAccept.Visible = true;
+                    btnAccept.Visible = false;
                     break;
                 case NotificationTypeEnum.TaskHelpRequest:
-                    btnAccept.Visible = true;
+                    btnAccept.Visible = false;
                     break;
                 case NotificationTypeEnum.CommentAdded:
-                    btnAccept.Visible = true;
+                    btnAccept.Visible = false;
                     break;
                 case NotificationTypeEnum.TaskExpiring:
-                    btnAccept.Visible = true;
+                    btnAccept.Visible = false;
                     break;
                 default:
                     btnAccept.Visible = false;

@@ -83,7 +83,7 @@ namespace PresentationLayer.Controls.SideBar.Admin
             {
                 if (!projectCache.ContainsKey(projectId))
                 {
-                    var curProject = projectServices.GetProjectForListById(projectId);
+                    var curProject = projectServices.GetProjectForListByIdInlcudeInActive(projectId);
                     projectCache.Add(projectId, curProject);
                 }
 
