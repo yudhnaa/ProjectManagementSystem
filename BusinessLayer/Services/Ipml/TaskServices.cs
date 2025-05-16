@@ -729,7 +729,6 @@ namespace BusinessLayer.Services
                 .GroupBy(t => t.UpdatedDate.Value.Date)
                 .OrderBy(g => g.Key)
                 .ToDictionary(g => g.Key, g => g.Count());
-
             return grouped;
 
         }

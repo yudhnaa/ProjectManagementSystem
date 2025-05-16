@@ -61,7 +61,6 @@
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.tbId = new Bunifu.UI.WinForms.BunifuTextBox();
             this.tbName = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.cbIsActive = new Bunifu.UI.WinForms.BunifuCheckBox();
             this.bunifuCustomLabel6 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.tbDescription = new Bunifu.UI.WinForms.BunifuTextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -69,6 +68,7 @@
             this.btCancel = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.btCreateProject = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.cbIsActive = new Bunifu.UI.WinForms.BunifuCheckBox();
             this.lbProjects = new PresentationLayer.CustomControls.RoundedLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -251,6 +251,7 @@
             this.tbSearch.TextPlaceholder = "Enter text";
             this.tbSearch.UseSystemPasswordChar = false;
             this.tbSearch.WordWrap = true;
+            this.tbSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyUp);
             // 
             // roundedLabel1
             // 
@@ -480,61 +481,6 @@
             this.tbName.TextPlaceholder = "";
             this.tbName.UseSystemPasswordChar = false;
             this.tbName.WordWrap = true;
-            // 
-            // cbIsActive
-            // 
-            this.cbIsActive.AllowBindingControlAnimation = true;
-            this.cbIsActive.AllowBindingControlColorChanges = false;
-            this.cbIsActive.AllowBindingControlLocation = true;
-            this.cbIsActive.AllowCheckBoxAnimation = false;
-            this.cbIsActive.AllowCheckmarkAnimation = true;
-            this.cbIsActive.AllowOnHoverStates = true;
-            this.cbIsActive.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbIsActive.AutoCheck = true;
-            this.cbIsActive.BackColor = System.Drawing.Color.Transparent;
-            this.cbIsActive.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbIsActive.BackgroundImage")));
-            this.cbIsActive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.cbIsActive.BindingControlPosition = Bunifu.UI.WinForms.BunifuCheckBox.BindingControlPositions.Right;
-            this.cbIsActive.BorderRadius = 12;
-            this.cbIsActive.Checked = true;
-            this.cbIsActive.CheckState = Bunifu.UI.WinForms.BunifuCheckBox.CheckStates.Checked;
-            this.cbIsActive.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cbIsActive.CustomCheckmarkImage = null;
-            this.cbIsActive.Location = new System.Drawing.Point(488, 54);
-            this.cbIsActive.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.cbIsActive.MinimumSize = new System.Drawing.Size(26, 24);
-            this.cbIsActive.Name = "cbIsActive";
-            this.cbIsActive.OnCheck.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.cbIsActive.OnCheck.BorderRadius = 12;
-            this.cbIsActive.OnCheck.BorderThickness = 2;
-            this.cbIsActive.OnCheck.CheckBoxColor = System.Drawing.Color.DodgerBlue;
-            this.cbIsActive.OnCheck.CheckmarkColor = System.Drawing.Color.White;
-            this.cbIsActive.OnCheck.CheckmarkThickness = 2;
-            this.cbIsActive.OnDisable.BorderColor = System.Drawing.Color.LightGray;
-            this.cbIsActive.OnDisable.BorderRadius = 12;
-            this.cbIsActive.OnDisable.BorderThickness = 2;
-            this.cbIsActive.OnDisable.CheckBoxColor = System.Drawing.Color.Transparent;
-            this.cbIsActive.OnDisable.CheckmarkColor = System.Drawing.Color.LightGray;
-            this.cbIsActive.OnDisable.CheckmarkThickness = 2;
-            this.cbIsActive.OnHoverChecked.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.cbIsActive.OnHoverChecked.BorderRadius = 12;
-            this.cbIsActive.OnHoverChecked.BorderThickness = 2;
-            this.cbIsActive.OnHoverChecked.CheckBoxColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.cbIsActive.OnHoverChecked.CheckmarkColor = System.Drawing.Color.White;
-            this.cbIsActive.OnHoverChecked.CheckmarkThickness = 2;
-            this.cbIsActive.OnHoverUnchecked.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.cbIsActive.OnHoverUnchecked.BorderRadius = 12;
-            this.cbIsActive.OnHoverUnchecked.BorderThickness = 1;
-            this.cbIsActive.OnHoverUnchecked.CheckBoxColor = System.Drawing.Color.Transparent;
-            this.cbIsActive.OnUncheck.BorderColor = System.Drawing.Color.DarkGray;
-            this.cbIsActive.OnUncheck.BorderRadius = 12;
-            this.cbIsActive.OnUncheck.BorderThickness = 1;
-            this.cbIsActive.OnUncheck.CheckBoxColor = System.Drawing.Color.Transparent;
-            this.cbIsActive.Size = new System.Drawing.Size(30, 30);
-            this.cbIsActive.Style = Bunifu.UI.WinForms.BunifuCheckBox.CheckBoxStyles.Bunifu;
-            this.cbIsActive.TabIndex = 32;
-            this.cbIsActive.ThreeState = false;
-            this.cbIsActive.ToolTipText = null;
             // 
             // bunifuCustomLabel6
             // 
@@ -925,6 +871,61 @@
             this.bunifuCustomLabel2.TabIndex = 2;
             this.bunifuCustomLabel2.Text = "Is Active";
             this.bunifuCustomLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cbIsActive
+            // 
+            this.cbIsActive.AllowBindingControlAnimation = true;
+            this.cbIsActive.AllowBindingControlColorChanges = false;
+            this.cbIsActive.AllowBindingControlLocation = true;
+            this.cbIsActive.AllowCheckBoxAnimation = false;
+            this.cbIsActive.AllowCheckmarkAnimation = true;
+            this.cbIsActive.AllowOnHoverStates = true;
+            this.cbIsActive.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbIsActive.AutoCheck = true;
+            this.cbIsActive.BackColor = System.Drawing.Color.Transparent;
+            this.cbIsActive.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbIsActive.BackgroundImage")));
+            this.cbIsActive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cbIsActive.BindingControlPosition = Bunifu.UI.WinForms.BunifuCheckBox.BindingControlPositions.Right;
+            this.cbIsActive.BorderRadius = 12;
+            this.cbIsActive.Checked = true;
+            this.cbIsActive.CheckState = Bunifu.UI.WinForms.BunifuCheckBox.CheckStates.Checked;
+            this.cbIsActive.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cbIsActive.CustomCheckmarkImage = null;
+            this.cbIsActive.Location = new System.Drawing.Point(488, 54);
+            this.cbIsActive.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.cbIsActive.MinimumSize = new System.Drawing.Size(26, 24);
+            this.cbIsActive.Name = "cbIsActive";
+            this.cbIsActive.OnCheck.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.cbIsActive.OnCheck.BorderRadius = 12;
+            this.cbIsActive.OnCheck.BorderThickness = 2;
+            this.cbIsActive.OnCheck.CheckBoxColor = System.Drawing.Color.DodgerBlue;
+            this.cbIsActive.OnCheck.CheckmarkColor = System.Drawing.Color.White;
+            this.cbIsActive.OnCheck.CheckmarkThickness = 2;
+            this.cbIsActive.OnDisable.BorderColor = System.Drawing.Color.LightGray;
+            this.cbIsActive.OnDisable.BorderRadius = 12;
+            this.cbIsActive.OnDisable.BorderThickness = 2;
+            this.cbIsActive.OnDisable.CheckBoxColor = System.Drawing.Color.Transparent;
+            this.cbIsActive.OnDisable.CheckmarkColor = System.Drawing.Color.LightGray;
+            this.cbIsActive.OnDisable.CheckmarkThickness = 2;
+            this.cbIsActive.OnHoverChecked.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.cbIsActive.OnHoverChecked.BorderRadius = 12;
+            this.cbIsActive.OnHoverChecked.BorderThickness = 2;
+            this.cbIsActive.OnHoverChecked.CheckBoxColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.cbIsActive.OnHoverChecked.CheckmarkColor = System.Drawing.Color.White;
+            this.cbIsActive.OnHoverChecked.CheckmarkThickness = 2;
+            this.cbIsActive.OnHoverUnchecked.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.cbIsActive.OnHoverUnchecked.BorderRadius = 12;
+            this.cbIsActive.OnHoverUnchecked.BorderThickness = 1;
+            this.cbIsActive.OnHoverUnchecked.CheckBoxColor = System.Drawing.Color.Transparent;
+            this.cbIsActive.OnUncheck.BorderColor = System.Drawing.Color.DarkGray;
+            this.cbIsActive.OnUncheck.BorderRadius = 12;
+            this.cbIsActive.OnUncheck.BorderThickness = 1;
+            this.cbIsActive.OnUncheck.CheckBoxColor = System.Drawing.Color.Transparent;
+            this.cbIsActive.Size = new System.Drawing.Size(30, 30);
+            this.cbIsActive.Style = Bunifu.UI.WinForms.BunifuCheckBox.CheckBoxStyles.Bunifu;
+            this.cbIsActive.TabIndex = 32;
+            this.cbIsActive.ThreeState = false;
+            this.cbIsActive.ToolTipText = null;
             // 
             // lbProjects
             // 

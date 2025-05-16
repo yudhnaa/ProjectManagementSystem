@@ -66,6 +66,7 @@ namespace PresentationLayer.Controls.SideBar
             chart.Series.Clear();
         }
 
+        //Column Chart
         private void SetDataChartTasksPerProject(int userId)
         {
             var taskInProject = new TaskServices();
@@ -79,7 +80,6 @@ namespace PresentationLayer.Controls.SideBar
                 ChartType = SeriesChartType.Column,
                 Color = Color.CornflowerBlue,
                 BorderWidth = 1,
-                
                 YValueType = ChartValueType.Int32
             };
             
@@ -89,7 +89,6 @@ namespace PresentationLayer.Controls.SideBar
                 int pointIndex = series.Points.AddXY(item.Key, item.Value);
                 var point = series.Points[pointIndex];
                 point.Label = item.Value.ToString();
-
             }
 
             // Add series to chart
@@ -103,6 +102,7 @@ namespace PresentationLayer.Controls.SideBar
             
         }
 
+        //Pie Chart
         private void SetDataChartStatusOfTask(int userId)
         {
             var taskServices = new TaskServices();
@@ -150,6 +150,7 @@ namespace PresentationLayer.Controls.SideBar
             chart3.ChartAreas[0].AxisY.Title = "Y Axis";
         }
 
+        //Line Chart
         private void SetDataChartCompletedOfDay(int userId)
         {
             var taskServices = new TaskServices();

@@ -57,9 +57,11 @@
             this.dgvItems = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbSearch = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.roundedLabel1 = new PresentationLayer.CustomControls.RoundedLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.lbName = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.lbPriority = new PresentationLayer.CustomControls.RoundedLabel();
             this.cbStatus = new Bunifu.UI.WinForms.BunifuDropdown();
             this.lbTaskProject = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel4 = new Bunifu.UI.WinForms.BunifuLabel();
@@ -71,6 +73,11 @@
             this.lbOwner = new System.Windows.Forms.Label();
             this.lbCreatedBy = new System.Windows.Forms.Label();
             this.lbDueDate = new System.Windows.Forms.Label();
+            this.labelWithImage1 = new PresentationLayer.Controls.Others.LabelWithImage();
+            this.labelWithImage2 = new PresentationLayer.Controls.Others.LabelWithImage();
+            this.labelWithImage3 = new PresentationLayer.Controls.Others.LabelWithImage();
+            this.labelWithImage4 = new PresentationLayer.Controls.Others.LabelWithImage();
+            this.labelWithImage5 = new PresentationLayer.Controls.Others.LabelWithImage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbComment = new Bunifu.UI.WinForms.BunifuTextBox();
             this.panelComments = new System.Windows.Forms.FlowLayoutPanel();
@@ -80,13 +87,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.toggleMode = new Bunifu.UI.WinForms.BunifuToggleSwitch();
             this.btnHelp = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
-            this.roundedLabel1 = new PresentationLayer.CustomControls.RoundedLabel();
-            this.lbPriority = new PresentationLayer.CustomControls.RoundedLabel();
-            this.labelWithImage1 = new PresentationLayer.Controls.Others.LabelWithImage();
-            this.labelWithImage2 = new PresentationLayer.Controls.Others.LabelWithImage();
-            this.labelWithImage3 = new PresentationLayer.Controls.Others.LabelWithImage();
-            this.labelWithImage4 = new PresentationLayer.Controls.Others.LabelWithImage();
-            this.labelWithImage5 = new PresentationLayer.Controls.Others.LabelWithImage();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -282,6 +282,19 @@
             this.tbSearch.WordWrap = true;
             this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
             // 
+            // roundedLabel1
+            // 
+            this.roundedLabel1._BackColor = System.Drawing.Color.Empty;
+            this.roundedLabel1._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.roundedLabel1.AutoSize = true;
+            this.roundedLabel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.roundedLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.roundedLabel1.Location = new System.Drawing.Point(1, 1);
+            this.roundedLabel1.Name = "roundedLabel1";
+            this.roundedLabel1.Size = new System.Drawing.Size(64, 24);
+            this.roundedLabel1.TabIndex = 0;
+            this.roundedLabel1.Text = "Tasks";
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoScroll = true;
@@ -441,6 +454,21 @@
             this.lbName.Text = "Task Info Is Not Set";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbName.Click += new System.EventHandler(this.lbName_Click);
+            // 
+            // lbPriority
+            // 
+            this.lbPriority._BackColor = System.Drawing.Color.Empty;
+            this.lbPriority._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPriority.Location = new System.Drawing.Point(263, 127);
+            this.lbPriority.Margin = new System.Windows.Forms.Padding(10);
+            this.lbPriority.Name = "lbPriority";
+            this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.lbPriority.Size = new System.Drawing.Size(206, 30);
+            this.lbPriority.TabIndex = 34;
+            this.lbPriority.Text = "Priority";
+            this.lbPriority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbStatus
             // 
@@ -868,6 +896,56 @@
             this.lbDueDate.Text = "Not Set";
             this.lbDueDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // labelWithImage1
+            // 
+            this.labelWithImage1.Image = global::PresentationLayer.Properties.Resources.priority;
+            this.labelWithImage1.Location = new System.Drawing.Point(10, 123);
+            this.labelWithImage1.Margin = new System.Windows.Forms.Padding(10);
+            this.labelWithImage1.Name = "labelWithImage1";
+            this.labelWithImage1.Size = new System.Drawing.Size(166, 39);
+            this.labelWithImage1.TabIndex = 35;
+            this.labelWithImage1.TextLabel = "Priority";
+            // 
+            // labelWithImage2
+            // 
+            this.labelWithImage2.Image = global::PresentationLayer.Properties.Resources.status;
+            this.labelWithImage2.Location = new System.Drawing.Point(10, 182);
+            this.labelWithImage2.Margin = new System.Windows.Forms.Padding(10);
+            this.labelWithImage2.Name = "labelWithImage2";
+            this.labelWithImage2.Size = new System.Drawing.Size(166, 39);
+            this.labelWithImage2.TabIndex = 35;
+            this.labelWithImage2.TextLabel = "Status";
+            // 
+            // labelWithImage3
+            // 
+            this.labelWithImage3.Image = global::PresentationLayer.Properties.Resources.owner;
+            this.labelWithImage3.Location = new System.Drawing.Point(10, 241);
+            this.labelWithImage3.Margin = new System.Windows.Forms.Padding(10);
+            this.labelWithImage3.Name = "labelWithImage3";
+            this.labelWithImage3.Size = new System.Drawing.Size(166, 39);
+            this.labelWithImage3.TabIndex = 35;
+            this.labelWithImage3.TextLabel = "Owner";
+            // 
+            // labelWithImage4
+            // 
+            this.labelWithImage4.Image = global::PresentationLayer.Properties.Resources.createBy;
+            this.labelWithImage4.Location = new System.Drawing.Point(10, 300);
+            this.labelWithImage4.Margin = new System.Windows.Forms.Padding(10);
+            this.labelWithImage4.Name = "labelWithImage4";
+            this.labelWithImage4.Size = new System.Drawing.Size(166, 39);
+            this.labelWithImage4.TabIndex = 35;
+            this.labelWithImage4.TextLabel = "Create By";
+            // 
+            // labelWithImage5
+            // 
+            this.labelWithImage5.Image = global::PresentationLayer.Properties.Resources.dueDate;
+            this.labelWithImage5.Location = new System.Drawing.Point(10, 359);
+            this.labelWithImage5.Margin = new System.Windows.Forms.Padding(10);
+            this.labelWithImage5.Name = "labelWithImage5";
+            this.labelWithImage5.Size = new System.Drawing.Size(166, 39);
+            this.labelWithImage5.TabIndex = 35;
+            this.labelWithImage5.TextLabel = "Due Date";
+            // 
             // panel2
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.panel2, 2);
@@ -1186,84 +1264,6 @@
             this.btnHelp.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
             this.btnHelp.TabIndex = 38;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
-            // roundedLabel1
-            // 
-            this.roundedLabel1._BackColor = System.Drawing.Color.Empty;
-            this.roundedLabel1._TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.roundedLabel1.AutoSize = true;
-            this.roundedLabel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.roundedLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.roundedLabel1.Location = new System.Drawing.Point(1, 1);
-            this.roundedLabel1.Name = "roundedLabel1";
-            this.roundedLabel1.Size = new System.Drawing.Size(64, 24);
-            this.roundedLabel1.TabIndex = 0;
-            this.roundedLabel1.Text = "Tasks";
-            // 
-            // lbPriority
-            // 
-            this.lbPriority._BackColor = System.Drawing.Color.Empty;
-            this.lbPriority._TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbPriority.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPriority.Location = new System.Drawing.Point(263, 127);
-            this.lbPriority.Margin = new System.Windows.Forms.Padding(10);
-            this.lbPriority.Name = "lbPriority";
-            this.lbPriority.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.lbPriority.Size = new System.Drawing.Size(206, 30);
-            this.lbPriority.TabIndex = 34;
-            this.lbPriority.Text = "Priority";
-            this.lbPriority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelWithImage1
-            // 
-            this.labelWithImage1.Image = global::PresentationLayer.Properties.Resources.priority;
-            this.labelWithImage1.Location = new System.Drawing.Point(10, 123);
-            this.labelWithImage1.Margin = new System.Windows.Forms.Padding(10);
-            this.labelWithImage1.Name = "labelWithImage1";
-            this.labelWithImage1.Size = new System.Drawing.Size(166, 39);
-            this.labelWithImage1.TabIndex = 35;
-            this.labelWithImage1.TextLabel = "Priority";
-            // 
-            // labelWithImage2
-            // 
-            this.labelWithImage2.Image = global::PresentationLayer.Properties.Resources.status;
-            this.labelWithImage2.Location = new System.Drawing.Point(10, 182);
-            this.labelWithImage2.Margin = new System.Windows.Forms.Padding(10);
-            this.labelWithImage2.Name = "labelWithImage2";
-            this.labelWithImage2.Size = new System.Drawing.Size(166, 39);
-            this.labelWithImage2.TabIndex = 35;
-            this.labelWithImage2.TextLabel = "Status";
-            // 
-            // labelWithImage3
-            // 
-            this.labelWithImage3.Image = global::PresentationLayer.Properties.Resources.owner;
-            this.labelWithImage3.Location = new System.Drawing.Point(10, 241);
-            this.labelWithImage3.Margin = new System.Windows.Forms.Padding(10);
-            this.labelWithImage3.Name = "labelWithImage3";
-            this.labelWithImage3.Size = new System.Drawing.Size(166, 39);
-            this.labelWithImage3.TabIndex = 35;
-            this.labelWithImage3.TextLabel = "Owner";
-            // 
-            // labelWithImage4
-            // 
-            this.labelWithImage4.Image = global::PresentationLayer.Properties.Resources.createBy;
-            this.labelWithImage4.Location = new System.Drawing.Point(10, 300);
-            this.labelWithImage4.Margin = new System.Windows.Forms.Padding(10);
-            this.labelWithImage4.Name = "labelWithImage4";
-            this.labelWithImage4.Size = new System.Drawing.Size(166, 39);
-            this.labelWithImage4.TabIndex = 35;
-            this.labelWithImage4.TextLabel = "Create By";
-            // 
-            // labelWithImage5
-            // 
-            this.labelWithImage5.Image = global::PresentationLayer.Properties.Resources.dueDate;
-            this.labelWithImage5.Location = new System.Drawing.Point(10, 359);
-            this.labelWithImage5.Margin = new System.Windows.Forms.Padding(10);
-            this.labelWithImage5.Name = "labelWithImage5";
-            this.labelWithImage5.Size = new System.Drawing.Size(166, 39);
-            this.labelWithImage5.TabIndex = 35;
-            this.labelWithImage5.TextLabel = "Due Date";
             // 
             // CtrlPanelTaskNew
             // 
